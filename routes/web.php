@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\client\ControllPannelController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,37 @@ use App\Http\Controllers\admin\SettingsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------
+// Client section
+// ------------------------------------------------------------------------
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
+    Route::view('/', 'client.controllpannel.index');
 });
 
+
+
+
+
+
+// ------------------------------------------------------------------------
+// Admin section
+// ------------------------------------------------------------------------
+
 //start  roles managment
-Route::get('/generate_roles',[SettingsController::class,'generateRoles'])->name('generate_roles');
+Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
