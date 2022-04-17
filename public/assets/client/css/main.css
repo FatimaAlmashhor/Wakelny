@@ -1,12 +1,7 @@
 @import './reset.css';
-<<<<<<< HEAD
 @import './footer.css';
-@import './bottons.css';
-
-
-
-=======
 @import './direction.css';
 @import './navigation.css';
-@import './footer.css';
->>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
+@import './.css';
+@import './bottons.css';
+

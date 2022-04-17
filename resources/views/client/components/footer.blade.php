@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
 <!-- <section class="deneb_cta">
     <div class="container">
         {{-- <div class="cta_wrapper">
