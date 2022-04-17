@@ -26,8 +26,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
-
 // ------------------------------------------------------------------------
 // Client section
 // ------------------------------------------------------------------------
@@ -36,6 +34,7 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
     Route::view('/', 'client.controllpannel.index');
+    Route::view('/about us', 'client.controllpannel.about_us');
 });
 
 
