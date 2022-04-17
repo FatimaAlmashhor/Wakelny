@@ -1,4 +1,7 @@
 @import './reset.css';
+@import './footer.css';
 @import './direction.css';
 @import './navigation.css';
-@import './footer.css';
+@import './.css';
+@import './bottons.css';
+
