@@ -26,15 +26,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
+
+
 // ------------------------------------------------------------------------
 // Client section
 // ------------------------------------------------------------------------
 Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
+    'prefix' => LaravelLocalization::setLocale() ,
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
-    Route::view('/', 'client.static.home');
 });
+Route::view('/', 'client.static.home');
 
 
 

@@ -1,0 +1,13 @@
+.wak_btn {
+    padding: .9rem 1.1rem ;
+    width: inherit;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--main-green-color);
+    color: white;
+}
+
+.wak_btn:hover{
+ background-color: var(--main-darker-green-color);
+ color: white;
+}

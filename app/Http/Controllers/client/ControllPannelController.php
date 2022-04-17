@@ -11,6 +11,6 @@ class ControllPannelController extends Controller
 
     function index()
     {
-        return view('client.controllpannel.index');
+        return view('client.static.home');
     }
 }

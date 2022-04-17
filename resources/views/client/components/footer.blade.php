@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-    integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 <!-- <section class="deneb_cta">
     <div class="container">
         {{-- <div class="cta_wrapper">
@@ -28,9 +26,10 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="widget widegt_about">
                         <div class="widget_title">
-                            <img src="assets/client/images/logo.png" class="img-fluid"  style=" height: 100px; weight:100px;" alt="">
+                            <img src="assets/client/images/logo.png" class="img-fluid"
+                                style=" height: 100px; weight:100px;" alt="">
                         </div>
-                        <p>{{ __('ganeral.text'); }}</p>
+                        <p>{{ __('ganeral.text') }}</p>
                         <ul class="social">
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -41,21 +40,21 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="widget widget_link">
                         <div class="widget_title">
-                            <h4>{{ __('ganeral.Links'); }}</h4>
+                            <h4>{{ __('ganeral.Links') }}</h4>
                         </div>
                         <ul>
-                      
-                            <li><a href="#">{{ __('ganeral.aboutus'); }}</a></li>
-                            <li><a href="#">{{ __('ganeral.Services'); }}</a></li>
-                            <li><a href="#">{{ __('ganeral.works'); }}</a></li>
-                            <li><a href="#">{{ __('ganeral.help'); }}</a></li>
+
+                            <li><a href="#">{{ __('ganeral.aboutus') }}</a></li>
+                            <li><a href="#">{{ __('ganeral.Services') }}</a></li>
+                            <li><a href="#">{{ __('ganeral.works') }}</a></li>
+                            <li><a href="#">{{ __('ganeral.help') }}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="widget widget_contact">
                         <div class="widget_title">
-                            <h4>{{ __('ganeral.ContactUs'); }}</h4>
+                            <h4>{{ __('ganeral.ContactUs') }}</h4>
                         </div>
                         <div class="contact_info">
                             <div class="single_info">
