@@ -1,0 +1,7 @@
+nav {
+    background-color: var(--main-green-color);
+}
+
+.nav-f-color {
+    color: var(--main-offwhite-color);
+}

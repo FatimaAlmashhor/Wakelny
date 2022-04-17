@@ -19,9 +19,9 @@
 
 <body>
 
-    <!-- ====== START HEADER ====== -->
+    <!-- ====== START NAVIGATION ====== -->
 	@include('client.components.navigation')
-	<!-- ====== END HEADER ====== -->
+	<!-- ====== END NAVIGATION ====== -->
 
     @yield('content')
     @include('client.components.footer')
