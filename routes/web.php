@@ -35,6 +35,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale() ,
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
+<<<<<<< HEAD
+=======
+    Route::view('/', 'client.controllpannel.index');
+    Route::view('/about us', 'client.controllpannel.about_us');
+>>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
 });
 Route::view('/', 'client.static.home');
 

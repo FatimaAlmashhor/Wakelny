@@ -17,6 +17,7 @@
     --second-green-color:rgba(95, 227, 188, 0.53) ;
     --main-orange-color:rgba(240, 157, 96, 1) ;
     --main-second-color:rgba(240, 157, 96, 0.49) ;
+<<<<<<< HEAD
     --main-dark-gray-color:rgba(172, 171, 171, 1) ;
     --main-light-gray-color:rgba(201, 201, 201, 1) ;
     --main-lighter-gray-color:rgb(248 249 250) ;
@@ -30,3 +31,9 @@ a{
     color:inherit ;
     text-decoration: none;
 }
+=======
+    --main-light-gray-color:rgba(214, 215, 214, 1) ;
+    --main-offwhite-color:rgb(252, 252, 252) ;
+}
+
+>>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec

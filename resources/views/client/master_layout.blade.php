@@ -13,12 +13,25 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/client/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+<<<<<<< HEAD
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
+=======
+    integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link href="/assets/client/css/about.css" rel="stylesheet">
+>>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
     <title>Wakelny</title>
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+
+    <!-- ====== START NAVIGATION ====== -->
+	@include('client.components.navigation')
+	<!-- ====== END NAVIGATION ====== -->
+
+>>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
     @yield('content')
     @include('client.components.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

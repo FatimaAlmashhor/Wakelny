@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
 <!-- <section class="deneb_cta">
     <div class="container">
         {{-- <div class="cta_wrapper">
@@ -18,7 +22,9 @@
         </div> --}}
     </div>
 </section> -->
+
 <footer class="deneb_footer" dir="rtl">
+
     <div class="widget_wrapper"
         style="background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);">
         <div class="container">
