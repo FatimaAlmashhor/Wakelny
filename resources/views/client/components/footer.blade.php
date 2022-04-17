@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
     integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-<section class="deneb_cta">
+<!-- <section class="deneb_cta">
     <div class="container">
         {{-- <div class="cta_wrapper">
             <div class="row align-items-center">
@@ -19,7 +19,7 @@
             </div>
         </div> --}}
     </div>
-</section>
+</section> -->
 <footer class="deneb_footer">
     <div class="widget_wrapper"
         style="background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);">
