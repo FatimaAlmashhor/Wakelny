@@ -15,6 +15,8 @@
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-f-color" href="#">العروض الحالية</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-f-color" href="#">تسجيل الدخول</a>
                 </li>
