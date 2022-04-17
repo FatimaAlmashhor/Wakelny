@@ -346,8 +346,4 @@ return [
     'urlsIgnored' => ['/skipped'],
 
     'httpMethodsIgnored' => ['POST', 'PUT', 'PATCH', 'DELETE'],
-<<<<<<< HEAD
 ];
-=======
-];
->>>>>>> 20be1115b64b8a8267e34a3c04bb56feae205fec
