@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
+use App\Http\Controllers\admin\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +24,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
+Route::get('/create_user',[AuthController::class,'showLogin'])->name('login');
 
 
 
