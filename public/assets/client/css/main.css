@@ -1,6 +1,8 @@
+@import './helper/bootstrap.min.css';
 @import './reset.css';
 @import './footer.css';
 @import './header.css';
+@import './accordion.css';
 @import './home.css';
 @import './direction.css';
 @import './navigation.css';

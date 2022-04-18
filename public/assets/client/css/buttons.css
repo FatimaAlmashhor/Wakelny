@@ -1,5 +1,5 @@
 .wak_btn {
-    padding: .9rem 1.1rem ;
+    padding: .9rem 1.1rem;
     width: inherit;
     border: none;
     border-radius: 2px;
@@ -7,7 +7,17 @@
     color: white;
 }
 
-.wak_btn:hover{
- background-color: var(--main-darker-green-color);
- color: white;
+.wak_btn:hover {
+    background-color: var(--main-darker-green-color);
+    color: white;
+}
+
+.wak_btn.orange {
+
+    background-color: var(--main-orange-color);
+}
+
+.wak_btn.orange:hover {
+    background-color: var(--main-lighter-orange-color);
+    color: white;
 }
