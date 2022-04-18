@@ -6,7 +6,8 @@
     <section class="pt-4">
         <div class="container px-lg-5">
             <!-- Page Features-->
-            <div class="row gx-lg-5">
+            <div class="row gx-lg-5 my-5 text-center">
+                <h1 class="my-3 pb-4 fw-normal">مايمزينا ؟</h1>
                 <div class="col-lg-6 col-xxl-4 mb-5">
                     <div class="card bg-light border-0 h-100">
                         <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
@@ -70,6 +71,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="locations" class="banner signup p-y-3">
+            <div class="wrapper">
+                <h2 class="m-b-2 display-5 text-uppercase">Don't Miss Out</h2>
+                <a href="#" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                    data-target="#signup_form_modal">Buy Tickets</a>
             </div>
         </div>
     </section>

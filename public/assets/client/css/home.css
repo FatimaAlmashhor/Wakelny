@@ -1,0 +1,38 @@
+.banner {
+    color: #EDF2F4;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.banner .wrapper {
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .banner {
+        min-height: 400px;
+    }
+
+    .banner h1,
+    .banner h2 {
+        font-size: 20px;
+    }
+}
+
+.banner.speakers,
+.banner.signup {
+    background-color: var(--main-green-color);
+}
+
+
+
+.banner.signup {
+    background-color: #2b4238;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("https://images.unsplash.com/photo-1493020258366-be3ead1b3027?dpr=1&auto=compress,format&fit=crop&w=1199&h=1199&q=80&cs=tinysrgb&crop=&bg=");
+}
