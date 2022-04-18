@@ -1,0 +1,121 @@
+.banner {
+    color: #EDF2F4;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.banner .wrapper {
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .banner {
+        min-height: 400px;
+    }
+
+    .banner h1,
+    .banner h2 {
+        font-size: 20px;
+    }
+}
+
+.banner.speakers,
+.banner.signup {
+    background-color: var(--main-green-color);
+}
+
+
+
+.banner.signup {
+    background-color: #2b4238;
+    background-image: linear-gradient(rgba(160, 160, 156, 0.6), rgba(0, 0, 0, 0.6)),
+        url("https://images.unsplash.com/photo-1493020258366-be3ead1b3027?dpr=1&auto=compress,format&fit=crop&w=1199&h=1199&q=80&cs=tinysrgb&crop=&bg=");
+}
+
+
+/* common qustion */
+#accordion .panel {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#accordion .panel:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    border: 1px dashed #6e8898;
+    position: absolute;
+    top: 25px;
+    left: 18px;
+}
+
+#accordion .panel:last-child:before {
+    display: none;
+}
+
+#accordion .panel-heading {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    position: relative;
+}
+
+#accordion .panel-title a {
+    display: block;
+    padding: 10px 30px 10px 60px;
+    margin: 0;
+    background: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1d3557;
+    border-radius: 0;
+    position: relative;
+}
+
+#accordion .panel-title a:before,
+#accordion .panel-title a.collapsed:before {
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 40px;
+    height: 100%;
+    line-height: 40px;
+    background: #8a8ac3;
+    border: 1px solid #8a8ac3;
+    border-radius: 3px;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease 0s;
+}
+
+#accordion .panel-title a.collapsed:before {
+    content: "\f105";
+    background: #fff;
+    border: 1px solid #6e8898;
+    color: #000;
+}
+
+#accordion .panel-body {
+    padding: 10px 30px 10px 30px;
+    margin-left: 40px;
+    background: #fff;
+    border-top: none;
+    font-size: 15px;
+    color: #6f6f6f;
+    line-height: 28px;
+    letter-spacing: 1px;
+}
