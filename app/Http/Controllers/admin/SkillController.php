@@ -14,11 +14,11 @@ class SkillController extends Controller
 
     public function listAll(){
         $skills=Skill::all();
-        return view('admin.skills')->with('skills', $skills);
+        return view('admin.skills.skills')->with('skills', $skills);
     }
     public function create(){
        
-        return view('admin.create_skill');
+        return view('admin.skills.create_skill');
     }
 
     public function store(Request $request)
@@ -54,7 +54,7 @@ public function edit($skill_id){
     $skill=Skill::find($skill_id);
  
 
-    return view('admin.edit_skill')->with(['skill' =>$skill ]);
+    return view('admin.skills.edit_skill')->with(['skill' =>$skill ]);
 }
 
 public function update(Request $request,$skill_id){
