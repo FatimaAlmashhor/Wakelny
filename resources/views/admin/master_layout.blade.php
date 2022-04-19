@@ -19,8 +19,12 @@
 </head>
 
 <body>
-
-    @yield('content')
+    <section id="app">
+        @include('admin.components.aside')
+        <div id="main">
+            @yield('content')
+        </div>
+    </section>
     <script src="/assets/admin//vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/admin//js/bootstrap.bundle.min.js"></script>
 

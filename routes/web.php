@@ -42,33 +42,32 @@ Route::group([
     Route::view('/', 'client.static.home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
-    
-Route::get('/users',[AuthController::class,'listAll'])->name('users');
-Route::get('/create_user',[AuthController::class,'create'])->name('create_user');
-Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
-Route::get('/login',[AuthController::class,'showLogin'])->name('login');
+
+    Route::get('/users', [AuthController::class, 'listAll'])->name('users');
+    Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
+    Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 
+    // ------------------------------------------------------------------------
+    // Admin section
+    // ------------------------------------------------------------------------
+    Route::prefix('admin')->group(function () {
+        Route::view('/', 'admin.index')->name('home');
+        Route::view('/categories', 'admin.categories.index')->name('adminCategories');
+        Route::view('/categories/add', 'admin.categories._form')->name('adminAddCategory');
+    });
 
-
-
-
-
-
-// ------------------------------------------------------------------------
-// Admin section
-// ------------------------------------------------------------------------
-Route::view('/admin', 'admin.index');
-//////////////////////CRUD skills ////////////////
-Route::get('/skills',[SkillController::class,'listAll'])->name("skills");
-Route::get('/create_skill',[SkillController::class,'create'])->name('create_skill');
-Route::post('/save_skill',[SkillController::class,'store'])->name('save_skill');
-Route::get('/edit_skill/{skill_id}',[SkillController::class,'edit'])->name('edit_skill');
-Route::get('/toggle_skill/{skill_id}',[SkillController::class,'toggle'])->name('toggle_skill');
-Route::post('/update_skill/{skill_id}',[SkillController::class,'update'])->name('update_skill');
+    ////////////////////CRUD skills ////////////////
+    Route::get('/skills', [SkillController::class, 'listAll'])->name("skills");
+    Route::get('/create_skill', [SkillController::class, 'create'])->name('create_skill');
+    Route::post('/save_skill', [SkillController::class, 'store'])->name('save_skill');
+    Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
+    Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
+    Route::post('/update_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
 });
 
-  
+
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
