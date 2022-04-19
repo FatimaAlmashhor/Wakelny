@@ -45,7 +45,7 @@ Route::get('/create_user',[AuthController::class,'create'])->name('create_user')
 Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 
-//////////////////////CRUD skill ////////////////
+//////////////////////CRUD skills ////////////////
 Route::get('/skills',[SkillController::class,'listAll'])->name("skills");
 Route::get('/create_skill',[SkillController::class,'create'])->name('create_skill');
 Route::post('/save_skill',[SkillController::class,'store'])->name('save_skill');
