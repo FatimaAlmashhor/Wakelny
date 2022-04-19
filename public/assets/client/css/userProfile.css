@@ -1,15 +1,18 @@
 /* ============ User Avatar ============= */
 
 .profile-identity{
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
     margin: auto;
+    padding-block-end: 1.5rem;
     width: 70%;
 }
 
 .profile-card--avatar {
-    width: 160px;
-    height: 160px;
-    /* border-radius: 50%; */
+    max-width: 160px;
+    max-height: 160px;
+    min-width: 160px;
+    min-height: 160px;
+    margin-inline-end: 1.5rem;
     display: inline-block;
     position: relative;
 }
@@ -17,6 +20,24 @@
 .profile-avatar {
     width: 100%;
     height: 100%;
+}
+
+.is_active-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--main-darker-green-color);
+    position: absolute;
+    top: 12px;
+    right: 24px;
+}
+
+.profile-identity .user-info {
+    /* border: 1px red solid; */
+    /* height:max-content; */
+}
+
+.profile-identity .user-info .user-brief {
+    font-size: 0.8rem;
 }
 
 /* ============ /User Avatar ============= */
