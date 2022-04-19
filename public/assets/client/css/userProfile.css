@@ -31,6 +31,12 @@
     right: 24px;
 }
 
+.profile-identity .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
 .profile-identity .user-info .user-brief {
     font-size: 0.8rem;
 }
