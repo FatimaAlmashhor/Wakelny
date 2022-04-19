@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\admin\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::group([
     Route::view('/', 'client.static.home');
     Route::view('/about us', 'client.controllpannel.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+
+Route::get('/login',[AuthController::class,'showLogins'])->name('login');
 });
 
 
@@ -52,3 +55,5 @@ Route::group([
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
+
+Route::get('/login',[AuthController::class,'showLogins'])->name('login');
