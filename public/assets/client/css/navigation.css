@@ -2,6 +2,105 @@ nav {
     background-color: var(--main-green-color);
 }
 
-.nav-f-color {
+/* ============= Brand ============== */
+.brand {
     color: var(--main-offwhite-color);
 }
+
+.brand:hover,
+.brand:active,
+.brand:visited {
+    color: var(--main-offwhite-color);
+}
+/* ============= /Brand ============== */
+
+/* ============= Nav links ============== */
+.nav-links {
+    color: var(--main-offwhite-color);
+    transition: 0.7s ease;
+    display: inline-block;
+    min-width: fit-content;
+}
+
+.nav-links:hover,
+.nav-links:active,
+.nav-links:visited {
+    color: var(--main-offwhite-color);
+    border-bottom: 6px solid var(--main-orange-color);
+}
+/* ============= /Nav links ============== */
+
+/* ============= Navbar Toggler ============== */
+.navbar-toggler {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: 0.5s ease-in-out;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.navbar-toggler span {
+    margin: 0;
+    padding: 0;
+
+}
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border-radius: 1px;
+    opacity: 1;
+    right: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    background-color: var(--main-offwhite-color);
+}
+
+.middle-bar {
+    margin-top: 0px;
+}
+
+/* When navigation is clicked */
+
+.navbar-toggler .top-bar {
+    margin-top: 0px;
+    transform: rotate(135deg);
+}
+
+.navbar-toggler .middle-bar {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar {
+    margin-top: 0px;
+    transform: rotate(-135deg);
+}
+
+/* When the navbar is collapsed */
+
+.navbar-toggler.collapsed .top-bar {
+    margin-top: -16px;
+    transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    margin-top: 16px;
+    transform: rotate(0deg);
+}
+/* ============= /Navbar Toggler ============== */
