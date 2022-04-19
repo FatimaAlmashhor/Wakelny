@@ -16,19 +16,13 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="login-wrap p-4 p-md-5 border my-5">
 
-                        <h3 class="text-center mb-4">{{ __('login.sign_in') }}</h3>
+                        <h3 class="text-center mb-4">{{ __('login.reset_password') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
                         <form action="{{ route('save_user') }}" method="POST" class="login-form">
                         @csrf
 
-                            <div class="form-group mb-2">
-                                <label for="text" class="form-label">{{ __('login.email') }}</label>
-                                <input type="email" class="form-control rounded-left" placeholder="Enter Your Email"  name="email">
-                                @error('email')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.password') }}</label>
                                 <div class="input-group input-group-merge">
@@ -41,19 +35,22 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <button class="wak_btn d-grid w-100">{{ __('login.go_login') }}
+                            <div class="mb-3 form-password-toggle">
+                                <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password"  />
+                                    @error('confirm_pass')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
+                                </div>
+                            </div>
+                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
                             </button>
                             {{ csrf_field() }}
-                            <button class="wak_btn green_border w-100 mt-3">
-                                {{ __('login.register') }} مع Google
-                            </button>
-                            <p class="text-center mt-3">
-                                <span>{{ __('login.have_account') }}?</span>
-                                <a href="auth-login-basic.html">
-                                    <span style="color: #0d41fd">Sign in instead</span>
-                                </a>
-                            </p>
+
                         </form>
                     </div>
                 </div>

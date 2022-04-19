@@ -42,9 +42,11 @@ Route::group([
     Route::view('/', 'client.static.home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
-    
+
 Route::get('/users',[AuthController::class,'listAll'])->name('users');
 Route::get('/create_user',[AuthController::class,'create'])->name('create_user');
+Route::get('/reset_password',[AuthController::class,'resetpass'])->name('reset_password');
+Route::get('/login',[AuthController::class,'showlogin'])->name('login');
 Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 
@@ -68,7 +70,7 @@ Route::get('/toggle_skill/{skill_id}',[SkillController::class,'toggle'])->name('
 Route::post('/update_skill/{skill_id}',[SkillController::class,'update'])->name('update_skill');
 });
 
-  
+
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment

@@ -25,7 +25,7 @@
                                 <label for="username" class="form-label">{{ __('login.name') }}</label>
                                 <input type="text" class="form-control rounded-left" placeholder="Enter Your Name"  name="name">
                                 @error('name')
-                                <span class="text-danger">{{ $message }}</span>              
+                                <span class="text-danger">{{ $message }}</span>
                                     @enderror
                             </div>
                             <div class="form-group mb-2">
@@ -41,7 +41,7 @@
                                     <input style="height: 38px;" type="password" class="form-control" name="user_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" name="password" />
-                                    
+
                                     @error('user_pass')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
