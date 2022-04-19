@@ -24,7 +24,7 @@ use App\Http\Controllers\admin\AuthController;
 
 
 
-Route::get('/create_user',[AuthController::class,'showLogin'])->name('login');
+Route::get('/create_user', [AuthController::class, 'showLogin'])->name('login');
 
 
 
@@ -48,7 +48,7 @@ Route::group([
 // ------------------------------------------------------------------------
 // Admin section
 // ------------------------------------------------------------------------
-
+Route::view('/admin', 'admin.index');
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
