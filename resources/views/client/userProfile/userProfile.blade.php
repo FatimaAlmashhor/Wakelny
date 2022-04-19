@@ -2,13 +2,13 @@
 @section('content')
     <!-- Page Content-->
     <div class="container-fluid border-bottom p-5">
-        <div class="profile-identity d-flex justify-content-start">
+        <div class="profile-identity row"> <!-- d-flex justify-content-start   col-lg-3 col-md-4 col-sm-12  -->
             <div class="profile-card--avatar shadow-sm rounded-circle">
                 <img src="../../assets/client/images/user-profile-2.png" class="rounded-circle profile-avatar">
                 <div class="is_active-dot rounded-circle"></div>
             </div>
 
-            <div class="user-info color-black d-flex flex-column justify-content-center mt-5 py-0">
+            <div class="user-info color-black mt-5 py-0 col-md-8">
                 <div class="username">
                     <!-- <h5>اسم المستخدم</h5> -->
                     <h5>ضحى الخراساني</h5>

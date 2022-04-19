@@ -1,4 +1,4 @@
-/* ============ User Avatar ============= */
+/* ============ User Identity ============= */
 
 .profile-identity{
     border-bottom: 1px solid rgba(0, 0, 0, 0.227);
@@ -31,13 +31,25 @@
     right: 24px;
 }
 
-.profile-identity .user-info {
-    /* border: 1px red solid; */
-    /* height:max-content; */
-}
-
 .profile-identity .user-info .user-brief {
     font-size: 0.8rem;
 }
 
-/* ============ /User Avatar ============= */
+/* ============ /User Identity ============= */
+
+/* ============ Responsive ================= */ 
+
+@media (max-width: 885px) {
+    .profile-identity,
+    .profile-identity .user-info {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-identity .user-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ============ /Responsive ================= */
