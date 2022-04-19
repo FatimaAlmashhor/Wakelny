@@ -1,0 +1,35 @@
+.wak_btn {
+    padding: .6rem 1.1rem;
+    width: inherit;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--main-green-color);
+    color: white;
+}
+
+.wak_btn:hover {
+    background-color: var(--main-darker-green-color);
+    color: white;
+}
+
+.wak_btn.orange {
+
+    background-color: var(--main-orange-color);
+}
+
+.wak_btn.orange:hover {
+    background-color: var(--main-lighter-orange-color);
+    color: white;
+}
+
+.wak_btn.green_border {
+    background-color: transparent;
+    border: 1px solid var(--main-darker-green-color);
+    color: var(--main-darker-green-color);
+}
+
+.wak_btn.green_border:hover {
+    background-color: var(--main-green-color);
+    color: white;
+    transition: 0.4s ease-out;
+}
