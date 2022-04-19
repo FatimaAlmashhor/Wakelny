@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="/assets/client/css/main.css">
     <link href="/assets/client/css/about.css" rel="stylesheet">
 
-
     <title>Wakelny</title>
 </head>
 
