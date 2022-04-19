@@ -38,6 +38,7 @@ Route::group([
     Route::view('/', 'client.static.home');
     Route::view('/about us', 'client.controllpannel.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+    Route::view('/user-profile', 'client.userProfile.userProfile');
 });
 
 
