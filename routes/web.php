@@ -7,7 +7,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
-
+use App\Http\Controllers\admin\ForgotPasswordController;
+use App\Http\Controllers\admin\ResetPasswordController;
 /*
 
 |--------------------------------------------------------------------------
@@ -25,20 +26,13 @@ use App\Http\Controllers\admin\SkillController;
 // });
 
 
-//start  roles managment
-Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
-//end roles managment
-
-Route::get('/users', [AuthController::class, 'listAll'])->name('users');
-Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
-Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-
-
+  
+Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail']);
+Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-password');
+Route::get('/reset-password/{token}', [ResetPasswordController::class,'getPassword']);
+Route::post('/reset-password', [ResetPasswordController::class,'updatePassword']);
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -53,19 +47,26 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
 
-    // here the reset password page as UI
-    Route::view('/resetPassword', 'client.user.Reset_Password')->name('reset_password');
-
-
-
+ 
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
+
+    // here the reset password page as UI
+
+    Route::get('/users', [AuthController::class, 'listAll'])->name('users');
+    Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
+    Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
     Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/admin', [ControllPannelController::class, 'admin'])->name('admin');
         //////////////////////CRUD skills ////////////////
-        Route::get('/skills', [SkillController::class, 'listAll'])->name("skills");
-        Route::get('/create_skill', [SkillController::class, 'create'])->name('create_skill');
+        Route::get('/list_skills', [SkillController::class, 'list_skills'])->name("list_skills");
+        Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
         Route::post('/save_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
         Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
