@@ -46,27 +46,27 @@
         <!-- /Profile Taps -->
     </div>
 
-    <main class="main-section container mt-1">
-        <div class="row">
+    <main class="main-section container">
+        <div class="row d-flex justify-content-between">
             <div class="col-sm-12 col-lg-7 color-black p-3">
                 <!-- My Brief -->
                 <div class="row">
-                    <section class="card shadow-sm col-12 col-sm-12">
+                    <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="about-me">
                             <div class="section-title"><h5>نبذة عني</h5></div>
                             <div class="brief-content mt-3">
                                 <p class="">
-                                    <i class="fas fa-briefcase"></i>
+                                    <i class="fas fa-briefcase ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">التخصص:</span>
                                     <span class="me-1">متخصصة في برمجة مواقع الويب</span>
                                 </p>
                                 <p class=""> 
-                                    <i class="fa-solid fa-location-dot"></i>
+                                    <i class="fa-solid fa-location-dot ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">البلد:</span>
                                     <span class="me-1">اليمن</span>
                                 </p>
                                 <p class=""> 
-                                    <i class="fa-solid fa-circle-info"></i>
+                                    <i class="fa-solid fa-circle-info ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">تفاصيل أكثر:</span>
                                     <span class="me-1">
                                         خريج حاسبات ومعلومات قسم هندسه برمجيات.
@@ -81,7 +81,7 @@
 
                 <!-- /My Skills -->
                 <div class="row">
-                    <section class="card shadow-sm col-12 col-sm-12 mt-3">
+                    <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                         <div class="my-skills">
                             <div class="section-title"><h5>مهاراتي</h5></div>
                             <div class="skills mt-3">
@@ -124,7 +124,59 @@
                 <!-- /My Skills -->
             </div>
 
-            
+            <div class="col-sm-12 col-lg-5 color-black p-3 general-info">
+                <!-- Statistics -->
+                <div class="row">
+                    <section class="card shadow-sm col-12 col-sm-12 p-3">
+                        <div class="statistics">
+                            <div class="section-title"><h5>إحصائيات</h5></div>
+                            <div class="statistic-content mt-3">
+                                <p class="">
+                                    <i class="fas fa-briefcase ms-1"></i>
+                                    <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
+                                    <span class="me-1">66%</span>
+                                </p>
+                                <p class=""> 
+                                    <i class="fa-solid fa-clipboard-check ms-1"></i>
+                                    <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
+                                    <span class="me-1">2</span>
+                                </p>
+                                <p class=""> 
+                                    <i class="fa-solid fa-spinner ms-1"></i>
+                                    <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
+                                    <span class="me-1">0</span>
+                                </p>
+                                <p class=""> 
+                                    <i class="fa-solid fa-star ms-1"></i>
+                                    <span class="fs-6 fw-bold d-inll">التقييمات:</span>
+                                    <span class="me-1">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <hr>
+
+                        <div class="histories">
+                            <div class="section-title"><h5>تواريخ</h5></div>
+                            <div class="histories-content mt-3">
+                                <p class="">
+                                    <i class="fa-solid fa-calendar-days ms-1"></i>
+                                    <span class="fs-6 fw-bold d-inll">تاريخ الانضمام:</span>
+                                    <span class="me-1">22-4-2022</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </section>
+                </div>
+                <!-- /Statistics -->
+            </div>
         </div>
     </main>
 @endsection

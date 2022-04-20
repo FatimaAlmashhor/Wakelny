@@ -69,3 +69,7 @@ a {
 .color-gray-lighter {
   color: var(--main-lighter-gray-color);
 }
+
+.color-orange-lighter {
+  color: var(--main-lighter-orange-color);
+}

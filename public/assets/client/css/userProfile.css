@@ -130,7 +130,7 @@
 /* ============ General Information ================ */
 
 .general-info {
-    /* width: ; */
+    width:calc();
 }
 
 /* ============ /General Information =============== */
