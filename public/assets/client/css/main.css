@@ -3,8 +3,11 @@
 @import './footer.css';
 @import './header.css';
 @import './accordion.css';
+@import './rating.css';
 @import './home.css';
 @import './about.css';
 @import './direction.css';
+@import './filter.css';
 @import './navigation.css';
+@import './input.css';
 @import './buttons.css';

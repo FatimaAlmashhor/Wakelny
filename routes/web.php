@@ -52,6 +52,7 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+    Route::view('/freelancers', 'client.user.freelancers');
 
     // here the reset password page as UI
     Route::view('/resetPassword', 'client.user.Reset_Password')->name('reset_password');
