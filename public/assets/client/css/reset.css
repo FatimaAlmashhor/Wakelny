@@ -17,6 +17,7 @@
   --main-orange-color: rgba(240, 157, 96, 1);
   --main-lighter-orange-color: rgba(234, 170, 123, 1);
   --second-orange-color: rgba(240, 157, 96, 0.49);
+  --main-black-color: rgb(56 58 68);
   --main-dark-gray-color: rgba(172, 171, 171, 1);
   --main-light-gray-color: rgba(201, 201, 201, 1);
   --main-lighter-gray-color: rgb(248 249 250);
@@ -50,7 +51,8 @@ a {
 
 /* text colors */
 .color-black {
-  color: black;
+  /* color: black; */
+  color: var(--main-black-color);
 }
 
 .color-gray-dark {
