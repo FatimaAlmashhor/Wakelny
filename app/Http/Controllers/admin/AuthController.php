@@ -21,6 +21,16 @@ class AuthController extends Controller
         return view('create_user');
     }
 
+    public function resetpass(){
+        return view('client.user.Reset_Password');
+    }
+    public function showlogin(){
+        return view('login');
+    }
+
+
+
+
     public function register(Request $request){
 
         Validator::validate($request->all(),[
@@ -32,7 +42,7 @@ class AuthController extends Controller
 
         ],[
             'name.required'=>'name  is required',
-            'name.min'=>'can not be less than 3 letters', 
+            'name.min'=>'can not be less than 3 letters',
             'email.unique'=>'there is an email in the table',
             'email.required'=>'email field is required',
             'email.email'=>'incorrect email format',
@@ -62,9 +72,9 @@ class AuthController extends Controller
     public function checkRole(){
         if(Auth::user()->hasRole('admin'))
              return 'users';
-            else 
+            else
             return 'index';
-        
+
     }
 
 
