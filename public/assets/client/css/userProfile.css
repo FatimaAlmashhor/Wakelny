@@ -2,10 +2,13 @@
 
 .profile-identity,
 .user-profile-tabs {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
     margin: auto;
+    width: 75%;
+}
+
+.profile-identity {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
     padding-block-end: 1.5rem;
-    width: 70%;
 }
 
 .profile-card--avatar {
@@ -23,13 +26,21 @@
     height: 100%;
 }
 
-.is_active-dot {
+.active-dot,
+.inactive-dot {
     width: 12px;
     height: 12px;
-    background-color: var(--main-darker-green-color);
     position: absolute;
     top: 12px;
     right: 24px;
+}
+
+.active-dot {
+    background-color: var(--main-darker-green-color);
+}
+
+.inactive-dot {
+    background-color: var(--main-light-gray-color);
 }
 
 .profile-identity .user-info {
@@ -44,13 +55,7 @@
 
 /* ============ /User Identety Brief ============= */
 
-/* ============ Profile Menue ===================== */
-
-.user-profile-tabs {
-    /* margin-top: 10px; */
-    border: none;
-    padding-block-end: 0px;
-}
+/* ============ Profile Tabs ===================== */
 
 /* .activated {
     border-bottom: 6px solid var(--main-orange-color);
@@ -83,6 +88,20 @@
 }
 
 /* ============ /Profile Menue ===================== */
+
+/* ============ My Breif =========================== */
+
+.main-section {
+    width: 70%;
+    margin: auto;
+}
+
+.about-me .section-title{
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
+}
+
+/* ============ /My Breif ========================== */
 
 /* ============ Responsive ================= */ 
 

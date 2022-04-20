@@ -1,11 +1,11 @@
 @extends('client.master_layout')
 @section('content')
-    <div class="container-fluid border-bottom p-5">
+    <div class="container-fluid border-bottom px-5 pt-5">
         <!-- User Identety Brief-->
         <div class="profile-identity row"> 
             <div class="profile-card--avatar shadow-sm rounded-circle">
                 <img src="../../assets/client/images/user-profile-2.png" class="rounded-circle profile-avatar">
-                <div class="is_active-dot rounded-circle"></div>
+                <div class="inactive-dot rounded-circle"></div>
             </div>
 
             <div class="user-info color-black mt-5 py-0 col-md-8">
@@ -45,4 +45,21 @@
         </div>
         <!-- /Profile Taps -->
     </div>
+
+    <!-- My Brief -->
+    <main class="main-section container">
+        <section class="card col-lg-7 p-3 color-black mt-3">
+            <div class="about-me">
+                <div class="section-title"><h5>نبذة عني</h5></div>
+                <div>
+                    <p>متخصصة في برمجة مواقع الويب Full Stack Developer</p>
+                    <p>متخصصة في برمجة مواقع الويب Full Stack Developer</p>
+                    <p>متخصصة في برمجة مواقع الويب Full Stack Developer</p>
+                </div>
+            </div>
+        </section>
+
+        
+    </main>
+    <!-- /My Brief -->
 @endsection
