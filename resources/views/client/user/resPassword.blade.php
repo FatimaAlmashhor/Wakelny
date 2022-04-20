@@ -19,18 +19,21 @@
                         <h3 class="text-center mb-4">{{ __('login.reset_password') }}</h3>
                         <p style="text-align: center"> {{ __('login.reset_account') }}!</p>
 
-                        <form action="{{ route('') }}" method="POST" class="login-form">
-                        @csrf
-                        <div class="mb-3 form-password-toggle">
-                            <label class="form-label" for="password">{{ __('login.password') }}</label>
-                            <div class="input-group input-group-merge">
-                                <input style="height: 38px;" type="password" class="form-control" name="user_pass"
-                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="password" name="password" />
+                        <form action="#" method="POST" class="login-form">
+                            @csrf
 
-                                @error('user_pass')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+
+                            <div class="mb-3 form-password-toggle">
+                                <label class="form-label" for="password">{{ __('login.password') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input style="height: 38px;" type="password" class="form-control" name="user_pass"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password" name="password" />
+
+                                    @error('user_pass')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -39,11 +42,12 @@
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
+                                    <input style="height: 38px;" type="password" class="form-control"
+                                        name="confirm_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password"  />
+                                        aria-describedby="password" />
                                     @error('confirm_pass')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
