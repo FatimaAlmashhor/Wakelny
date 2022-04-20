@@ -13,4 +13,8 @@ class ControllPannelController extends Controller
     {
         return view('client.static.home');
     }
+    function admin()
+    {
+        return view('admin.index');
+    }
 }
