@@ -21,6 +21,13 @@
 </head>
 
 <body>
+    {{-- alert --}}
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
     <section id="app">
         @include('admin.components.aside')
         <div id="main">

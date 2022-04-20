@@ -31,10 +31,10 @@
 
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{ route('adminCategories') }}">Show All</a>
+                            <a href="{{ route('list_categories') }}">Show All</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('adminAddCategory') }}">Create</a>
+                            <a href="{{ route('add_category') }}">Create</a>
                         </li>
                     </ul>
                 </li>
