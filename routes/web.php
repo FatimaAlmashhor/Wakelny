@@ -33,10 +33,7 @@ Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
 
 Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
-<<<<<<< HEAD
-Route::get('/resetPassword', [AuthController::class, 'resPass']);
-=======
->>>>>>> 2a9d8ce0d1c362bf30cd8264c31165bc17f3cf63
+
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
