@@ -61,3 +61,11 @@ a {
 .color-gray-dark {
   color: var(--main-dark-gray-color);
 }
+
+.color-gray-light {
+  color: var(--main-light-gray-color);
+}
+
+.color-gray-lighter {
+  color: var(--main-lighter-gray-color);
+}

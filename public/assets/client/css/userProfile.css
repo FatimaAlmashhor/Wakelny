@@ -22,8 +22,12 @@
 }
 
 .profile-avatar {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
+    border-radius: 100%;
+    /* border: 1px solid red; */
+    position: absolute;
+    right: 0;
 }
 
 .active-dot,
@@ -72,18 +76,23 @@
     transition: 0.5s ease;
 }
 
-.wakelny-btn-div {
+.kalefny-btn-div {
     width: fit-content;
 }
 
-.btn-wakelny {
-    background-color: var(--main-darker-green-color);
+.btn-kalefny,
+.btn-tag {
     border: none;
     padding: 6px 12px;
     border-radius: 2px;
 }
 
-.btn-wakelny:active {
+.btn-kalefny {
+    background-color: var(--main-darker-green-color);
+}
+
+.btn-kalefny:active,
+.btn-tag:active {
     outline: none;
 }
 
@@ -96,12 +105,35 @@
     margin: auto;
 }
 
-.about-me .section-title{
+.section-title{
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.227);
 }
 
 /* ============ /My Breif ========================== */
+
+/* ============ My Skills ========================== */
+
+.btn-tag {
+    background-color: var(--main-orange-color);
+    display: inline-block;
+    margin-inline-end: 2px;
+    margin-bottom: 6px;
+}
+
+.btn-tag:hover {
+    color: var(--main-lighter-gray-color);
+}
+
+/* ============ /My Skills ========================= */
+
+/* ============ General Information ================ */
+
+.general-info {
+    /* width: ; */
+}
+
+/* ============ /General Information =============== */
 
 /* ============ Responsive ================= */ 
 
