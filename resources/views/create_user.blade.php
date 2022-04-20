@@ -67,7 +67,7 @@
                             </button>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}?</span>
-                                <a href="auth-login-basic.html">
+                                <a href="{{route('login')}}">
                                     <span style="color: #0d41fd">Sign in instead</span>
                                 </a>
                             </p>

@@ -24,11 +24,17 @@ use App\Http\Controllers\admin\SkillController;
 // });
 
 
+//start  roles managment
+Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
+//end roles managment
 
-
-
-
-Route::get('/create_user', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/users',[AuthController::class,'listAll'])->name('users');
+Route::get('/create_user',[AuthController::class,'create'])->name('create_user');
+Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
+Route::get('/reset_password',[AuthController::class,'resetpass'])->name('reset_password');
+Route::get('/login',[AuthController::class,'showLogin'])->name('login');
+Route::post('/do_login',[AuthController::class,'login'])->name('do_login');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 
@@ -39,18 +45,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
-    Route::view('/', 'client.static.home');
+    Route::get('/',[ControllPannelController::class,'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
 
-Route::get('/users',[AuthController::class,'listAll'])->name('users');
-Route::get('/create_user',[AuthController::class,'create'])->name('create_user');
-Route::get('/reset_password',[AuthController::class,'resetpass'])->name('reset_password');
-Route::get('/login',[AuthController::class,'showlogin'])->name('login');
-Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
-Route::get('/login',[AuthController::class,'showLogin'])->name('login');
-
-
+ 
 
 
 
@@ -60,7 +59,8 @@ Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 // ------------------------------------------------------------------------
 // Admin section
 // ------------------------------------------------------------------------
-Route::view('/admin', 'admin.index');
+Route::group(['middleware'=>['auth','role:admin']],function(){
+Route::get('/admin',[ControllPannelController::class,'admin'])->name('admin');
 //////////////////////CRUD skills ////////////////
 Route::get('/skills',[SkillController::class,'listAll'])->name("skills");
 Route::get('/create_skill',[SkillController::class,'create'])->name('create_skill');
@@ -76,11 +76,8 @@ Route::get('/edit_category/{cat_id}',[CategoriesController::class,'edit'])->name
 Route::get('/toggle_category/{cat_id}',[CategoriesController::class,'toggle'])->name('toggle_category');
 Route::post('/save_category',[CategoriesController::class,'store'])->name('save_category');
 Route::post('/update_category/{cat_id}',[CategoriesController::class,'update'])->name('update_category');
-
-
+});
 });
 
 
-//start  roles managment
-Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
-//end roles managment
+

@@ -19,7 +19,7 @@
                         <h3 class="text-center mb-4">{{ __('login.reset_password') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
-                        <form action="{{ route('save_user') }}" method="POST" class="login-form">
+                        <form action="{{ route('') }}" method="POST" class="login-form">
                         @csrf
 
 
