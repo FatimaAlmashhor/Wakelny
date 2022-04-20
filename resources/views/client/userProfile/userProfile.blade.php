@@ -28,12 +28,21 @@
         </div>
         <!-- /User Identety Brief-->
 
-        <!-- Profile Nav -->
-        <nav class="user-profile-nav nav fw-bold">
-            <a class="nav-link active color-black" aria-current="page" href="#">حول</a>
-            <a class="nav-link color-black" href="#">الأعمال</a>
-            <a class="nav-link color-black" href="#">التقييمات</a>
-        </nav>
-        <!-- /Profile Nav -->
+        <!-- Profile Menue -->
+        <div class="user-profile-menue row d-flex justify-content-between align-items-center">
+            <nav class="nav fw-bold col-auto">
+                <a class="nav-link active color-black" aria-current="page" href="#">حول</a>
+                <a class="nav-link color-black" href="#">الأعمال</a>
+                <a class="nav-link color-black" href="#">التقييمات</a>
+            </nav>
+
+            <div class="wakelny-btn-div">
+                <button type="button" class="btn-wakelny text-light fw-bold" >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>وكلني</span>
+                </button>
+            </div>
+        </div>
+        <!-- /Profile Menue -->
     </div>
 @endsection
