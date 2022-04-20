@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 
 /*
@@ -49,6 +50,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
 
+
  
 
 
@@ -78,6 +80,9 @@ Route::post('/save_category',[CategoriesController::class,'store'])->name('save_
 Route::post('/update_category/{cat_id}',[CategoriesController::class,'update'])->name('update_category');
 });
 });
-
+});
+//start  roles managment
+Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
+//end roles managment
 
 
