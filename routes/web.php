@@ -28,6 +28,9 @@ use App\Http\Controllers\admin\ResetPasswordController;
 
 
 
+    // ------------------------------------------------------------------------
+    // reset password
+    // ------------------------------------------------------------------------
   
 Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail']);
 Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-password');
