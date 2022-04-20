@@ -27,6 +27,20 @@ use App\Http\Controllers\admin\ResetPasswordController;
 
 
 
+//start  roles managment
+Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
+//end roles managment
+
+Route::get('/users', [AuthController::class, 'listAll'])->name('users');
+Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
+
+Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 
     // ------------------------------------------------------------------------
     // reset password
@@ -56,6 +70,10 @@ Route::group([
     // ------------------------------------------------------------------------
 
     // here the reset password page as UI
+
+    Route::view('/resetPassword', 'client.user.resPassword')->name('reset_password');
+    // Route::view('/resetPassword', 'login')->name('reset_password');
+
 
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
     Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
