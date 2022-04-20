@@ -59,7 +59,16 @@
             </div>
         </section>
 
-        
+        <section class="card col-lg-7 p-3 color-black mt-3">
+            <div class="my-skills">
+                <div class="section-title"><h5>مهاراتي</h5></div>
+                <div class="skills-list">
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- /My Brief -->
 @endsection
