@@ -48,6 +48,8 @@
                             <button class="wak_btn green_border w-100 mt-3">
                                 {{ __('login.register') }} مع Google
                             </button>
+                            
+                            <a href="/forget-password">Forgot password?</a>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
                                 <a href="{{route('reset_password')}}">
