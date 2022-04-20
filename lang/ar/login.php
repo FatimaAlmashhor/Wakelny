@@ -8,7 +8,7 @@ return [
     'register' => 'سجل الان',
     'start_joriny' => 'لتبدأ الرحله',
     'create_account' => 'اخلق حساب جديد',
-    'have_account' => 'هل لديك حساب بالعفل',
+    'have_account' => 'هل لديك حساب بالفعل',
     'reset_password'=> 'اعادة تعين كلمة المرور ',
     'sign_in' => 'تسجيل الدخول',
     'go_login'=> 'لنذهب'

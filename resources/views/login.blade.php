@@ -19,7 +19,7 @@
                         <h3 class="text-center mb-4">{{ __('login.sign_in') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
-                        <form action="{{ route('save_user') }}" method="POST" class="login-form">
+                        <form action="{{ route('do_login') }}" method="POST" class="login-form">
                         @csrf
 
                             <div class="form-group mb-2">
@@ -50,8 +50,8 @@
                             </button>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}?</span>
-                                <a href="auth-login-basic.html">
-                                    <span style="color: #0d41fd">Sign in instead</span>
+                                <a href="{{route('create_user')}}">
+                                    <span style="color: #0d41fd">Sign in </span>
                                 </a>
                             </p>
                         </form>
