@@ -11,15 +11,18 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    /////////////////show users////////////////
     public function listAll(){
         $users=User::where('is_active',1)
         ->orderBy('id','desc')
         ->get();
         return view('admin.users')->with('users',$users);
     }
+    ///////////////// show register page//////////////////
     public function create(){
         return view('create_user');
     }
+        ///////////////// add user //////////////////
     public function register(Request $request){
         Validator::validate($request->all(),[
             'name'=>['required','min:3','max:50'],
@@ -56,6 +59,7 @@ class AuthController extends Controller
         return back()->with(['error'=>'can not create user']);
       
     }
+    ///////////////// show hogin page after check role//////////////////
 
     public function showLogin(){
         if(Auth::check())
@@ -64,6 +68,7 @@ class AuthController extends Controller
         return view('login');
     }
 
+    /////////////////  check role//////////////////
 
     public function checkRole(){
         
@@ -72,6 +77,7 @@ class AuthController extends Controller
             else 
             return 'home';
     }
+    ///////////////// check account in  hogin page //////////////////
 
     public function login(Request $request){
         Validator::validate($request->all(),[
@@ -103,6 +109,8 @@ class AuthController extends Controller
 
         
     }
+        ///////////////// logout function //////////////////
+
     public function logout(){
 
         Auth::logout();
@@ -110,7 +118,10 @@ class AuthController extends Controller
 
     }
 
-
-
+        ///////////////// show resetPassword page //////////////////
+        
+        public function resetpass(){
+            return view('client.user.Reset_Password');
+        }
 }
 
