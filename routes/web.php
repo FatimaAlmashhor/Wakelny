@@ -32,10 +32,10 @@ Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->nam
 Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
 Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
-Route::get('/reset_password', [AuthController::class, 'resetpass'])->name('reset_password');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 
 
@@ -52,6 +52,9 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+
+    // here the reset password page as UI
+    Route::view('/resetPassword', 'client.user.Reset_Password')->name('reset_password');
 
 
 
