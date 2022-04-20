@@ -84,3 +84,8 @@ Route::group([
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
+
+//  start email verify
+	Route::get('/verify_email/{token}',[AuthController::class,'verifyEmail'])->name('verify_email');
+//  end email verify
+

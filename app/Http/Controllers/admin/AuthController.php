@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -30,7 +34,7 @@ class AuthController extends Controller
 
         ],[
             'name.required'=>'this field is required',
-            'name.min'=>'can not be less than 3 letters', 
+            'name.min'=>'can not be less than 3 letters',
             'email.unique'=>'there is an email in the table',
             'email.required'=>'this field is required',
             'email.email'=>'incorrect email format',
@@ -45,31 +49,42 @@ class AuthController extends Controller
         $u->name=$request->name;
         $u->password=Hash::make($request->user_pass);
         $u->email=$request->email;
-       
+         $token=Str::uuid();
+        $u->remember_token=$token;
+
         if($u->save()){
             $u->attachRole('admin');
+            $to_name = $request->name;
+            $to_email = $request->email;
+            $data = array('name'=>$request->name, 'activation_url'=>URL::to('/')."/verify_email/".$token);
+
+            Mail::send('emails.welcome', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('تسجيل عضوية جديدة');
+                $message->from('kalefnyinfo@gmail.com','كلفني');
+            });
             return redirect()->route('login')
             ->with(['success'=>'user created successful']);
         }
 
-      
+
         return back()->with(['error'=>'can not create user']);
-      
+
     }
 
     public function showLogin(){
         if(Auth::check())
         return redirect()->route($this->checkRole());
-        else 
+        else
         return view('login');
     }
 
 
     public function checkRole(){
-        
+
         if(Auth::user()->hasRole('admin'))
              return 'admin';
-            else 
+            else
             return 'home';
     }
 
@@ -81,27 +96,27 @@ class AuthController extends Controller
 
         ],[
             'email.required'=>'email field is required',
-            'email.min'=>'can not be less than 3 letters', 
+            'email.min'=>'can not be less than 3 letters',
             'user_pass.required'=>'user_pass field is required',
-            'user_pass.min'=>'can not be less than 5 letters', 
-           
+            'user_pass.min'=>'can not be less than 5 letters',
+
         ]);
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->user_pass,'is_active'=>1])){
 
-            
+
             if(Auth::user()->hasRole('admin'))
             return redirect()->route('admin');
-            else 
+            else
             return redirect()->route('home');
 
-        
+
         }
         else {
             return redirect()->route('login')->with(['message'=>'incorerct username or password or your account is not active ']);
         }
 
-        
+
     }
     public function logout(){
 
@@ -110,7 +125,17 @@ class AuthController extends Controller
 
     }
 
-
+ public function verifyEmail($token){
+           $user=User::where('remember_token',$token)->first();
+           if($user){
+        $user->email_verified_at=Carbon::now()->timestamp;
+        $user->save();
+        Auth::login($user);
+        return redirect()->route('home');
+           }
+           else
+           echo "invalid token";
+       }
 
 }
 
