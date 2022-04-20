@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg px-5">
+<nav class="navbar navbar-expand-lg px-5 main-nav">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold fs-3 brand" href="#">وكلني</a>
 

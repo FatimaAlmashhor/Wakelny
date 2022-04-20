@@ -63,6 +63,7 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+    Route::view('/user-profile', 'client.userProfile.userProfile');
 
  
     // ------------------------------------------------------------------------
@@ -82,6 +83,10 @@ Route::group([
     Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+    // ------------------------------------------------------------------------
+    // Admin section
+    // ------------------------------------------------------------------------
 
     Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/admin', [ControllPannelController::class, 'admin'])->name('admin');
