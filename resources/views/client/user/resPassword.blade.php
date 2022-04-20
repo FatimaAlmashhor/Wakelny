@@ -35,7 +35,6 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
 
 
 
@@ -52,7 +51,7 @@
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
                             </div>
-                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
+                            <button class="wak_btn d-grid w-100">{{ __('login.resetPass') }}
                             </button>
                             {{ csrf_field() }}
 

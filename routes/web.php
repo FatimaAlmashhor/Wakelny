@@ -56,7 +56,8 @@ Route::group([
     Route::view('/contactUs', 'client.static.contactUs');
 
     // here the reset password page as UI
-    Route::view('/resetPassword', 'client.user.Reset_Password')->name('reset_password');
+    Route::view('/resetPassword', 'client.user.resPassword')->name('reset_password');
+    // Route::view('/resetPassword', 'login')->name('reset_password');
 
 
 
