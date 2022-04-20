@@ -63,12 +63,15 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+    Route::view('/freelancers', 'client.user.freelancers');
+
     Route::view('/user-profile', 'client.userProfile.userProfile');
 
  
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
+
 
     // here the reset password page as UI
 
