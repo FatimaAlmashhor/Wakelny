@@ -12,13 +12,13 @@ class SkillController extends Controller
 {
   
 
-    public function listAll(){
-        $skills=Skill::all();
-        return view('admin.skills.skills')->with('skills', $skills);
+    public function list_skills(){
+        $skills = Skill::orderBy('id', 'desc')->get();
+        return view('admin.skills.index')->with('skills', $skills);
     }
-    public function create(){
+    public function add_skill(){
        
-        return view('admin.skills.create_skill');
+        return view('admin.skills._form');
     }
 
     public function store(Request $request)
@@ -45,16 +45,14 @@ $skill->is_active=$request->is_active;
 
 
 if($skill->save())
-return redirect()->route('skills')
+return redirect()->route('list_skills')
 ->with(['success'=>'skill created successful']);
 return back()->with(['error'=>'can not create skill']);
 }
 
 public function edit($skill_id){
     $skill=Skill::find($skill_id);
- 
-
-    return view('admin.skills.edit_skill')->with(['skill' =>$skill ]);
+    return view('admin.skills._form')->with(['data' =>$skill ]);
 }
 
 public function update(Request $request,$skill_id){
@@ -65,10 +63,10 @@ $skill->level=$request->level;
 $skill->is_active=$request->is_active;
 
 if($skill->save())
-return redirect()->route('skills')->with(['success'=>'data updated successful']);
+return redirect()->route('list_skills')->with(['success'=>'data updated successful']);
 return redirect()->back()->with(['error'=>'can not update data ']);
 
-}
+}  
 
 public function toggle($skill_id){
     $skill=Skill::find($skill_id);
