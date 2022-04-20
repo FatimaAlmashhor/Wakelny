@@ -28,10 +28,10 @@
         </div>
         <!-- /User Identety Brief-->
 
-        <!-- Profile Menue -->
-        <div class="user-profile-menue row d-flex justify-content-between align-items-center">
+        <!-- Profile Taps -->
+        <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <a class="nav-link active color-black" aria-current="page" href="#">حول</a>
+                <a class="nav-link activated color-black" aria-current="page" href="">حول</a>
                 <a class="nav-link color-black" href="#">الأعمال</a>
                 <a class="nav-link color-black" href="#">التقييمات</a>
             </nav>
@@ -43,6 +43,6 @@
                 </button>
             </div>
         </div>
-        <!-- /Profile Menue -->
+        <!-- /Profile Taps -->
     </div>
 @endsection
