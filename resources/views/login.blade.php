@@ -49,7 +49,7 @@
                                 {{ __('login.register') }} مع Google
                             </button>
                             <p class="text-center mt-3">
-                                <span>{{ __('login.have_account') }}?</span>
+                                <span>{{ __('login.have_account') }}</span>
                                 <a href="{{route('create_user')}}">
                                     <span style="color: #0d41fd">Sign in </span>
                                 </a>
