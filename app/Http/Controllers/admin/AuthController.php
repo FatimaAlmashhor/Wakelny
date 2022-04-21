@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -54,9 +58,21 @@ class AuthController extends Controller
         $u->name=$request->name;
         $u->password=Hash::make($request->user_pass);
         $u->email=$request->email;
+         $token=Str::uuid();
+        $u->remember_token=$token;
+
 
         if($u->save()){
             $u->attachRole('admin');
+            $to_name = $request->name;
+            $to_email = $request->email;
+            $data = array('name'=>$request->name, 'activation_url'=>URL::to('/')."/verify_email/".$token);
+
+            Mail::send('emails.welcome', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('تسجيل عضوية جديدة');
+                $message->from('kalefnyinfo@gmail.com','كلفني');
+            });
             return redirect()->route('login')
             ->with(['success'=>'user created successful']);
         }
@@ -123,6 +139,18 @@ class AuthController extends Controller
         return redirect()->route('login');
 
     }
+
+ public function verifyEmail($token){
+           $user=User::where('remember_token',$token)->first();
+           if($user){
+        $user->email_verified_at=Carbon::now()->timestamp;
+        $user->save();
+        Auth::login($user);
+        return redirect()->route('home');
+           }
+           else
+           echo "invalid token";
+       }
 
         ///////////////// show resetPassword page //////////////////
         
