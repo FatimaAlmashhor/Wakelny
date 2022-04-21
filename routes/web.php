@@ -9,6 +9,9 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+
+use App\Http\Controllers\client\profileController;
+
 /*
 
 |--------------------------------------------------------------------------
@@ -33,9 +36,7 @@ Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->nam
 
 Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
-
 Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -67,7 +68,12 @@ Route::group([
 
     Route::view('/user-profile', 'client.userProfile.userProfile');
 
- 
+    Route::get('/add_profile', [profileController::class, 'add_profile'])->name('add_profile');
+    Route::post('/save_profile', [profileController::class, 'store'])->name('save_profile');
+    Route::get('/edit_profile/{profile_id}', [profileController::class, 'edit'])->name('edit_profile');
+    Route::post('/update_profile/{profile_id}', [profileController::class, 'update'])->name('update_profile');
+
+
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
