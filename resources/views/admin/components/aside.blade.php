@@ -44,7 +44,21 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Skills</span>
+                    </a>
 
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('list_skills') }}">Show All</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('add_skill') }}">Create</a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

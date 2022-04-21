@@ -1,4 +1,4 @@
-nav {
+.main-nav {
     background-color: var(--main-green-color);
 }
 
@@ -17,7 +17,7 @@ nav {
 /* ============= Nav links ============== */
 .nav-links {
     color: var(--main-offwhite-color);
-    transition: 0.7s ease;
+    transition: 0.5s ease;
     display: inline-block;
     min-width: fit-content;
 }

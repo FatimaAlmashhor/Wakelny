@@ -48,8 +48,16 @@
                             <button class="wak_btn green_border w-100 mt-3">
                                 {{ __('login.register') }} مع Google
                             </button>
+                            
+                            <a href="/forget-password">Forgot password?</a>
                             <p class="text-center mt-3">
-                                <span>{{ __('login.have_account') }}?</span>
+                                <span>{{ __('login.reset_password') }}</span>
+                                <a href="{{route('reset_password')}}">
+                                    <span style="color: #0d41fd">استعيدها الان </span>
+                                </a>
+                            </p>
+                            <p class="text-center mt-3">
+                                <span>{{ __('login.have_account') }}</span>
                                 <a href="{{route('create_user')}}">
                                     <span style="color: #0d41fd">Sign in </span>
                                 </a>

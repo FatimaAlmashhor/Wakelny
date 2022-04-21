@@ -19,16 +19,30 @@
                         <h3 class="text-center mb-4">{{ __('login.reset_password') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
-                        <form action="#" method="POST" class="login-form">
-                            @csrf
+                
+                        <form method="POST" action="/reset-password" class="login-form">
+                           @csrf
+                           <input type="hidden" name="token" value="{{ $token }}">
 
+      <div class="form-group row">
+                            <label for="email" class="form-label" >E-Mail Address</label>
+                          <div class="input-group input-group-merge">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
 
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.password') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input style="height: 38px;" type="password" class="form-control" name="user_pass"
+                                    <input style="height: 38px;" type="password" class="form-control" id="password"  name="password" autocomplete="new-password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password" name="password" />
+                                        aria-describedby="password" />
 
                                     @error('user_pass')
                                         <span class="text-danger">{{ $message }}</span>
@@ -39,7 +53,7 @@
                                 <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
                                     <input style="height: 38px;" type="password" class="form-control"
-                                        name="confirm_pass"
+                                    id="password-confirm"  class="form-control" name="password_confirmation" autocomplete="new-password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     @error('confirm_pass')
@@ -48,7 +62,10 @@
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
                             </div>
-                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
+
+                       
+
+                            <button  type="submit" class="wak_btn d-grid w-100">Reset Password
                             </button>
                             {{ csrf_field() }}
 
