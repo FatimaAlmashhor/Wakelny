@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_profiles', function (Blueprint $table) {
-            // $table->bigIncrements('profile_id');
+        Schema::create('profiles', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()
                                         ->onUpdate('cascade')
                                         ->onDelete('cascade');
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_profiles');
+        Schema::dropIfExists('profiles');
     }
 };
