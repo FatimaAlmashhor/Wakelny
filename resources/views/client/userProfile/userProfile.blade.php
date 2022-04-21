@@ -10,17 +10,14 @@
 
             <div class="user-info color-black mt-5 py-0 col-md-8">
                 <div class="username color-black">
-                    <!-- <h5>اسم المستخدم</h5> -->
-                    <h5>ضحى الخراساني</h5>
+                    <h5>اسم المستخدم</h5>
                 </div>
 
                 <div class="user-brief text-muted">
                     <p class="d-inline-block ms-3">
-                        <!-- <i class="fas fa-briefcase"></i> <span class="me-1">التخصص</span> -->
                         <i class="fas fa-briefcase"></i> <span class="me-1">متخصصة في برمجة مواقع الويب Full Stack Developer</span>
                     </p>
                     <p class="d-inline-block">
-                        <!-- <i class="fa-solid fa-location-dot"></i> <span class="me-1">البلد</span> -->
                         <i class="fa-solid fa-location-dot"></i> <span class="me-1">اليمن</span>
                     </p>
                 </div>
@@ -31,9 +28,9 @@
         <!-- Profile Taps -->
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <a class="nav-link activated color-black" aria-current="page" href="">حول</a>
-                <a class="nav-link color-black" href="#">الأعمال</a>
-                <a class="nav-link color-black" href="#">التقييمات</a>
+                <a class="nav-link color-black tab-about is_active" id="about" aria-current="page" href="">حول</a>
+                <a class="nav-link color-black tab-works" id="works" href="">الأعمال</a>
+                <a class="nav-link color-black tab-rates" id="rates" href="/ratings">التقييمات</a>
             </nav>
 
             <div class="kalefny-btn-div">
@@ -47,8 +44,9 @@
     </div>
 
     <main class="main-section container">
-        <div class="row d-flex justify-content-between">
-            <div class="col-sm-12 col-lg-7 color-black p-3">
+        <div class="row d-flex justify-content-between" id="">
+            <!-- About -->
+            <div class="col-sm-12 col-lg-7 color-black p-3 about-section" id="about_content">
                 <!-- My Brief -->
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
@@ -57,17 +55,17 @@
                             <div class="brief-content mt-3">
                                 <p class="">
                                     <i class="fas fa-briefcase ms-1"></i>
-                                    <span class="fs-6 fw-bold d-inll">التخصص:</span>
+                                    <span class="fs-6 fw-bold">التخصص:</span>
                                     <span class="me-1">متخصصة في برمجة مواقع الويب</span>
                                 </p>
                                 <p class=""> 
                                     <i class="fa-solid fa-location-dot ms-1"></i>
-                                    <span class="fs-6 fw-bold d-inll">البلد:</span>
+                                    <span class="fs-6 fw-bold">البلد:</span>
                                     <span class="me-1">اليمن</span>
                                 </p>
                                 <p class=""> 
                                     <i class="fa-solid fa-circle-info ms-1"></i>
-                                    <span class="fs-6 fw-bold d-inll">تفاصيل أكثر:</span>
+                                    <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
                                     <span class="me-1">
                                         خريج حاسبات ومعلومات قسم هندسه برمجيات.
                                         full time backend dev في شركه wegroup pro alex.
@@ -79,7 +77,7 @@
                 </div>
                 <!-- /My Brief -->
 
-                <!-- /My Skills -->
+                <!-- My Skills -->
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                         <div class="my-skills">
@@ -122,10 +120,91 @@
                     </section>
                 </div>
                 <!-- /My Skills -->
-            </div>
 
-            <div class="col-sm-12 col-lg-5 color-black p-3 general-info">
-                <!-- Statistics -->
+                <!-- Ratings -->
+                <div class="row">
+                    <section class="card shadow-sm col-12 col-sm-12 p-3 mt-3">
+                        <div class="my-ratings">
+                            <div class="section-title"><h5>التقييمات</h5></div>
+                            <div class="brief-content mt-3">
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-6 fw-normal">
+                                        <i class="fa-solid fa-check-double ms-1"></i> الجودة
+                                    </p>
+                                    <p class="">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-6 fw-normal">
+                                    <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
+                                    </p>
+                                    <p class="">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-6 fw-normal">
+                                        <i class="fa-solid fa-award ms-1"></i> الخبرة
+                                    </p>
+                                    <p class="">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-6 fw-normal">
+                                        <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
+                                        <i class="fa-solid fa-handshake ms-1"></i> التعامل
+                                    </p>
+                                    <p class="">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="fs-6 fw-normal">
+                                        <!-- <i class="fa-solid fa-tower-broadcast ms-1"></i> التجاوب والتواصل -->
+                                        <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
+                                    </p>
+                                    <p class="">
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                        <i class="fa-solid fa-star color-orange-lighter"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- /Ratings -->
+            </div>
+            <!-- /About -->
+
+            <!-- Ratings -->
+            <!-- <div class="col-sm-12 col-lg-7 color-black p-3 rating-section" id="rates_content">
+                
+            </div> -->
+            <!-- /Ratings -->
+
+            <!-- Statistics -->
+            <div class="col-sm-12 col-lg-5 color-black p-3 general-info" id="statistics_content">
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="statistics">
@@ -175,8 +254,10 @@
                         
                     </section>
                 </div>
-                <!-- /Statistics -->
             </div>
+            <!-- /Statistics -->
         </div>
     </main>
+
+    <script src="/assets/js/profile_tabNavigation.js"></script>
 @endsection

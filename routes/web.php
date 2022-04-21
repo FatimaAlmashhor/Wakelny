@@ -66,6 +66,7 @@ Route::group([
     Route::view('/freelancers', 'client.user.freelancers');
 
     Route::view('/user-profile', 'client.userProfile.userProfile');
+    // Route::view('/user-prof', 'client.userProfile.user_profile');
 
  
     // ------------------------------------------------------------------------

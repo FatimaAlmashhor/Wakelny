@@ -61,10 +61,11 @@
 
 /* ============ Profile Tabs ===================== */
 
-/* .activated {
+.is_active {
     border-bottom: 6px solid var(--main-orange-color);
     background-color: var(--main-lighter-gray-color);
-} */
+    color: var(--main-black-color);
+}
 
 .user-profile-tabs a:hover, 
 .user-profile-tabs a:active,
@@ -96,7 +97,7 @@
     outline: none;
 }
 
-/* ============ /Profile Menue ===================== */
+/* ============ /Profile Taps ===================== */
 
 /* ============ My Breif =========================== */
 
@@ -127,15 +128,30 @@
 
 /* ============ /My Skills ========================= */
 
-/* ============ General Information ================ */
 
-.general-info {
-    width:calc();
+/* ============ Tabs Navigation ========================= */
+
+.about-section {
+    display: block;
 }
 
-/* ============ /General Information =============== */
+.rating-section{
+    display: none;
+}
 
-/* ============ Responsive ================= */ 
+/* ============ /Tabs Navigation ========================= */
+
+
+
+/* ################### Responsive ################## */ 
+
+@media (max-width: 420){
+    
+}
+
+@media (max-width: 540){
+
+}
 
 @media (max-width: 885px) {
     .profile-identity,
