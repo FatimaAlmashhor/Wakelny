@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users_profiles', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('profile_id');
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile');
             $table->longText('bio');
             $table->timestamps();
+
+            $table->foreign('profile_id')->references('id')->on('users');
         });
     }
 
