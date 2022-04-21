@@ -64,7 +64,6 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
     Route::view('/freelancers', 'client.user.freelancers');
-
     Route::view('/user-profile', 'client.userProfile.userProfile');
 
  
