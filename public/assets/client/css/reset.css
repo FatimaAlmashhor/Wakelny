@@ -25,6 +25,18 @@
   --main-lighter-gray-color: rgb(248 249 250);
   --main-offwhite-color: rgb(252, 252, 252);
   --mode-bg-color: white;
+
+
+  /* font */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 18px;
+  --font-lg: 24px;
+  --font-xl: 28px;
+  --font-2xl: 32px;
+  --font-3xl: 38px;
+  --font-4xl: 40px;
+
 }
 
 body {
@@ -72,4 +84,36 @@ a {
 
 .color-orange-lighter {
   color: var(--main-lighter-orange-color);
+}
+
+.font-xs {
+  font-size: var(--font-xs);
+}
+
+.font-sm {
+  font-size: var(--font-sm);
+}
+
+.font-md {
+  font-size: var(--font-md);
+}
+
+.font-lg {
+  font-size: var(--font-lg);
+}
+
+.font-xl {
+  font-size: var(--font-xl);
+}
+
+.font-2xl {
+  font-size: var(--font-2xl);
+}
+
+.font-3xl {
+  font-size: var(--font-3xl);
+}
+
+.font-4xl {
+  font-size: var(--font-4xl);
 }
