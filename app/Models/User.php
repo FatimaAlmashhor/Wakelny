@@ -27,7 +27,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $primaryKey="id";
+    protected $primaryKey = "id";
     protected $fillable = [
         'name',
         'email',
@@ -52,4 +52,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // get all skills of the user
+    public function skills()
+    {
+        return $this->hasMany(UserSkills::class, 'user_id');
+    }
 }
