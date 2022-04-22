@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>تسجيل الحساب</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/assets/client/css/main.css">
 
 </head>
 
-<body style="background-color:#FFFFFF ">
+<body style="background-color:#FFFFFF">
     <section class="ftco-section">
         <div class="container  ">
             <div class="row justify-content-center">
@@ -59,18 +59,19 @@
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
                             </div>
-                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
+                            <button class="wak_btn d-grid w-100">
+                                {{ __('login.register') }}
                             </button>
                             {{ csrf_field() }}
                             <button class="wak_btn green_border w-100 mt-3">
                                 {{ __('login.register') }} مع Google
                             </button>
-                            <p class="text-center mt-3">
+                            <!-- <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}?</span>
                                 <a href="{{route('login')}}">
                                     <span style="color: #0d41fd">Sign in instead</span>
                                 </a>
-                            </p>
+                            </p> -->
                         </form>
                     </div>
                 </div>

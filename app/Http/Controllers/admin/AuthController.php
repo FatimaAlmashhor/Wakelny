@@ -17,9 +17,9 @@ class AuthController extends Controller
 {
     /////////////////show users////////////////
     public function listAll(){
-        $users=User::where('is_active',1)
-        ->orderBy('id','desc')
-        ->get();
+        $users = User::where('is_active',1)
+                            ->orderBy('id','desc')
+                            ->get();
         return view('admin.users')->with('users',$users);
     }
     ///////////////// show register page//////////////////

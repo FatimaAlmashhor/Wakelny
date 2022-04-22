@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>تسجيل الدخول</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/assets/client/css/main.css">
@@ -20,8 +20,7 @@
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
                         <form action="{{ route('do_login') }}" method="POST" class="login-form">
-                        @csrf
-
+                            @csrf
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">{{ __('login.email') }}</label>
                                 <input type="email" class="form-control rounded-left" placeholder="Enter Your Email"  name="email">
@@ -49,10 +48,10 @@
                                 {{ __('login.register') }} مع Google
                             </button>
                             
-                            <a href="/forget-password">Forgot password?</a>
+                            <a href="">تريد تهيئة كلمة المرور؟</a>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
-                                <a href="{{route('reset_password')}}">
+                                <a href="">
                                     <span style="color: #0d41fd">استعيدها الان </span>
                                 </a>
                             </p>
