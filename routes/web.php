@@ -96,7 +96,7 @@ Route::group([
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-    // check if the user is login in 
+    // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
         Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
@@ -109,6 +109,8 @@ Route::group([
                 Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
+            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+
         });
     });
     // ------------------------------------------------------------------------
