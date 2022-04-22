@@ -1,12 +1,18 @@
 @extends('client.master_layout')
 @section('content')
     <div>
+        <div class="d-flex my-4">
+            @foreach ($myskills as $item)
+                <div class="wak_skill px-2">
+                    <a href='{{ route('deleteSkill', $item->skill_id) }}' class="wak_skill__delete badge badge-light"><i
+                            class="fa-solid fa-xmark"></i></a>
+                    <div class="wak_btn lighter_orange">
+                        {{ $item->name }}
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
-        @foreach ($myskills as $item)
-            <h2>
-                {{ $item->name }}
-            </h2>
-        @endforeach
     </div>
     <form action="{{ route('editSkills') }}" method="POST">
         @csrf

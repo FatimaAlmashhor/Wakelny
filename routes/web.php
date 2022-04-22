@@ -101,6 +101,7 @@ Route::group([
         Route::group(['middleware' =>  'verified'], function () {
             Route::get('/skills', [ControllPannelController::class, 'showSkills'])->name('skills');
             Route::post('/skills/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
+            Route::get('/skills/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
         });
     });
     // ------------------------------------------------------------------------
