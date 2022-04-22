@@ -28,9 +28,9 @@
         <!-- Profile Taps -->
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <a class="nav-link color-black tab-about is_active" id="about" aria-current="page" href="">حول</a>
-                <a class="nav-link color-black tab-works" id="works" href="">الأعمال</a>
-                <a class="nav-link color-black tab-rates" id="rates" href="/ratings">التقييمات</a>
+                <span class="nav-link color-black tab tab-A is-active" id="about" aria-current="page">حول</span>
+                <span class="nav-link color-black tab tab-B" id="rates">التقييمات</span>
+                <span class="nav-link color-black tab tab-C" id="works">الأعمال</span>
             </nav>
 
             <div class="kalefny-btn-div">
@@ -43,10 +43,10 @@
         <!-- /Profile Taps -->
     </div>
 
-    <main class="main-section container">
+    <main class="main-section container mt-3">
         <div class="row d-flex justify-content-between" id="">
             <!-- About -->
-            <div class="col-sm-12 col-lg-7 color-black p-3 about-section" id="about_content">
+            <div class="col-sm-12 col-lg-7 color-black about-section px-3 panel tab-A is-show" id="about_content">
                 <!-- My Brief -->
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
@@ -122,8 +122,15 @@
                 <!-- /My Skills -->
 
                 <!-- Ratings -->
+                
+                <!-- /Ratings -->
+            </div>
+            <!-- /About -->
+
+            <!-- Ratings -->
+            <div class="col-sm-12 col-lg-7 color-black px-3 rating-section panel tab-B" id="rates_content">
                 <div class="row">
-                    <section class="card shadow-sm col-12 col-sm-12 p-3 mt-3">
+                    <section class="card shadow-sm col-12 col-sm-12">
                         <div class="my-ratings">
                             <div class="section-title"><h5>التقييمات</h5></div>
                             <div class="brief-content mt-3">
@@ -193,18 +200,11 @@
                         </div>
                     </section>
                 </div>
-                <!-- /Ratings -->
             </div>
-            <!-- /About -->
-
-            <!-- Ratings -->
-            <!-- <div class="col-sm-12 col-lg-7 color-black p-3 rating-section" id="rates_content">
-                
-            </div> -->
             <!-- /Ratings -->
 
             <!-- Statistics -->
-            <div class="col-sm-12 col-lg-5 color-black p-3 general-info" id="statistics_content">
+            <div class="col-sm-12 col-lg-5 color-black px-3 statistics-card" id="statistics_content">
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="statistics">
