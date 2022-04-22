@@ -99,9 +99,13 @@ Route::group([
         Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
-            Route::get('/skills', [ControllPannelController::class, 'showSkills'])->name('skills');
-            Route::post('/skills/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
-            Route::get('/skills/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
+
+            // use profile skills section
+            Route::prefix('/skills')->group(function () {
+                Route::get('/', [ControllPannelController::class, 'showSkills'])->name('skills');
+                Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
+                Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
+            });
         });
     });
     // ------------------------------------------------------------------------
