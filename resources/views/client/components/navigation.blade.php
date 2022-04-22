@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg px-5 main-nav">
-    <div class="container-fluid">
+    <!-- <div class="container-fluid"> -->
         <a class="navbar-brand fw-bold fs-3 brand" href="#">وكلني</a>
 
         <button class="navbar-toggler text-light collapsed
@@ -11,7 +11,6 @@
                 aria-expanded="false" 
                 aria-label="Toggle navigation">
 
-            <!-- <i class="fas fa-bars"></i> -->
             <span class="toggler-icon top-bar"></span>
             <span class="toggler-icon middle-bar"></span>
             <span class="toggler-icon bottom-bar"></span>
@@ -35,5 +34,5 @@
                 </li>
             </ul>
         </div>
-    </div>
+    <!-- </div> -->
 </nav>
