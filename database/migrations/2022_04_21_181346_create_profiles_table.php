@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('account-type');
-            $table->string('majoring');
-            $table->string('career_field');
-            $table->longText('bio');
-            $table->string('video');
+            $table->string('account_type')->nullable();
+            $table->string('majoring')->nullable();
+            $table->string('career_field')->nullable();
+            $table->longText('bio')->nullable();
+            $table->string('video')->nullable();
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

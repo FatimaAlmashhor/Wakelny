@@ -10,5 +10,5 @@ class profile extends Model
     use HasFactory;
     protected $primaryKey="id";
 
- 
+   
 }

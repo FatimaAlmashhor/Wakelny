@@ -10,17 +10,15 @@ use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
 {
 
-    public function list_profiles(){
-        $profiles = profile::all();
-        return view('admin.userProfile.userProfile')->with('profiles', $profiles);
-    }
-
+ 
     public function add_profile(){
        
         return view('client.profiles._form');
     }
 
-    public function store(Request $request)
+ 
+
+  public function store(Request $request)
     {
 
    Validator::validate($request->all(),[
@@ -45,7 +43,7 @@ class ProfileController extends Controller
 ]); 
 
 $profile=new profile();
-$profile->account_type=$request->account_type;
+$profile->account_type = $request->account_type;
 $profile->majoring=$request->majoring;
 $profile->career_field=$request->career_field;
 $profile->bio=$request->bio;

@@ -31,12 +31,15 @@
                                 <div class="row">
                                 @csrf
                 <div class="row g-3">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                                     <label><strong>نوع الحساب </strong></label><br>
-                                    <label><input type="checkbox" name="account_type"  value="{{ $data->account_type ?? old('account_type') }}"> <strong> صاحب مشاريع</strong>  (أبحث عن مستقلين لتنفيذ مشاريعي)</label>
-                                    <label><input type="checkbox" name="account_type"  value="{{ $data->account_type ?? old('account_type') }}" checked >  <strong> مقدم خبرة</strong>  (أبحث عن مشاريع لتنفيذها) </label>
+                                    <label><input type="checkbox" name="account_type"  value="صاحب مشاريع"checked> <strong> صاحب مشاريع</strong>  (أبحث عن مستقلين لتنفيذ مشاريعي)</label>
+                                    <label><input type="checkbox" name="account_type"  value=" مقدم خبرة" checked >  <strong> مقدم خبرة</strong>  (أبحث عن مشاريع لتنفيذها) </label>
                         </div> 
+                        @error('account_type')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>  
                     <div class="col-md-6 col-12 mb-md-0 mb-3 ps-md-0">
                <label class="form-label" for="multicol-email"> التخصص</label>
