@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>ResetPassword</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/assets/client/css/main.css">
-
-</head>
-
-<body style="background-color:#FFFFFF ">
+@extends('client.master_layout')
+@section('content')
     <section class="ftco-section">
         <div class="container  ">
             <div class="row justify-content-center">
@@ -41,8 +31,7 @@
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input style="height: 38px;" type="password" class="form-control"
-                                        name="confirm_pass"
+                                    <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     @error('confirm_pass')
@@ -61,8 +50,4 @@
             </div>
         </div>
     </section>
-
-
-</body>
-
-</html>
+@endsection
