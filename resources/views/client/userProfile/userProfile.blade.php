@@ -28,9 +28,9 @@
         <!-- Profile Taps -->
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <span class="nav-link color-black tab tab-A is-active" id="about" aria-current="page">حول</span>
-                <span class="nav-link color-black tab tab-B" id="rates">التقييمات</span>
-                <span class="nav-link color-black tab tab-C" id="works">الأعمال</span>
+                <p class="nav-link color-black tab tab-A is-active" id="about" aria-current="page">حول</p>
+                <p class="nav-link color-black tab tab-B" id="rates">التقييمات</p>
+                <p class="nav-link color-black tab tab-C" id="works">الأعمال</p>
             </nav>
 
             <div class="kalefny-btn-div">
