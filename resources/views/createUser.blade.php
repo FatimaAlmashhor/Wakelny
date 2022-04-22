@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/assets/client/css/main.css">
-
-</head>
-
-<body style="background-color:#FFFFFF ">
+@extends('client.master_layout')
+@section('content')
     <section class="ftco-section">
         <div class="container  ">
             <div class="row justify-content-center">
@@ -20,19 +10,21 @@
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
                         <form action="{{ route('save_user') }}" method="POST" class="login-form">
-                        @csrf
+                            @csrf
                             <div class="form-group mb-2">
                                 <label for="username" class="form-label">{{ __('login.name') }}</label>
-                                <input type="text" class="form-control rounded-left" placeholder="Enter Your Name"  name="name">
+                                <input type="text" class="form-control rounded-left" placeholder="Enter Your Name"
+                                    name="name">
                                 @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">{{ __('login.email') }}</label>
-                                <input type="email" class="form-control rounded-left" placeholder="Enter Your Email"  name="email">
+                                <input type="email" class="form-control rounded-left" placeholder="Enter Your Email"
+                                    name="email">
                                 @error('email')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -43,7 +35,7 @@
                                         aria-describedby="password" name="password" />
 
                                     @error('user_pass')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -52,9 +44,9 @@
                                 <div class="input-group input-group-merge">
                                     <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password"  />
+                                        aria-describedby="password" />
                                     @error('confirm_pass')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
@@ -67,7 +59,7 @@
                             </button>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}?</span>
-                                <a href="{{route('login')}}">
+                                <a href="{{ route('login') }}">
                                     <span style="color: #0d41fd">Sign in instead</span>
                                 </a>
                             </p>
@@ -77,8 +69,4 @@
             </div>
         </div>
     </section>
-
-
-</body>
-
-</html>
+@endsection
