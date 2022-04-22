@@ -15,7 +15,8 @@
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">{{ __('login.email') }}</label>
 
-                                <input type="email" class="form-control rounded-left" placeholder="ادخل البريد الاكتروني الخاص يك"  name="email" value="{{old('email')}}">
+                                <input type="email" class="form-control rounded-left"
+                                    placeholder="ادخل البريد الاكتروني الخاص يك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
@@ -29,9 +30,7 @@
                                         aria-describedby="password" name="password" />
 
                                     @error('user_pass')
-
-                                    <div class="text-danger">{{ $message }}</div>
-
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -54,7 +53,7 @@
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}</span>
 
-                                <a href="{{route('create_user')}}">
+                                <a href="{{ route('create_user') }}">
                                     <span style="color: #0d41fd">انشاء حساب </span>
 
                                 </a>

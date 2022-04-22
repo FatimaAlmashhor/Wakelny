@@ -47,15 +47,15 @@ class AuthController extends Controller
 
 
 
-        ],[
-            'name.required'=>'ادخل الاسم',
-            'name.min'=>'يجب ان يكون الاسم اكثر من 3 حروف',
-            'email.unique'=>'الايميل موجود مسبقا',
-            'email.required'=>'ادخل الايميل',
-            'email.email'=>'ادخل الايميل بشكل صحيح',
-            'user_pass.required'=>'ادخل كلمة السر',
-            'user_pass.min'=>'يجب ام تكون كلمة السر اكثر من 3 خانات',
-            'confirm_pass.same'=>'كلمة السرغير متطابقة ',
+        ], [
+            'name.required' => 'ادخل الاسم',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 3 حروف',
+            'email.unique' => 'الايميل موجود مسبقا',
+            'email.required' => 'ادخل الايميل',
+            'email.email' => 'ادخل الايميل بشكل صحيح',
+            'user_pass.required' => 'ادخل كلمة السر',
+            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 3 خانات',
+            'confirm_pass.same' => 'كلمة السرغير متطابقة ',
 
 
         ]);
@@ -113,36 +113,7 @@ class AuthController extends Controller
         else
             return 'home';
     }
-    ///////////////// check account in  hogin page //////////////////
-
-    public function login(Request $request)
-    {
-        Validator::validate($request->all(), [
-            'email' => ['email', 'required', 'min:3', 'max:50'],
-            'user_pass' => ['required', 'min:5']
-
-
-
-        ],[
-            'email.required'=>'ادخل بريدك الالكتروني',
-            'email.email'=>'ادخل بؤيدك الالكتروني بشكل صحيح',
-            'user_pass.required'=>'اخل كلمة السر',
-            'user_pass.min'=>'يجب ان بكون كلمة السر اكبر من 5 خانات',
-
-
-        ]);
-
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->user_pass, 'is_active' => 1])) {
-
-
-            if (Auth::user()->hasRole('admin'))
-                return redirect()->route('admin');
-            else
-                return redirect()->route('home');
-        } else {
-            return redirect()->route('login')->with(['message' => 'incorerct username or password or your account is not active ']);
-        }
-    }
+    ///////////////// check account in  hogin page /////////////////
     ///////////////// logout function //////////////////
 
     public function logout()
@@ -165,25 +136,8 @@ class AuthController extends Controller
     }
 
 
- public function verifyEmail($token){
-           $user=User::where('remember_token',$token)->first();
-           if($user){
-        $user->email_verified_at=Carbon::now()->timestamp;
-        $user->save();
-        Auth::login($user);
-        return redirect()->route('home');
-           }
-           else
-           echo "invalid token";
-       }
 
-        ///////////////// show resetPassword page //////////////////
-
-        public function resetpass(){
-            return view('client.user.Reset_Password');
-        }
-}
-
+    ///////////////// show resetPassword page //////////////////
 
     public function resetpass()
     {

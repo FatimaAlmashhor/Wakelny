@@ -24,8 +24,7 @@
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">{{ __('login.email') }}</label>
                                 <input type="email" class="form-control rounded-left"
-                                    placeholder="ادخل البريد الالكتروني الخاص بك" name="email"
-                                    value="{{ old('email') }}">
+                                    placeholder="ادخل البريد الالكتروني الخاص بك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
@@ -44,6 +43,9 @@
                                     @enderror
                                 </div>
                             </div>
+
+
+
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
@@ -51,45 +53,28 @@
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     @error('confirm_pass')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
-                                @error('user_pass')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+
                             </div>
-
-
-                    <div class="mb-3 form-password-toggle">
-                        <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
-                        <div class="input-group input-group-merge">
-                            <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
-                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                aria-describedby="password" />
-                            @error('confirm_pass')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                            {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
-                        </div>
-
+                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
+                            </button>
+                            {{ csrf_field() }}
+                            <button class="wak_btn green_border w-100 mt-3">
+                                {{ __('login.register') }} مع Google
+                            </button>
+                            <p class="text-center mt-3">
+                                <span>{{ __('login.have_account') }}</span>
+                                <a href="{{ route('login') }}">
+                                    <span style="color: #0d41fd">تسجيل الدخول</span>
+                                </a>
+                            </p>
+                        </form>
                     </div>
-                    <button class="wak_btn d-grid w-100">{{ __('login.register') }}
-                    </button>
-                    {{ csrf_field() }}
-                    <button class="wak_btn green_border w-100 mt-3">
-                        {{ __('login.register') }} مع Google
-                    </button>
-                    <p class="text-center mt-3">
-                        <span>{{ __('login.have_account') }}</span>
-                        <a href="{{ route('login') }}">
-                            <span style="color: #0d41fd">تسجيل الدخول</span>
-                        </a>
-                    </p>
-                    </form>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection
