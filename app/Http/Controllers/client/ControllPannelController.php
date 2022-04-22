@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Skill;
 use App\Models\User;
+use App\Models\Profile;
 use App\Models\UserSkills;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,7 @@ class ControllPannelController extends Controller
             return redirect()->back()->with(['message' => 'Please Add new skills', 'type' => 'alert-danger']);
         } else {
             $needToInsert = false;
-            // insert if the skills are new 
+            // insert if the skills are new
             foreach ($skills  as $value) {
                 $findSkill = UserSkills::where('user_id', Auth::id())->where('skill_id', $value)->get();
 
@@ -60,4 +61,10 @@ class ControllPannelController extends Controller
 
         return redirect()->back()->with(['message' => 'Skills deleted successfuly', 'type' => 'alert-success']);
     }
+       public function edit_pro(){
+       $profile=Profile::where('user_id',Auth::id())->get();
+       print_r ($profile);
+    //    return view('client.userProfile.account')
+    //   ->with('data',$profile);
+}
 }

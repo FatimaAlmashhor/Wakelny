@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,9 +54,9 @@ class AuthController extends Controller
 
 
         ]);
-
+$name=$request->name;
         $u=new User();
-        $u->name=$request->name;
+        $u->name= $name;
         $u->password=Hash::make($request->user_pass);
         $u->email=$request->email;
          $token=Str::uuid();
@@ -63,8 +64,14 @@ class AuthController extends Controller
 
 
         if($u->save()){
-            $u->attachRole('admin');
-            $to_name = $request->name;
+
+
+            $u->attachRole('provider');
+
+
+
+
+                   $to_name = $request->name;
             $to_email = $request->email;
             $data = array('name'=>$request->name, 'activation_url'=>URL::to('/')."/verify_email/".$token);
 
@@ -73,8 +80,10 @@ class AuthController extends Controller
                         ->subject('تسجيل عضوية جديدة');
                 $message->from('kalefnyinfo@gmail.com','كلفني');
             });
+
             return redirect()->route('login')
             ->with(['success'=>'user created successful']);
+            setProfile();
         }
 
 
@@ -153,9 +162,17 @@ class AuthController extends Controller
        }
 
         ///////////////// show resetPassword page //////////////////
-        
+
         public function resetpass(){
             return view('client.user.Reset_Password');
         }
+
+
+       public function setProfile(){
+           $profile=new Profile();
+            $profile->name=$name;
+            $profile->user_id=Auth::id();
+            $profile->save();
+       }
 }
 
