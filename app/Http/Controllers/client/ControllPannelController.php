@@ -61,10 +61,11 @@ class ControllPannelController extends Controller
 
         return redirect()->back()->with(['message' => 'Skills deleted successfuly', 'type' => 'alert-success']);
     }
-       public function edit_pro(){
-       $profile=Profile::where('user_id',Auth::id())->get();
-       print_r ($profile);
-    //    return view('client.userProfile.account')
-    //   ->with('data',$profile);
-}
+    public function edit_pro()
+    {
+        $profile = Profile::where('user_id', Auth::id())->get();
+        print_r($profile);
+        //    return view('client.userProfile.account')
+        //   ->with('data',$profile);
+    }
 }

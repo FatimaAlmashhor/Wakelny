@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-         $table->foreignId('user_id')->constrained()
-                                        ->onUpdate('cascade')
-                                        ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('gender')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('specialization')->nullable();
 
             $table->longText('bio')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
