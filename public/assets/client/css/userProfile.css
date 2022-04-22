@@ -53,6 +53,7 @@
     justify-content: flex-end;
     align-items: flex-start;
 }
+
 .profile-identity .user-info .user-brief {
     font-size: 0.8rem;
 }
@@ -61,14 +62,17 @@
 
 /* ============ Profile Tabs ===================== */
 
-/* .activated {
+.tab.is-active {
     border-bottom: 6px solid var(--main-orange-color);
     background-color: var(--main-lighter-gray-color);
-} */
+    color: var(--main-black-color);
+}
 
-.user-profile-tabs a:hover, 
-.user-profile-tabs a:active,
-.user-profile-tabs a:visited {
+
+.user-profile-tabs p:hover, 
+.user-profile-tabs p:active,
+.user-profile-tabs p:visited {
+
     cursor: pointer;
     border-bottom: 6px solid var(--main-orange-color);
     background-color: var(--main-lighter-gray-color);
@@ -96,7 +100,7 @@
     outline: none;
 }
 
-/* ============ /Profile Menue ===================== */
+/* ============ /Profile Taps ===================== */
 
 /* ============ My Breif =========================== */
 
@@ -105,7 +109,7 @@
     margin: auto;
 }
 
-.section-title{
+.section-title {
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.227);
 }
@@ -127,17 +131,37 @@
 
 /* ============ /My Skills ========================= */
 
-/* ============ General Information ================ */
 
-.general-info {
-    width:calc();
+
+/* ============ Panel of Tabs contents ========================= */
+
+.panel{
+    display:none;
 }
 
-/* ============ /General Information =============== */
+.panel.is-show{
+    display:block;
+}
 
-/* ============ Responsive ================= */ 
+/* ============ /Panel of Tabs contents ========================= */
+
+
+
+/* ################### Responsive ################## */ 
+
+@media (max-width: 420){
+    
+
+}
+
+@media (max-width: 540){
+
+
+}
+
 
 @media (max-width: 885px) {
+
     .profile-identity,
     .profile-identity .user-info {
         display: flex;
@@ -148,6 +172,37 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .statistics-card {
+        margin-top: 1rem;
+    }
+}
+
+/* skills */
+.wak_skill {
+    position: relative;
+    width: fit-content;
+
+}
+
+.wak_skill__delete {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -8px;
+    left: -4px;
+    border-radius: 100%;
+    background-color: rgb(197, 59, 59);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.wak_skill__delete:hover {
+    background-color: transparent;
+    color: black;
 }
 
 /* ============ /Responsive ================= */

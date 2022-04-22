@@ -22,6 +22,16 @@
     color: white;
 }
 
+.wak_btn.lighter_orange {
+
+    background-color: var(--second-orange-color);
+}
+
+.wak_btn.lighter_orange:hover {
+    background-color: var(--main-lighter-orange-color);
+    color: white;
+}
+
 .wak_btn.green_border {
     background-color: transparent;
     border: 1px solid var(--main-darker-green-color);

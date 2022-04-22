@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/assets/client/css/main.css">
-
-</head>
-
-<body style="background-color:#FFFFFF ">
+@extends('client.master_layout')
+@section('content')
     <section class="ftco-section">
         <div class="container  ">
             <div class="row justify-content-center">
@@ -20,13 +10,15 @@
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
                         <form action="{{ route('do_login') }}" method="POST" class="login-form">
-                        @csrf
+                            @csrf
 
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">{{ __('login.email') }}</label>
-                                <input type="email" class="form-control rounded-left" placeholder="Enter Your Email"  name="email">
+
+                                <input type="email" class="form-control rounded-left" placeholder="ادخل البريد الاكتروني الخاص يك"  name="email" value="{{old('email')}}">
+
                                 @error('email')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -37,7 +29,9 @@
                                         aria-describedby="password" name="password" />
 
                                     @error('user_pass')
-                                    <span class="text-danger">{{ $message }}</span>
+
+                                    <div class="text-danger">{{ $message }}</div>
+
                                     @enderror
                                 </div>
                             </div>
@@ -48,18 +42,21 @@
                             <button class="wak_btn green_border w-100 mt-3">
                                 {{ __('login.register') }} مع Google
                             </button>
-                            
-                            <a href="/forget-password">Forgot password?</a>
+
+                            {{-- <a href="/forget-password">نسيت كلمة السر?</a> --}}
+
                             <p class="text-center mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
-                                <a href="{{route('reset_password')}}">
+                                <a href="{{ route('reset_password') }}">
                                     <span style="color: #0d41fd">استعيدها الان </span>
                                 </a>
                             </p>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}</span>
+
                                 <a href="{{route('create_user')}}">
-                                    <span style="color: #0d41fd">Sign in </span>
+                                    <span style="color: #0d41fd">انشاء حساب </span>
+
                                 </a>
                             </p>
                         </form>
@@ -68,8 +65,4 @@
             </div>
         </div>
     </section>
-
-
-</body>
-
-</html>
+@endsection

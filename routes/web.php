@@ -9,6 +9,8 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 
 |--------------------------------------------------------------------------
@@ -31,6 +33,10 @@ use App\Http\Controllers\admin\ResetPasswordController;
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
 
+//start email verify
+Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
+//  end email verify
+
 Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
 
@@ -42,14 +48,14 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-    // ------------------------------------------------------------------------
-    // reset password
-    // ------------------------------------------------------------------------
-  
-Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail']);
-Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-password');
-Route::get('/reset-password/{token}', [ResetPasswordController::class,'getPassword']);
-Route::post('/reset-password', [ResetPasswordController::class,'updatePassword']);
+// ------------------------------------------------------------------------
+// reset password
+// ------------------------------------------------------------------------
+
+Route::get('/forget-password',  [ForgotPasswordController::class, 'getEmail']);
+Route::post('/forget-password', [ForgotPasswordController::class, 'postEmail'])->name('forget-password');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
+Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword']);
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -65,9 +71,13 @@ Route::group([
     Route::view('/contactUs', 'client.static.contactUs');
     Route::view('/freelancers', 'client.user.freelancers');
     Route::view('/user-profile', 'client.userProfile.userProfile');
+
     Route::view('/profile', 'client.userProfile.profile');
 
- 
+    // Route::view('/user-prof', 'client.userProfile.user_profile');
+
+
+
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
@@ -87,6 +97,23 @@ Route::group([
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+    // check if the user is login in
+    Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
+
+        Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+        //    shoud verfid the email
+        Route::group(['middleware' =>  'verified'], function () {
+
+            // use profile skills section
+            Route::prefix('/skills')->group(function () {
+                Route::get('/', [ControllPannelController::class, 'showSkills'])->name('skills');
+                Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
+                Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
+            });
+            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+
+        });
+    });
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
@@ -110,14 +137,3 @@ Route::group([
         Route::post('/update_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
     });
 });
-
-//start  roles managment
-Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
-//end roles managment
-
-
-//  start email verify
-	Route::get('/verify_email/{token}',[AuthController::class,'verifyEmail'])->name('verify_email');
-//  end email verify
-
-
