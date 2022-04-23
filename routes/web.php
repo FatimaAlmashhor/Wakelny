@@ -58,8 +58,6 @@ Route::group([
 
     Route::view('/profile', 'client.userProfile.profile')->name('profile');
 
-    // Route::view('/user-prof', 'client.userProfile.user_profile');
-
 
 
     // ------------------------------------------------------------------------
