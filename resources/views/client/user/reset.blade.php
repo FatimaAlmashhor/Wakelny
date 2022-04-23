@@ -14,7 +14,7 @@
                            <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="form-group row">
-                                                    <label for="email" class="form-label" >E-Mail Address</label>
+                                                    <label for="email" class="form-label" >الايميل</label>
                                                 <div class="input-group input-group-merge">
                                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
                                                         <br>
@@ -42,12 +42,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
+                                <label class="form-label" for="password_confirmation">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
                                     <input  type="password" class="form-control"
                                     id="password_confirmation"  class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete="new-password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password" />
+                                        aria-describedby="password_confirmation" />
                                         <br>
                                         @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
