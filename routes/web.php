@@ -33,7 +33,8 @@ Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->nam
 
 Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
-Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
+Route::post('/save_user', [AuthController::class, 'register
+'])->name('save_user');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -43,7 +44,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     // ------------------------------------------------------------------------
     // reset password
     // ------------------------------------------------------------------------
-  
+
 Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail'])->name('forget-password');
 Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-pass');
 Route::get('/reset-password/{token}', [ResetPasswordController::class,'getPassword'])->name('reset-password');

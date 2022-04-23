@@ -39,8 +39,6 @@ class AuthController extends Controller
             'email'=>['required','email','unique:users,email'],
             'user_pass'=>['required','min:5'],
             'confirm_pass'=>['same:user_pass']
-
-
         ],[
             'name.required'=>'this field is required',
             'name.min'=>'can not be less than 3 letters',
@@ -50,17 +48,14 @@ class AuthController extends Controller
             'user_pass.required'=>'password is required',
             'user_pass.min'=>'password should not be less than 3',
             'confirm_pass.same'=>'password dont match',
-
-
         ]);
 
-        $u=new User();
-        $u->name=$request->name;
-        $u->password=Hash::make($request->user_pass);
-        $u->email=$request->email;
-         $token=Str::uuid();
-        $u->remember_token=$token;
-
+        $u = new User();
+        $u->name = $request->name;
+        $u->password = Hash::make($request->user_pass);
+        $u->email = $request->email;
+        $token = Str::uuid();
+        $u->remember_token = $token;
 
         if($u->save()){
             $u->attachRole('admin');
@@ -105,34 +100,28 @@ class AuthController extends Controller
         Validator::validate($request->all(),[
             'email'=>['email','required','min:3','max:50'],
             'user_pass'=>['required','min:5']
-
-
         ],[
             'email.required'=>'email field is required',
             'email.min'=>'can not be less than 3 letters',
             'user_pass.required'=>'user_pass field is required',
             'user_pass.min'=>'can not be less than 5 letters',
-
         ]);
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->user_pass,'is_active'=>1])){
 
+            if(Auth::user()->hasRole('admin')) {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('client.userProfile.userProfile');
+                // return redirect()->route('home');
+            }
 
-            if(Auth::user()->hasRole('admin'))
-            return redirect()->route('admin');
-            else
-            return redirect()->route('home');
-
-
-        }
-        else {
+        } else {
             return redirect()->route('login')->with(['message'=>'incorerct username or password or your account is not active ']);
         }
-
-
     }
-        ///////////////// logout function //////////////////
 
+        ///////////////// logout function //////////////////
     public function logout(){
 
         Auth::logout();

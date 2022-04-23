@@ -48,13 +48,8 @@
                                 {{ __('login.register') }} مع Google
                             </button>
                             
-                            <a href="">تريد تهيئة كلمة المرور؟</a>
-                            <p class="text-center mt-3">
-                                <span>{{ __('login.reset_password') }}</span>
-                                <a href="">
-                                    <span style="color: #0d41fd">استعيدها الان </span>
-                                </a>
-                            </p>
+                            <a href="{{route('forget-password')}}">نسيت كلمة المرور؟</a>
+                            
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}</span>
                                 <a href="{{route('create_user')}}">
