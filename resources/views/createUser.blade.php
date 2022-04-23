@@ -71,7 +71,7 @@
                                 <a href="{{ route('login') }}">
                                     <span style="color: #0d41fd">تسجيل الدخول</span>
                                 </a>
-                            </p> -->
+                            </p>
                         </form>
                     </div>
                 </div>

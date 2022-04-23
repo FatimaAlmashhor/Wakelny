@@ -82,8 +82,8 @@ class AuthController extends Controller
             $profile->save();
 
 
-            return redirect()->route('login')
-                ->with(['success' => 'user created successful']);
+            return redirect()->route('profile');
+                // ->with(['success' => 'user created successful']);
         }
 
 
@@ -132,7 +132,7 @@ class AuthController extends Controller
             if(Auth::user()->hasRole('admin')) {
                 return redirect()->route('admin');
             } else {
-                return redirect()->route('client.userProfile.userProfile');
+                return redirect()->route('profile');
                 // return redirect()->route('home');
             }
         } else {

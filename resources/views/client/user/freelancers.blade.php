@@ -170,12 +170,12 @@
             <div class="card px-3 container my-4" style="direction: rtl;">
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
-                        <a href="{{route('user_profile')}}">
+                        <a href="{{route('userProfile')}}">
                             <img class="rounded-circle mr-4" style="width:60px ; height:60px ; object-fit: cover"
                                 src="/assets/client/images/avatar-05.png" alt="">
                         </a>
                         <div class="info mx-4">
-                            <h4><a href="{{route('user_profile')}}">صلاح بدوي</a></h4>
+                            <h4><a href="{{route('userProfile')}}">صلاح بدوي</a></h4>
 
                             <div class="rate">
                                 <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>

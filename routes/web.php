@@ -54,7 +54,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::view('/freelancers', 'client.user.freelancers')->name('freelancers');
-    // Route::view('/user-profile', 'client.userProfile.userProfile')->name('user_profile');
+    Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
 
     Route::view('/profile', 'client.userProfile.profile')->name('profile');
 
@@ -76,7 +76,7 @@ Route::group([
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
-        Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+        Route::view('/profile', 'client.userProfile.profile')->name('profile');
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
 
@@ -86,8 +86,8 @@ Route::group([
                 Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
-           Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
-           Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+            Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
 
         });
     });
