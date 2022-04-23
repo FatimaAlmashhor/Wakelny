@@ -82,12 +82,13 @@ class AuthController extends Controller
             $profile->save();
 
 
-            return redirect()->route('profile');
-                // ->with(['success' => 'user created successful']);
+            return redirect()->route('login')
+                ->with(['success' => 'تمت الاضافة بنجاح']);
+
         }
 
 
-        return back()->with(['error' => 'can not create user']);
+        return back()->with(['error' => 'لم تتم الاضافة']);
     }
     ///////////////// show hogin page after check role//////////////////
 
@@ -136,7 +137,7 @@ class AuthController extends Controller
                 // return redirect()->route('home');
             }
         } else {
-            return redirect()->route('login')->with(['message' => 'incorerct username or password or your account is not active ']);
+            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل او هل الحساب مفعل']);
         }
     }
     ///////////////// logout function //////////////////

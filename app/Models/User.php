@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserSkills::class, 'user_id');
     }
+
+    public function seeker()
+    {
+        return $this->hasMany(Role::class, 'id');
+    }
 }

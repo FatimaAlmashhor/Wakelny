@@ -21,9 +21,16 @@ class ForgotPasswordController extends Controller
 
     public function postEmail(Request $request)
   {
-    $request->validate([
-        'email' => 'required|email|exists:users',
-    ]);
+    Validator::validate($request->all(),[
+        'email' => ['required', 'email'],
+        ], [
+
+       
+        
+          'email.required' => 'ادخل الايميل',
+          'email.email' => 'ادخل الايميل بشكل صحيح',
+      
+      ]);
 
     $token = Str::random(64);
 

@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
+use App\Http\Controllers\client\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -53,8 +55,11 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
-    Route::view('/freelancers', 'client.user.freelancers')->name('freelancers');
+    Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
+    Route::view('/projectlancer', 'client.user.projectlancer');
+
 
     Route::view('/profile', 'client.userProfile.profile')->name('profile');
 
@@ -65,8 +70,10 @@ Route::group([
     // ------------------------------------------------------------------------
 
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
+
     Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
     Route::post('/createUser', [AuthController::class, 'register'])->name('save_user'); //save_user
+
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('do_login');//do_login
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -86,9 +93,13 @@ Route::group([
                 Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
+
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
 
+
+           Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
+           Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
         });
     });
     // ------------------------------------------------------------------------
@@ -113,6 +124,7 @@ Route::group([
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
     });
+
 });
 
 //  start email verify

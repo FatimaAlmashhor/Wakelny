@@ -6,6 +6,8 @@
         <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
     </div>
     <div class=" d-flex my-5">
+
+        {{-- filter --}}
         <aside class="border-start">
             <div class="filter" id='filter'>
                 <div class="filter_container">
@@ -28,45 +30,23 @@
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.majers') }} </h6>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
+
+                                        @foreach ($cates as $item)
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input value={{ $item->id }} type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2"> {{ $item->title }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
+
                                     </article>
 
-                                    <article class="filter-group">
+                                    {{-- <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.job_name') }} </h6>
                                         <div style="mt-2">
@@ -79,19 +59,17 @@
 
                                             </select>
                                         </div>
-                                    </article>
+                                    </article> --}}
 
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.skills') }} </h6>
                                         <div style="mt-2">
                                             <select class="combobox wak_input" name="normal">
-                                                <option value="" selected="selected">أختر مهاره</option>
-                                                <option value="AL">Alabama</option>
-                                                <option value="AK">Alaska</option>
-                                                <option value="AZ">Arizona</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="CA">California</option>
+                                                @foreach ($skills as $item)
+                                                    <option value=" -1 ">All</option>
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </article>
@@ -165,74 +143,80 @@
                 </div>
             </div>
         </aside>
+
+        {{-- freelancers --}}
         <main id='freelancers' class="container px-lg-5">
-            {{-- one card --}}
-            <div class="card px-3 container my-4" style="direction: rtl;">
-                <div class="box d-flex justify-content-between">
-                    <div class="image d-flex">
+
+            {{-- freelancers --}}
+            @foreach ($data as $item)
+                <div class="card px-3 container my-4" style="direction: rtl;">
+                    <div class="box d-flex justify-content-between">
+                        <div class="image d-flex">
                         <a href="{{route('userProfile')}}">
-                            <img class="rounded-circle mr-4" style="width:60px ; height:60px ; object-fit: cover"
-                                src="/assets/client/images/avatar-05.png" alt="">
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }} alt="">
                         </a>
-                        <div class="info mx-4">
-                            <h4><a href="{{route('userProfile')}}">صلاح بدوي</a></h4>
+                            <div class="info mx-4">
+                                <h4><a href="{{route('userProfile')}}">{{ $item->name }}</a></h4>
 
-                            <div class="rate">
-                                <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
+                                <div class="rate">
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ((int) $item->rating > $i)
+                                            <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
+                                        @else
+                                            <i class="fa fa-star clr-amber rating-star" style="color: gainsboro;"></i>
+                                        @endif
+                                    @endfor
 
-                                <span class="px-2 font-md">100.00%</span>
-                                <i class="fa fa-fw fa-briefcase"></i>
+                                    <span class="px-2 font-md">%{{ $item->rating * 20 }}</span>
+                                    <i class="fa fa-fw fa-briefcase"></i>
 
-                                <span class="color-gray-dark px-2 font-md">مصمم ومدير حسابات</span>
+                                    <span class="color-gray-dark px-2 font-md">{{ $item->specialization }}</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="card--actions hidden-xs">
+                            <div class="dropdown btn-group">
+
+                                <a tabindex="-1" class="wak_btn" href="#">
+                                    <i class="fa fa-fw fa-send"></i>
+                                    <span class="action-text">وظفني </span>
+                                </a>
+
+                                <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    {{-- <i class="fa fa-caret-down"></i> --}}
+                                </button>
+                                <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
+                                    aria-labelledby="خيارات">
+                                    <li class="my-2 border-bottom text-end ">
+                                        <a tabindex="-1"
+                                            href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
+                                            <i class="fa fa-fw fa-bookmark"></i>
+                                            <span class="action-text">أضف إلى المفضلة</span>
+                                        </a>
+                                    </li>
+                                    <li class="text-end my-2 px-2">
+                                        <a tabindex="-1"
+                                            href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
+                                            <i class="fa fa-fw fa-flag"></i>
+                                            <span class="action-text">تبليغ عن محتوى</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
 
                         </div>
 
                     </div>
-                    <div class="card--actions hidden-xs">
-                        <div class="dropdown btn-group">
-
-                            <a tabindex="-1" class="wak_btn" href="#">
-                                <i class="fa fa-fw fa-send"></i>
-                                <span class="action-text">وظفني </span>
-                            </a>
-
-                            <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{-- <i class="fa fa-caret-down"></i> --}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                                aria-labelledby="خيارات">
-                                <li class="my-2 border-bottom text-end ">
-                                    <a tabindex="-1"
-                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                        <i class="fa fa-fw fa-bookmark"></i>
-                                        <span class="action-text">أضف إلى المفضلة</span>
-                                    </a>
-                                </li>
-                                <li class="text-end my-2 px-2">
-                                    <a tabindex="-1"
-                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                        <i class="fa fa-fw fa-flag"></i>
-                                        <span class="action-text">تبليغ عن محتوى</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
+                    <p class="font-sm mt-3">{{ $item->bio }}</p>
 
                 </div>
-                <p class="font-sm mt-3">مرحبا بك أعمل كمصمم حر، ولي خبرة في تصميم الشعارات والتصاميم الإعلانية الخاصة
-                    بالمواقع والواجهات وعلى
-                    مواقع التواصل الأجتماعي , الواجهة البصرية هي أقوى طريقة للفت انتباه العملاء ، لذا الحصول على تصميم جذاب
-                    يضمن لك فرصة قوية بلفت النظر لمنتجك .</p>
+            @endforeach
+            {{-- one card --}}
 
-            </div>
 
 
         </main>

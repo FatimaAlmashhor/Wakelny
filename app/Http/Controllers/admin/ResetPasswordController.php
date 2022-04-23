@@ -21,17 +21,16 @@ class ResetPasswordController extends Controller {
   {
 
   $request->validate([
-      'email' => 'required|email|exists:users',
-      'password' => 'required|string|min:8',
-      'password_confirmation' => 'required|same:password', 
+     'email' => ['required', 'email'],
+      'password' => ['required', 'min:5'],
+      'password_confirmation' => ['same:password'],
+     
     ], [
-    
-      'email.unique' => 'there is an email in the table',
-      'email.required' => 'this field is required',
-      'email.email' => 'incorrect email format',
-      'password.required' => 'password is required',
-      'password.min' => 'password should not be less than 3',
-      'password_confirmation.same' => 'password do not match',
+      'email.required' => 'ادخل الايميل',
+      'email.email' => 'ادخل الايميل بشكل صحيح',
+      'password.required' => 'كلمة المرور مطلوبة',
+      'password.min' => 'كلمة المرور لا تكون اقل من 5',
+      'password_confirmation.same' => 'لا  تتطابق مع كلمة المرور ',
 
 
   ]);
