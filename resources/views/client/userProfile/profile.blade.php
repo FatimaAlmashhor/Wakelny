@@ -114,68 +114,11 @@
                 <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
                   <h3 class="fs-5" style="color:rgba(77, 212, 172, 1);">{{ __('profile.Personal_Info') }}</h3>
                 </div>
-               <div class="content">
-                    <div class="container text-left">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                            
-                                <!-- <select name="basic[]" multiple="multiple" class="3col active form-control">
-                                    <option value="AL">Alabama</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="CA">California</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="IA">Iowa</option>
-                                    <option value="KS">Kansas</option>
-                                    <option value="KY">Kentucky</option>
-                                    <option value="LA">Louisiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="MN">Minnesota</option>
-                                    <option value="MS">Mississippi</option>
-                                    <option value="MO">Missouri</option>
-                                    <option value="MT">Montana</option>
-                                    <option value="NE">Nebraska</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NM">New Mexico</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="ND">North Dakota</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="OK">Oklahoma</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="SD">South Dakota</option>
-                                    <option value="TN">Tennessee</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="UT">Utah</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WA">Washington</option>
-                                    <option value="WV">West Virginia</option>
-                                    <option value="WI">Wisconsin</option>
-                                    <option value="WY">Wyoming</option>
-                                </select> -->
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <div class="card-body">
+              
+            <div class="card-body">
+                <form action="{{ route('profile_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+                        @csrf
+                        @foreach ($data as $item)
                     <div class="row">
                       <div class="col-sm-3">
                         <h6 class="mb-0">{{ __('profile.type') }}</h6>
@@ -183,20 +126,20 @@
                       <div class="col-sm-9 text-secondary">
                         <div class="mx-2 my-2 px-2" >
                         
-                        <input class="form-check-input mx-2" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input mx-2" type="checkbox" checked name="account_type" id="">
                         
                       <strong>  {{ __('profile.person1') }}</strong>
                       (أبحث عن مستقلين لتنفيذ مشاريعي)
                             </div>
                             <div class="mx-2 my-2 px-2" >
                        
-                            <input class="form-check-input mx-2" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
                             
                             <strong>   {{ __('profile.person2') }}</strong>
                             (أبحث عن مشاريع لتنفيذها)
                                                 <div class="mx-2 my-2 px-2" >
                                         
-                                        <input class="form-check-input mx-2" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
                                         
                                         <strong>    {{ __('profile.person21') }}</strong>
                                         (ازالة هذه الاشارة سيخفي حسابك بشكل مؤقت من نتائج البحث)
@@ -207,45 +150,58 @@
                   
                     <div class="row">
                         
-                        <div class="col-md-6">
-                        <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
-                        <select name=""  class="form-control">
-                                    <option value="AL">
-هندسة، عمارة وتصميم داخلي</option>
-                                    <option value="AK">برمجة</option>
+                            <div class="col-md-6">
+                                <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
+                                <select class="form-control"name="category_id"
+                                    data-actions-box="true">
+                                    @foreach ($categories as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
-                        </div>
-                        <div class="col-md-6">
-                        <label for="" class="col-md-6 col-form-label"> {{ __('profile.person4') }}</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputPassword">
-                                </div>
-                        </div>
+                            </div>
+                            <div class="col-md-6">
+                            <label for="" class="col-md-6 col-form-label"> {{ __('profile.person4') }}</label>
+                                    <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="" name="job_title"  value="{{ $item->job_title }}">
+                                    </div>
+                                    @error('job_title')
+                                <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                            </div>
                      
                     </div>
                   
                     <div class="row">
                         
                         <label for="" class="col-md-6 col-form-label"> {{ __('profile.person5') }}</label>
-                            <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="floatingTextarea"></textarea>
-                   
+                            <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="" name="bio"  value="{{ $item->bio }}" ></textarea>
+                            @error('bio')
+                                <span class="text-danger">{{ $message }}</span>
+                             @enderror
                     </div>
 
                     <div class="row">
                         
                         <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
-                        <input type="text" class="form-control" id="inputPassword">
+                        <input type="url" class="form-control" id=""  name="video"  value="{{ $item->video }}">
                    
-                    </div>
+                    </div> @error('video')
+                                <span class="text-danger">{{ $message }}</span>
+                             @enderror
                    
                   </div>
                   <hr>
                     <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " target="" href="#">Save</a>
-                    </div>
+                        
+                            <button type="submit" class="wak_btn d-grid w-100">Save
+                             </button>
+               
+
                   </div>
-              </div>
+                  @endforeach
+                  {{ csrf_field() }}
+                </form>
+            </div>
               
             </section>
 
