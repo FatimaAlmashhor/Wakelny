@@ -29,10 +29,7 @@ class AuthController extends Controller
     {
         return view('createUser');
     }
-    public function resPass()
-    {
-        return view('client.user.resPassword');
-    }
+
 
 
 

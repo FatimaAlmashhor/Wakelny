@@ -55,7 +55,7 @@
 
                        
 
-                            <button  type="submit" class="wak_btn d-grid w-100">Reset Password
+                            <button  type="submit" class="wak_btn d-grid w-100">{{ __('login.resetPass') }}
                             </button>
                             {{ csrf_field() }}
 

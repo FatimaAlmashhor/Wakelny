@@ -42,12 +42,10 @@
                                 {{ __('login.register') }} مع Google
                             </button>
 
-                            {{-- <a href="/forget-password">نسيت كلمة السر?</a> --}}
-
                             <p class="text-center mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
-                                <a href="{{ route('reset_password') }}">
-                                    <span style="color: #0d41fd">استعيدها الان </span>
+                                <a href="/forget-password">
+                                    <span style="color: #0d41fd"> نسيت كلمة السر! </span>
                                 </a>
                             </p>
                             <p class="text-center mt-3">
