@@ -6,6 +6,8 @@
         <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
     </div>
     <div class=" d-flex my-5">
+
+        {{-- filter --}}
         <aside class="border-start">
             <div class="filter" id='filter'>
                 <div class="filter_container">
@@ -28,45 +30,23 @@
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.majers') }} </h6>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
+
+                                        @foreach ($cates as $item)
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input value={{ $item->id }} type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2"> {{ $item->title }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
+
                                     </article>
 
-                                    <article class="filter-group">
+                                    {{-- <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.job_name') }} </h6>
                                         <div style="mt-2">
@@ -79,19 +59,17 @@
 
                                             </select>
                                         </div>
-                                    </article>
+                                    </article> --}}
 
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.skills') }} </h6>
                                         <div style="mt-2">
                                             <select class="combobox wak_input" name="normal">
-                                                <option value="" selected="selected">أختر مهاره</option>
-                                                <option value="AL">Alabama</option>
-                                                <option value="AK">Alaska</option>
-                                                <option value="AZ">Arizona</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="CA">California</option>
+                                                @foreach ($skills as $item)
+                                                    <option value=" -1 ">All</option>
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </article>
@@ -165,8 +143,9 @@
                 </div>
             </div>
         </aside>
-        <main id='freelancers' class="container px-lg-5">
 
+        {{-- freelancers --}}
+        <main id='freelancers' class="container px-lg-5">
 
             {{-- freelancers --}}
             @foreach ($data as $item)
