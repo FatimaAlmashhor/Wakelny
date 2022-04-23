@@ -15,11 +15,19 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Get the phone associated with the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $primaryKey="id";
+    protected $primaryKey = "id";
     protected $fillable = [
         'name',
         'email',
@@ -44,4 +52,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // get all skills of the user
+    public function skills()
+    {
+        return $this->hasMany(UserSkills::class, 'user_id');
+    }
 }

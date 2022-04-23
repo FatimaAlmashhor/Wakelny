@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg px-5 main-nav">
     <!-- <div class="container-fluid"> -->
-        <a class="navbar-brand fw-bold fs-3 brand" href="{{route('home')}}">وكلني</a>
+        <a class="navbar-brand fw-bold fs-3 brand" href="{{route('home')}}">كلفنيي</a>
 
         <button class="navbar-toggler text-light collapsed
                         d-flex d-lg-none flex-column justify-content-around

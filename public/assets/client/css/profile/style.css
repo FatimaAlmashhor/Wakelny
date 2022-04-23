@@ -1,0 +1,78 @@
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #efefef; }
+
+p {
+  color: #b3b3b3;
+  font-weight: 300; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  padding: 7rem 0; }
+
+h2 {
+  font-size: 20px; }
+
+.ms-options {
+  padding: 20px;
+  border: none; }
+
+.ms-options-wrap > button:focus, .ms-options-wrap > button {
+  border-radius: 4px;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  border: none !important;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  z-index: 2; }
+  .ms-options-wrap > button:focus:hover, .ms-options-wrap > button:hover {
+    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); }
+  .ms-options-wrap > button:focus:after, .ms-options-wrap > button:after {
+    right: 10px; }
+  .ms-options-wrap > button:focus:active, .ms-options-wrap > button:focus:focus, .ms-options-wrap > button:active, .ms-options-wrap > button:focus {
+    outline: none; }
+
+.ms-options-wrap.ms-active > button:focus, .ms-options-wrap.ms-active > button {
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); }
+
+.ms-options-wrap > .ms-options {
+  z-index: 1;
+  left: 16px;
+  min-width: 320px;
+  border: none !important;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px; }
+  .ms-options-wrap > .ms-options .ms-search input {
+    border-bottom: 1px solid #efefef; }
+  .ms-options-wrap > .ms-options .ms-selectall {
+    color: #aaaaaa;
+    text-transform: uppercase;
+    font-size: 11px; }
+    .ms-options-wrap > .ms-options .ms-selectall:hover {
+      color: #000; }
+  .ms-options-wrap > .ms-options > ul li.selected label {
+    border-radius: 4px; }
+  .ms-options-wrap > .ms-options > ul li label {
+    border-radius: 4px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .ms-options-wrap > .ms-options > ul li:hover label {
+    border: none; }

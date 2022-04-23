@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid border-bottom px-5 pt-5">
         <!-- User Identety Brief-->
-        <div class="profile-identity row"> 
+        <div class="profile-identity row">
             <div class="profile-card--avatar shadow-sm border rounded-circle">
                 <img src="../../assets/client/images/user-profile-2.png" class="profile-avatar">
                 <div class="inactive-dot rounded-circle"></div>
@@ -15,7 +15,8 @@
 
                 <div class="user-brief text-muted">
                     <p class="d-inline-block ms-3">
-                        <i class="fas fa-briefcase"></i> <span class="me-1">متخصصة في برمجة مواقع الويب Full Stack Developer</span>
+                        <i class="fas fa-briefcase"></i> <span class="me-1">متخصصة في برمجة مواقع الويب Full Stack
+                            Developer</span>
                     </p>
                     <p class="d-inline-block">
                         <i class="fa-solid fa-location-dot"></i> <span class="me-1">اليمن</span>
@@ -28,13 +29,13 @@
         <!-- Profile Taps -->
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <p class="nav-link color-black tab tab-A is-active" id="about" aria-current="page">حول</p>
-                <p class="nav-link color-black tab tab-B" id="rates">التقييمات</p>
-                <p class="nav-link color-black tab tab-C" id="works">الأعمال</p>
+                <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">حول</p>
+                <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
+                <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">الأعمال</p>
             </nav>
 
             <div class="kalefny-btn-div">
-                <button type="button" class="btn-kalefny color-gray-lighter fw-bold" >
+                <button type="button" class="btn-kalefny color-gray-lighter fw-bold">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>وكلني</span>
                 </button>
@@ -46,24 +47,26 @@
     <main class="main-section container mt-3">
         <div class="row d-flex justify-content-between" id="">
             <!-- About -->
-            <div class="col-sm-12 col-lg-7 color-black about-section px-3 panel tab-A is-show" id="about_content">
+            <div class="col-sm-12 col-lg-7 color-black about-section px-3 panel  is-show subPage" id="tab-A">
                 <!-- My Brief -->
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="about-me">
-                            <div class="section-title"><h5>نبذة عني</h5></div>
+                            <div class="section-title">
+                                <h5>نبذة عني</h5>
+                            </div>
                             <div class="brief-content mt-3">
                                 <p class="">
                                     <i class="fas fa-briefcase ms-1"></i>
                                     <span class="fs-6 fw-bold">التخصص:</span>
                                     <span class="me-1">متخصصة في برمجة مواقع الويب</span>
                                 </p>
-                                <p class=""> 
+                                <p class="">
                                     <i class="fa-solid fa-location-dot ms-1"></i>
                                     <span class="fs-6 fw-bold">البلد:</span>
                                     <span class="me-1">اليمن</span>
                                 </p>
-                                <p class=""> 
+                                <p class="">
                                     <i class="fa-solid fa-circle-info ms-1"></i>
                                     <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
                                     <span class="me-1">
@@ -81,7 +84,9 @@
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                         <div class="my-skills">
-                            <div class="section-title"><h5>مهاراتي</h5></div>
+                            <div class="section-title">
+                                <h5>مهاراتي</h5>
+                            </div>
                             <div class="skills mt-3">
                                 <a class="btn-tag color-gray-lighter" href="#" role="button">
                                     <i class="fa-solid fa-tags"></i>
@@ -122,17 +127,19 @@
                 <!-- /My Skills -->
 
                 <!-- Ratings -->
-                
+
                 <!-- /Ratings -->
             </div>
             <!-- /About -->
 
             <!-- Ratings -->
-            <div class="col-sm-12 col-lg-7 color-black px-3 rating-section panel tab-B" id="rates_content">
+            <div class="col-sm-12 col-lg-7 color-black px-3 rating-section panel tab-B subPage" id="tab-B">
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12">
                         <div class="my-ratings">
-                            <div class="section-title"><h5>التقييمات</h5></div>
+                            <div class="section-title">
+                                <h5>التقييمات</h5>
+                            </div>
                             <div class="brief-content mt-3">
                                 <div class="d-flex justify-content-between">
                                     <p class="fs-6 fw-normal">
@@ -148,7 +155,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="fs-6 fw-normal">
-                                    <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
+                                        <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -204,28 +211,30 @@
             <!-- /Ratings -->
 
             <!-- Statistics -->
-            <div class="col-sm-12 col-lg-5 color-black px-3 statistics-card" id="statistics_content">
+            <div class="col-sm-12 col-lg-5 color-black px-3 statistics-card subPage" id="tab-C">
                 <div class="row">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="statistics">
-                            <div class="section-title"><h5>إحصائيات</h5></div>
+                            <div class="section-title">
+                                <h5>إحصائيات</h5>
+                            </div>
                             <div class="statistic-content mt-3">
                                 <p class="">
                                     <i class="fas fa-briefcase ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
                                     <span class="me-1">66%</span>
                                 </p>
-                                <p class=""> 
+                                <p class="">
                                     <i class="fa-solid fa-clipboard-check ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
                                     <span class="me-1">2</span>
                                 </p>
-                                <p class=""> 
+                                <p class="">
                                     <i class="fa-solid fa-spinner ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
                                     <span class="me-1">0</span>
                                 </p>
-                                <p class=""> 
+                                <p class="">
                                     <i class="fa-solid fa-star ms-1"></i>
                                     <span class="fs-6 fw-bold d-inll">التقييمات:</span>
                                     <span class="me-1">
@@ -238,11 +247,13 @@
                                 </p>
                             </div>
                         </div>
-                        
+
                         <hr>
 
                         <div class="histories">
-                            <div class="section-title"><h5>تواريخ</h5></div>
+                            <div class="section-title">
+                                <h5>تواريخ</h5>
+                            </div>
                             <div class="histories-content mt-3">
                                 <p class="">
                                     <i class="fa-solid fa-calendar-days ms-1"></i>
@@ -251,7 +262,7 @@
                                 </p>
                             </div>
                         </div>
-                        
+
                     </section>
                 </div>
             </div>
@@ -259,5 +270,5 @@
         </div>
     </main>
 
-    <script src="/assets/js/profile_tabNavigation.js"></script>
+    <script src="/assets/client/js/profile_tabNavigation.js"></script>
 @endsection

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+
 
 class ResetPasswordController extends Controller {
 
@@ -20,9 +22,21 @@ class ResetPasswordController extends Controller {
 
   $request->validate([
       'email' => 'required|email|exists:users',
-      'password' => 'required|string|min:6|confirmed',
-      'password_confirmation' => 'required', ]);
+      'password' => 'required|string|min:8',
+      'password_confirmation' => 'required|same:password', 
+    ], [
+    
+      'email.unique' => 'there is an email in the table',
+      'email.required' => 'this field is required',
+      'email.email' => 'incorrect email format',
+      'password.required' => 'password is required',
+      'password.min' => 'password should not be less than 3',
+      'password_confirmation.same' => 'password do not match',
 
+
+  ]);
+    
+ 
       $updatePassword = DB::table('password_resets')
                           ->where(['email' => $request->email, 'token' => $request->token])
                           ->first();
@@ -35,7 +49,7 @@ class ResetPasswordController extends Controller {
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
-        return redirect('login')->with('message', 'Your password has been changed!');
+        return redirect('login')->with('message', 'رمزك لقد تم تغييرة!');
 
       }
     }

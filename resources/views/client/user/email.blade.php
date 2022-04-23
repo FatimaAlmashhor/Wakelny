@@ -1,16 +1,6 @@
 
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/assets/client/css/main.css">
-
-</head>
-
-<body style="background-color:#FFFFFF ">
+@extends('client.master_layout')
+@section('content')
     <section class="ftco-section">
         <div class="container  ">
             <div class="row justify-content-center">
@@ -30,18 +20,18 @@
                                         @csrf
                                 
 
-                            <div class="mb-3 form-password-toggle">
+                            <div class="form-password-toggle">
                                 <label class="form-label" for="password">E-Mail Address</label>
                                 <div class="input-group input-group-merge">
-                                    <input style="height: 38px;" type="email" class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
+                                    <input type="email" class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
 
                                     @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-                    
-                            <button class="wak_btn d-grid w-100"> Send Password Reset Link
+                      
+                            <button class="wak_btn d-grid w-100"> ارسال رابط التحقق للايميل
                             </button>
                             {{ csrf_field() }}
 
@@ -62,9 +52,4 @@
             </div>
         </div>
     </section>
-
-
-</body>
-
-</html>
-
+@endsection
