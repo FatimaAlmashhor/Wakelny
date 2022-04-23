@@ -55,6 +55,14 @@ class AuthController extends Controller
 
 
         ]);
+
+        $role = 'seeker';
+        // check if the user still empty
+        $checkUsers = User::first();
+        if (is_null($checkUsers)) {
+            $role = 'admin';
+        }
+
         $name = $request->name;
         $u = new User();
         $u->name = $name;
@@ -63,8 +71,9 @@ class AuthController extends Controller
         $token = Str::uuid();
         $u->remember_token = $token;
 
+
         if ($u->save()) {
-            $u->attachRole('provider');
+            $u->attachRole($role);
             $to_name = $request->name;
             $to_email = $request->email;
             $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
@@ -75,20 +84,25 @@ class AuthController extends Controller
                 $message->from('kalefnyinfo@gmail.com', 'كلفني');
             });
 
-            // setup the profile
-            $profile = new Profile();
-            $profile->name = $name;
-            $profile->user_id = $u->id;
-            $profile->save();
+
+            // if the user not admin
+            if ($role !== 'admin') {
+                // setup the profile
+                $profile = new Profile();
+                $profile->name = $name;
+                $profile->user_id = $u->id;
+                $profile->save();
+            }
+
+
 
 
             return redirect()->route('login')
-                ->with(['success' => 'تمت الاضافة بنجاح']);
-
+                ->with(['message' => 'تم تسجيل دخولك بنجاح', 'type' => 'alert-success']);
         }
 
 
-        return back()->with(['error' => 'لم تتم الاضافة']);
+        return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
     ///////////////// show hogin page after check role//////////////////
 
@@ -130,7 +144,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->user_pass, 'is_active' => 1])) {
 
-            if(Auth::user()->hasRole('admin')) {
+            if (Auth::user()->hasRole('admin')) {
                 return redirect()->route('admin');
             } else {
                 return redirect()->route('profile');
@@ -160,5 +174,4 @@ class AuthController extends Controller
         } else
             echo "invalid token";
     }
-
 }
