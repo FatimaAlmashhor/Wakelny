@@ -63,7 +63,6 @@ class AuthController extends Controller
         $token = Str::uuid();
         $u->remember_token = $token;
 
-
         if ($u->save()) {
             $u->attachRole('provider');
             $to_name = $request->name;
@@ -85,6 +84,7 @@ class AuthController extends Controller
 
             return redirect()->route('login')
                 ->with(['success' => 'تمت الاضافة بنجاح']);
+
         }
 
 
@@ -130,11 +130,12 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->user_pass, 'is_active' => 1])) {
 
-
-            if (Auth::user()->hasRole('admin'))
+            if(Auth::user()->hasRole('admin')) {
                 return redirect()->route('admin');
-            else
-                return redirect()->route('home');
+            } else {
+                return redirect()->route('profile');
+                // return redirect()->route('home');
+            }
         } else {
             return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل او هل الحساب مفعل']);
         }

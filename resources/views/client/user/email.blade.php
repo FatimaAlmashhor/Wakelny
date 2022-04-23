@@ -5,20 +5,20 @@
         <div class="container  ">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5 border my-5">
+                    <div class="login-wrap p-4 p-md-5 border shadow-sm my-5">
 
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
-                                   
+                                
                                             @if (session('status'))
                                                 <div class="alert alert-success" role="alert">
                                                     {{ session('status') }}
                                                 </div>
                                             @endif
-                                            <form method="POST" action="/forget-password" class="login-form">
+                                            <form method="POST" action="{{route('forget-pass')}}" class="login-form">
                                         @csrf
-                                  
+                                
 
                            <div class="form-group row">
                                 <label class="form-label" for="password">عنوان الايميل </label>

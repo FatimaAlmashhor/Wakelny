@@ -25,12 +25,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
@@ -39,25 +33,15 @@ Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->nam
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
 
-Route::get('/users', [AuthController::class, 'listAll'])->name('users');
-Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
 
-Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
+    // ------------------------------------------------------------------------
+    // reset password
+    // ------------------------------------------------------------------------
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
-// ------------------------------------------------------------------------
-// reset password
-// ------------------------------------------------------------------------
-
-Route::get('/forget-password',  [ForgotPasswordController::class, 'getEmail']);
-Route::post('/forget-password', [ForgotPasswordController::class, 'postEmail'])->name('forget-password');
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
-Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword']);
+Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail'])->name('forget-password');
+Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-pass');
+Route::get('/reset-password/{token}', [ResetPasswordController::class,'getPassword'])->name('reset-password');
+Route::post('/reset-password', [ResetPasswordController::class,'updatePassword'])->name('update-password');
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -66,22 +50,18 @@ Route::group([
 
 
     // ------------------------------------------------------------------------
-    // Client section
+    // Static pages section
     // ------------------------------------------------------------------------
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
+    Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
+    Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
-    Route::view('/aboutUs', 'client.static.about_us');
-    Route::view('/contactUs', 'client.static.contactUs');
-
-    Route::view('/freelancers', 'client.user.freelancers');
+    Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer');
 
-    Route::view('/user-profile', 'client.userProfile.userProfile');
-    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
 
-    // Route::view('/profile', 'client.userProfile.profile');
-
-    // Route::view('/user-prof', 'client.userProfile.user_profile');
+    Route::view('/profile', 'client.userProfile.profile')->name('profile');
 
 
 
@@ -91,19 +71,19 @@ Route::group([
 
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 
-    //freelacers page
-    Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
+    Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
+    Route::post('/createUser', [AuthController::class, 'register'])->name('save_user'); //save_user
 
-    Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
+    Route::post('/login', [AuthController::class, 'login'])->name('do_login');//do_login
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
-        Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+        Route::view('/profile', 'client.userProfile.profile')->name('profile');
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
 
@@ -114,8 +94,9 @@ Route::group([
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
 
-           Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
-           Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+            Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+
 
            Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
            Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
@@ -130,17 +111,24 @@ Route::group([
         //////////////////////CRUD skills ////////////////
         Route::get('/list_skills', [SkillController::class, 'list_skills'])->name("list_skills");
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
-        Route::post('/save_skill', [SkillController::class, 'store'])->name('save_skill');
+        Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
+        Route::post('/edit_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
         Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
-        Route::post('/update_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
 
         //////////////////////CRUD category ////////////////
         Route::get('/list_categories', [CategoriesController::class, 'list_category'])->name('list_categories');
         Route::get('/add_category', [CategoriesController::class, 'add_category'])->name('add_category');
+        Route::post('/add_category', [CategoriesController::class, 'store'])->name('save_category');
         Route::get('/edit_category/{cat_id}', [CategoriesController::class, 'edit'])->name('edit_category');
+        Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
-        Route::post('/save_category', [CategoriesController::class, 'store'])->name('save_category');
-        Route::post('/update_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
     });
+
 });
+
+//  start email verify
+	Route::get('/verify_email/{token}',[AuthController::class,'verifyEmail'])->name('verify_email');
+//  end email verify
+
+

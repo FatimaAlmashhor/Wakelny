@@ -47,7 +47,7 @@
                         </div>
                         <ul>
 
-                            <li><a href="#">{{ __('footer.aboutus') }}</a></li>
+                            <li><a href="{{route('aboutus')}}">{{ __('footer.aboutus') }}</a></li>
                             <li><a href="#">{{ __('footer.Services') }}</a></li>
                             <li><a href="#">{{ __('footer.works') }}</a></li>
                             <li><a href="#">{{ __('footer.help') }}</a></li>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="info">
                                     <p><a href="tel:+919246147999">1800-121-3637</a></p>
-                                    <p><a href="tel:+919246147999">+91 924-614-7999</a></p>
+                                    <!-- <p><a href="tel:+919246147999">+91 924-614-7999</a></p> -->
                                 </div>
                             </div>
                             <div class="single_info">
@@ -74,8 +74,8 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="info">
-                                    <p><a href="mailto:info@deneb.com">info@deneb.com</a></p>
-                                    <p><a href="mailto:services@deneb.com">services@deneb.com</a></p>
+                                    <p><a href="{{route('contactus')}}">أو عبر نموذج التواصل</a></p>
+                                    <!-- <p><a href="mailto:services@deneb.com">services@deneb.com</a></p> -->
                                 </div>
                             </div>
                             <div class="single_info">

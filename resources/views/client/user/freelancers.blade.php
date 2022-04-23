@@ -152,10 +152,12 @@
                 <div class="card px-3 container my-4" style="direction: rtl;">
                     <div class="box d-flex justify-content-between">
                         <div class="image d-flex">
+                        <a href="{{route('userProfile')}}">
                             <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
                                 src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }} alt="">
+                        </a>
                             <div class="info mx-4">
-                                <h4>{{ $item->name }}</h4>
+                                <h4><a href="{{route('userProfile')}}">{{ $item->name }}</a></h4>
 
                                 <div class="rate">
                                     @for ($i = 0; $i < 5; $i++)

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-  function generateRoles(){
+    function generateRoles(){
 
         Role::create([
             'name' => 'super_admin',
@@ -27,7 +27,8 @@ class SettingsController extends Controller
             'display_name' => 'طالب الخدمة', // optional
             //'description' => 'User is the owner of a given project', // optional
         ]);
-          Role::create([
+
+        Role::create([
             'name' => 'provider',
             'display_name' => 'مقدم الخدمة', // optional
             //'description' => 'User is the owner of a given project', // optional

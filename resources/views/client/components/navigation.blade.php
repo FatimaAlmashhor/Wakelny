@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg px-5 main-nav">
     <!-- <div class="container-fluid"> -->
-        <a class="navbar-brand fw-bold fs-3 brand" href="#">وكلني</a>
+        <a class="navbar-brand fw-bold fs-3 brand" href="{{route('home')}}">كلفني</a>
 
         <button class="navbar-toggler text-light collapsed
                         d-flex d-lg-none flex-column justify-content-around
@@ -19,10 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active fw-bolder nav-links" aria-current="page" href="#">الرئيسية</a>
+                    <a class="nav-link active fw-bolder nav-links" aria-current="page" href="{{route('home')}}">الرئيسية</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-links" href="#">المنافسون</a>
+                    <a class="nav-link nav-links" href="{{route('freelancers')}}">المستقلون</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-links" href="#">العروض الحالية</a>
@@ -30,7 +30,7 @@
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links" href="#">تسجيل الدخول</a>
+                    <a class="nav-link fs-6 nav-links" href="{{route('login')}}">تسجيل الدخول</a>
                 </li>
             </ul>
         </div>

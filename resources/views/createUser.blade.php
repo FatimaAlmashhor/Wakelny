@@ -4,7 +4,7 @@
         <div class="container  ">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5 border my-5">
+                    <div class="login-wrap p-4 p-md-5 border shadow-sm my-5">
 
                         <h3 class="text-center mb-4">{{ __('login.create_account') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
@@ -59,7 +59,8 @@
                                 </div>
 
                             </div>
-                            <button class="wak_btn d-grid w-100">{{ __('login.register') }}
+                            <button class="wak_btn d-grid w-100">
+                                {{ __('login.register') }}
                             </button>
                             {{ csrf_field() }}
                             <button class="wak_btn green_border w-100 mt-3">

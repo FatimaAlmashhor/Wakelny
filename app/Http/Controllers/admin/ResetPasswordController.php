@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ResetPasswordController extends Controller {
 
   public function getPassword($token) {
-
-     return view('client.user.reset', ['token' => $token]);
+      return view('client.user.reset', ['token' => $token]);
   }
 
   public function updatePassword(Request $request)
