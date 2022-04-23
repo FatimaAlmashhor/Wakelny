@@ -82,13 +82,6 @@ Route::group([
     // Admin section
     // ------------------------------------------------------------------------
 
-
-    // here the reset password page as UI
-
-    Route::view('/resetPassword', 'client.user.resPassword')->name('reset_password');
-    // Route::view('/resetPassword', 'login')->name('reset_password');
-
-
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
     Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
     Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
