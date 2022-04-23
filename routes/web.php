@@ -21,22 +21,15 @@ use App\Http\Controllers\admin\ResetPasswordController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-    
 //start  roles managment
 Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
 //end roles managment
 
 Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
-Route::post('/save_user', [AuthController::class, 'register
-'])->name('save_user');
+Route::post('/createUser', [AuthController::class, 'register'])->name('save_user'); //save_user
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
+Route::post('/login', [AuthController::class, 'login'])->name('do_login');//do_login
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -67,24 +60,10 @@ Route::group([
     // Route::view('/user-prof', 'client.userProfile.user_profile');
 
 
-    // ------------------------------------------------------------------------
-    // Admin section
-    // ------------------------------------------------------------------------
-
-
     // here the reset password page as UI
 
     Route::view('/resetPassword', 'client.user.resPassword')->name('reset_password');
     // Route::view('/resetPassword', 'login')->name('reset_password');
-
-
-    Route::get('/users', [AuthController::class, 'listAll'])->name('users');
-    Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
-    Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
 
     // ------------------------------------------------------------------------
     // Admin section
@@ -109,11 +88,6 @@ Route::group([
         Route::post('/update_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
     });
 });
-
-//start  roles managment
-Route::get('/generate_roles', [SettingsController::class, 'generateRoles'])->name('generate_roles');
-//end roles managment
-
 
 //  start email verify
 	Route::get('/verify_email/{token}',[AuthController::class,'verifyEmail'])->name('verify_email');

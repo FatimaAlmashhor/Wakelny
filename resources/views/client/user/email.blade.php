@@ -15,12 +15,12 @@
         <div class="container  ">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5 border my-5">
+                    <div class="login-wrap p-4 p-md-5 border shadow-sm my-5">
 
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
-                                   
+                                
                                             @if (session('status'))
                                                 <div class="alert alert-success" role="alert">
                                                     {{ session('status') }}
@@ -28,7 +28,7 @@
                                             @endif
                                             <form method="POST" action="/forget-password" class="login-form">
                                         @csrf
-                                  
+                                
 
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">E-Mail Address</label>
@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                             </div>
-                      
+                    
                             <button class="wak_btn d-grid w-100"> Send Password Reset Link
                             </button>
                             {{ csrf_field() }}

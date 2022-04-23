@@ -68,7 +68,7 @@ class AuthController extends Controller
                         ->subject('تسجيل عضوية جديدة');
                 $message->from('kalefnyinfo@gmail.com','كلفني');
             });
-            return redirect()->route('login')
+            return redirect()->route('client.userProfile.userProfile')
             ->with(['success'=>'user created successful']);
         }
 
@@ -90,8 +90,8 @@ class AuthController extends Controller
     public function checkRole(){
 
         if(Auth::user()->hasRole('admin'))
-             return 'admin';
-            else
+            return 'admin';
+        else
             return 'home';
     }
     ///////////////// check account in  hogin page //////////////////
