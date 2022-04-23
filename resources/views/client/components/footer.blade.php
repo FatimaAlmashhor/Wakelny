@@ -12,7 +12,7 @@
                 <div class="col-lg-5">
                     <div class="button_box">
                         <a href="#" class="btn btn-warning">Hire Us</a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -29,8 +29,10 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="widget widegt_about">
                         <div class="widget_title">
-                            <img src="assets/client/images/logo.png" class="img-fluid"
-                                style=" height: 100px; weight:100px;" alt="">
+                            {{-- <img src="assets/client/images/logo.png" class="img-fluid"
+                                style=" height: 100px; weight:100px;" alt=""> --}}
+                                <h1 class="display-3 my-4 " style="color: var(--main-green-color);
+                                font-family: bold">كلفني</h1>
                         </div>
                         <p>{{ __('footer.text') }}</p>
                         <ul class="social">
