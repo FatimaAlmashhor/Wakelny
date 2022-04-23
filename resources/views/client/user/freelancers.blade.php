@@ -179,13 +179,15 @@
                                 <h4>{{ $item->name }}</h4>
 
                                 <div class="rate">
-                                    <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                    <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                    <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                    <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                    <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ((int) $item->rating > $i)
+                                            <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
+                                        @else
+                                            <i class="fa fa-star clr-amber rating-star" style="color: gainsboro;"></i>
+                                        @endif
+                                    @endfor
 
-                                    <span class="px-2 font-md">100.00%</span>
+                                    <span class="px-2 font-md">%{{ $item->rating * 20 }}</span>
                                     <i class="fa fa-fw fa-briefcase"></i>
 
                                     <span class="color-gray-dark px-2 font-md">{{ $item->specialization }}</span>

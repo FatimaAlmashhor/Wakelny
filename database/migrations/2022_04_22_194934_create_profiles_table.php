@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('mobile')->nullable();
             $table->string('country')->nullable();
-            $table->string('specialization')->nullable();
+            $table->double('rating')->default(0.0);
 
+            $table->string('specialization')->nullable();
             $table->longText('bio')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
