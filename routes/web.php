@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -68,10 +69,13 @@ Route::group([
     // Client section
     // ------------------------------------------------------------------------
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
+    Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
+
     Route::view('/freelancers', 'client.user.freelancers');
     Route::view('/projectlancer', 'client.user.projectlancer');
+
     Route::view('/user-profile', 'client.userProfile.userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
 
@@ -86,7 +90,10 @@ Route::group([
     // ------------------------------------------------------------------------
 
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
+
+    //freelacers page
     Route::get('/create_user', [AuthController::class, 'create'])->name('create_user');
+
     Route::post('/save_user', [AuthController::class, 'register'])->name('save_user');
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/do_login', [AuthController::class, 'login'])->name('do_login');
@@ -106,6 +113,7 @@ Route::group([
                 Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
+
            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
            Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
 
