@@ -22,7 +22,7 @@
                     <a class="nav-link active fw-bolder nav-links" aria-current="page" href="{{route('home')}}">الرئيسية</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-links" href="#">المنافسون</a>
+                    <a class="nav-link nav-links" href="{{route('freelancers')}}">المستقلون</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-links" href="#">العروض الحالية</a>

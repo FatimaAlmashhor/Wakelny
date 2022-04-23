@@ -23,7 +23,7 @@
                         @csrf
                             <div class="form-group mb-2">
                                 <label for="username" class="form-label">{{ __('login.name') }}</label>
-                                <input type="text" class="form-control rounded-left" placeholder="Enter Your Name"  name="name">
+                <input type="text" class="form-control rounded-left" placeholder="Enter Your Name"  name="name">
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                     @enderror

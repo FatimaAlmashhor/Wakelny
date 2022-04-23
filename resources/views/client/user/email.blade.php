@@ -26,7 +26,7 @@
                                                     {{ session('status') }}
                                                 </div>
                                             @endif
-                                            <form method="POST" action="/forget-password" class="login-form">
+                                            <form method="POST" action="{{route('forget-pass')}}" class="login-form">
                                         @csrf
                                 
 
