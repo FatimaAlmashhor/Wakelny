@@ -78,14 +78,16 @@ class AuthController extends Controller
                     ->subject('تسجيل عضوية جديدة');
                 $message->from('kalefnyinfo@gmail.com', 'كلفني');
             });
-            return redirect()->route('login')
-                ->with(['success' => 'user created successful']);
 
             // setup the profile
             $profile = new Profile();
             $profile->name = $name;
             $profile->user_id = $u->id;
             $profile->save();
+
+
+            return redirect()->route('login')
+                ->with(['success' => 'user created successful']);
         }
 
 
