@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
+use App\Http\Controllers\client\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\CategoriesController;
@@ -71,9 +72,14 @@ Route::group([
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
-    Route::view('/user-profile', 'client.userProfile.userProfile');
 
-    Route::view('/profile', 'client.userProfile.profile');
+    Route::view('/freelancers', 'client.user.freelancers');
+    Route::view('/projectlancer', 'client.user.projectlancer');
+
+    Route::view('/user-profile', 'client.userProfile.userProfile');
+    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
+
+    // Route::view('/profile', 'client.userProfile.profile');
 
     // Route::view('/user-prof', 'client.userProfile.user_profile');
 
@@ -107,7 +113,12 @@ Route::group([
                 Route::post('/edit', [ControllPannelController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ControllPannelController::class, 'deleteSkill'])->name('deleteSkill');
             });
-            Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+
+           Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
+           Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+
+           Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
+           Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
         });
     });
     // ------------------------------------------------------------------------

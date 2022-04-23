@@ -25,16 +25,16 @@ class SkillController extends Controller
     {
 
    Validator::validate($request->all(),[
-    'name' => ['required','max:55'],
+    'name' => ['required','max:25'],
     'level' => ['required','max:15'],
     'is_active' => ['required'],
 
 
 ],[
-    'name.required' => 'Name of skill is required',
-    'name.max' => 'Name of skill should not be greater than 55 characters.',
-    'level.required'=>'level is required',
-    'level.max'=>'level should not be max  15',
+    'name.required' => 'ادخل اسم المهارة',
+    'name.max' => 'يجب ان يكون الاسم اقل من 25 حروف',
+    'level.required'=>'ادخل المستوى',
+    'level.max'=>'يجب ان يكون الاسم اقل من 15 حروف',
 
 ]); 
 
@@ -46,8 +46,8 @@ $skill->is_active=$request->is_active;
 
 if($skill->save())
 return redirect()->route('list_skills')
-->with(['success'=>'skill created successful']);
-return back()->with(['error'=>'can not create skill']);
+->with(['success'=>'تمت الاضافة بنجاح ', 'type' => 'alert-success']);
+return back()->with(['error'=>'لم تتم الاضافة', 'type' => 'alert-danger']);
 }
 
 public function edit($skill_id){
@@ -63,8 +63,8 @@ $skill->level=$request->level;
 $skill->is_active=$request->is_active;
 
 if($skill->save())
-return redirect()->route('list_skills')->with(['success'=>'data updated successful']);
-return redirect()->back()->with(['error'=>'can not update data ']);
+return redirect()->route('list_skills')->with(['success'=>'تم التعديل بنجاح', 'type' => 'alert-success']);
+return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات', 'type' => 'alert-danger']);
 
 }  
 
@@ -72,8 +72,8 @@ public function toggle($skill_id){
     $skill=Skill::find($skill_id);
     $skill->is_active*=-1;
     if($skill->save())
-    return back()->with(['success'=>'data updated successful']);
-    return back()->with(['error'=>'can not update data']);
+    return back()->with(['success'=>'تم الحذف بنجاح', 'type' => 'alert-success']);
+    return back()->with(['error'=>'لم يتم حذف البيانات', 'type' => 'alert-danger']);
 
 }
 
