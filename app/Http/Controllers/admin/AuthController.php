@@ -47,14 +47,14 @@ class AuthController extends Controller
 
 
         ], [
-            'name.required' => 'this field is required',
-            'name.min' => 'can not be less than 3 letters',
-            'email.unique' => 'there is an email in the table',
-            'email.required' => 'this field is required',
-            'email.email' => 'incorrect email format',
-            'user_pass.required' => 'password is required',
-            'user_pass.min' => 'password should not be less than 3',
-            'confirm_pass.same' => 'password dont match',
+            'name.required' => 'ادخل الاسم',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 3 حروف',
+            'email.unique' => 'الايميل موجود مسبقا',
+            'email.required' => 'ادخل الايميل',
+            'email.email' => 'ادخل الايميل بشكل صحيح',
+            'user_pass.required' => 'ادخل كلمة السر',
+            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 3 خانات',
+            'confirm_pass.same' => 'كلمة السرغير متطابقة ',
 
 
         ]);
@@ -80,8 +80,8 @@ class AuthController extends Controller
             });
             return redirect()->route('login')
                 ->with(['success' => 'user created successful']);
-            // setup the 
 
+            // setup the profile
             $profile = new Profile();
             $profile->name = $name;
             $profile->user_id = $u->id;
@@ -121,10 +121,11 @@ class AuthController extends Controller
 
 
         ], [
-            'email.required' => 'email field is required',
-            'email.min' => 'can not be less than 3 letters',
-            'user_pass.required' => 'user_pass field is required',
-            'user_pass.min' => 'can not be less than 5 letters',
+            'email.required' => 'ادخل بريدك الالكتروني',
+            'email.email' => 'ادخل بؤيدك الالكتروني بشكل صحيح',
+            'user_pass.required' => 'اخل كلمة السر',
+            'user_pass.min' => 'يجب ان بكون كلمة السر اكبر من 5 خانات',
+
 
         ]);
 
