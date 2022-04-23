@@ -50,15 +50,13 @@ Route::group([
 
 
     // ------------------------------------------------------------------------
-    // Client section
+    // Static pages section
     // ------------------------------------------------------------------------
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::view('/freelancers', 'client.user.freelancers')->name('freelancers');
     Route::view('/user-profile', 'client.userProfile.userProfile')->name('user-profile');
-    // Route::view('/user-prof', 'client.userProfile.user_profile');
-
 
     // here the reset password page as UI
 
@@ -74,18 +72,18 @@ Route::group([
         //////////////////////CRUD skills ////////////////
         Route::get('/list_skills', [SkillController::class, 'list_skills'])->name("list_skills");
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
-        Route::post('/save_skill', [SkillController::class, 'store'])->name('save_skill');
+        Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
+        Route::post('/edit_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
         Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
-        Route::post('/update_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
 
         //////////////////////CRUD category ////////////////
         Route::get('/list_categories', [CategoriesController::class, 'list_category'])->name('list_categories');
         Route::get('/add_category', [CategoriesController::class, 'add_category'])->name('add_category');
+        Route::post('/add_category', [CategoriesController::class, 'store'])->name('save_category');
         Route::get('/edit_category/{cat_id}', [CategoriesController::class, 'edit'])->name('edit_category');
+        Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
-        Route::post('/save_category', [CategoriesController::class, 'store'])->name('save_category');
-        Route::post('/update_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
     });
 });
 
