@@ -20,10 +20,10 @@
                                         @csrf
                                   
 
-                            <div class="mb-3 form-password-toggle">
+                            <div class="form-password-toggle">
                                 <label class="form-label" for="password">E-Mail Address</label>
                                 <div class="input-group input-group-merge">
-                                    <input style="height: 38px;" type="email" class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
+                                    <input type="email" class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
 
                                     @error('email')
                                         <span class="text-danger">{{ $message }}</span>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                       
-                            <button class="wak_btn d-grid w-100"> Send Password Reset Link
+                            <button class="wak_btn d-grid w-100"> ارسال رابط التحقق للايميل
                             </button>
                             {{ csrf_field() }}
 

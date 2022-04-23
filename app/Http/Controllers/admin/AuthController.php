@@ -159,10 +159,4 @@ class AuthController extends Controller
             echo "invalid token";
     }
 
-    ///////////////// show resetPassword page //////////////////
-
-    public function resetpass()
-    {
-        return view('client.user.Reset_Password');
-    }
 }
