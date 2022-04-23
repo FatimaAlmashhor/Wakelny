@@ -25,7 +25,7 @@
                     <a class="nav-link nav-links" href="{{route('freelancers')}}">المستقلون</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links" href="#">العروض الحالية</a>
+                    <a class="nav-link fs-6 nav-links" href="{{route('projectlancer')}}">العروض الحالية</a>
                 </li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
