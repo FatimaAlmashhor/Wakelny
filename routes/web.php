@@ -57,8 +57,8 @@ Route::group([
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
-    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
-    Route::view('/projectlancer', 'client.user.projectlancer');
+    Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
+    Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
 
     Route::view('/profile', 'client.userProfile.profile')->name('profile');
