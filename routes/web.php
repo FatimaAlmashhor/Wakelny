@@ -70,7 +70,9 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us');
     Route::view('/contactUs', 'client.static.contactUs');
     Route::view('/freelancers', 'client.user.freelancers');
+    Route::view('/projectlancer', 'client.user.projectlancer');
     Route::view('/user-profile', 'client.userProfile.userProfile');
+    Route::view('/editUserProfile', 'client.userProfile.editUserProfile');
 
     Route::view('/profile', 'client.userProfile.profile');
 
