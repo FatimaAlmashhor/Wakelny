@@ -65,13 +65,13 @@ class AuthController extends Controller
 
 
         if ($u->save()) {
-$user1 = User::count(); //returns products count
-if($user1 == 0){
-    $u->attachRole('admin');
-}
-else
-{$u->attachRole('provider');}
-            // $u->attachRole('provider');
+// $user1 = User::count(); //returns products count
+// if($user1 == 0){
+//     $u->attachRole('admin');
+// }
+// else
+// {$u->attachRole('provider');}
+             $u->attachRole('provider');
             $to_name = $request->name;
             $to_email = $request->email;
             $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
