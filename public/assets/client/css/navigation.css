@@ -126,4 +126,11 @@
     color: var(--main-black-color);
 }
 
+.user-items a:hover,
+.user-items a:active, 
+.user-items a:visited {
+    color: var(--main-offwhite-color);
+    cursor: pointer;
+}
+
 /* ============= /Image avatar of nav ========= */
