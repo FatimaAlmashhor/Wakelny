@@ -104,3 +104,12 @@
     transform: rotate(0deg);
 }
 /* ============= /Navbar Toggler ============== */
+
+/* ============= Image avatar of nav ========== */
+
+.img-avatar {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+/* ============= /Image avatar of nav ========= */
