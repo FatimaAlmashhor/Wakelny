@@ -31,14 +31,14 @@ Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->nam
 //  end email verify
 
 
-    // ------------------------------------------------------------------------
-    // reset password
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// reset password
+// ------------------------------------------------------------------------
 
-Route::get('/forget-password',  [ForgotPasswordController::class,'getEmail'])->name('forget-password');
-Route::post('/forget-password', [ForgotPasswordController::class,'postEmail'])->name('forget-pass');
-Route::get('/reset-password/{token}', [ResetPasswordController::class,'getPassword'])->name('reset-password');
-Route::post('/reset-password', [ResetPasswordController::class,'updatePassword'])->name('update-password');
+Route::get('/forget-password',  [ForgotPasswordController::class, 'getEmail'])->name('forget-password');
+Route::post('/forget-password', [ForgotPasswordController::class, 'postEmail'])->name('forget-pass');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('reset-password');
+Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('update-password');
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -53,6 +53,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
+    Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
     Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
@@ -72,7 +73,7 @@ Route::group([
     Route::post('/createUser', [AuthController::class, 'register'])->name('save_user'); //save_user
 
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('do_login');//do_login
+    Route::post('/login', [AuthController::class, 'login'])->name('do_login'); //do_login
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -86,19 +87,17 @@ Route::group([
 
             // use profile skills section
             Route::prefix('/skills')->group(function () {
-              Route::get('/', [ProfileController::class, 'showSkills'])->name('skills');
-              Route::post('/edit', [ProfileController::class, 'saveSkills'])->name('editSkills');
-              Route::get('/delete/{skill_id}', [ProfileController::class, 'deleteSkill'])->name('deleteSkill');
+                Route::get('/', [ProfileController::class, 'showSkills'])->name('skills');
+                Route::post('/edit', [ProfileController::class, 'saveSkills'])->name('editSkills');
+                Route::get('/delete/{skill_id}', [ProfileController::class, 'deleteSkill'])->name('deleteSkill');
             });
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
 
 
-           Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
-           Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
-
-           
+            Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
+            Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
         });
     });
     // ------------------------------------------------------------------------
@@ -123,11 +122,8 @@ Route::group([
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
     });
-
 });
 
 //  start email verify
-	Route::get('/verify_email/{token}',[AuthController::class,'verifyEmail'])->name('verify_email');
+Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
-
-
