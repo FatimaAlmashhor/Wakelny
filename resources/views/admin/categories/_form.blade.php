@@ -7,13 +7,13 @@
     </header>
 
     <div class="page-heading">
-        <h3>Category</h3>
+        <h3>{{ __('dash.Categories') }}</h3>
     </div>
 
     <!-- Basic Vertical form layout section start -->
     <section id="basic-vertical-layouts">
         <div class="row match-height">
-            <div class="col-md-6 col-12 mx-auto">
+            <div class="col-md-12 col-12 mx-auto">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -27,28 +27,27 @@
 
                             @csrf
                             <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical">First Name</label>
-                                            <input type="text" value='{{ $data->title ?? old('title') }}' name='title'
-                                                id="first-name-vertical" class="form-control"
-                                                placeholder="Software development" />
-                                            <span class="text-danger">{{ $errors->first('title') }}</span>
-                                        </div>
+                                <div class="row g-3">
+                                 
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-username">{{ __('dash.category_name') }}</label>
+                                        <input value="{{ $data->title ?? old('title') }}" name='title' type="text" id="multicol-username" class="form-control" placeholder="" />
+                                        @error('title')
+                                            <span class="text-danger">{{ $message }}</span>              
+                                        @enderror
                                     </div>
-                                    <div class="col-12 col-md-8  form-group ml-o text-start">
-                                        <div class='form-check'>
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="checkbox1" name='is_active' value="1"
-                                                    class='form-check-input' checked>
-                                                <label for="checkbox1">Remember Me</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                  <div class="col-md-6 ">
+                    <label class="form-label" for="multicol-email">{{ __('dash.is_active') }} </label>
+                    <select  name="is_active" id="formtabs-country" class="select2 form-select" data-allow-clear="true">
+                                                    
+                                                    <option value="1">مفعل</option>
+                                                    <option value="-1">معطل</option>
+                                                </select>
+
+              </div>
+                                 
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">{{ __('dash.save') }} </button>
                                     </div>
                                 </div>
                             </div>
