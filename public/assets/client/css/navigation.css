@@ -112,4 +112,12 @@
     max-height: 40px;
 }
 
+.rtl {
+    direction: rtl;
+}
+
+.rtl .dropdown-menu-right {
+    text-align: right;
+}
+
 /* ============= /Image avatar of nav ========= */

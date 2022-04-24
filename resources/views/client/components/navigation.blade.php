@@ -39,19 +39,47 @@
                     <li class="nav-item ms-3">
                         <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-bell"></i></span>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown rtl">
                         <img class="img-avatar rounded-circle dropdown-toggle" 
                                 type="button" 
                                 id="dropdownMenuButton1" 
                                 data-bs-toggle="dropdown" 
                                 aria-expanded="false"
-                                src="/assets/client/images/user-profile-2.png">
+                                src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}>
                             
-                        <!-- </img> -->
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
+                            <li class="">
+                                <a class="dropdown-item color-black" href="">
+                                    <i class="fa-solid fa-user ms-1"></i>
+                                    <!-- <span>اسم المستخدم</span> -->
+                                    <span>{{ Auth::user()->name }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="#">
+                                    <i class="fa-solid fa-bookmark ms-1"></i>
+                                    <span>المفضلة</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="#">
+                                    <i class="fa-solid fa-dollar-sign ms-1"></i>
+                                    <span>الرصيد</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="{{route('editUserProfile')}}">
+                                    <i class="fa-solid fa-sliders ms-1"></i>
+                                    <span>تعديل الحساب</span>
+                                </a>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item color-black" href="{{route('logout')}}">
+                                    <i class="fa-solid fa-arrow-right-from-bracket ms-1"></i>
+                                    <span>تسجيل الخروج</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
