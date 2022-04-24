@@ -1,13 +1,13 @@
         // $('personal').click($('pp').hide());
         $(document).ready(function(){
 
-            $("#wrk,#skil,#Edu,#expe,#curs,#Edpers").hide();
+            $("#wrk,#skil,#Edu,#curs,#Edpers").hide();
     
             
             });
     
             $("#personal").click(function(){
-            $("#wrk,#skil,#Edu,#expe,#curs,#Edpers").hide();
+            $("#wrk,#skil,#Edu,#curs,#Edpers").hide();
             $("#perso").show();
     
     
@@ -16,17 +16,17 @@
     
     
             $("#Edit").click(function(){
-            $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
+            $("#wrk,#skil,#Edu,#curs,#Edpers,#perso").hide();
             $("#Edpers").show();
             });
     
             $("#saveEd").click(function(){
-            $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
+            $("#wrk,#skil,#Edu,#curs,#Edpers,#Edpers").hide();
             $("#perso").show();
             });
     
             $("#skills").click(function(){
-            $("#wrk,#perso,#Edu,#expe,#curs,#Edpers").hide();
+            $("#wrk,#perso,#Edu,#curs,#Edpers").hide();
             $("#skil").show();
     
     
@@ -40,14 +40,14 @@
             });
     
             $("#note").click(function(){
-            $("#wrk,#perso,#expe,#skil,#curs,#Edpers").hide();
+            $("#wrk,#perso,#skil,#curs,#Edpers").hide();
             $("#Edu").show();
     
     
             });
     
             $("#courses").click(function(){
-            $("#wrk,#perso,#expe,#skil,#Edu,#Edpers").hide();
+            $("#wrk,#perso,#skil,#Edu,#Edpers").hide();
             $("#curs").show();
             
             });
