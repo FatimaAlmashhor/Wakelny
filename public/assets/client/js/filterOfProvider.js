@@ -1,4 +1,4 @@
-console.log('text');
+var ids = [];
 $(document).ready(function (e) {
     $.ajaxSetup({
         headers: {
@@ -15,32 +15,43 @@ $(document).ready(function (e) {
         $value = $(this).val();
         getMoreUsers(1);
     });
-    $('#country').on('change', function () {
+
+    $(document).on('click', '.cates', function (e) {
+        // e.preventDefault();
+        ids = []; // reset 
+        $('.cates').each(function () {
+            if ($(this).is(":checked")) {
+                ids.push($(this).attr('id'));
+            }
+        })
+        console.log(ids);
         getMoreUsers();
     });
-    $('#sort_by').on('change', function (e) {
+    $('#skills').on('change', function (e) {
         getMoreUsers();
     });
 
-    $('#salary_range').on('change', function (e) {
+    $('input[type=radio][name=star]').on('change', function (e) {
+        console.log('radio');
         getMoreUsers();
     });
 });
 function getMoreUsers(page) {
     var search = $('#search_by_name').val();
     // Search on based of country
-    var selectedCountry = $("#country option:selected").val();
+    var selectedCates = ids;
     // Search on based of type
     var selectedType = $("#sort_by option:selected").val();
     // Search on based of salary
-    var selectedRange = $("#salary_range option:selected").val();
+    var selectedSkills = $("#skills option:selected").val();
+    var selectedStars = $("input[type=radio][name=star]:checked").val();
     $.ajax({
-        type: "GET",
+        type: "POST",
         data: {
             'search_query': search,
-            'country': selectedCountry,
-            'sort_by': selectedType,
-            'range': selectedRange
+            'cates': selectedCates,
+            'rating': selectedStars,
+            'skills': selectedSkills
         },
         url: `freelancers_filter?page=${page}`,
         success: function (data) {

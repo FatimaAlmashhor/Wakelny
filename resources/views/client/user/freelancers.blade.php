@@ -30,16 +30,29 @@
                                         </div>
                                     </article>
 
+                                    {{-- categories --}}
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.majers') }} </h6>
 
+
+                                        <div style="">
+                                            <div class="card-body d-flex align-items-center ">
+                                                <label class="wak_checkbox">
+                                                    <input value='-1' name='cates[]' type="checkbox" class="cates"
+                                                        id="-1" }>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <p class="my-auto px-2"> All</p>
+                                            </div>
+                                        </div>
                                         @foreach ($cates as $item)
                                             <div style="">
                                                 <div class="card-body d-flex align-items-center ">
                                                     <label class="wak_checkbox">
-                                                        <input value={{ $item->id }} type="checkbox">
-                                                        <span class="checkmark"></span>
+                                                        <input value={{ $item->id }} name='cates[]' type="checkbox"
+                                                            class="cates" id="{{ $item->id }}">
+                                                        <span class=" checkmark"></span>
                                                     </label>
                                                     <p class="my-auto px-2"> {{ $item->title }}</p>
                                                 </div>
@@ -64,38 +77,39 @@
                                         </div>
                                     </article> --}}
 
-                                    <article class="filter-group">
+                                    {{-- <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.skills') }} </h6>
                                         <div style="mt-2">
                                             <select class="combobox wak_input" name="normal">
                                                 @foreach ($skills as $item)
                                                     <option value=" -1 ">All</option>
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option id='skills' value="{{ $item->id }}">{{ $item->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </article>
+                                    </article> --}}
 
                                     <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.rating') }} </h6>
                                         <div class="stars">
                                             <form action=""> <input class="star star-5" id="star-5" type="radio"
-                                                    name="star" />
+                                                    value="1" name="star" />
                                                 <label class="star star-5" for="star-5"></label> <input
-                                                    class="star star-4" id="star-4" type="radio" name="star" /> <label
-                                                    class="star star-4" for="star-4"></label> <input
-                                                    class="star star-3" id="star-3" type="radio" name="star" /> <label
-                                                    class="star star-3" for="star-3"></label> <input
-                                                    class="star star-2" id="star-2" type="radio" name="star" /> <label
-                                                    class="star star-2" for="star-2"></label> <input
-                                                    class="star star-1" id="star-1" type="radio" name="star" /> <label
-                                                    class="star star-1" for="star-1"></label>
+                                                    class="star star-4" id="star-4" type="radio" name="star" value="2" />
+                                                <label class="star star-4" for="star-4"></label> <input
+                                                    class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                                                <label class="star star-3" for="star-3"></label> <input
+                                                    class="star star-2" id="star-2" type="radio" name="star" value='4' />
+                                                <label class="star star-2" for="star-2"></label> <input
+                                                    class="star star-1" id="star-1" type="radio" name="star" value="5" />
+                                                <label class="star star-1" for="star-1"></label>
                                             </form>
                                         </div>
                                     </article>
-                                    <article class="filter-group">
+                                    {{-- <article class="filter-group">
 
                                         <h6 class="title">{{ __('filter.freelancers') }} </h6>
                                         <div style="">
@@ -137,7 +151,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </article>
+                                    </article> --}}
 
                                 </div>
                             </div>

@@ -68,7 +68,7 @@ class User extends Authenticatable
     }
 
 
-    public static function getProviders($search_keyword, $country, $sort_by, $range)
+    public static function getProviders($search_keyword, $cates, $rateing)
     {
         $users = DB::table('profiles')->join('role_user', 'role_user.user_id', '=', 'profiles.user_id')
             ->where('role_user.role_id', 4);
@@ -76,30 +76,43 @@ class User extends Authenticatable
 
         if ($search_keyword && !empty($search_keyword)) {
             $users->where(function ($q) use ($search_keyword) {
-                $q->where('users.fname', 'like', "%{$search_keyword}%")
-                    ->orWhere('users.lname', 'like', "%{$search_keyword}%");
+                $q->where('name', 'like', "%{$search_keyword}%");
             });
         }
 
-        // Filter By Country
-        if ($country && $country != GlobalConstants::ALL) {
-            $users = $users->where('users.country', $country);
+        // Filter By categories
+        if ($cates && $cates != GlobalConstants::ALL) {
+            $checkIfAllChecked = array_search(-1, $cates, true);
+            if (!$checkIfAllChecked)
+                // print_r($checkIfAllChecked);
+                $users = $users->whereIn('profiles.category_id', $cates);
+        }
+        //Filter By Skills
+        // if ($skills && $skills != GlobalConstants::ALL) {
+        //     $checkIfAllChecked = array_search(-1, $skills, true);
+        //     if (!$checkIfAllChecked)
+        //         // print_r($checkIfAllChecked);
+        //         $users = $users->whereIn('profiles.category_id', $cates);
+        // }
+        // Filter By rateing
+        if ($rateing && $rateing != GlobalConstants::ALL) {
+            $users = $users->where('profiles.rating', $rateing);
         }
 
         // Filter By Type
-        if ($sort_by) {
-            $sort_by = lcfirst($sort_by);
-            if ($sort_by == GlobalConstants::USER_TYPE_FRONTEND) {
-                $users = $users->where('users.type', $sort_by);
-            } else if ($sort_by == GlobalConstants::USER_TYPE_BACKEND) {
-                $users = $users->where('users.type', $sort_by);
-            }
-        }
+        // if ($sort_by) {
+        //     $sort_by = lcfirst($sort_by);
+        //     if ($sort_by == GlobalConstants::USER_TYPE_FRONTEND) {
+        //         $users = $users->where('profiles.type', $sort_by);
+        //     } else if ($sort_by == GlobalConstants::USER_TYPE_BACKEND) {
+        //         $users = $users->where('profiles.type', $sort_by);
+        //     }
+        // }
 
-        // Filter By Salaries
-        if ($range && $range != GlobalConstants::ALL) {
-            $users = $users->where('users.salary', $range);
-        }
+        // // Filter By Salaries
+        // if ($range && $range != GlobalConstants::ALL) {
+        //     $users = $users->where('users.salary', $range);
+        // }
 
         return $users->paginate(10);
     }

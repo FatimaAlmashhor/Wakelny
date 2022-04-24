@@ -53,7 +53,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
-    Route::get('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
+    Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
     Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');

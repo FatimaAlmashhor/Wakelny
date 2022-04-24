@@ -20,7 +20,7 @@ class UserController extends Controller
     function index(Request $request)
     {
 
-        $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL, GlobalConstants::ALL);
+        $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL);
 
         /**
          * ! why the model in the small?
@@ -48,16 +48,18 @@ class UserController extends Controller
 
     function filter(Request $request)
     {
-        echo "here we go";
         // other try 
 
         $query = $request->search_query;
-        $country = $request->country;
-        $sort_by = $request->sort_by;
-        $range = $request->range;
+        $cate = $request->cates;
+        $skills = $request->skills;
+        // print_r($cate);
+        // $sort_by = $request->rating;
+        $rating = $request->rating;
         if ($request->ajax()) {
-            $data = User::getProviders($query, $country, $sort_by, $range);
-            // return view('client.components.provider_data', compact('providers'))->render();
+            $data = User::getProviders($query, $cate, $rating);
+            return view('client.components.provider_data', compact('data'))->render();
+            // return 'done';
         }
     }
 }
