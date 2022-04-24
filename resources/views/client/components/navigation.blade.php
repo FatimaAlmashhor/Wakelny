@@ -30,14 +30,14 @@
             </ul>
             @if (Auth::check())
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item ms-3">
-                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <li class="nav-item ms-3 user-items">
+                        <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </li>
-                    <li class="nav-item ms-3">
-                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-comment-dots"></i></span>
+                    <li class="nav-item ms-3 user-items">
+                        <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-comment-dots"></i></a>
                     </li>
-                    <li class="nav-item ms-3">
-                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-bell"></i></span>
+                    <li class="nav-item ms-3 user-items">
+                        <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell"></i></a>
                     </li>
                     <li class="dropdown rtl">
                         <img class="img-avatar rounded-circle dropdown-toggle" 
