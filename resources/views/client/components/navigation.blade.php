@@ -49,9 +49,8 @@
                             
                         <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
                             <li class="">
-                                <a class="dropdown-item color-black" href="">
+                                <a class="dropdown-item color-black" href="{{route('userProfile')}}">
                                     <i class="fa-solid fa-user ms-1"></i>
-                                    <!-- <span>اسم المستخدم</span> -->
                                     <span>{{ Auth::user()->name }}</span>
                                 </a>
                             </li>

@@ -120,4 +120,10 @@
     text-align: right;
 }
 
+.rtl .dropdown-menu-right li a:hover,
+.rtl .dropdown-menu-right li a:active {
+    background-color: var(--main-light-gray-color);
+    color: var(--main-black-color);
+}
+
 /* ============= /Image avatar of nav ========= */
