@@ -32,6 +32,7 @@ class ControllPannelController extends Controller
           ->with('data',$profile);
     }
 
+
       public function uploadFile($file){
         $dest=public_path()."/images/";
 
@@ -39,6 +40,7 @@ class ControllPannelController extends Controller
         $filename= time()."_".$file->getClientOriginalName();
         $file->move($dest,$filename);
         return $filename;
+
 
 
     }

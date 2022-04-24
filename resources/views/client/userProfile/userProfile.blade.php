@@ -10,7 +10,7 @@
 
             <div class="user-info color-black mt-5 py-0 col-md-8">
                 <div class="username color-black">
-                    <h5>اسم المستخدم</h5>
+                    <h5>{{ Auth::user()->name }}</h5>
                 </div>
 
                 <div class="user-brief text-muted">
