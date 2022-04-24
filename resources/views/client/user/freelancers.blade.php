@@ -9,7 +9,9 @@
 
         {{-- filter --}}
         <aside class="border-start">
-            <div class="filter" id='filter'>
+            <form class="filter" id='filter' method="GET">
+                {{ csrf_field() }}
+                <input name="_token" type="hidden" />
                 <div class="filter_container">
                     <a href="javascript:void(0)" id='filter_close' class="closebtn" onclick="closeNav()"><i
                             class="fas fa-times"></i></a>
@@ -22,7 +24,8 @@
                                         <h6 class="title">{{ __('filter.search_keys') }} </h6>
                                         <div style="">
                                             <div class="card-body">
-                                                <input type="text" name='search_by_keys' class="wak_input" />
+                                                <input type="text" id='search_by_name' name='search_by_keys'
+                                                    class="wak_input" />
                                             </div>
                                         </div>
                                     </article>
@@ -141,86 +144,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </aside>
-
-        {{-- freelancers --}}
         <main id='freelancers' class="container px-lg-5">
-
-            {{-- freelancers --}}
-            @foreach ($data as $item)
-                <div class="card px-3 container my-4" style="direction: rtl;">
-                    <div class="box d-flex justify-content-between">
-                        <div class="image d-flex">
-                        <a href="{{route('userProfile')}}">
-                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                                src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }} alt="">
-                        </a>
-                            <div class="info mx-4">
-                                <h4><a href="{{route('userProfile')}}">{{ $item->name }}</a></h4>
-
-                                <div class="rate">
-                                    @for ($i = 0; $i < 5; $i++)
-                                        @if ((int) $item->rating > $i)
-                                            <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
-                                        @else
-                                            <i class="fa fa-star clr-amber rating-star" style="color: gainsboro;"></i>
-                                        @endif
-                                    @endfor
-
-                                    <span class="px-2 font-md">%{{ $item->rating * 20 }}</span>
-                                    <i class="fa fa-fw fa-briefcase"></i>
-
-                                    <span class="color-gray-dark px-2 font-md">{{ $item->specialization }}</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="card--actions hidden-xs">
-                            <div class="dropdown btn-group">
-
-                                <a tabindex="-1" class="wak_btn" href="#">
-                                    <i class="fa fa-fw fa-send"></i>
-                                    <span class="action-text">وظفني </span>
-                                </a>
-
-                                <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    {{-- <i class="fa fa-caret-down"></i> --}}
-                                </button>
-                                <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                                    aria-labelledby="خيارات">
-                                    <li class="my-2 border-bottom text-end ">
-                                        <a tabindex="-1"
-                                            href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                            <i class="fa fa-fw fa-bookmark"></i>
-                                            <span class="action-text">أضف إلى المفضلة</span>
-                                        </a>
-                                    </li>
-                                    <li class="text-end my-2 px-2">
-                                        <a tabindex="-1"
-                                            href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                            <i class="fa fa-fw fa-flag"></i>
-                                            <span class="action-text">تبليغ عن محتوى</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <p class="font-sm mt-3">{{ $item->bio }}</p>
-
-                </div>
-            @endforeach
-            {{-- one card --}}
-
-
-
+            {{-- here the freelancers data --}}
+            @include('client.components.provider_data')
         </main>
-
     </div>
 @endsection
 <script>
@@ -248,8 +177,13 @@
     x.addListener(Media) // Attach listener function on state changes
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+<script type="text/javascript" src="/assets/client/js/filterOfProvider.js"></script>
+
 <script>
     $(document).ready(function() {
         $('.combobox').combobox()
     });
 </script>
+{{-- <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script> --}}
