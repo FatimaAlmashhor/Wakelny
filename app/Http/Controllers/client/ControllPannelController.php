@@ -61,7 +61,7 @@ class ControllPannelController extends Controller
             ]
 
         );
-        return redirect()->route('account')
-            ->with('success','profile updated successfully');
+        return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
+
     }
 }
