@@ -78,9 +78,9 @@
     <section>
         <div id="locations" class="banner signup p-y-3">
             <div class="wrapper">
-                <h2 class="m-b-2 display-5 text-uppercase pb-3">لاتفقد الفرصه</h2>
+                <h2 class="m-b-2 display-5 text-uppercase pb-3">لا تضيع الفرصه</h2>
                 <div class="my-4">
-                    <a href="#" class="wak_btn orange  " data-toggle="modal" data-target="#signup_form_modal">سجل الان</a>
+                    <a href="{{route('create_user')}}" class="wak_btn orange  " data-toggle="modal" data-target="#signup_form_modal">سجل الان</a>
                 </div>
 
             </div>

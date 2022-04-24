@@ -8,21 +8,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+
 
 class ForgotPasswordController extends Controller
 {
     //
     public function getEmail()
   {
-
-     return view('client.user.email');
+      return view('client.user.email');
   }
 
     public function postEmail(Request $request)
   {
-    $request->validate([
-        'email' => 'required|email|exists:users',
-    ]);
+    Validator::validate($request->all(),[
+        'email' => ['required', 'email'],
+        ], [
+
+       
+        
+          'email.required' => 'ادخل الايميل',
+          'email.email' => 'ادخل الايميل بشكل صحيح',
+      
+      ]);
 
     $token = Str::random(64);
 
@@ -31,10 +39,12 @@ class ForgotPasswordController extends Controller
       );
 
       Mail::send('client.user.verify', ['token' => $token], function($message) use($request){
-          $message->to($request->email);
-          $message->subject('Reset Password Notification');
+        $message->to($request->email);
+        $message->subject('اشعار استعادة  رمز الدخول');
+        $message->from('kalefnyinfo@gmail.com', 'كلفني');
+
       });
 
-      return back()->with('message', 'We have e-mailed your password reset link!');
+      return back()->with('message', 'لقد قمنا بارسال رسالة للايميل الخاص بك!');
   }
 }

@@ -99,6 +99,7 @@ class ControllPannelController extends Controller
      public function account_save(Request $request){
         $current_user_id = Auth::user()->id;
         // User::where('id', $current_user_id)->update(['name' => $request->input('name')]);
+        
      $filename = $this->uploadFile($request->file('avatar'));
 
         // $ser->image=$this->uploadFile($request->file('image'));

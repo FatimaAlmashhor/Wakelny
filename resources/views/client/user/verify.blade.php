@@ -7,7 +7,7 @@
                     <div class="card-body">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                'تم إرسال رابط تحقق جديد إلى عنوان بريدك الإلكتروني.'
                             </div>
                         @endif
                         <a href="http://127.0.0.1:8000/reset-password/{{ $token }}">اضغط هنا</a>.

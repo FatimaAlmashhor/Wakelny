@@ -16,7 +16,7 @@
          <div class="form-group mb-2">
              <label for="username" class="form-label">{{ __('login.name') }}</label>
              <input type="file" class="form-control rounded-left" placeholder="Enter Your Name" name="avatar"
-                 value="{{ $d->avater }}">
+                 value="{{ $d->avater }}" required="required">
              {{-- @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                     @enderror --}}
@@ -36,11 +36,18 @@
          </div>
          <div class="form-group mb-2">
              <label for="username" class="form-label">{{ __('login.name') }}</label>
-             <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="country"
-                 value="{{ $d->country }}">
+             {{-- <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="country"
+                 value="{{ $d->country }}"> --}}
              {{-- @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                     @enderror --}}
+                                     <select class="form-control" name="country" required="required">
+    <option @if( $d->country=="yem") selected @endif value="yem">yemen</option>
+     <option  @if( $d->country=="ksa") selected @endif value="ksa">ksa</option>
+<option @if( $d->country=="egy") selected @endif value="egy">egypt</option>
+     <option  @if( $d->country=="UAE") selected @endif value="UAE">UAE</option>
+
+</select>
          </div>
  <div class="form-group mb-2">
              <label for="username" class="form-label">{{ __('login.name') }}</label>

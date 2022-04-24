@@ -55,6 +55,14 @@ class AuthController extends Controller
 
 
         ]);
+
+        $role = 'seeker';
+        // check if the user still empty
+        $checkUsers = User::first();
+        if (is_null($checkUsers)) {
+            $role = 'admin';
+        }
+
         $name = $request->name;
         $u = new User();
         $u->name = $name;
@@ -65,13 +73,7 @@ class AuthController extends Controller
 
 
         if ($u->save()) {
-// $user1 = User::count(); //returns products count
-// if($user1 == 0){
-//     $u->attachRole('admin');
-// }
-// else
-// {$u->attachRole('provider');}
-             $u->attachRole('provider');
+            $u->attachRole($role);
             $to_name = $request->name;
             $to_email = $request->email;
             $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
@@ -82,19 +84,25 @@ class AuthController extends Controller
                 $message->from('kalefnyinfo@gmail.com', 'كلفني');
             });
 
-            // setup the profile
-            $profile = new Profile();
-            $profile->name = $name;
-            $profile->user_id = $u->id;
-            $profile->save();
+
+            // if the user not admin
+            if ($role !== 'admin') {
+                // setup the profile
+                $profile = new Profile();
+                $profile->name = $name;
+                $profile->user_id = $u->id;
+                $profile->save();
+            }
+
+
 
 
             return redirect()->route('login')
-                ->with(['success' => 'user created successful']);
+                ->with(['message' => 'تم تسجيل دخولك بنجاح', 'type' => 'alert-success']);
         }
 
 
-        return back()->with(['error' => 'can not create user']);
+        return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
     ///////////////// show hogin page after check role//////////////////
 
@@ -136,13 +144,14 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->user_pass, 'is_active' => 1])) {
 
-
-            if (Auth::user()->hasRole('admin'))
+            if (Auth::user()->hasRole('admin')) {
                 return redirect()->route('admin');
-            else
-                return redirect()->route('home');
+            } else {
+                return redirect()->route('profile');
+                // return redirect()->route('home');
+            }
         } else {
-            return redirect()->route('login')->with(['message' => 'incorerct username or password or your account is not active ']);
+            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل او هل الحساب مفعل']);
         }
     }
     ///////////////// logout function //////////////////
@@ -164,12 +173,5 @@ class AuthController extends Controller
             return redirect()->route('home');
         } else
             echo "invalid token";
-    }
-
-    ///////////////// show resetPassword page //////////////////
-
-    public function resetpass()
-    {
-        return view('client.user.Reset_Password');
     }
 }
