@@ -4,7 +4,10 @@
 .bootstrap-select>.dropdown-toggle.bs-placeholder,
  .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
  .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
- .bootstrap-select>.dropdown-toggle.bs-placeholder:hover { 
+ .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
+ [type=button]:not(:disabled), 
+ [type=reset]:not(:disabled),
+ .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled), .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled) { 
     color: black;
     width: 300px;
     height: 40px;
