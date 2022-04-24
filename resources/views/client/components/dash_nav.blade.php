@@ -5,7 +5,7 @@
                         <img src="/assets/client/images/user-profile-2.png"
                             class="user-avatar img-fluid rounded-circle"
                             alt="user avatar"style="width: 70%;"/>  
-                        <a role="button" data-bs-toggle="modal"data-bs-target="#avatar-edit-model"
+                        <a role="button" data-bs-toggle=""data-bs-target=""  href="/user-account"
                                 class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle" 
                                 style="bottom: 10%;left: 35%; width: 30px;height: 30px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square " viewBox="0 0 16 16">
