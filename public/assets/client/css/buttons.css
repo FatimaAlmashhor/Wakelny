@@ -20,6 +20,7 @@
 .wak_btn.orange:hover {
     background-color: var(--main-lighter-orange-color);
     color: white;
+ 
 }
 
 .wak_btn.lighter_orange {

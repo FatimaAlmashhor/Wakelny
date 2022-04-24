@@ -104,3 +104,34 @@
     transform: rotate(0deg);
 }
 /* ============= /Navbar Toggler ============== */
+
+/* ============= Image avatar of nav ========== */
+
+.img-avatar {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.rtl .dropdown-menu-right {
+    text-align: right;
+}
+
+.rtl .dropdown-menu-right li a:hover,
+.rtl .dropdown-menu-right li a:active {
+    background-color: var(--main-light-gray-color);
+    color: var(--main-black-color);
+}
+
+.user-items a:hover,
+.user-items a:active, 
+.user-items a:visited {
+    color: var(--main-offwhite-color);
+    cursor: pointer;
+}
+
+
+/* ============= /Image avatar of nav ========= */

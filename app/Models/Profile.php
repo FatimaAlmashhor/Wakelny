@@ -9,8 +9,15 @@ class Profile extends Model
 {
     use HasFactory;
 
+
     function user_role()
     {
         return $this->hasMany(Role::class);
+    }
+
+
+    public function getAvatarAttribute($value)
+    {
+        return url("images/") . "/" . $value;
     }
 }
