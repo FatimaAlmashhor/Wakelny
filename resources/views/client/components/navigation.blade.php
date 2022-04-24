@@ -28,11 +28,40 @@
                     <a class="nav-link fs-6 nav-links" href="{{route('projectlancer')}}">العروض الحالية</a>
                 </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links" href="{{route('login')}}">تسجيل الدخول</a>
-                </li>
-            </ul>
+            @if (Auth::check())
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ms-3">
+                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-comment-dots"></i></span>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <span class="nav-link color-offwhite fs-5"><i class="fa-solid fa-bell"></i></span>
+                    </li>
+                    <li class="dropdown">
+                        <img class="img-avatar rounded-circle dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false"
+                                src="/assets/client/images/user-profile-2.png">
+                            
+                        <!-- </img> -->
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            @elseif (Auth::guest())
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link fs-6 nav-links" href="{{route('login')}}">تسجيل الدخول</a>
+                    </li>
+                </ul>
+            @endif
         </div>
     <!-- </div> -->
 </nav>
