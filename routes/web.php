@@ -52,9 +52,12 @@ Route::group([
     Route::get('/', [ControllPannelController::class, 'index'])->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
+
+    // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
+    // this is the subsection of howen the freelncers 
     Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
-    Route::view('/user-profile', 'client.userProfile.userProfile')->name('userProfile');
+    Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 

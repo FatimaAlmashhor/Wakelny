@@ -7,9 +7,11 @@ use App\Models\category;
 use App\Models\Profile;
 use App\Models\Skill;
 use App\Models\User;
+use App\Models\UserSkills;
 use App\Utilities\FreelancerFilter;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
@@ -61,5 +63,32 @@ class UserController extends Controller
             return view('client.components.provider_data', compact('data'))->render();
             // return 'done';
         }
+    }
+
+
+    // show the user info 
+
+    function showUserProfile($user_id)
+    {
+        //get the user profile info
+        $user_info = Profile::where('user_id', $user_id)->first();
+
+        // give the category of the user
+        $cateId = $user_info['category_id'];
+        $cates = category::where('id', $cateId)->first();
+
+        // give the skills of the user
+        $myskills = UserSkills::join('skills', 'skills.id', '=', 'user_skills.skill_id')->where('user_id', $user_id)->get(['skills.name', 'user_skills.skill_id']);
+
+        // give the roles of the user
+        $user = User::find($user_id);
+        $userRole = 'seeker';
+        if ($user->hasRole('provider') && $user->hasRole('seeker')) {
+            $userRole = 'both';
+        } else if ($user->hasRole('provider')) {
+            $userRole = 'provider';
+        }
+
+        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole]);
     }
 }
