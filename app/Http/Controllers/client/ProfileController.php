@@ -72,9 +72,9 @@ class ProfileController extends Controller
         $categories=category::all();
 
         $profile = Profile::where('user_id', Auth::id())->get();
-         return view('client.userProfile.profile')->with('data', $profile)->with('categories', $categories);
 
-        //    return view('client.userProfile.profile')->with(['data'=>$profile,'categories'=>  $categories]);
+
+          return view('client.userProfile.profile')->with(['data'=>$profile,'categories'=>  $categories]);
 
 
     }
@@ -159,7 +159,7 @@ class ProfileController extends Controller
     {
         $skill = UserSkills::where(['skill_id' => $skill_id, 'user_id' => Auth::id()])->delete();
 
-        return redirect()->back()->with(['message' => 'لقد تم حذف المهارة بنجاح', 'type' => 'alert-success']);
+        return redirect()->back()->with(['message' => 'لقد تم حذف المهارة بنجاح', 'type' => 'alert-danger']);
     }
 
     /**
