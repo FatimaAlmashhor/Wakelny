@@ -170,7 +170,7 @@ class AuthController extends Controller
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->save();
             Auth::login($user);
-            return redirect()->route('home');
+            return redirect()->route('home')->with(['message' => 'تم تفعيل حسابك بنجاح', 'type' => 'alert-success']);;
         } else
             echo "invalid token";
     }

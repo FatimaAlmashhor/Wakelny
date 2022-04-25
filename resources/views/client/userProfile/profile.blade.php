@@ -9,29 +9,29 @@
                 <li class=" fs-6 fw-bold"><a href="{{route('home')}}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
                 <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{route('editUserProfile')}}"> تغيير إعدادات الحساب </a></li>
               </ol>
-              
+
             </nav>
         </div>
          <!-- top nav end -->
 
         <!-- side sec -->
         <div class="row">
-       
+
 
             <!-- Dashboard Nav Section -->
-            
+
             @include('client.components.dash_nav')
-            
+
               <!-- info Section -->
             <section class="col-lg-8 col-md-8 col-12" id="perso">
-               
+
               <div class="card shadow p-3">
-                 
-    
+
+
                 <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
                   <h3 class="fs-5" style="color:rgba(77, 212, 172, 1);">{{ __('profile.Personal_Info') }}</h3>
                 </div>
-              
+
             <div class="card-body">
                 <form action="{{ route('profile_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
                         @csrf
@@ -42,31 +42,31 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <div class="mx-2 my-2 px-2" >
-                        
+
                         <input class="form-check-input mx-2" type="checkbox" checked name="account_type" id="">
-                        
+
                       <strong>  {{ __('profile.person1') }}</strong>
                       (أبحث عن مستقلين لتنفيذ مشاريعي)
                             </div>
                             <div class="mx-2 my-2 px-2" >
-                       
+
                             <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
-                            
+
                             <strong>   {{ __('profile.person2') }}</strong>
                             (أبحث عن مشاريع لتنفيذها)
                                                 <div class="mx-2 my-2 px-2" >
-                                        
+
                                         <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
-                                        
+
                                         <strong>    {{ __('profile.person21') }}</strong>
                                         (ازالة هذه الاشارة سيخفي حسابك بشكل مؤقت من نتائج البحث)
                                             </div>
                              </div>
                       </div>
                     </div>
-                  
+
                     <div class="row">
-                        
+
                             <div class="col-md-6">
                                 <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
                                 <select class="form-control"name="category_id"
@@ -85,11 +85,11 @@
                                 <span class="text-danger">{{ $message }}</span>
                                     @enderror
                             </div>
-                     
+
                     </div>
-                  
+
                     <div class="row">
-                        
+
                         <label for="" class="col-md-6 col-form-label"> {{ __('profile.person5') }}</label>
                             <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="" name="bio"  value="{{ $item->bio }}" ></textarea>
                             @error('bio')
@@ -98,34 +98,34 @@
                     </div>
 
                     <div class="row">
-                        
+
                         <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
                         <input type="url" class="form-control" id=""  name="video"  value="{{ $item->video }}">
 
                     </div> @error('video')
                                 <span class="text-danger">{{ $message }}</span>
                              @enderror
-                   
+
                   </div>
                   <hr>
-                 
+
                             <div class="row col-md-8  " >
-                              
+
                                     <button class="wak_btn " type="submit">Save</button>
-                              
+
                         </div>
                   @endforeach
                   {{ csrf_field() }}
                 </form>
             </div>
-              
+
             </section>
 
 
-          
 
-            
-    
+
+
+
 
         </div>
 
