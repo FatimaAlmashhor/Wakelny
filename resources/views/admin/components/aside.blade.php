@@ -1,9 +1,9 @@
-<div id="sidebar" class="active" >
+<div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                   كلفني
+                    كلفني
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -12,8 +12,8 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-               
-              
+
+
                 <li class="sidebar-item active ">
                     <a href="{{ route('home') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
@@ -31,7 +31,8 @@
 
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{ route('list_categories') }}" class="mx-2">{{ __('dash.show_all') }}</a>
+                            <a href="{{ route('list_categories') }}"
+                                class="mx-2">{{ __('dash.show_all') }}</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="{{ route('add_category') }}" class="mx-2">{{ __('dash.add') }}</a>
@@ -46,13 +47,14 @@
 
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{ route('list_skills') }}" class="mx-2">{{ __('dash.show_all') }}</a>
+                            <a href="{{ route('list_skills') }}"
+                                class="mx-2">{{ __('dash.show_all') }}</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="{{ route('add_skill') }}" class="mx-2">{{ __('dash.add') }}</a>
                         </li>
                     </ul>
-            
+
 
             </ul>
         </div>

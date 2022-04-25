@@ -98,6 +98,11 @@ a:hover {
   color: var(--main-offwhite-color);
 }
 
+.color-green {
+  color: var(--main-green-color);
+}
+
+/* fonts */
 .font-xs {
   font-size: var(--font-xs);
 }
