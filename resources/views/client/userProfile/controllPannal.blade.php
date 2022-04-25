@@ -88,7 +88,7 @@
                                         <label for="" class="col-md-6 col-form-label">
                                             {{ __('profile.person4') }}</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="" name="job_title"
+                                            <input type="text" class="form-control" id="" name="specialization"
                                                 value="{{ $item->job_title }}">
                                         </div>
                                         @error('job_title')
