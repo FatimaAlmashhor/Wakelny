@@ -36,7 +36,7 @@
                                         <h6 class="title">{{ __('filter.majers') }} </h6>
 
 
-                                        <div style="">
+                                        {{-- <div style="">
                                             <div class="card-body d-flex align-items-center ">
                                                 <label class="wak_checkbox">
                                                     <input value='-1' name='cates[]' type="checkbox" class="cates"
@@ -45,7 +45,7 @@
                                                 </label>
                                                 <p class="my-auto px-2"> All</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         @foreach ($cates as $item)
                                             <div style="">
                                                 <div class="card-body d-flex align-items-center ">

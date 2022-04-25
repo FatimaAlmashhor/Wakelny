@@ -1,6 +1,7 @@
 // ============== Profile Tab Navigation Script ==============
 const tabs = document.querySelectorAll('[data-current]');
 const subPage = document.querySelectorAll('.subPage');
+const aside_subsection = document.querySelector('#aside_subsection');
 document.addEventListener('DOMContentLoaded', function () {
 
     hideAll();
@@ -9,13 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tabs.forEach(element => {
         element.addEventListener('click', (e) => {
-            tabs.forEach(e => {
-                console.log(e);
-                return e.classList.remove('is_active');
-            });
-            // e.target.classList.add('is-active')
+            disActiveAll();
+            e.target.classList.add('is-active')
             let current = e.target.dataset.current;
-
+            if (current == 'tab-A' || current == 'tab-B') {
+                aside_subsection.style.display = 'block'
+            }
+            else {
+                aside_subsection.style.display = 'none'
+            }
             hideAll();
             document.getElementById(current).style.display = 'block';
         })
@@ -43,4 +46,11 @@ function hideAll() {
     subPage.forEach(element => {
         element.style.display = 'none';
     })
+}
+
+function disActiveAll() {
+    tabs.forEach(e => {
+        console.log(e);
+        e.classList.remove('is-active');
+    });
 }
