@@ -26,7 +26,7 @@
             <!-- info Section -->
             <section class="col-lg-8 col-md-8 col-12" id="perso">
 
-                <div class="card shadow p-3">
+                <div class="card shadow-sm ">
 
 
                     <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
@@ -103,8 +103,9 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="block border-top mt-5 w-full"></div>
 
-                                <div class="row">
+                                <div class="row mt-4">
 
                                     <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
                                     <input type="url" class="form-control" id="" name="video"
@@ -115,11 +116,10 @@
                                 @enderror
 
                     </div>
-                    <hr>
 
-                    <div class="row col-md-8  ">
+                    <div class="row w-full  ">
 
-                        <button class="wak_btn " type="submit">Save</button>
+                        <button class="wak_btn w-full" type="submit">أحقظ</button>
 
                     </div>
                     @endforeach

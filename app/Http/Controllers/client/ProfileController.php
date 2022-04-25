@@ -68,20 +68,19 @@ class ProfileController extends Controller
 
     public function edit_profile()
     {
-        $categories=category::all();
+        $categories = category::all();
 
         $profile = Profile::where('user_id', Auth::id())->get();
-           return view('client.userProfile.profile')->with(['data'=>$profile,'categories'=>  $categories]);
-          
-       
+        return view('client.userProfile.controllPannal')->with(['data' => $profile, 'categories' =>  $categories]);
     }
 
-    public function profile_save(Request $request){
+    public function profile_save(Request $request)
+    {
         $current_user_id = Auth::user()->id;
-    
+
         Profile::where('user_id', $current_user_id)->update(
-            [  
-                 'account_type' => $request->input('account_type'),
+            [
+                'account_type' => $request->input('account_type'),
                 'job_title' => $request->input('job_title'),
                 'specialization'    =>  $request->input('specialization'),
                 'bio'  =>  $request->input('bio'),
@@ -90,7 +89,7 @@ class ProfileController extends Controller
 
         );
         return redirect()->route('profile')
-            ->with('success','profile updated successfully');
+            ->with('success', 'profile updated successfully');
     }
 
     function savecategories(Request $request)
