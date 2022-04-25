@@ -8,11 +8,9 @@
 
                 <div class="col-md-12  d-flex justify-content-center align-items-center">
                     <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-                        <img src="/assets/client/images/user-profile-2.png"
-                            class="user-avatar img-fluid rounded-circle border" alt="user avatar"
-                            style="width:250px;hight:250px" />
-                        <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
-                            hidden />
+                         <img src="{{ $d->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar"
+                            style="border-radius: 50%; width:150px;height:150px">
+
                         <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"
                             class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
                             style="bottom: 10%;left: 40%; width: 30px;height: 30px;">
@@ -66,6 +64,8 @@
                                         {{-- <input type="file" name="avatar" value="{{ $d->avater }}" required="required"> --}}
                                         {{-- <input class="form-control" type="file"
                                             value="{{ $d->avater }}" required="required"> --}}
+                                             <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
+                            hidden />
                                     </div>
 
                                 </div>
