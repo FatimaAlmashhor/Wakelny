@@ -270,5 +270,5 @@
         </div>
     </main>
 
-    <!-- <script src="/assets/client/js/profile_tabNavigation.js"></script> -->
+     <script src="/assets/client/js/profile_tabNavigation.js"></script> -->
 @endsection

@@ -142,7 +142,7 @@
                                             </div>
                                         </div>
                                         <form>
-                                            <label for="formControlRange">Example Range input</label>
+                                            <label for="formControlRange"> </label>
 
                                             <div class="form-group">
                                               <input type="range" class="form-control-range" id="formControlRange">
