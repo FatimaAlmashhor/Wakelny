@@ -22,6 +22,13 @@ class Profile extends Model
 
       public function getAvatarAttribute($value){
         return url("images/")."/".$value;
+      }
 
+    function user_role()
+    {
+        return $this->hasMany(Role::class);
     }
+
+
+
 }

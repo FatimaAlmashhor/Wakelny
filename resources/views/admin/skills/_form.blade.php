@@ -7,13 +7,13 @@
     </header>
 
     <div class="page-heading">
-        <h3>Skills</h3>
+        <h3>{{ __('dash.Skills') }}</h3>
     </div>
 
     <!-- Basic Vertical form layout section start -->
     <section id="basic-vertical-layouts">
         <div class="row match-height">
-            <div class="col-md-6 col-12 mx-auto">
+            <div class="col-md-12 col-12 mx-auto">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -31,14 +31,14 @@
                                 @csrf
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <label class="form-label" for="multicol-username">اسم المهارة</label>
+                    <label class="form-label" for="multicol-username">{{ __('dash.Skill_name') }}</label>
                     <input name="name"  value="{{ $data->name ?? old('name') }}" type="text" id="multicol-username" class="form-control" placeholder="" />
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>              
                     @enderror
                   </div>
-                  <div class="col-md-6 col-12 mb-md-0 mb-3 ps-md-0">
-               <label class="form-label" for="multicol-email"> المستوى</label>
+                  <div class="col-md-6 ">
+                    <label class="form-label" for="multicol-email">{{ __('dash.Skill_level') }} </label>
                     <select name="level"   value="{{ $data->level ?? old('level') }}" class="form-select item-details mb-2">
              
                 
@@ -52,7 +52,7 @@
               </div>
             <div class="col-md-6">
               <div class="row">
-                <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-country">is active</label>
+                <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-country">{{ __('dash.is_active') }} </label>
                 <div class="col-sm-9">
                   <select  name="is_active" id="formtabs-country" class="select2 form-select" data-allow-clear="true">
                     
@@ -63,8 +63,7 @@
               </div>
             </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">{{ __('dash.save') }}</button>
                                     </div>
                                 </div>
                             </div>

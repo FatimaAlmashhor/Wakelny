@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Most Powerful &amp; Comprehensive freelance platform !" />
     <meta name="keywords" content="freelace, developer , controll, skills">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     {{-- css links --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -59,6 +61,7 @@
         integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    @stack('scripts')
 </body>
 
 </html>

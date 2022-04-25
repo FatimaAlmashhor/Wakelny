@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>واجهة لوحة التحكم بالنظام</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
@@ -18,9 +18,22 @@
     <link rel="stylesheet" href="/assets/admin/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/admin/css/app.css">
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
+    <style>
+    #sidebar.active .sidebar-wrapper{
+     
+  
+    right: 0px;
+
+    }
+    #main {
+    margin-right: 300px;
+    padding: 2rem;
+    margin-left:0;
+}
+    </style>
 </head>
 
-<body>
+<body dir="rtl">
     {{-- alert --}}
     @if (session()->has('message'))
         <div class="alert alert-success">

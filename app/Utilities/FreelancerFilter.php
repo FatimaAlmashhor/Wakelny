@@ -11,11 +11,11 @@ class FreelancerFilter implements Filter
 {
     public function __invoke(Builder $query, $value, string $property)
     {
-        // $query->whereHas('permissions', function (Builder $query) use ($value) {
-        //     $query->where('name', $value);
-        // });
-        User::join('role_user', 'role_user.user_id', '=', 'users.id')
-            ->join('profiles', 'profiles.user_id', '=', 'users.id')
-            ->where('role_user.role_id', $value);
+        $query->whereHas('user_role', function (Builder $query) use ($value) {
+            $query->where('id', $value);
+        });
+        // User::join('role_user', 'role_user.user_id', '=', 'users.id')
+        //     ->join('profiles', 'profiles.user_id', '=', 'users.id')
+        //     ->where('role_user.role_id', $value);
     }
 }
