@@ -101,8 +101,8 @@
                                 <div class="row">
 
                                     <label for="" class="col-md-6 col-form-label"> {{ __('profile.person5') }}</label>
-                                    <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="" name="bio"
-                                        value="{{ $item->bio }}"></textarea>
+                                    <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id=""
+                                        name="bio">{{ $item->bio }}</textarea>
                                     @error('bio')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
