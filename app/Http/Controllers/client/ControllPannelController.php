@@ -98,8 +98,10 @@ class ControllPannelController extends Controller
         $dest = public_path() . "/images/";
 
         //$file = $request->file('image');
+
         $filename = time() . "_" . $file->getClientOriginalName();
         $file->move($dest, $filename);
+
         return $filename;
     }
     public function account_save(Request $request)
@@ -120,6 +122,8 @@ class ControllPannelController extends Controller
             ]
 
         );
-        return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
+
+       return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
+
     }
 }

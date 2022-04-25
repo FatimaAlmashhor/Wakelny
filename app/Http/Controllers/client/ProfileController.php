@@ -66,14 +66,12 @@ class ProfileController extends Controller
         //
     }
 
-    
-
     function savecategories(Request $request)
     {
         $categories = $request->categories;
         print_r($categories);
         if (blank($categories)) {
-            return redirect()->back()->with(['message' => 'Please Add new categories', 'type' => 'alert-danger']);
+            return redirect()->back()->with(['message' => 'يرجى اضافة تخصص جديد', 'type' => 'alert-danger']);
         } else {
             $needToInsert = false;
             // insert if the categories are new
@@ -81,10 +79,10 @@ class ProfileController extends Controller
                 $findcategory = Usercategories::where('user_id', Auth::id())->where('category_id', $value)->get();
 
                 if ($findcategory->isEmpty()) {
-                    $message = ['message' => 'categories added successfuly', 'type' => 'alert-success'];
+                    $message = ['message' => 'تمت اضافة التخصص بنجاح', 'type' => 'alert-success'];
                     Usercategories::insert(['category_id' => $value, 'user_id' => Auth::id()]);
                 } else {
-                    $message = ['message' => 'These categories already exist', 'type' => 'alert-danger'];
+                    $message = ['message' => 'تمت اضافة هذا التخصص مسبقا', 'type' => 'alert-danger'];
                 }
 
                 print_r(['category_id' => $value, 'user_id' => Auth::id()]);
@@ -106,7 +104,7 @@ class ProfileController extends Controller
         $skills = $request->skills;
         print_r($skills);
         if (blank($skills)) {
-            return redirect()->back()->with(['message' => 'Please Add new skills', 'type' => 'alert-danger']);
+            return redirect()->back()->with(['message' => 'يرجى اضافة مهارة جديدة', 'type' => 'alert-danger']);
         } else {
             $needToInsert = false;
             // insert if the skills are new
@@ -131,7 +129,7 @@ class ProfileController extends Controller
     {
         $skill = UserSkills::where(['skill_id' => $skill_id, 'user_id' => Auth::id()])->delete();
 
-        return redirect()->back()->with(['message' => 'لقد تم حذف المهارة بنجاح', 'type' => 'alert-success']);
+        return redirect()->back()->with(['message' => 'لقد تم حذف المهارة بنجاح', 'type' => 'alert-danger']);
     }
 
     /**
