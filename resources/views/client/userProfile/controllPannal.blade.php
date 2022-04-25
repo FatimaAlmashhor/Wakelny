@@ -46,7 +46,8 @@
                                     <div class="col-sm-9 text-secondary">
                                         <div class="mx-2 my-2 px-2">
 
-                                            <input class="form-check-input mx-2" type="checkbox" checked name="account_type"
+                                            <input class="form-check-input mx-2" type="checkbox"
+                                                {{ $role == 'seeker' || $role == 'both' ? 'checked' : '' }} name="seeker"
                                                 id="">
 
                                             <strong> {{ __('profile.person1') }}</strong>
@@ -54,7 +55,9 @@
                                         </div>
                                         <div class="mx-2 my-2 px-2">
 
-                                            <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
+                                            <input class="form-check-input mx-2" type="checkbox"
+                                                {{ $role == 'provider' || $role == 'both' ? 'checked' : '' }}
+                                                name="provider" id="">
 
                                             <strong> {{ __('profile.person2') }}</strong>
                                             (أبحث عن مشاريع لتنفيذها)
@@ -73,10 +76,11 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-                                        <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
+                                        <label for="" class="col-md-6 col-form-label">
+                                            {{ __('profile.person3') }}</label>
                                         <select class="form-control" name="category_id" data-actions-box="true">
-                                            @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @foreach ($categories as $cate)
+                                                <option value="{{ $cate->id }}">{{ $cate->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -119,7 +123,7 @@
 
                     <div class="row w-full  ">
 
-                        <button class="wak_btn w-full" type="submit">أحقظ</button>
+                        <button class="wak_btn w-full" type="submit">أحفظ</button>
 
                     </div>
                     @endforeach

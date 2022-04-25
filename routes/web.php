@@ -86,6 +86,8 @@ Route::group([
         // the authization of the user controllpanalle
         Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
+        Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
+
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
 
@@ -98,10 +100,6 @@ Route::group([
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
-
-
-            Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
-            Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
         });
     });
     // ------------------------------------------------------------------------
