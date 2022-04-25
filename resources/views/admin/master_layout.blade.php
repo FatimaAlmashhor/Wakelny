@@ -98,7 +98,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-box-arrow-left me-2"></i> تسجيل خروج</a></li>
+                                    <li><a class="dropdown-item" href="/logout"><i class="icon-mid bi bi-box-arrow-left me-2"></i> تسجيل خروج</a></li>
                                 </ul>
                             </div>
                             <ul class="navbar-nav  mb-2 mb-lg-0">
