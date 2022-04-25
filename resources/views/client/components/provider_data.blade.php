@@ -3,7 +3,7 @@
 
         {{-- freelancers --}}
         @foreach ($data as $item)
-            <div class="card px-3 container my-4" style="direction: rtl;">
+            <div class="card p-4 container my-3" style="direction: rtl;">
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
                         <a href="{{ route('userProfile', $item->user_id) }}">

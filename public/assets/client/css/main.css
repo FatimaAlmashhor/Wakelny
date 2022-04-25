@@ -3,6 +3,7 @@
 @import './footer.css';
 @import './header.css';
 @import './accordion.css';
+@import './card.css';
 @import './rating.css';
 @import './home.css';
 @import './about.css';
@@ -12,4 +13,3 @@
 @import './input.css';
 @import './buttons.css';
 @import './userProfile.css';
-
