@@ -24,7 +24,7 @@ class ResetPasswordController extends Controller {
      'email' => ['required', 'email'],
       'password' => ['required', 'min:5'],
       'password_confirmation' => ['same:password'],
-     
+
     ], [
       'email.required' => 'ادخل الايميل',
       'email.email' => 'ادخل الايميل بشكل صحيح',
@@ -34,8 +34,8 @@ class ResetPasswordController extends Controller {
 
 
   ]);
-    
- 
+
+
       $updatePassword = DB::table('password_resets')
                           ->where(['email' => $request->email, 'token' => $request->token])
                           ->first();

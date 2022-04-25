@@ -25,11 +25,11 @@ class ForgotPasswordController extends Controller
         'email' => ['required', 'email'],
         ], [
 
-       
-        
+
+
           'email.required' => 'ادخل الايميل',
           'email.email' => 'ادخل الايميل بشكل صحيح',
-      
+
       ]);
 
     $token = Str::random(64);

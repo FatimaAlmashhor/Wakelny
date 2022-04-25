@@ -12,7 +12,7 @@ class CategoriesController extends Controller
     public function list_category()
     {
         /**
-         * !should this show only the item that are active?  
+         * !should this show only the item that are active?
          */
         $categories = category::orderBy('id', 'desc')->get();
         return view('admin.categories.index')
@@ -42,8 +42,8 @@ class CategoriesController extends Controller
         else
         $cat->is_active=0;*/
         if ($cat->save())
-            return back()->with(['success' => 'data updated successful']);
-        return back()->with(['error' => 'can not update data']);
+            return back()->with(['message' => 'تم حذف القسم بنجاح', 'type' => 'alert-success']);
+        return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
     public function store(Request $request)
     {
@@ -63,8 +63,8 @@ class CategoriesController extends Controller
         $new_cat->is_active = $request->is_active;
 
         if ($new_cat->save())
-            return redirect()->route('list_categories')->with(['success' => 'data inserted successful']);
-        return redirect()->back()->with(['error' => 'can not add data ']);
+            return redirect()->route('list_categories')->with(['message' => 'تم اضافة قسم جديد بنجاح', 'type' => 'alert-success']);
+        return redirect()->back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
     public function update(Request $request, $cat_id)
     {
@@ -74,7 +74,7 @@ class CategoriesController extends Controller
         $cat->is_active = $request->is_active;
 
         if ($cat->save())
-            return redirect()->route('list_categories')->with(['success' => 'data updated successful']);
-        return redirect()->back()->with(['error' => 'can not update data ']);
+            return redirect()->route('list_categories')->with(['message' => 'تم التعديل بنجاح', 'type' => 'alert-success']);
+        return redirect()->back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 }
