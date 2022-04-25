@@ -151,7 +151,8 @@ class AuthController extends Controller
                 // return redirect()->route('home');
             }
         } else {
-            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل او التاكد ان الحساب مفعل', 'type' => 'alert-danger']);
+            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل ',  'type' => 'alert-danger']);
+
         }
     }
     ///////////////// logout function //////////////////

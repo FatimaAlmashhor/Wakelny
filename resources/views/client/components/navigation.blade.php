@@ -45,7 +45,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
                         <li class="">
-                            <a class="dropdown-item color-black" href="{{ route('profile') }}">
+                            <a class="dropdown-item color-black" href="{{ route('userProfile', Auth::user()->id) }}">
                                 <i class="fa-solid fa-user ms-1"></i>
                                 <span>{{ Auth::user()->name }}</span>
                             </a>
@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item color-black" href="{{ route('editUserProfile') }}">
+                            <a class="dropdown-item color-black" href="{{ route('profile') }}">
                                 <i class="fa-solid fa-sliders ms-1"></i>
                                 <span>تعديل الحساب</span>
                             </a>

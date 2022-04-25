@@ -26,7 +26,7 @@
             <!-- info Section -->
             <section class="col-lg-8 col-md-8 col-12" id="perso">
 
-                <div class="card shadow p-3">
+                <div class="card shadow-sm ">
 
 
                     <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
@@ -46,7 +46,8 @@
                                     <div class="col-sm-9 text-secondary">
                                         <div class="mx-2 my-2 px-2">
 
-                                            <input class="form-check-input mx-2" type="checkbox" checked name="account_type"
+                                            <input class="form-check-input mx-2" type="checkbox"
+                                                {{ $role == 'seeker' || $role == 'both' ? 'checked' : '' }} name="seeker"
                                                 id="">
 
                                             <strong> {{ __('profile.person1') }}</strong>
@@ -54,7 +55,9 @@
                                         </div>
                                         <div class="mx-2 my-2 px-2">
 
-                                            <input class="form-check-input mx-2" type="checkbox" name="account_type" id="">
+                                            <input class="form-check-input mx-2" type="checkbox"
+                                                {{ $role == 'provider' || $role == 'both' ? 'checked' : '' }}
+                                                name="provider" id="">
 
                                             <strong> {{ __('profile.person2') }}</strong>
                                             (أبحث عن مشاريع لتنفيذها)
@@ -73,10 +76,11 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-                                        <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
+                                        <label for="" class="col-md-6 col-form-label">
+                                            {{ __('profile.person3') }}</label>
                                         <select class="form-control" name="category_id" data-actions-box="true">
-                                            @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @foreach ($categories as $cate)
+                                                <option value="{{ $cate->id }}">{{ $cate->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -84,7 +88,7 @@
                                         <label for="" class="col-md-6 col-form-label">
                                             {{ __('profile.person4') }}</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="" name="job_title"
+                                            <input type="text" class="form-control" id="" name="specialization"
                                                 value="{{ $item->job_title }}">
                                         </div>
                                         @error('job_title')
@@ -97,14 +101,15 @@
                                 <div class="row">
 
                                     <label for="" class="col-md-6 col-form-label"> {{ __('profile.person5') }}</label>
-                                    <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="" name="bio"
-                                        value="{{ $item->bio }}"></textarea>
+                                    <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id=""
+                                        name="bio">{{ $item->bio }}</textarea>
                                     @error('bio')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="block border-top mt-5 w-full"></div>
 
-                                <div class="row">
+                                <div class="row mt-4">
 
                                     <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
                                     <input type="url" class="form-control" id="" name="video"
@@ -115,11 +120,10 @@
                                 @enderror
 
                     </div>
-                    <hr>
 
-                    <div class="row col-md-8  ">
+                    <div class="row w-full  ">
 
-                        <button class="wak_btn " type="submit">Save</button>
+                        <button class="wak_btn w-full" type="submit">أحفظ</button>
 
                     </div>
                     @endforeach

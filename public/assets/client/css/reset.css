@@ -50,6 +50,14 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: inherit;
+}
+
+.w-full {
+  width: 100%;
+}
+
 /* background colors */
 .bg-lighter-gray {
   background-color: var(--main-lighter-gray-color);

@@ -66,36 +66,6 @@ class ProfileController extends Controller
         //
     }
 
-    public function edit_profile()
-    {
-
-        $categories=category::all();
-
-        $profile = Profile::where('user_id', Auth::id())->get();
-
-
-          return view('client.userProfile.profile')->with(['data'=>$profile,'categories'=>  $categories]);
-
-
-    }
-
-    public function profile_save(Request $request){
-        $current_user_id = Auth::user()->id;
-
-        Profile::where('user_id', $current_user_id)->update(
-            [
-                 'account_type' => $request->input('account_type'),
-                'job_title' => $request->input('job_title'),
-                'specialization'    =>  $request->input('specialization'),
-                'bio'  =>  $request->input('bio'),
-                'video'  =>  $request->input('video'),
-            ]
-
-        );
-        return redirect()->route('profile')
-            ->with(['message' => 'تم تعديل ملفك الشخصي بنجاح', 'type' => 'alert-success']);
-    }
-
     function savecategories(Request $request)
     {
         $categories = $request->categories;

@@ -49,7 +49,7 @@ Route::group([
     // ------------------------------------------------------------------------
     // Static pages section
     // ------------------------------------------------------------------------
-    Route::get('/', [ControllPannelController::class, 'index'])->name('home');
+    Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
 
@@ -57,12 +57,12 @@ Route::group([
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     // this is the subsection of howen the freelncers 
     Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
+
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
 
-    Route::view('/profile', 'client.userProfile.profile')->name('profile');
 
 
 
@@ -83,8 +83,11 @@ Route::group([
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
+        // the authization of the user controllpanalle
+        Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
-        Route::view('/profile', 'client.userProfile.profile')->name('profile');
+        Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
+
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
 
@@ -97,10 +100,6 @@ Route::group([
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
-
-
-            Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile');
-            Route::post('/profile-update', [ProfileController::class, 'profile_save'])->name('profile_save');
         });
     });
     // ------------------------------------------------------------------------
