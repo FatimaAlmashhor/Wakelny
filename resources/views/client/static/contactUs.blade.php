@@ -45,7 +45,7 @@
 
                 </form>
 
-                 <!-- image -->
+                 <!--add image -->
                 <div class="g-3 col-md-3 mt-5" >
 
                     <p><img src="../../assets/client/images/contact.png" alt="Image" class="img-fluid" style="max-width:200%;"></p>
