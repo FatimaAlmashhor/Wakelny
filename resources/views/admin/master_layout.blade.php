@@ -20,13 +20,13 @@
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
     <style>
     #sidebar.active .sidebar-wrapper {
-    
+
     right: 0px;
 
     }
     #sidebar:not(.active) .sidebar-wrapper {
-     
-  
+
+
      right: -300px;
 
      }
@@ -52,7 +52,7 @@
     color: white;
 }
 
-  
+
     </style>
 </head>
 
@@ -66,20 +66,20 @@
     @endif
 
     <section id="app">
-        
+
         @include('admin.components.aside')
         <div id="main">
             <div>
             <nav class="navbar navbar-expand navbar-light " dir="ltr"  >
                     <div class="container-fluid">
-                   
+
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                           
+
                             <div class="dropdown">
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
-                                       
+
                                         <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md">
                                                 <img src="/images/im2.png">
@@ -102,25 +102,28 @@
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
                                             المحفظة</a></li>
                                     <li>
+                                         <li><a class="dropdown-item" href="{{ route('change-password') }}"><i class="icon-mid bi bi-wallet me-2"></i>
+                                            تغيير كلمة السر</a></li>
+                                    <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item" href="/logout"><i class="icon-mid bi bi-box-arrow-left me-2"></i> تسجيل خروج</a></li>
                                 </ul>
                             </div>
                             <ul class="navbar-nav  mb-2 mb-lg-0">
-                               
+
                                <li class="nav-item dropdown me-3">
                                    <a class="nav-link active dropdown-toggle text-gray-600" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                        <i class="bi bi-bell bi-sub fs-4"></i>
                                    </a>
-                                 
+
                                </li>
                            </ul>
                         </div>
                     </div>
                 </nav>
             </div>
-       
+
             @yield('content')
         </div>
     </section>
