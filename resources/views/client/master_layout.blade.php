@@ -36,8 +36,7 @@
 
     {{-- alerts --}}
     @if (session()->has('message'))
-
-        <div class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
+        <div id='alert' class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
             style="width: fit-content; position: absolute; bottom: 20% ; right: 0px ; z-index: 9999999">
 
             {{ session()->get('message') }}
@@ -65,7 +64,16 @@
         integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    @stack('scripts')
+    <script>
+        // $('#alert').slideIn(300).delay(5000).fadeOut(400);
+        $('#alert').animate({
+            right: '10px'
+        }).delay(6000).fadeOut(400);
+        if (window.navigator.onLine) {
+            //has internet connection
+            console.log('connected');
+        }
+    </script>
 </body>
 
 </html>

@@ -30,10 +30,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $primaryKey = "id";
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'google_id'
     ];
 
     /**
@@ -44,6 +50,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -54,6 +62,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
 
     // get all skills of the user
@@ -115,5 +124,26 @@ class User extends Authenticatable
         // }
 
         return $users->paginate(10);
+    }
+
+
+    public static function profileCreation()
+    {
+        $role = 'seeker';
+        // check if the user still empty
+        $checkUsers = User::first();
+        if (is_null($checkUsers)) {
+            $role = 'admin';
+        }
+
+        
+        // if the user not admin
+        if ($role !== 'admin') {
+            // setup the profile
+            $profile = new Profile();
+            $profile->name = $name;
+            $profile->user_id = $u->id;
+            $profile->save();
+        }
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,6 +80,9 @@ Route::group([
     Route::post('/login', [AuthController::class, 'login'])->name('do_login'); //do_login
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    // login with google
+    Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
+    Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
     // check if the user is login in

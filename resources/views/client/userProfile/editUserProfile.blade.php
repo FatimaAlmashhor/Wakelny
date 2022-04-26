@@ -1,53 +1,54 @@
 @extends('client.master_layout')
 @section('content')
     @foreach ($data as $d)
-        <div class="container-fluid border-bottom px-5 pt-5">
-            <!-- User Identety Brief-->
-            <div class="profile-identity row">
-                <h4> المعلومات الشخصية</h4>
+        <!-- My Brief -->
+        <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+            <div class="container-fluid border-bottom px-5 pt-5">
+                <!-- User Identety Brief-->
+                <div class="profile-identity row">
+                    <h4> المعلومات الشخصية</h4>
 
-                <div class="col-md-12  d-flex justify-content-center align-items-center">
-                    <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-                        <img src="/assets/client/images/user-profile-2.png"
-                            class="user-avatar img-fluid rounded-circle border" alt="user avatar"
-                            style="width:250px;hight:250px" />
-                        <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
-                            hidden />
-                        <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"
-                            class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
-                            style="bottom: 10%;left: 40%; width: 30px;height: 30px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-pencil-square " viewBox="0 0 16 16">
-                                <path
-                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                <path fill-rule="evenodd"
-                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                            </svg>
-                        </label>
+                    <div class="col-md-12  d-flex justify-content-center align-items-center">
+                        <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
+
+                            <img src='/assets/client/images/user-profile-2.png'
+                                class="user-avatar img-fluid rounded-circle border" alt="user avatar"
+                                style="width:250px;hight:250px" />
+                            <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
+                                hidden />
+                            <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"
+                                class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
+                                style="bottom: 10%;left: 40%; width: 30px;height: 30px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pencil-square " viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg>
+                            </label>
+                        </div>
                     </div>
+
+
                 </div>
+                <!-- /User Identety Brief-->
+
+                <!-- Profile Taps -->
+                <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
 
 
+
+                </div>
+                <!-- /Profile Taps -->
             </div>
-            <!-- /User Identety Brief-->
 
-            <!-- Profile Taps -->
-            <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
+            <main class="card col-12 col-lg-4 container mt-3 pt-4 my-4" style="max-width:800px ; width: 100%">
+                <div class="row d-flex justify-content-between" id="">
+                    <!-- About -->
+                    <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
 
 
-
-            </div>
-            <!-- /Profile Taps -->
-        </div>
-
-        <main class="card col-12 col-lg-4 container mt-3 pt-4 my-4" style="max-width:800px ; width: 100%">
-            <div class="row d-flex justify-content-between" id="">
-                <!-- About -->
-                <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
-
-                    <!-- My Brief -->
-                    <form action="{{ route('account_save') }}" method="POST" class="login-form"
-                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
@@ -139,14 +140,15 @@
 
                             </div>
 
-                    </form>
+
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            </div>
-
-        </main>
+            </main>
+        </form>
     @endforeach
 @endsection
