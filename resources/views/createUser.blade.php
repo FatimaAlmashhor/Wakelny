@@ -52,8 +52,9 @@
                                     <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
+                                        
                                     @error('confirm_pass')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="text-danger  w-100">{{ $message }}</div>
                                     @enderror
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>

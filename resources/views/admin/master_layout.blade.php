@@ -19,17 +19,23 @@
     <link rel="stylesheet" href="/assets/admin/css/app.css">
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
     <style>
-    #sidebar.active .sidebar-wrapper,
-    #sidebar:not(.active) .sidebar-wrapper {
-     
-  
+    #sidebar.active .sidebar-wrapper {
+    
     right: 0px;
 
     }
+    #sidebar:not(.active) .sidebar-wrapper {
+     
+  
+     right: -300px;
+
+     }
+@media (min-width: 1200px) {
     #main {
     margin-right: 300px;
     padding: 2rem;
     margin-left:0;
+}
 }
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
     background-color:rgba(77, 212, 172, 1);

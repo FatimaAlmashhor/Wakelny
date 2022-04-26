@@ -37,21 +37,22 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:9', 'max:50'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'user_pass' => ['required', 'min:5'],
+            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' ],
             'confirm_pass' => ['same:user_pass']
-
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 3 حروف',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 9 حروف',
             'email.unique' => 'الايميل موجود مسبقا',
             'email.required' => 'ادخل الايميل',
             'email.email' => 'ادخل الايميل بشكل صحيح',
             'user_pass.required' => 'ادخل كلمة السر',
-            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 3 خانات',
-            'confirm_pass.same' => 'كلمة السرغير متطابقة ',
+            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 8 خانات',
+            'user_pass.max' => 'يجب ام تكون كلمة السر اقل من 20 خانات',
+            'user_pass.regex' => 'يجب ام تكون كلمة السر تحتوي على حروف صغيرة "a=z" وحروف كبيرة "A-Z" وارقام"0-9"ورموز"@$!%*#?&" ',
+            'confirm_pass.same' => 'كلمة السر غير متطابقة ',
 
 
         ]);
@@ -129,15 +130,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         Validator::validate($request->all(), [
-            'email' => ['email', 'required', 'min:3', 'max:50'],
-            'user_pass' => ['required', 'min:5']
+            'email' => ['email', 'required'],
+            'user_pass' => ['required']
 
 
         ], [
             'email.required' => 'ادخل بريدك الالكتروني',
-            'email.email' => 'ادخل بؤيدك الالكتروني بشكل صحيح',
-            'user_pass.required' => 'اخل كلمة السر',
-            'user_pass.min' => 'يجب ان بكون كلمة السر اكبر من 5 خانات',
+            'email.email' => 'ادخل بريدك الالكتروني بشكل صحيح',
+            'user_pass.required' => 'ادخل كلمة السر',
+         
 
 
         ]);
