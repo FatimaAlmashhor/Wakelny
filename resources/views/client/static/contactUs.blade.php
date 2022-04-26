@@ -22,14 +22,14 @@
 
 
 
-                      <!-- Email address input -->
+                      <!-- Email address input --->
                     <div class="mb-3">
                         <label class="form-label" for="emailAddress">الايميل</label>
                         <input class="form-control" id="emailAddress" type="email" placeholder="example@gmail.com"
                             data-sb-validations="required, email" />
 
                     </div>
-                    <!-- Message input -->
+                    <!-- Message input --->
                     <div class="mb-3">
                         <label class="form-label" for="message">الرسالة</label>
                         <textarea class="form-control" id="message" type="text" placeholder="" style="height: 10rem;"
