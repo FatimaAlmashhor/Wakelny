@@ -18,7 +18,7 @@
                                     placeholder="ادخل البريد الاكتروني الخاص يك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">

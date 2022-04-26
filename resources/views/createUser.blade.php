@@ -18,7 +18,7 @@
                                     value="{{ old('name') }}">
 
                                 @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group mb-2">
@@ -27,19 +27,19 @@
                                     placeholder="ادخل البريد الالكتروني الخاص بك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">{{ __('login.password') }}</label>
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge  w-100">
                                     <input style="height: 38px;" type="password" class="form-control" name="user_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" name="password" />
 
 
                                     @error('user_pass')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger  w-100">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>

@@ -34,7 +34,7 @@
                     <label class="form-label" for="multicol-username">{{ __('dash.Skill_name') }}</label>
                     <input name="name"  value="{{ $data->name ?? old('name') }}" type="text" id="multicol-username" class="form-control" placeholder="" />
                     @error('name')
-                        <span class="text-danger">{{ $message }}</span>              
+                        <span class="text-danger w-100">{{ $message }}</span>              
                     @enderror
                   </div>
                   <div class="col-md-6 ">
@@ -47,7 +47,7 @@
                         <option> ضعيف</option>
                     </select>
                     @error('level')
-                        <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger w-100">{{ $message }}</span>
                     @enderror
               </div>
             <div class="col-md-6">

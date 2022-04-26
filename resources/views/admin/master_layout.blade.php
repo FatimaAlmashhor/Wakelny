@@ -37,6 +37,17 @@
     margin-left:0;
 }
 }
+body {
+    background-color: rgb(77 212 83 / 20%);
+}
+.navbar-expand .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1px 20px;
+}   
+
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
     background-color:rgba(77, 212, 172, 1);
 }
@@ -58,14 +69,16 @@
 
 <body dir="rtl">
 
-    {{-- alert --}}
+     {{-- alerts --}}
     @if (session()->has('message'))
-        <div class="alert alert-success">
+        <div id='alert' class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
+            style="width: fit-content; position: absolute; bottom: 20% ; right: 0px ; z-index: 9999999">
+
             {{ session()->get('message') }}
         </div>
     @endif
-
-    <section id="app">
+    
+    <div id="app">
         
         @include('admin.components.aside')
         <div id="main">
@@ -85,10 +98,7 @@
                                                 <img src="/images/im2.png">
                                             </div>
                                         </div>
-                                        <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600" style="color:rgba(77, 212, 172, 1);">أفنان</h6>
-                                            <p class="mb-0 text-sm text-gray-600">مدير</p>
-                                        </div>
+                                   
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
@@ -116,6 +126,7 @@
                                  
                                </li>
                            </ul>
+                           
                         </div>
                     </div>
                 </nav>
@@ -123,14 +134,14 @@
        
             @yield('content')
         </div>
-    </section>
+    </div>
+
     <script src="/assets/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/admin/js/bootstrap.bundle.min.js"></script>
-
     <script src="/assets/admin/vendors/apexcharts/apexcharts.js"></script>
     <script src="/assets/admin/js/pages/dashboard.js"></script>
-
     <script src="/assets/admin/js/mazer.js"></script>
-</body>
 
+
+</body>
 </html>
