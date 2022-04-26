@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Constants\GlobalConstants;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
@@ -136,7 +136,7 @@ class User extends Authenticatable
             $role = 'admin';
         }
 
-        
+
         // if the user not admin
         if ($role !== 'admin') {
             // setup the profile
