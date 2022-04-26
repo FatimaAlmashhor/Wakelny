@@ -24,12 +24,8 @@ class ForgotPasswordController extends Controller
     Validator::validate($request->all(), [
       'email' => ['required', 'email'],
     ], [
-
-
-
       'email.required' => 'ادخل الايميل',
       'email.email' => 'ادخل الايميل بشكل صحيح',
-
     ]);
 
     $token = Str::random(64);
@@ -44,9 +40,9 @@ class ForgotPasswordController extends Controller
         $message->subject('اشعار استعادة  رمز الدخول');
         $message->from('kalefnyinfo@gmail.com', 'كلفني');
       });
-      $message =  ['message' => 'لقد قمنا بارسال رسالة للايميل الخاص بك!', 'type' => 'alert-success'];
+      $message =  ['message' =>  ' لقد قمنا بارسال رسالة للايميل الخاص بك يرجى التحقق من الايميل!', 'type' => 'alert-success'];
 
-      return back()->with($message);
+      return redirect()->route('login')->with($message);
     } catch (\Throwable $th) {
       //throw $th;
       return back()->with('message', 'حدث خطأ ما! عاود المحاوله  ');

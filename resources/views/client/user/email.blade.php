@@ -23,13 +23,13 @@
                            <div class="form-group row">
                                 <label class="form-label" for="password">عنوان الايميل </label>
                                 <div class="input-group input-group-merge">
-                                    <input type="email" class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
+                                    <input type="email" class="form-control  w-100" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
 <br>
                                   
                                 </div>
                             </div>
                             @error('email')
-                                    <strong> <span class="text-danger">{{ $message }}</span></strong>
+                                    <strong> <span class="text-danger ">{{ $message }}</span></strong>
                                     @enderror
                             <button class="wak_btn my-4 d-grid w-100"> ارسال رابط التحقق للايميل
                             </button>
