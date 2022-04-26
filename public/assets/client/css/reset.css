@@ -72,6 +72,11 @@ a:hover {
   background-color: var(--second-orange-color);
 }
 
+.bg-green {
+  /* background: linear-gradient(180deg, transparent, var(--main-green-color)); */
+  background: #e4e4e4;
+
+}
 
 /* text colors */
 .color-black {

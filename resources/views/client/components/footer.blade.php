@@ -22,7 +22,7 @@
 
 <footer class="deneb_footer" dir="rtl">
 
-    <div class="widget_wrapper border-top bg-green" style="background-image: transparent;">
+    <div class="widget_wrapper border-top bg-green">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12">
