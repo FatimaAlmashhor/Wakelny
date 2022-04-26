@@ -54,13 +54,15 @@ class GoogleController extends Controller
                     'remember_token' => $token,
                     'password' => Hash::make($user->getName() . '@' . $user->getId())
                 ]);
+                $saveUser->attachRole($role);
             } else {
                 $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),
                 ]);
                 $saveUser = User::where('email', $user->getEmail())->first();
+                $role = 'admin';
             }
-            $saveUser->attachRole($role);
+
 
             // if the user not admin
             if ($role !== 'admin') {
@@ -76,6 +78,7 @@ class GoogleController extends Controller
             else
                 return redirect()->route('profile');
         } catch (\Throwable $th) {
+            return redirect()->route('home')->with(['message' => 'حدث خطأ ما رجاء قم بأعاده المحاوله', 'type' => 'alert-denger']);
             throw $th;
         }
     }
