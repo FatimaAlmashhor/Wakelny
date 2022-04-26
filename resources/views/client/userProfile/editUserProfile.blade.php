@@ -8,7 +8,7 @@
 
                 <div class="col-md-12  d-flex justify-content-center align-items-center">
                     <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-                         <img src="{{ $d->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar"
+                        <img src="{{ $d->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar"
                             style="border-radius: 50%; width:150px;height:150px">
 
                         <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"
@@ -22,6 +22,9 @@
                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                             </svg>
                         </label>
+                        @error('avatar')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -55,6 +58,9 @@
                                     </label>
                                     <input class="form-control" placeholder="أكتب اسمك باللغة العربية" type="text"
                                         name=" name" value="{{ $d->name }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
@@ -64,8 +70,9 @@
                                         {{-- <input type="file" name="avatar" value="{{ $d->avater }}" required="required"> --}}
                                         {{-- <input class="form-control" type="file"
                                             value="{{ $d->avater }}" required="required"> --}}
-                                             <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
-                            hidden />
+                                        <input type="file" name="avatar" value="{{ $d->avater }}" required="required"
+                                            id='avatar' hidden />
+
                                     </div>
 
                                 </div>
@@ -90,6 +97,9 @@
                                         </option>
 
                                     </select>
+                                    @error('gender')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -109,16 +119,20 @@
                                         </option>
 
                                     </select>
+                                    @error('country')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                             </div>
+
                             <div class="col-sm-6 col-xs-12 pt-3">
-                                <div class="form-group  ">
-                                    <label>رقم الهاتف <em class="text--danger">*</em>
-                                    </label>
-                                    <input class="form-control" placeholder="ادخل رقم هاتفك" type="text" name="mobile"
-                                        value="{{ $d->mobile }}">
-                                </div>
+ <input name="mobile" id="phone" type="tel" value="{{ $d->mobile }}">
+                                <span id="valid-msg" class="hide">رقم صحيح</span>
+                                <span id="error-msg" class="hide">رقم غير صحيح</span>
+                                @error('mobile')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- <div class="col-sm-6 col-xs-12 pt-3">
                             <div class="form-group  ">
