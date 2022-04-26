@@ -1,81 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
-        integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
-        integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/assets/client/css/main.css">
-    <link href="/assets/client/css/about.css" rel="stylesheet">
-    <title>Edit_Profile</title>
-</head>
-
-<body>
+@extends('client.master_layout')
+@section('content')
     @foreach ($data as $d)
-        <div class="container-fluid border-bottom px-5 pt-5">
-            <!-- User Identety Brief-->
-            <div class="profile-identity row">
-                <h4> المعلومات الشخصية</h4>
+        <!-- My Brief -->
+        <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+            <div class="container-fluid border-bottom px-5 pt-5">
+                <!-- User Identety Brief-->
+                <div class="profile-identity row">
+                    <h4> المعلومات الشخصية</h4>
 
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <img src="{{ $d->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar"
-                            style="border-radius: 50%; width:150px;height:150px">
+                    <div class="col-md-12  d-flex justify-content-center align-items-center">
+                        <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
 
-
-                        {{-- <input type="file" class="form-control"> --}}
+                            <img src='/assets/client/images/user-profile-2.png'
+                                class="user-avatar img-fluid rounded-circle border" alt="user avatar"
+                                style="width:250px;hight:250px" />
+                            <input type="file" name="avatar" value="{{ $d->avater }}" required="required" id='avatar'
+                                hidden />
+                            <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"
+                                class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
+                                style="bottom: 10%;left: 40%; width: 30px;height: 30px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pencil-square " viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg>
+                            </label>
+                        </div>
                     </div>
+
+
                 </div>
+                <!-- /User Identety Brief-->
+
+                <!-- Profile Taps -->
+                <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
 
 
+
+                </div>
+                <!-- /Profile Taps -->
             </div>
-            <!-- /User Identety Brief-->
 
-            <!-- Profile Taps -->
-            <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
+            <main class="card col-12 col-lg-4 container mt-3 pt-4 my-4" style="max-width:800px ; width: 100%">
+                <div class="row d-flex justify-content-between" id="">
+                    <!-- About -->
+                    <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
 
 
-
-            </div>
-            <!-- /Profile Taps -->
-        </div>
-
-        <main class="main-section container mt-3 pt-3">
-            <div class="row d-flex justify-content-between" id="">
-                <!-- About -->
-                <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
-
-                    <!-- My Brief -->
-                    <form action="{{ route('account_save') }}" method="POST" class="login-form"
-                        enctype="multipart/form-data">
-                         @csrf
+                        @csrf
                         <div class="row">
 
                             <div class="col-sm-6 col-xs-12 pt-3">
                                 <div class="form-group  ">
                                     <label>الاسم <em class="text--danger">*</em>
                                     </label>
-                                    <input class="form-control" placeholder="أكتب اسمك باللغة العربية"
-                                        type="text"  name=" name" value="{{ $d->name }}">
+                                    <input class="form-control" placeholder="أكتب اسمك باللغة العربية" type="text"
+                                        name=" name" value="{{ $d->name }}">
                                 </div>
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
                                         <label>الصورة <em class="text--danger">*</em>
                                         </label>
-                                         {{-- <label for="username" class="form-label">{{ __('login.name') }}</label> --}}
-             <input type="file" name="avatar"
-                 value="{{ $d->avater }}" required="required">
+                                        {{-- <label for="username" class="form-label">{{ __('login.name') }}</label> --}}
+                                        {{-- <input type="file" name="avatar" value="{{ $d->avater }}" required="required"> --}}
                                         {{-- <input class="form-control" type="file"
                                             value="{{ $d->avater }}" required="required"> --}}
                                     </div>
@@ -94,7 +83,8 @@
                                 <div class="form-group  ">
                                     <label> الجنس <em class="text--danger">*</em>
                                     </label>
-                                    <select class="form-select" aria-label="Default select example" name="gender" required="required">
+                                    <select class="form-select" aria-label="Default select example" name="gender"
+                                        required="required">
                                         {{-- <option selected>الجنس</option> --}}
                                         <option @if ($d->gender == 1) selected @endif value="1">ذكر</option>
                                         <option @if ($d->gender == -1) selected @endif value="-1">انثى
@@ -108,7 +98,8 @@
                                 <div class="form-group  ">
                                     <label>الدولة <em class="text--danger">*</em>
                                     </label>
-                                    <select class="form-select" aria-label="Default select example" name="country" required="required">
+                                    <select class="form-select" aria-label="Default select example" name="country"
+                                        required="required">
                                         <option @if ($d->country == 'yem') selected @endif value="yem">اليمن
                                         </option>
                                         <option @if ($d->country == 'ksa') selected @endif value="ksa">السعودية
@@ -122,13 +113,14 @@
                                 </div>
 
                             </div>
-                             <div class="col-sm-6 col-xs-12 pt-3">
+                            <div class="col-sm-6 col-xs-12 pt-3">
                                 <div class="form-group  ">
                                     <label>رقم الهاتف <em class="text--danger">*</em>
                                     </label>
-                                    <input class="form-control" placeholder="ادخل رقم هاتفك"
-                                        type="text" name="mobile"  value="{{ $d->mobile}}">
+                                    <input class="form-control" placeholder="ادخل رقم هاتفك" type="text" name="mobile"
+                                        value="{{ $d->mobile }}">
                                 </div>
+                            </div>
                             {{-- <div class="col-sm-6 col-xs-12 pt-3">
                             <div class="form-group  ">
                                 <label>اللغة  <em class="text--danger">*</em>
@@ -142,22 +134,21 @@
 
                         </div> --}}
 
-  <div class="d-grid gap-2 col-6 mx-auto pt-3">
-                <button class="btn btn-primary" type="submit" style="background-color: #198754">حفظ الاعدادت</button>
+                            <div class=" mx-auto pt-3">
+                                <button class="wak_btn w-full" type="submit">حفظ
+                                    الاعدادت</button>
 
-            </div>
+                            </div>
 
-                    </form>
+
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            </div>
-
-        </main>
+            </main>
+        </form>
     @endforeach
-</body>
-
-</html>
-
+@endsection

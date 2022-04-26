@@ -31,8 +31,7 @@
                         <div class="widget_title">
                             {{-- <img src="assets/client/images/logo.png" class="img-fluid"
                                 style=" height: 100px; weight:100px;" alt=""> --}}
-                                <h1 class="display-3 my-4 " style="color: var(--main-green-color);
-                                font-family: bold">كلفني</h1>
+                            <a class="navbar-brand fw-bold fs-3  color-green" href="{{ route('home') }}">كلفني</a>
                         </div>
                         <p>{{ __('footer.text') }}</p>
                         <ul class="social">
@@ -49,7 +48,7 @@
                         </div>
                         <ul>
 
-                            <li><a href="{{route('aboutus')}}">{{ __('footer.aboutus') }}</a></li>
+                            <li><a href="{{ route('aboutus') }}">{{ __('footer.aboutus') }}</a></li>
                             <li><a href="#">{{ __('footer.Services') }}</a></li>
                             <li><a href="#">{{ __('footer.works') }}</a></li>
                             <li><a href="#">{{ __('footer.help') }}</a></li>
@@ -76,7 +75,7 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="info">
-                                    <p><a href="{{route('contactus')}}">أو عبر نموذج التواصل</a></p>
+                                    <p><a href="{{ route('contactus') }}">أو عبر نموذج التواصل</a></p>
                                     <!-- <p><a href="mailto:services@deneb.com">services@deneb.com</a></p> -->
                                 </div>
                             </div>

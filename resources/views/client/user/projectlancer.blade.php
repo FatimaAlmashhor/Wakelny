@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <h2 class="my-5 px-4">  المشاريع المفتوحة</h2>
+    <h2 class="my-5 px-4"> المشاريع المفتوحة</h2>
 
 
     <div id="filter_toggle" class="mx-4">
@@ -54,7 +54,7 @@
                                                     <input type="checkbox" checked="checked">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <p class="my-auto px-2">  هندسة، عمارة وتصميم داخلي </p>
+                                                <p class="my-auto px-2"> هندسة، عمارة وتصميم داخلي </p>
                                             </div>
                                         </div>
                                         <div style="">
@@ -73,7 +73,7 @@
                                         <h6 class="title">{{ __('filter.skill') }} </h6>
                                         <div style="mt-2">
                                             <select class="combobox wak_input" name="normal">
-                                                <option value="" selected="selected">اختر المهارة  </option>
+                                                <option value="" selected="selected">اختر المهارة </option>
                                                 <option value="AL">فتشوب</option>
                                                 <option value="AK">تصميم الجرافيك</option>
                                                 <option value="AZ">illustrator</option>
@@ -145,9 +145,9 @@
                                             <label for="formControlRange">Example Range input</label>
 
                                             <div class="form-group">
-                                              <input type="range" class="form-control-range" id="formControlRange">
+                                                <input type="range" class="form-control-range" id="formControlRange">
                                             </div>
-                                          </form>
+                                        </form>
                                     </article>
                                 </div>
                             </div>
@@ -161,38 +161,18 @@
             <div class="card px-3 container my-4" style="direction: rtl;">
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
-                       <p style="font-size: 18px;"> تعديل موقع الكتروني برمجة خاص,</p>
+                        <p style="font-size: 18px;"> تعديل موقع الكتروني برمجة خاص,</p>
 
                     </div>
                     <div class="card--actions hidden-xs">
                         <div class="dropdown btn-group">
 
                             <a tabindex="-1" class="wak_btn" href="#">
-                                <i class="fa fa-fw fa-send"></i>
-                                <span class="action-text">وظفني </span>
+                                {{-- <i class="fa fa-fw fa-send"></i> --}}
+                                <span class="action-text"> أضف عرضك </span>
                             </a>
 
-                            <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{-- <i class="fa fa-caret-down"></i> --}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                                aria-labelledby="خيارات">
-                                <li class="my-2 border-bottom text-end ">
-                                    <a tabindex="-1"
-                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                        <i class="fa fa-fw fa-bookmark"></i>
-                                        <span class="action-text">أضف إلى المفضلة</span>
-                                    </a>
-                                </li>
-                                <li class="text-end my-2 px-2">
-                                    <a tabindex="-1"
-                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                        <i class="fa fa-fw fa-flag"></i>
-                                        <span class="action-text">تبليغ عن محتوى</span>
-                                    </a>
-                                </li>
-                            </ul>
+
                         </div>
 
                     </div>
@@ -206,21 +186,22 @@
 
 
                             <li class="text-muted">
-                                            <i class="fa fa-fw fa-user"></i> أحمد ا.
-                                    </li>
-                        <li class="text-muted">
-        <time datetime="2022-04-23 12:21:47" title="" itemprop="datePublished" data-toggle="tooltip" data-original-title="2022-04-23 12:21:47">
-<i class="fa fa-clock-o"></i> منذ
-دقيقتين
-</time>
-    </li>
+                                <i class="fa fa-fw fa-user"></i> أحمد ا.
+                            </li>
+                            <li class="text-muted">
+                                <time datetime="2022-04-23 12:21:47" title="" itemprop="datePublished" data-toggle="tooltip"
+                                    data-original-title="2022-04-23 12:21:47">
+                                    <i class="fa fa-clock-o"></i> منذ
+                                    دقيقتين
+                                </time>
+                            </li>
 
-    <li class="text-muted">
-        <i class="fa fa-fw fa-ticket"></i>
-        أضف أول عرض
-    </li>
+                            <li class="text-muted">
+                                <i class="fa fa-fw fa-ticket"></i>
+                                أضف أول عرض
+                            </li>
 
-</ul>
+                        </ul>
                     </div>
 
                 </div>

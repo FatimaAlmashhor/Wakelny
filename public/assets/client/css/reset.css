@@ -50,6 +50,14 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: inherit;
+}
+
+.w-full {
+  width: 100%;
+}
+
 /* background colors */
 .bg-lighter-gray {
   background-color: var(--main-lighter-gray-color);
@@ -90,6 +98,11 @@ a {
   color: var(--main-offwhite-color);
 }
 
+.color-green {
+  color: var(--main-green-color);
+}
+
+/* fonts */
 .font-xs {
   font-size: var(--font-xs);
 }

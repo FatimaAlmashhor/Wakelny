@@ -1,0 +1,8 @@
+.wak_card {
+    padding: .9em;
+    border-bottom: 1px solid var(--main-light-gray-color);
+}
+
+.wak_card:first {
+    border-top: 1px solid var(--main-light-gray-color);
+}

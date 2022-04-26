@@ -8,7 +8,7 @@
     </header>
 
     <div class="page-heading">
-        <h3>Categories</h3>
+        <h3>{{ __('dash.all_Categories') }}</h3>
     </div>
 
     <!-- Table head options start -->
@@ -16,21 +16,17 @@
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header d-flex">
-                        <h4 class="card-title mr-auto" style="margin-right: auto">All Categories</h4>
-                        <a href="{{ route('add_category') }}" class="   btn btn-primary">Add new category</a>
-
-                    </div>
+ 
                     <div class="card-content">
                         <!-- table head dark -->
-                        <div class="table" style="overflow: none">
-                            <table class="table mb-0 mt-3" style="overflow: none">
-                                <thead class="thead-dark">
+                        <div class="table" style="overflow: none ; padding: 10px 20px;">
+                            <table class="table mb-0 mt-3 " style="overflow: none">
+                                <thead class="thead-dark pr-4">
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>State</th>
-                                        <th>ACTION</th>
+                                        <th>{{ __('dash.category_name') }}</th>
+                                        <th>{{ __('dash.State') }}</th>
+                                        <th>{{ __('dash.ACTION') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,30 +34,30 @@
                                         <tr>
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
+                                
                                             <td class="text-bold-500">{{ $item->title }}</td>
-                                            <td class="text-bold-500">
-                                                @if($item->is_active == 1) 
-                                                    <span style="color:#84e984;">مفعل</span>
-                                                @else
-                                                    <span  style="color:red;">غير مفعل</span>
-                                                @endif
-                                                    </td>
-                                            </td>
+                                            
                                             <td>
+                                              @if($item->is_active == 1) 
+                                              <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                              @else
+                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">غير مفعل</span>
+                                              @endif
+                                              </td>
+                                              <td>
                                                 {{-- Drop down --}}
                                                 <div class="btn-group dropdown mb-1">
 
-                                                    <button type="button" class="" data-bs-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        <span class="sr-only">
-                                                            <i class="fa-regular fa-ellipsis-vertical">click</i>
-                                                        </span>
-                                                    </button>
+                                                        <a class="fas fa-ellipsis-v" data-bs-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                            <span class="sr-only"><i
+                                                                    class="fa-regular fa-ellipsis-vertical"></i></span>
+                                                        </a>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('edit_category', $item->id) }}">Edit</a>
+                                                            href="{{ route('edit_category', $item->id) }}">{{ __('dash.edit') }}</a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('toggle_category', $item->id) }}">Delete</a>
+                                                            href="{{ route('toggle_category', $item->id) }}">{{ __('dash.delete') }}</a>
                                                     </div>
                                                 </div>
 

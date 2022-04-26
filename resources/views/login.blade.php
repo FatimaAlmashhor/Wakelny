@@ -37,9 +37,15 @@
                             <button class="wak_btn d-grid w-100">{{ __('login.go_login') }}
                             </button>
                             {{ csrf_field() }}
-                            <button class="wak_btn green_border w-100 mt-3">
+                            <div class="d-flex mt-4  colot-black  w-100 mt-3">
+                                <a href="{{ route('loginWithGoogle') }} " class="text-center wak_btn green_border ">
+                                    {{ __('login.register') }} مع Google
+                                    <i class="fab fa-google fa-fw"></i>
+                                </a>
+                            </div>
+                            {{-- <button class="">
                                 {{ __('login.register') }} مع Google
-                            </button>
+                            </button> --}}
 
                             <p class="text-center mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
