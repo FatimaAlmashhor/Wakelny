@@ -22,15 +22,16 @@ class ResetPasswordController extends Controller {
 
   $request->validate([
      'email' => ['required', 'email'],
-      'password' => ['required', 'min:5'],
+      'password' => ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' ],
       'password_confirmation' => ['same:password'],
 
     ], [
       'email.required' => 'ادخل الايميل',
       'email.email' => 'ادخل الايميل بشكل صحيح',
       'password.required' => 'كلمة المرور مطلوبة',
-      'password.min' => 'كلمة المرور لا تكون اقل من 5',
-      'password_confirmation.same' => 'لا  تتطابق مع كلمة المرور ',
+      'password.min' => 'كلمة المرور لا تكون اقل من 8',
+      'password.regex' => 'يجب ام تكون كلمة السر تحتوي على حروف صغيرة "a=z" وحروف كبيرة "A-Z" وارقام"0-9"ورموز"@$!%*#?&" ',
+      'password_confirmation.same' => 'كلمة السر غير متطابقة ',
 
 
   ]);
