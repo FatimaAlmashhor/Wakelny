@@ -63,9 +63,12 @@
                                 {{ __('login.register') }}
                             </button>
                             {{ csrf_field() }}
-                            <button class="wak_btn green_border w-100 mt-3">
-                                {{ __('login.register') }} مع Google
-                            </button>
+                            <div class="d-flex mt-4  colot-black  w-100 mt-3">
+                                <a href="{{ route('loginWithGoogle') }} " class="text-center wak_btn green_border ">
+                                    {{ __('login.register') }} مع Google
+                                    <i class="fab fa-google fa-fw"></i>
+                                </a>
+                            </div>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}</span>
                                 <a href="{{ route('login') }}">

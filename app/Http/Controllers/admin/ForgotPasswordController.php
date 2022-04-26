@@ -13,38 +13,43 @@ use Illuminate\Support\Facades\Validator;
 
 class ForgotPasswordController extends Controller
 {
-    //
-    public function getEmail()
+  //
+  public function getEmail()
   {
-      return view('client.user.email');
+    return view('client.user.email');
   }
 
-    public function postEmail(Request $request)
+  public function postEmail(Request $request)
   {
-    Validator::validate($request->all(),[
-        'email' => ['required', 'email'],
-        ], [
+    Validator::validate($request->all(), [
+      'email' => ['required', 'email'],
+    ], [
 
 
 
-          'email.required' => 'ادخل الايميل',
-          'email.email' => 'ادخل الايميل بشكل صحيح',
+      'email.required' => 'ادخل الايميل',
+      'email.email' => 'ادخل الايميل بشكل صحيح',
 
-      ]);
+    ]);
 
     $token = Str::random(64);
 
-      DB::table('password_resets')->insert(
-          ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
-      );
+    DB::table('password_resets')->insert(
+      ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+    );
 
-      Mail::send('client.user.verify', ['token' => $token], function($message) use($request){
+    try {
+      Mail::send('client.user.verify', ['token' => $token], function ($message) use ($request) {
         $message->to($request->email);
         $message->subject('اشعار استعادة  رمز الدخول');
         $message->from('kalefnyinfo@gmail.com', 'كلفني');
-
       });
+      $message =  ['message' => 'لقد قمنا بارسال رسالة للايميل الخاص بك!', 'type' => 'alert-success'];
 
-      return back()->with('message', 'لقد قمنا بارسال رسالة للايميل الخاص بك!');
+      return back()->with($message);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return back()->with('message', 'حدث خطأ ما! عاود المحاوله  ');
+    }
   }
 }
