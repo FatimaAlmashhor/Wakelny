@@ -92,7 +92,7 @@
                                                 value="{{ $item->specialization }}">
                                         </div>
                                         @error('job_title')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <span class="text-danger w-100">{{ $message }}</span>
                                         @enderror
                                     </div>
 
@@ -104,7 +104,7 @@
                                     <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id=""
                                         name="bio">{{ $item->bio }}</textarea>
                                     @error('bio')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="block border-top mt-5 w-full"></div>
@@ -116,7 +116,7 @@
                                         value="{{ $item->video }}">
 
                                 </div> @error('video')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
 
                     </div>

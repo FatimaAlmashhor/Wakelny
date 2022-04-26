@@ -37,12 +37,13 @@ class CategoriesController extends Controller
         ! please is this mean delete?
          */
         $cat->is_active *= -1;
-        /*if($cat->is_active==0)
-        $cat->is_active=1;
-        else
-        $cat->is_active=0;*/
+       
+
         if ($cat->save())
-            return back()->with(['message' => 'تم حذف القسم بنجاح', 'type' => 'alert-success']);
+            if($cat->is_active==-1)
+                return back()->with(['message' => 'تم تعطيل القسم بنجاح', 'type' => 'alert-success']);
+            else
+                return back()->with(['message' => 'تم تفعيل القسم بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
     public function store(Request $request)

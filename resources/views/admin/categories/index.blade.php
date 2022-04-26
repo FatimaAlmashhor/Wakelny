@@ -44,23 +44,22 @@
                                               <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">غير مفعل</span>
                                               @endif
                                               </td>
-                                              <td>
-                                                {{-- Drop down --}}
-                                                <div class="btn-group dropdown mb-1">
-
-                                                        <a class="fas fa-ellipsis-v" data-bs-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            <span class="sr-only"><i
-                                                                    class="fa-regular fa-ellipsis-vertical"></i></span>
-                                                        </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('edit_category', $item->id) }}">{{ __('dash.edit') }}</a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('toggle_category', $item->id) }}">{{ __('dash.delete') }}</a>
-                                                    </div>
-                                                </div>
-
+                                             
+                                                <td>
+                                                <a  href="{{ route('edit_category', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a>
+                                             
+                                                <a  href="{{ route('toggle_category', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                    
+                                                        @if($item->is_active == 1) 
+                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+                                                            @else
+                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                        @endif
+                                             
+                                                </a>
+                                          
                                             </td>
                                         </tr>
                                     @endforeach
