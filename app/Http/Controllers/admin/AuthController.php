@@ -39,9 +39,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:8', 'max:50','regex:/[a-z]/', 'regex:/[A-Z]/'],
+            'name' => ['required', 'min:8', 'max:50', 'regex:/[a-z]/', 'regex:/[A-Z]/'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' ],
+            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
             'confirm_pass' => ['same:user_pass']
 
         ], [
@@ -140,7 +140,7 @@ class AuthController extends Controller
             'email.required' => 'ادخل بريدك الالكتروني',
             'email.email' => 'ادخل بريدك الالكتروني بشكل صحيح',
             'user_pass.required' => 'ادخل كلمة السر',
-         
+
 
 
         ]);
@@ -173,7 +173,7 @@ class AuthController extends Controller
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->save();
             Auth::login($user);
-            return redirect()->route('home')->with(['message' => 'تم تفعيل حسابك بنجاح', 'type' => 'alert-success']);;
+            return redirect()->route('profile')->with(['message' => 'تم تفعيل حسابك بنجاح', 'type' => 'alert-success']);;
         } else
             echo "invalid token";
     }
