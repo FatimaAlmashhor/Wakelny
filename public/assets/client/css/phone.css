@@ -1,8 +1,7 @@
-
 .intl-tel-input {
   position: relative;
   display: inline-block;
-      direction: ltr;
+  direction: ltr;
 }
 
 .intl-tel-input * {
@@ -159,13 +158,13 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.intl-tel-input.allow-dropdown input[disabled] + .flag-container:hover,
-.intl-tel-input.allow-dropdown input[readonly] + .flag-container:hover {
+.intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover,
+.intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover {
   cursor: default;
 }
 
-.intl-tel-input.allow-dropdown input[disabled] + .flag-container:hover .selected-flag,
-.intl-tel-input.allow-dropdown input[readonly] + .flag-container:hover .selected-flag {
+.intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover .selected-flag,
+.intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover .selected-flag {
   background-color: transparent;
 }
 
@@ -1644,12 +1643,6 @@ only screen and (min-resolution: 2dppx) {
   -moz-box-sizing: border-box;
 }
 
-body {
-  margin: 20px;
-  font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #555;
-}
 
 .hide {
   display: none;
@@ -1720,4 +1713,3 @@ button:hover {
 #result {
   margin-bottom: 100px;
 }
-
