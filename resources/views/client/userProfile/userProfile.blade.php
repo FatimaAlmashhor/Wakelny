@@ -29,20 +29,20 @@
         <!-- Profile Taps -->
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
-                <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">حول</p>
-                <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
+                <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">{{__('userProfile.about')}}</p>
+                <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">{{__('userProfile.ratings')}}</p>
                 @if ($role == 'provider' || $role == 'both')
-                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">الأعمال</p>
+                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">{{__('userProfile.works')}}</p>
                 @endif
                 @if ($role == 'seeker' || $role == 'both')
-                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-D">المشاريع</p>
+                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-D">{{__('userProfile.projects')}}</p>
                 @endif
             </nav>
 
             <div class="kalefny-btn-div">
                 <button type="button" class="btn-kalefny color-gray-lighter fw-bold">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span>كلفني</span>
+                    <span>{{__('userProfile.employ_me')}}</span>
                 </button>
             </div>
         </div>
@@ -61,24 +61,24 @@
                         <section class="card shadow-sm col-12 col-sm-12 p-3">
                             <div class="about-me">
                                 <div class="section-title">
-                                    <h5>نبذة عني</h5>
+                                    <h5>{{__('userProfile.breif')}}</h5>
                                 </div>
                                 <div class="brief-content mt-3">
                                     <p class="">
                                         <i class="fas fa-briefcase ms-1"></i>
-                                        <span class="fs-6 fw-bold">التخصص:</span>
+                                        <span class="fs-6 fw-bold">{{__('userProfile.specialization')}}:</span>
                                         @if (!empty($cate->title))
                                             <span class="me-1">{{ $cate->title }}</span>
                                         @endif
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-location-dot ms-1"></i>
-                                        <span class="fs-6 fw-bold">البلد:</span>
+                                        <span class="fs-6 fw-bold">{{__('userProfile.country')}}:</span>
                                         <span class="me-1">{{ $data->country }}</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-circle-info ms-1"></i>
-                                        <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
+                                        <span class="fs-6 fw-bold">{{__('userProfile.bio')}}:</span>
                                         <span class="me-1">
                                             {{ $data->bio }}</span>
                                     </p>
@@ -93,7 +93,7 @@
                         <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                             <div class="my-skills">
                                 <div class="section-title">
-                                    <h5>مهاراتي</h5>
+                                    <h5>{{__('userProfile.my_skills')}}</h5>
                                 </div>
                                 <div class="skills mt-3">
                                     @foreach ($skills as $item)
@@ -121,12 +121,12 @@
                         <section class="card shadow-sm col-12 col-sm-12">
                             <div class="my-ratings">
                                 <div class="section-title">
-                                    <h5>التقييمات</h5>
+                                    <h5>{{__('userProfile.ratings')}}</h5>
                                 </div>
                                 <div class="brief-content mt-3">
                                     <div class="d-flex justify-content-between">
                                         <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-check-double ms-1"></i> الجودة
+                                            <i class="fa-solid fa-check-double ms-1"></i> {{__('userProfile.goodness')}}
                                         </p>
                                         <p class="">
                                             <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
+                                            <i class="fa-solid fa-clock-rotate-left ms-1"></i> {{__('userProfile.displane')}}
                                         </p>
                                         <p class="">
                                             <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-award ms-1"></i> الخبرة
+                                            <i class="fa-solid fa-award ms-1"></i> {{__('userProfile.experience')}}
                                         </p>
                                         <p class="">
                                             <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -163,7 +163,7 @@
                                     <div class="d-flex justify-content-between">
                                         <p class="fs-6 fw-normal">
                                             <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
-                                            <i class="fa-solid fa-handshake ms-1"></i> التعامل
+                                            <i class="fa-solid fa-handshake ms-1"></i> {{__('userProfile.dealing')}}
                                         </p>
                                         <p class="">
                                             <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -176,7 +176,7 @@
                                     <div class="d-flex justify-content-between">
                                         <p class="fs-6 fw-normal">
                                             <!-- <i class="fa-solid fa-tower-broadcast ms-1"></i> التجاوب والتواصل -->
-                                            <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
+                                            <i class="fa-solid fa-satellite-dish ms-1"></i> {{__('userProfile.communication')}}
                                         </p>
                                         <p class="">
                                             <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -200,27 +200,27 @@
                         <section class="card shadow-sm col-12 col-sm-12 p-3">
                             <div class="statistics">
                                 <div class="section-title">
-                                    <h5>إحصائيات</h5>
+                                    <h5>{{__('userProfile.statistics')}}</h5>
                                 </div>
                                 <div class="statistic-content mt-3">
                                     <p class="">
                                         <i class="fas fa-briefcase ms-1"></i>
-                                        <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
+                                        <span class="fs-6 fw-bold d-inll">{{__('userProfile.employign_rate')}}:</span>
                                         <span class="me-1">66%</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-clipboard-check ms-1"></i>
-                                        <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
+                                        <span class="fs-6 fw-bold d-inll">{{__('userProfile.done_projects')}}:</span>
                                         <span class="me-1">2</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-spinner ms-1"></i>
-                                        <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
+                                        <span class="fs-6 fw-bold d-inll">{{__('userProfile.at_work')}}:</span>
                                         <span class="me-1">0</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-star ms-1"></i>
-                                        <span class="fs-6 fw-bold d-inll">التقييمات:</span>
+                                        <span class="fs-6 fw-bold d-inll">{{__('userProfile.ratings')}}:</span>
                                         <span class="me-1">
                                             @for ($i = 0; $i < 5; $i++)
                                                 @if ((int) $data->rating > $i)
@@ -239,12 +239,12 @@
 
                             <div class="histories">
                                 <div class="section-title">
-                                    <h5>تواريخ</h5>
+                                    <h5>{{__('userProfile.hostories')}}</h5>
                                 </div>
                                 <div class="histories-content mt-3">
                                     <p class="">
                                         <i class="fa-solid fa-calendar-days ms-1"></i>
-                                        <span class="fs-6 fw-bold d-inll">تاريخ الانضمام:</span>
+                                        <span class="fs-6 fw-bold d-inll">{{__('userProfile.join_at')}}:</span>
                                         <span class="me-1">{{ $data->created_at }}</span>
                                     </p>
                                 </div>
@@ -265,7 +265,7 @@
                         <section class="card shadow-sm col-12 col-sm-12">
                             <div class="my-ratings">
                                 <div class="section-title">
-                                    <h5>الاعمال</h5>
+                                    <h5>{{__('userProfile.works')}}</h5>
                                 </div>
 
                             </div>
@@ -283,7 +283,7 @@
                         <section class="card shadow-sm col-12 col-sm-12">
                             <div class="my-ratings">
                                 <div class="section-title">
-                                    <h5>المشاريع</h5>
+                                    <h5>{{__('userProfile.projects')}}</h5>
                                 </div>
 
                             </div>
