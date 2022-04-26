@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
