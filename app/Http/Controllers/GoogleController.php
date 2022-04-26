@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -54,13 +55,15 @@ class GoogleController extends Controller
                     'remember_token' => $token,
                     'password' => Hash::make($user->getName() . '@' . $user->getId())
                 ]);
+                $saveUser->attachRole($role);
+                $saveUser->notify(new VerifyEmail);
             } else {
                 $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),
                 ]);
                 $saveUser = User::where('email', $user->getEmail())->first();
             }
-            $saveUser->attachRole($role);
+
 
             // if the user not admin
             if ($role !== 'admin') {
