@@ -18,13 +18,13 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active fw-bolder nav-links" aria-current="page"
-                    href="{{ route('home') }}">الرئيسية</a>
+                    href="{{ route('home') }}">{{ __('navigation.home') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav-links" href="{{ route('freelancers') }}">المستقلون</a>
+                <a class="nav-link nav-links" href="{{ route('freelancers') }}">{{ __('navigation.freelancers') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fs-6 nav-links" href="{{ route('projectlancer') }}">المشاريع المتاحه </a>
+                <a class="nav-link fs-6 nav-links" href="{{ route('projectlancer') }}">{{ __('navigation.available_projects') }}</a>
             </li>
         </ul>
         @if (Auth::check())
@@ -56,26 +56,26 @@
                         <li>
                             <a class="dropdown-item color-black" href="#">
                                 <i class="fa-solid fa-bookmark ms-1"></i>
-                                <span>المفضلة</span>
+                                <span>{{ __('navigation.favorite') }}</span>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item color-black" href="#">
                                 <i class="fa-solid fa-dollar-sign ms-1"></i>
-                                <span>الرصيد</span>
+                                <span>{{ __('navigation.balance') }}</span>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item color-black" href="{{ route('profile') }}">
                                 <i class="fa-solid fa-sliders ms-1"></i>
-                                <span>تعديل الحساب</span>
+                                <span>{{ __('navigation.update_settings') }}</span>
                             </a>
                         </li>
                         <hr>
                         <li>
                             <a class="dropdown-item color-black" href="{{ route('logout') }}">
                                 <i class="fa-solid fa-arrow-right-from-bracket ms-1"></i>
-                                <span>تسجيل الخروج</span>
+                                <span>{{ __('navigation.logout') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -84,7 +84,7 @@
         @elseif (Auth::guest())
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links" href="{{ route('login') }}">تسجيل الدخول</a>
+                    <a class="nav-link fs-6 nav-links" href="{{ route('login') }}">{{ __('navigation.login') }}</a>
                 </li>
             </ul>
         @endif
