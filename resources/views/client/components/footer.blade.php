@@ -22,8 +22,7 @@
 
 <footer class="deneb_footer" dir="rtl">
 
-    <div class="widget_wrapper"
-        style="background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);">
+    <div class="widget_wrapper border-top bg-green" style="background-image: transparent;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12">
@@ -62,31 +61,27 @@
                         </div>
                         <div class="contact_info">
                             <div class="single_info">
-                                <div class="icon">
+
+                                <div class="icon mx-3">
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
+
                                 <div class="info">
-                                    <p><a href="tel:+919246147999">1800-121-3637</a></p>
+                                    <p><a href="tel:+967738926409">+967-774-345-344</a></p>
                                     <!-- <p><a href="tel:+919246147999">+91 924-614-7999</a></p> -->
                                 </div>
                             </div>
                             <div class="single_info">
-                                <div class="icon">
+                                <div class="icon mx-3">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="info">
                                     <p><a href="{{ route('contactus') }}">أو عبر نموذج التواصل</a></p>
                                     <!-- <p><a href="mailto:services@deneb.com">services@deneb.com</a></p> -->
                                 </div>
+
                             </div>
-                            <div class="single_info">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="info">
-                                    <p>125, Park street aven, Brocklyn,<span>Newyork.</span></p>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -98,7 +93,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="copyright_text">
-                        <p>Copyright &copy; 2020 All rights reserved.</p>
+                        <p>Copyright &copy; 2022 All rights reserved.</p>
                     </div>
                 </div>
             </div>
