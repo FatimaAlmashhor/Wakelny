@@ -37,14 +37,15 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:9', 'max:50'],
+            'name' => ['required', 'min:8', 'max:50','regex:/[a-z]/', 'regex:/[A-Z]/'],
             'email' => ['required', 'email', 'unique:users,email'],
             'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' ],
             'confirm_pass' => ['same:user_pass']
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 9 حروف',
+            'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
             'email.unique' => 'الايميل موجود مسبقا',
             'email.required' => 'ادخل الايميل',
             'email.email' => 'ادخل الايميل بشكل صحيح',
