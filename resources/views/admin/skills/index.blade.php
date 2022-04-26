@@ -29,7 +29,6 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
-                                        <th>ID</th>
                                         <th>Title</th>
                                         <th>level</th>
                                         <th>State</th>
@@ -41,7 +40,6 @@
                                         <tr>
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td>{{ $item->id }}</td>
                                             <td class="text-bold-500">{{ $item->name }}</td>
                                             <td class="text-bold-500">{{ $item->level }}</td>
                                             <td>

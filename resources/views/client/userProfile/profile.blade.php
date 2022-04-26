@@ -35,7 +35,7 @@
             <div class="card-body">
                 <form action="{{ route('profile_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
                         @csrf
-                        @foreach ($data as $item)
+                        <!-- @foreach ($data as $item) -->
                     <div class="row">
                       <div class="col-sm-3">
                         <h6 class="mb-0">{{ __('profile.type') }}</h6>
@@ -69,21 +69,21 @@
                         
                             <div class="col-md-6">
                                 <label for="" class="col-md-6 col-form-label"> {{ __('profile.person3') }}</label>
-                                <select class="form-control"name="category_id"
+                                <select class="form-control" name="category_id"
                                     data-actions-box="true">
-                                    @foreach ($categories as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
+                                    <!-- @foreach ($categories as $item) -->
+                                        <option value={{ $item->id }}>{{ $item->name }}</option>
+                                    <!-- @endforeach -->
                                 </select>
                             </div>
                             <div class="col-md-6">
                             <label for="" class="col-md-6 col-form-label"> {{ __('profile.person4') }}</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="" name="job_title"  value="{{ $item->job_title }}">
+                                    <input type="text" class="form-control" id="" name="job_title"  value={{ $item->job_title }}>
                                     </div>
-                                    @error('job_title')
+                                    <!-- @error('job_title') -->
                                 <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <!-- @enderror -->
                             </div>
                      
                     </div>
@@ -92,30 +92,27 @@
                         
                         <label for="" class="col-md-6 col-form-label"> {{ __('profile.person5') }}</label>
                             <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id="" name="bio"  value="{{ $item->bio }}" ></textarea>
-                            @error('bio')
+                            <!-- @error('bio') -->
                                 <span class="text-danger">{{ $message }}</span>
-                             @enderror
+                             <!-- @enderror -->
                     </div>
 
                     <div class="row">
-                        
                         <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
                         <input type="url" class="form-control" id=""  name="video"  value="{{ $item->video }}">
-
-                    </div> @error('video')
-                                <span class="text-danger">{{ $message }}</span>
-                             @enderror
+                    </div> 
+                    <!-- @error('video') -->
+                      <span class="text-danger">{{ $message }}</span>
+                    <!-- @enderror -->
                    
                   </div>
                   <hr>
                  
-                            <div class="row col-md-8  " >
-                              
-                                    <button class="wak_btn " type="submit">Save</button>
-                              
-                        </div>
-                  @endforeach
-                  {{ csrf_field() }}
+                  <div class="row col-md-8  m-auto" >
+                    <button class="wak_btn " type="submit">Save</button>
+                  </div>
+                  <!-- @endforeach -->
+                  <!-- {{ csrf_field() }} -->
                 </form>
             </div>
               
@@ -132,4 +129,4 @@
     </main>
 
 
-@endsection
+<!-- @endsection -->

@@ -28,8 +28,8 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
-                                        <th>ID</th>
                                         <th>Title</th>
+                                        <th>State</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
@@ -38,16 +38,24 @@
                                         <tr>
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td>{{ $item->id }}</td>
                                             <td class="text-bold-500">{{ $item->title }}</td>
+                                            <td class="text-bold-500">
+                                                @if($item->is_active == 1) 
+                                                    <span style="color:#84e984;">مفعل</span>
+                                                @else
+                                                    <span  style="color:red;">غير مفعل</span>
+                                                @endif
+                                                    </td>
+                                            </td>
                                             <td>
                                                 {{-- Drop down --}}
                                                 <div class="btn-group dropdown mb-1">
 
                                                     <button type="button" class="" data-bs-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="false">
-                                                        <span class="sr-only"><i
-                                                                class="fa-regular fa-ellipsis-vertical">click</i></span>
+                                                        <span class="sr-only">
+                                                            <i class="fa-regular fa-ellipsis-vertical">click</i>
+                                                        </span>
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
