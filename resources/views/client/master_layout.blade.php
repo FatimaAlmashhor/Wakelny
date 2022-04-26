@@ -49,8 +49,7 @@
 
     {{-- alerts --}}
     @if (session()->has('message'))
-
-        <div class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
+        <div id='alert' class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
             style="width: fit-content; position: absolute; bottom: 20% ; right: 0px ; z-index: 9999999">
 
             {{ session()->get('message') }}
@@ -81,5 +80,15 @@
 
 
     @stack('scripts')
+    <script>
+        // $('#alert').slideIn(300).delay(5000).fadeOut(400);
+        $('#alert').animate({
+            right: '10px'
+        }).delay(6000).fadeOut(400);
+        if (window.navigator.onLine) {
+            //has internet connection
+            console.log('connected');
+        }
+    </script>
 </body>
 </html>

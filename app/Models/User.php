@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Constants\GlobalConstants;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
@@ -30,10 +34,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $primaryKey = "id";
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'google_id'
     ];
 
     /**
@@ -44,6 +54,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -54,6 +66,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
 
     // get all skills of the user
@@ -115,5 +128,26 @@ class User extends Authenticatable
         // }
 
         return $users->paginate(10);
+    }
+
+    public static function handle(Registered $event)
+    {
+        if ($event->user instanceof MustVerifyEmail && !$event->user->hasVerifiedEmail()) {
+            $event->user->sendEmailVerificationNotification();
+        }
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    protected function buildMailMessage($url)
+    {
+        return (new MailMessage)
+            ->subject(Lang::get('تأكيد البريد الاكتروني'))
+            ->line(Lang::get('رجاء قم بالضغط على الزر في الاسفل لتفعيل البريد الاكتروني'))
+            ->action(Lang::get('تأكيد البريد الاكتروني'), $url)
+            ->line(Lang::get('اذا واجهتك مشاكل في الضغط على الزرار يمكنك الضغط على الرابط ادناه'));
     }
 }

@@ -1,10 +1,12 @@
 @extends('client.master_layout')
 @section('content')
     @foreach ($data as $d)
-        <div class="container-fluid border-bottom px-5 pt-5">
-            <!-- User Identety Brief-->
-            <div class="profile-identity row">
-                <h4> المعلومات الشخصية</h4>
+        <!-- My Brief -->
+        <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+            <div class="container-fluid border-bottom px-5 pt-5">
+                <!-- User Identety Brief-->
+                <div class="profile-identity row">
+                    <h4> المعلومات الشخصية</h4>
 
                 <div class="col-md-12  d-flex justify-content-center align-items-center">
                     <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
@@ -26,29 +28,26 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+
                 </div>
+                <!-- /User Identety Brief-->
+
+                <!-- Profile Taps -->
+                <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
 
 
+
+                </div>
+                <!-- /Profile Taps -->
             </div>
-            <!-- /User Identety Brief-->
 
-            <!-- Profile Taps -->
-            <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
+            <main class="card col-12 col-lg-4 container mt-3 pt-4 my-4" style="max-width:800px ; width: 100%">
+                <div class="row d-flex justify-content-between" id="">
+                    <!-- About -->
+                    <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
 
 
-
-            </div>
-            <!-- /Profile Taps -->
-        </div>
-
-        <main class="card col-12 col-lg-4 container mt-3 pt-4 my-4" style="max-width:800px ; width: 100%">
-            <div class="row d-flex justify-content-between" id="">
-                <!-- About -->
-                <div class="col-sm-12 col-lg-12 color-black about-section px-3 panel  is-show subPage" id="tab-A">
-
-                    <!-- My Brief -->
-                    <form action="{{ route('account_save') }}" method="POST" class="login-form"
-                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
@@ -153,14 +152,15 @@
 
                             </div>
 
-                    </form>
+
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            </div>
-
-        </main>
+            </main>
+        </form>
     @endforeach
 @endsection

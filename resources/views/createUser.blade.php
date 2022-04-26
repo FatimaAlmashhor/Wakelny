@@ -52,8 +52,9 @@
                                     <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
+                                        
                                     @error('confirm_pass')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="text-danger  w-100">{{ $message }}</div>
                                     @enderror
                                     {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
@@ -63,9 +64,12 @@
                                 {{ __('login.register') }}
                             </button>
                             {{ csrf_field() }}
-                            <button class="wak_btn green_border w-100 mt-3">
-                                {{ __('login.register') }} مع Google
-                            </button>
+                            <div class="d-flex mt-4  colot-black  w-100 mt-3">
+                                <a href="{{ route('loginWithGoogle') }} " class="text-center wak_btn green_border ">
+                                    {{ __('login.register') }} مع Google
+                                    <i class="fab fa-google fa-fw"></i>
+                                </a>
+                            </div>
                             <p class="text-center mt-3">
                                 <span>{{ __('login.have_account') }}</span>
                                 <a href="{{ route('login') }}">

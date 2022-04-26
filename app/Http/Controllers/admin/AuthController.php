@@ -13,6 +13,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthController extends Controller
 {
@@ -37,21 +39,23 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:8', 'max:50','regex:/[a-z]/', 'regex:/[A-Z]/'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'user_pass' => ['required', 'min:5'],
+            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' ],
             'confirm_pass' => ['same:user_pass']
-
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 3 حروف',
+            'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
             'email.unique' => 'الايميل موجود مسبقا',
             'email.required' => 'ادخل الايميل',
             'email.email' => 'ادخل الايميل بشكل صحيح',
             'user_pass.required' => 'ادخل كلمة السر',
-            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 3 خانات',
-            'confirm_pass.same' => 'كلمة السرغير متطابقة ',
+            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 8 خانات',
+            'user_pass.max' => 'يجب ام تكون كلمة السر اقل من 20 خانات',
+            'user_pass.regex' => 'يجب ام تكون كلمة السر تحتوي على حروف صغيرة "a=z" وحروف كبيرة "A-Z" وارقام"0-9"ورموز"@$!%*#?&" ',
+            'confirm_pass.same' => 'كلمة السر غير متطابقة ',
 
 
         ]);
@@ -83,8 +87,7 @@ class AuthController extends Controller
                     ->subject('تسجيل عضوية جديدة');
                 $message->from('kalefnyinfo@gmail.com', 'كلفني');
             });
-
-
+            // $u->notify(new VerifyEmail);
             // if the user not admin
             if ($role !== 'admin') {
                 // setup the profile
@@ -129,15 +132,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         Validator::validate($request->all(), [
-            'email' => ['email', 'required', 'min:3', 'max:50'],
-            'user_pass' => ['required', 'min:5']
+            'email' => ['email', 'required'],
+            'user_pass' => ['required']
 
 
         ], [
             'email.required' => 'ادخل بريدك الالكتروني',
-            'email.email' => 'ادخل بؤيدك الالكتروني بشكل صحيح',
-            'user_pass.required' => 'اخل كلمة السر',
-            'user_pass.min' => 'يجب ان بكون كلمة السر اكبر من 5 خانات',
+            'email.email' => 'ادخل بريدك الالكتروني بشكل صحيح',
+            'user_pass.required' => 'ادخل كلمة السر',
+         
 
 
         ]);
@@ -152,7 +155,6 @@ class AuthController extends Controller
             }
         } else {
             return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل ',  'type' => 'alert-danger']);
-
         }
     }
     ///////////////// logout function //////////////////
