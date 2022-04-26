@@ -29,28 +29,29 @@
                                  <div class="form-group row">
                                 <label class="form-label" for="password">{{ __('login.password') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input  type="password" class="form-control  @error('password') is-invalid @enderror" id="password"   name="password" autocomplete="new-password"
+                                    <input  type="password" class="form-control w-100 @error('password') is-invalid @enderror" id="password"   name="password" autocomplete="new-password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                         
-                                        <br>
+                                   
                                         @error('password')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback w-100" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                                 </div>
                             </div>
+                            
                             <div class="form-group row">
-                                <label class="form-label" for="password_confirmation">{{ __('login.cpassword') }}</label>
+                                <label class="form-label" for="">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input  type="password" class="form-control"
-                                    id="password_confirmation"  class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete="new-password"
+                                    <input  type="password" 
+                                    id="password_confirmation"  class="form-control  @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete=""
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password_confirmation" />
-                                        <br>
+                                       
                                         @error('password_confirmation')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback w-100" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
