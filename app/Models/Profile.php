@@ -9,16 +9,7 @@ class Profile extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'avatar',
-        'name',
-        'gender',
-        'country',
-        'mobile',
-        'specialization',
-       'bio',
-       'category_id'
-    ];
+  protected $primaryKey = 'user_id';
 
       public function getAvatarAttribute($value){
         return url("images/")."/".$value;
@@ -31,4 +22,6 @@ class Profile extends Model
 
 
 
-}
+
+
+    }

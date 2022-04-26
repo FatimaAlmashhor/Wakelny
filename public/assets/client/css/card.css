@@ -1,3 +1,7 @@
+/* .card {
+    background-color: inherit !important;
+} */
+
 .wak_card {
     padding: .9em;
     border-bottom: 1px solid var(--main-light-gray-color);

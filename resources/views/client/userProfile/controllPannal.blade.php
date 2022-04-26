@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                 <ol class="breadcrumb ms-3">
                     <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
-                    <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('editUserProfile') }}"> تغيير
+                    <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> تغيير
                             إعدادات الحساب </a></li>
                 </ol>
 
@@ -63,8 +63,8 @@
                                             (أبحث عن مشاريع لتنفيذها)
                                             <div class="mx-2 my-2 px-2">
 
-                                                <input class="form-check-input mx-2" type="checkbox" name="account_type"
-                                                    id="">
+                                                <input class="form-check-input mx-2" type="checkbox" name="hire_me"
+                                                    {{ $item->hire_me ? 'checked' : '' }}>
 
                                                 <strong> {{ __('profile.person21') }}</strong>
                                                 (ازالة هذه الاشارة سيخفي حسابك بشكل مؤقت من نتائج البحث)

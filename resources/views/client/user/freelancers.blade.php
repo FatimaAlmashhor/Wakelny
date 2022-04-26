@@ -1,9 +1,11 @@
 @extends('client.master_layout')
 @section('content')
-    <h2 class="my-5 px-4">أبحث عن مستقلين</h2>
+    <div class="d-flex justify-content-between align-item-center">
+        <h3 class="mt-5 mb-2 font-lg px-4">أبحث عن مستقلين</h3>
 
-    <div id="filter_toggle" class="mx-4">
-        <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+        <div id="filter_toggle" class="mx-4 mt-5">
+            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+        </div>
     </div>
     <div class=" d-flex my-5">
 
@@ -21,11 +23,11 @@
                                 <div class="">
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.search_keys') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.search_keys') }} </h6>
                                         <div style="">
                                             <div class="card-body">
                                                 <input type="text" id='search_by_name' name='search_by_keys'
-                                                    class="wak_input" />
+                                                    class="wak_input" placeholder="Fatima" />
                                             </div>
                                         </div>
                                     </article>
@@ -33,7 +35,7 @@
                                     {{-- categories --}}
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.majers') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.majers') }} </h6>
 
 
                                         {{-- <div style="">
@@ -93,7 +95,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.rating') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.rating') }} </h6>
                                         <div class="stars">
                                             <form action=""> <input class="star star-5" id="star-5" type="radio"
                                                     value="1" name="star" />
@@ -170,7 +172,7 @@
     const toggle = document.getElementById("filter_toggle");
 
     function openNav() {
-        document.getElementById("filter").style.width = "350px";
+        document.getElementById("filter").style.width = "330px";
         toggle.style.display = "none";
     }
 
@@ -183,7 +185,7 @@
     // for solving the filter closing in the phone stats and then back to desckop
     function Media(x) {
         if (x.matches) { // If media query matches
-            document.getElementById("filter").style.width = "350px";
+            document.getElementById("filter").style.width = "330px";
         }
     }
     var x = window.matchMedia("(min-width: 980px)")

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes(['verify' => true]);
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -87,14 +88,14 @@ Route::group([
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
-        // the authization of the user controllpanalle
-        Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
-        Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
 
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
+            // the authization of the user controllpanalle
+            Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
+            Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
             // use profile skills section
             Route::prefix('/skills')->group(function () {
                 Route::get('/', [ProfileController::class, 'showSkills'])->name('skills');
@@ -133,3 +134,4 @@ Route::group([
 //  start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
+Auth::routes();
