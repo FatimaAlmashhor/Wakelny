@@ -63,8 +63,8 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
-                                        <label>الصورة <em class="text--danger">*</em>
-                                        </label>
+                                        {{-- <label>الصورة <em class="text--danger">*</em>
+                                        </label> --}}
                                         {{-- <label for="username" class="form-label">{{ __('login.name') }}</label> --}}
                                         {{-- <input type="file" name="avatar" value="{{ $d->avater }}" required="required"> --}}
                                         {{-- <input class="form-control" type="file"
@@ -75,13 +75,6 @@
                                     </div>
 
                                 </div>
-                                {{-- <div class="col-sm-6 col-xs-12 pt-3">
-                            <div class="form-group  ">
-                                <label>اسم العائلة  <em class="text--danger">*</em>
-                                </label>
-                                <input class="form-control" placeholder="أكتب اسمك باللغة العربية" type="text" name="first_name" value="Mohammed">
-                            </div> --}}
-
 
                             </div>
                             <div class="col-sm-6 col-xs-12 pt-3">
@@ -126,25 +119,14 @@
                             </div>
 
                             <div class="col-sm-6 col-xs-12 pt-3">
- <input name="mobile" id="phone" type="tel" value="{{ $d->mobile }}">
+                              <input name="mobile" id="phone" type="tel" value="{{ $d->mobile }}">
                                 <span id="valid-msg" class="hide">رقم صحيح</span>
                                 <span id="error-msg" class="hide">رقم غير صحيح</span>
                                 @error('mobile')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- <div class="col-sm-6 col-xs-12 pt-3">
-                            <div class="form-group  ">
-                                <label>اللغة  <em class="text--danger">*</em>
-                                </label>
-                            </div>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>العربية</option>
-                                <option value="">English</option>
 
-                              </select>
-
-                        </div> --}}
 
                             <div class=" mx-auto pt-3">
                                 <button class="wak_btn w-full" type="submit">حفظ
