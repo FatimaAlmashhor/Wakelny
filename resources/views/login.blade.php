@@ -29,7 +29,7 @@
                                         aria-describedby="password" name="password" />
 
                                     @error('user_pass')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="text-danger  w-100">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
