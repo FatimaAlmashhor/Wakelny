@@ -24,10 +24,10 @@
                                     @endif
                                 @endfor
 
-                                <span class="px-2 font-md">%{{ $item->rating * 20 }}</span>
-                                <i class="fa fa-fw fa-briefcase"></i>
+                                <span class="px-2 font-sm color-gray-dark ">%{{ $item->rating * 20 }}</span>
+                                <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
 
-                                <span class="color-gray-dark px-2 font-md">{{ $item->specialization }}</span>
+                                <span class="color-gray-dark px-2 font-sm">{{ $item->specialization }}</span>
                             </div>
 
                         </div>

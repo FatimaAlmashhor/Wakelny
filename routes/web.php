@@ -62,8 +62,7 @@ Route::group([
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
-    Route::view('/projectlancer
-    ', 'client.user.projectlancer')->name('projectlancer');
+    Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
 
 
@@ -136,12 +135,3 @@ Route::group([
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
