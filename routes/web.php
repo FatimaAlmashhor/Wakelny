@@ -62,8 +62,7 @@ Route::group([
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
-    Route::view('/projectlancer
-    ', 'client.user.projectlancer')->name('projectlancer');
+    Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
 
 
@@ -150,3 +149,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+Auth::routes();

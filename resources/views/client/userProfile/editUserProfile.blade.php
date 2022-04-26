@@ -118,11 +118,12 @@
 
                             </div>
 
-                            <div class="col-sm-6 col-xs-12 pt-3">
+                           <div class="col-sm-6 col-xs-12 pt-3">
+                                
+                                    <label>رقم الهاتف <em class="text--danger">*</em>
+                                    </label>
                               <input name="mobile" id="phone" type="tel" value="{{ $d->mobile }}">
-                                <span id="valid-msg" class="hide">رقم صحيح</span>
-                                <span id="error-msg" class="hide">رقم غير صحيح</span>
-                                @error('mobile')
+                                  @error('mobile')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -66,7 +66,8 @@ class ControllPannelController extends Controller
                     'specialization'  =>  $request->input('specialization'),
                     'bio'  =>  $request->input('bio'),
                     'video'  =>  $request->input('video'),
-                    'category_id' => $request->input('category_id')
+                    'category_id' => $request->input('category_id'),
+                    'hire_me' => $request->hire_me ? 1 : 0
                 ]
 
             );
@@ -156,7 +157,6 @@ class ControllPannelController extends Controller
         $pro->avatar=$this->uploadFile($request->file('avatar'));
         if($pro->save())
 
-       return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
-
+        return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
     }
 }

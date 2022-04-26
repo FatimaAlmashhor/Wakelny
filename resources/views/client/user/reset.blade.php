@@ -4,7 +4,7 @@
         <div class="container  ">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5 border my-5">
+                    <div class="wak_form p-4 p-md-5 border my-5">
 
                         <h3 class="text-center mb-4">{{ __('login.reset_password') }}</h3>
                   
