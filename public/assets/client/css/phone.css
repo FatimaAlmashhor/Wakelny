@@ -1662,7 +1662,7 @@ pre {
   background: none;
 }
 
-input,
+/* input,
 button {
   height: 35px;
   margin: 0;
@@ -1690,8 +1690,8 @@ select {
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #BBB;
-  opacity: 1;
+color: #BBB;
+opacity: 1;
 }
 
 :-ms-input-placeholder {
@@ -1710,6 +1710,6 @@ button:hover {
   cursor: pointer;
 }
 
-#result {
+*/ #result {
   margin-bottom: 100px;
 }
