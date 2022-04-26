@@ -13,6 +13,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthController extends Controller
 {
@@ -85,8 +87,7 @@ class AuthController extends Controller
                     ->subject('تسجيل عضوية جديدة');
                 $message->from('kalefnyinfo@gmail.com', 'كلفني');
             });
-
-
+            // $u->notify(new VerifyEmail);
             // if the user not admin
             if ($role !== 'admin') {
                 // setup the profile
@@ -154,7 +155,6 @@ class AuthController extends Controller
             }
         } else {
             return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل ',  'type' => 'alert-danger']);
-
         }
     }
     ///////////////// logout function //////////////////
