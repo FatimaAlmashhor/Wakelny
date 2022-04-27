@@ -154,7 +154,7 @@ class AuthController extends Controller
                 // return redirect()->route('home');
             }
         } else {
-            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل ',  'type' => 'alert-danger']);
+            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الايميل وكلمة السر ',  'type' => 'alert-danger']);
         }
     }
     ///////////////// logout function //////////////////
@@ -190,7 +190,17 @@ public function updatePassword(Request $request)
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
+
+
+        ], [
+            'old_password.required' => 'ادخل كلمة السر القديمة ',
+            'new_password.confirmed' => 'الكلمة ليست متطابقة',
+            'new_password.required' => 'ادخل كلمة السر الجديدة',
+
+
+
         ]);
+         
 
 
         #Match The Old Password

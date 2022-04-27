@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\client\postController;
 
 /*
 
@@ -64,6 +65,11 @@ Route::group([
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
+    //  start post routing
+        Route::get('/post', [postController::class, 'index'])->name('post');
+
+    // end post routing
+
 
 
 
@@ -89,7 +95,7 @@ Route::group([
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
     // end change password
-    
+
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
