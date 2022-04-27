@@ -71,14 +71,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:8', 'max:50', 'regex:/[a-z]/', 'regex:/[A-Z]/'],
+            'name' => ['required', 'min:8', 'max:50', /*'regex:/[a-z]/' , 'regex:/[A-Z]/' */],
             'email' => ['required', 'email', 'unique:users,email'],
             'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
             'confirm_pass' => ['same:user_pass']
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
+            // 'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
             'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
             'email.unique' => 'الايميل موجود مسبقا',
             'email.required' => 'ادخل الايميل',
@@ -237,9 +237,9 @@ class AuthController extends Controller
 
 
         #Match The Old Password
-  
 
-        if(!Hash::check($request->old_password, auth()->user()->password)){
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->with("error", "الكلمة القديمة ليست صحيحة!");
         }
 
@@ -251,9 +251,6 @@ class AuthController extends Controller
 
 
         return back()->with("status", "تم تغيير كلمة السر بنجاح!");
+    }
+    // end change password
 }
-// end change password
-}
-
-
-
