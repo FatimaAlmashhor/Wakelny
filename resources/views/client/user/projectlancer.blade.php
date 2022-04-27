@@ -1,10 +1,11 @@
 @extends('client.master_layout')
 @section('content')
-    <h2 class="my-5 px-4"> المشاريع المفتوحة</h2>
+    <div class="d-flex justify-content-between align-item-center">
+        <h3 class="mt-5 mb-2 font-lg px-4"> المشاريع المتاحه </h3>
 
-
-    <div id="filter_toggle" class="mx-4">
-        <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+        <div id="filter_toggle" class="mx-4 mt-5">
+            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+        </div>
     </div>
     <div class=" d-flex my-5">
         <aside class="border-start">
@@ -18,7 +19,7 @@
                                 <div class="">
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.search_keys') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.search_keys') }} </h6>
                                         <div style="">
                                             <div class="card-body">
                                                 <input type="text" name='search_by_keys' class="wak_input" />
@@ -28,7 +29,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.category') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.category') }} </h6>
                                         <div style="">
                                             <div class="card-body d-flex align-items-center ">
                                                 <label class="wak_checkbox">
@@ -70,7 +71,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.skill') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.skill') }} </h6>
                                         <div style="mt-2">
                                             <select class="combobox wak_input" name="normal">
                                                 <option value="" selected="selected">اختر المهارة </option>
@@ -88,7 +89,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.time') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.time') }} </h6>
                                         <div style="">
                                             <div class="card-body d-flex align-items-center ">
                                                 <label class="wak_checkbox">
@@ -131,7 +132,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.balance') }} </h6>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.balance') }} </h6>
                                         <div style="">
                                             <div class="card-body d-flex align-items-center ">
                                                 <label class="wak_checkbox">
@@ -185,10 +186,10 @@
                         <ul class="project__meta list-meta-items d-flex justify-content-start-flex margin-right: -23px;">
 
 
-                            <li class="text-muted">
+                            <li class="text-muted font-sm color-gray-dark">
                                 <i class="fa fa-fw fa-user"></i> أحمد ا.
                             </li>
-                            <li class="text-muted">
+                            <li class="text-muted font-sm color-gray-dark px-3">
                                 <time datetime="2022-04-23 12:21:47" title="" itemprop="datePublished" data-toggle="tooltip"
                                     data-original-title="2022-04-23 12:21:47">
                                     <i class="fa fa-clock-o"></i> منذ
@@ -196,7 +197,7 @@
                                 </time>
                             </li>
 
-                            <li class="text-muted">
+                            <li class="text-muted font-sm color-gray-dark">
                                 <i class="fa fa-fw fa-ticket"></i>
                                 أضف أول عرض
                             </li>

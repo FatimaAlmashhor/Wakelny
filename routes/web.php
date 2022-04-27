@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes(['verify' => true]);
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -56,7 +57,7 @@ Route::group([
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
-    // this is the subsection of howen the freelncers 
+    // this is the subsection of howen the freelncers
     Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
@@ -84,17 +85,21 @@ Route::group([
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
     Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-
+    // start change password
+    Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
+    Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
+    // end change password
+    
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
-        // the authization of the user controllpanalle
-        Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
-        Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
 
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
+            // the authization of the user controllpanalle
+            Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
+            Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
             // use profile skills section
             Route::prefix('/skills')->group(function () {
                 Route::get('/', [ProfileController::class, 'showSkills'])->name('skills');
@@ -133,3 +138,16 @@ Route::group([
 //  start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Auth::routes();

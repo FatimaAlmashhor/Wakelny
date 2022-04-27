@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\UserSkills;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ControllPannelController extends Controller
 {
@@ -65,7 +66,8 @@ class ControllPannelController extends Controller
                     'specialization'  =>  $request->input('specialization'),
                     'bio'  =>  $request->input('bio'),
                     'video'  =>  $request->input('video'),
-                    'category_id' => $request->input('category_id')
+                    'category_id' => $request->input('category_id'),
+                    'hire_me' => $request->hire_me ? 1 : 0
                 ]
 
             );
@@ -106,24 +108,55 @@ class ControllPannelController extends Controller
     }
     public function account_save(Request $request)
     {
+
         $current_user_id = Auth::user()->id;
         // User::where('id', $current_user_id)->update(['name' => $request->input('name')]);
 
-        $filename = $this->uploadFile($request->file('avatar'));
+        // $filename = $this->uploadFile($request->file('avatar'));
 
         // $ser->image=$this->uploadFile($request->file('image'));
-        Profile::where('user_id', $current_user_id)->update(
-            [
-                'name' => $request->input('name'),
-                'gender'    =>  $request->input('gender'),
-                'country'  =>  $request->input('country'),
-                'mobile'  =>  $request->input('mobile'),
-                'avatar' => $filename,
-            ]
+        // Profile::where('user_id', $current_user_id)->update(
+        //     [
+        //         'name' => $request->input('name'),
+        //         'gender'    =>  $request->input('gender'),
+        //         'country'  =>  $request->input('country'),
+        //         'mobile'  =>  $request->input('mobile'),
+        //         'avatar' => $filename,
+        //     ]
 
-        );
+        // );
+          Validator::validate($request->all(),[
+           'name' => 'required|min:10',
+          'gender' => 'required',
+          'country' => 'required',
+          'mobile'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
+          'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
 
-       return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
+      ],[
+          'name.required' => 'ادخل الاسم',
+          'name.min' => 'يجب ان يكون الاسم اكثر من 10 حروف',
+          'gender.required' => ' هذا الحقل مطلوب',
+          'country.required' => 'ادخل الدولة',
+          'avatar.required' => 'اضف صورة',
+          'avatar.image'=>'الصيغة غير صحيحة' ,
+          'avatar.mimes'=>'نوع الصورة يجب ان يكون jpgاوpngاوjpegاوgifاوsvg',
+          'mobile.required'=>'ادخل رقم الهاتف',
+          'mobile.regex'=>' ادخل  صيغة رقم صحيح ',
+           'mobile.min'=>' يجب ان يكون الرقم اكبر 8 ارقام ',
 
+
+      ]);
+        $pro=Profile::where('user_id', $current_user_id)->first();
+         $pro->name=$request->name;
+        $pro->gender=$request->gender;
+        $pro->country=$request->country;
+        $pro->mobile=$request->mobile;
+
+
+        if($request->hasFile('avatar'))
+        $pro->avatar=$this->uploadFile($request->file('avatar'));
+        if($pro->save())
+
+        return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
     }
 }

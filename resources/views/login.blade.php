@@ -4,7 +4,7 @@
         <div class="container  ">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5 border shadow-sm my-5">
+                    <div class="wak_form p-4 p-md-5 border shadow-sm my-5">
 
                         <h3 class="text-center mb-4">{{ __('login.sign_in') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
@@ -18,7 +18,7 @@
                                     placeholder="ادخل البريد الاكتروني الخاص يك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -29,7 +29,7 @@
                                         aria-describedby="password" name="password" />
 
                                     @error('user_pass')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="text-danger  w-100">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -47,13 +47,13 @@
                                 {{ __('login.register') }} مع Google
                             </button> --}}
 
-                            <p class="text-center mt-3">
+                            <p class="text-center font-sm mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
                                 <a href="/forget-password">
                                     <span style="color: #0d41fd"> نسيت كلمة السر! </span>
                                 </a>
                             </p>
-                            <p class="text-center mt-3">
+                            <p class="text-center font-sm mt-3">
                                 <span>{{ __('login.have_account') }}</span>
 
                                 <a href="{{ route('create_user') }}">
