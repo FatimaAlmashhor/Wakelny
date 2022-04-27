@@ -2,7 +2,7 @@
     <div class="card  p-3 pt-0 bg-opacity-0 ">
         <!-- user avatar -->
         <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-            <img src="/assets/client/images/user-profile-2.png" class="user-avatar img-fluid rounded-circle border"
+            <img src="{{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}" class="user-avatar img-fluid rounded-circle border"
                 alt="user avatar" style="width: 70%;" />
             {{-- <a role="button" data-bs-toggle="" data-bs-target="" href="/user-account"
                 class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"

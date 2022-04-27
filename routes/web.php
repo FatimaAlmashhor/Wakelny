@@ -108,7 +108,8 @@ Route::group([
             });
 
             Route::get('/user-account/{user_id}', [ControllPannelController::class, 'edit_pro'])->name('account');
-            Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+            Route::post('/user-account/{user_id}', [ControllPannelController::class, 'account_save'])->name('account_save');
+            // Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
         });
     });
     // ------------------------------------------------------------------------

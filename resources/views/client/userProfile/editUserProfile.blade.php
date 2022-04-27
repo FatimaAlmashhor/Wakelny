@@ -2,7 +2,7 @@
 @section('content')
     @foreach ($data as $d)
         <!-- My Brief -->
-        <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+        <form action="{{ route('account_save', Auth::user()->id) }}" method="POST" class="login-form" enctype="multipart/form-data">
             <div class="container-fluid border-bottom px-5 pt-5">
                 <!-- User Identety Brief-->
                 <div class="profile-identity row">
@@ -10,7 +10,8 @@
 
                 <div class="col-md-12  d-flex justify-content-center align-items-center">
                     <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-                        <img src="{{ $d->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar"
+                        <img src="{{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}" 
+                            class="avatar img-circle img-thumbnail" alt="avatar"
                             style="border-radius: 50%; width:150px;height:150px">
 
                         <label for="avatar" data-bs-toggle="" data-bs-target="" href="/user-account"

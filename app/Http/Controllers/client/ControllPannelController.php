@@ -131,7 +131,7 @@ class ControllPannelController extends Controller
           'gender' => 'required',
           'country' => 'required',
           'mobile'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
-          'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+          'avatar' => 'required|image|mimes:jpg,png,jpeg|max:2048',
 
       ],[
           'name.required' => 'ادخل الاسم',
@@ -140,7 +140,7 @@ class ControllPannelController extends Controller
           'country.required' => 'ادخل الدولة',
           'avatar.required' => 'اضف صورة',
           'avatar.image'=>'الصيغة غير صحيحة' ,
-          'avatar.mimes'=>'نوع الصورة يجب ان يكون jpgاوpngاوjpegاوgifاوsvg',
+          'avatar.mimes'=>'نوع الصورة يجب ان يكون jpgاوpngاوjpeg',
           'mobile.required'=>'ادخل رقم الهاتف',
           'mobile.regex'=>' ادخل  صيغة رقم صحيح ',
            'mobile.min'=>' يجب ان يكون الرقم اكبر 8 ارقام ',
