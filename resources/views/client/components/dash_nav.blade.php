@@ -1,9 +1,12 @@
 <div class="col-lg-4 col-md-4 col-12 mb-3">
     <div class="card  p-3 pt-0 bg-opacity-0 ">
         <!-- user avatar -->
-        <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
-            <img src="{{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}" class="user-avatar img-fluid rounded-circle border"
-                alt="user avatar" style="width: 70%;" />
+        <div class="col-12  d-flex justify-content-center align-items-center p-4 ">
+            <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
+                style="width: 230px ; height: 230px;">
+                <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
+                    style="width: 100%; height:100%; object-fit: cover">
+            </div>
             {{-- <a role="button" data-bs-toggle="" data-bs-target="" href="/user-account"
                 class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
                 style="bottom: 10%;left: 35%; width: 30px;height: 30px;">

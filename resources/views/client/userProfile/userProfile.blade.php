@@ -3,8 +3,10 @@
     <div class="container-fluid border-bottom px-5 pt-5">
         <!-- User Identety Brief-->
         <div class="profile-identity row">
-            <div class="profile-card--avatar shadow-sm border rounded-circle">
-                <img src="../../assets/client/images/user-profile-2.png" class="profile-avatar">
+            <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
+                style="width: 200px ; height: 200px;">
+                <img src="{{ $data->avatar }}" class="profile-avatar position-absoulte"
+                    style="width: 100%; height:100%; object-fit: cover">
                 <div class="inactive-dot rounded-circle"></div>
             </div>
 
