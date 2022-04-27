@@ -39,4 +39,14 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function userProfile()
+    {
+        return [
+            'name' => $this->faker->name(),
+            'gender'=> $this->faker->gender(),
+            'mobile'=> $this->faker->mobile(),
+            'country'=> $this->faker->country()
+        ];
+    }
 }
