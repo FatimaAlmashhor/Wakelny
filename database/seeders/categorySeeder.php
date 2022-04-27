@@ -14,17 +14,17 @@ class categorySeeder extends Seeder
     /**
      * Run the database seeds.
      *
+     *
      * @return void
      */
     public function run()
-    
+
     {
         //
 
             $categories = category::create([
                 'title' => 'تطوير الويب',
                 'is_active'=> 'مفعل',
-
 
             ]);
 
