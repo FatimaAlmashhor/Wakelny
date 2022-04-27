@@ -19,13 +19,54 @@ class skillSeeder extends Seeder
     {
         //
 
-            $skills = Skill::create([
+            $photoshop = Skill::create([
                 'name' => 'فتشوب',
                 'level' => 'متقدم',
                 'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:07',
+                'updated_at'=>'2022-04-26 21:26:08',
 
 
             ]);
+            $tasmim = Skill::create([
+                'name' => 'التصميم الابداعي',
+                'level' => 'متقدم',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:07',
+                'updated_at'=>'2022-04-26 21:26:08',
+
+            ]);
+            $advire = Skill::create([
+                'name' => ' اعلان',
+                'level' => 'متقدم',
+                'is_active'=> 'معطل',
+                'created_at	'=>'2022-04-26 21:26:07',
+                'updated_at'=>'2022-04-26 21:26:08',
+
+
+            ]);
+
+            $microsoft = Skill::create([
+                'name' => ' مايكروسوفت وورد',
+                'level' => 'متوسط',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:07',
+                'updated_at'=>'2022-04-26 21:26:04',
+
+            ]);
+
+            $translate = Skill::create([
+                'name' => '  الترجمة',
+                'level' => 'متوسط',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:07',
+                'updated_at'=>'2022-04-26 21:26:04',
+
+
+
+            ]);
+
+
 
             $skills->attachRole('admin');
         }

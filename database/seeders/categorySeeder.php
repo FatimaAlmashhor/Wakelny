@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
+
 use App\Models\Skill;
 use App\Models\category;
 use Illuminate\Support\Facades\Hash;
@@ -22,13 +22,37 @@ class categorySeeder extends Seeder
     {
         //
 
-            $categories = category::create([
+            $web = category::create([
                 'title' => 'تطوير الويب',
                 'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:09',
+                'updated_at'=>'2022-04-26 21:26:04',
 
             ]);
 
-            $categories->attachRole('admin');
+            $consul = category::create([
+                'title' => ' اعمال وخدمات استشارية',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:09',
+                'updated_at'=>'2022-04-26 21:26:04',
+
+            ]);
+            $sound = category::create([
+                'title' => '   تصميم صوتيات وفديوهات',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:09',
+                'updated_at'=>'2022-04-26 21:26:04',
+
+            ]);
+            $elictronic = category::create([
+                'title' => '     تسويق الكتروني ومبيعات',
+                'is_active'=> 'مفعل',
+                'created_at	'=>'2022-04-26 21:26:09',
+                'updated_at'=>'2022-04-26 21:26:04',
+
+            ]);
+
+
         }
     }
 
