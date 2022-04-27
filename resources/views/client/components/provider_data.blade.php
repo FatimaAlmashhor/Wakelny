@@ -8,15 +8,14 @@
                     <div class="image d-flex">
                         <a href="{{ route('userProfile', $item->user_id) }}">
 
-                            @if ($item->avatar !== 'http://localhost:8000/images/')
+                            {{-- @if ($item->avatar !== 'http://localhost:8000/images/')
                                 <img class="rounded-circle mr-4 border"
                                     style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
                                     alt="">
-                            @else
-                                <img class="rounded-circle mr-4 border"
-                                    style="width:60px ; height:60px ; object-fit: cover"
-                                    src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
-                            @endif
+                            @else --}}
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
+                            {{-- @endif --}}
 
                         </a>
                         <div class="info mx-4">
