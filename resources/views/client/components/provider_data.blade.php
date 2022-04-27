@@ -15,7 +15,7 @@
                             @else
                                 <img class="rounded-circle mr-4 border"
                                     style="width:60px ; height:60px ; object-fit: cover"
-                                    src='{{ asset('assets/client/images/user-profile-2.png') }}' alt="">
+                                    src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
                             @endif
 
                         </a>
