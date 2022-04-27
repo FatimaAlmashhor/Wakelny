@@ -195,7 +195,7 @@ public function updatePassword(Request $request)
 
         #Match The Old Password
         if(!Hash::check($request->old_password, auth()->user()->password)){
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", "الكلمة القديمة ليست صحيحة!");
         }
 
 
@@ -204,7 +204,7 @@ public function updatePassword(Request $request)
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", "تم تغيير كلمة السر بنجاح!");
 }
 // end change password
 }
