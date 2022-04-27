@@ -3,8 +3,16 @@
     <div class="container-fluid border-bottom px-5 pt-5">
         <!-- User Identety Brief-->
         <div class="profile-identity row">
-            <div class="profile-card--avatar shadow-sm border rounded-circle">
-                <img src="../../assets/client/images/user-profile-2.png" class="profile-avatar">
+            <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
+                style="width: 200px ; height: 200px;">
+                @if ($data->avatar !== 'http://localhost:8000/images/')
+                    <img src="{{ $data->avatar }}" class="profile-avatar position-absoulte"
+                        style="width: 100%; height:100%; object-fit: cover">
+                @else
+                    <img src="/assets/client/images/user-profile-2.png" class="profile-avatar position-absoulte"
+                        style="width: 100%; height:100%; object-fit: cover">
+                @endif
+
                 <div class="inactive-dot rounded-circle"></div>
             </div>
 
@@ -15,12 +23,26 @@
                 </div>
 
                 <div class="user-brief text-muted">
-                    <p class="d-inline-block ms-3">
-                        <i class="fas fa-briefcase"></i> <span class="me-1">{{ $data->specialization }}</span>
-                    </p>
-                    <p class="d-inline-block">
-                        <i class="fa-solid fa-location-dot"></i> <span class="me-1">{{ $data->country }}</span>
-                    </p>
+                    @if ($data->specialization)
+                        <p class="d-inline-block ms-3">
+                            <i class="fas fa-briefcase"></i> <span
+                                class="me-1">{{ $data->specialization }}</span>
+                        </p>
+                    @endif
+                    @if ($data->country)
+                        <p class="d-inline-block">
+                            <i class="fa-solid fa-location-dot color-orange"></i> <span
+                                class="me-1">{{ $data->country }}</span>
+                        </p>
+                    @endif
+
+                    @if ($data->hire_me)
+                        <p class="d-inline-block">
+                            <i class="fas fa-user-tie color-green mx-2 "></i> <span class="me-1"> انا متاح
+                                للتوظيف</span>
+                        </p>
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -39,12 +61,12 @@
                 @endif
             </nav>
 
-            <div class="kalefny-btn-div">
+            {{-- <div class="kalefny-btn-div">
                 <button type="button" class="btn-kalefny color-gray-lighter fw-bold">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>{{__('userProfile.employ_me')}}</span>
                 </button>
-            </div>
+            </div> --}}
         </div>
         <!-- /Profile Taps -->
     </div>

@@ -7,8 +7,17 @@
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
                         <a href="{{ route('userProfile', $item->user_id) }}">
-                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                                src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }} alt="">
+
+                            @if ($item->avatar !== 'http://localhost:8000/images/')
+                                <img class="rounded-circle mr-4 border"
+                                    style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
+                                    alt="">
+                            @else
+                                <img class="rounded-circle mr-4 border"
+                                    style="width:60px ; height:60px ; object-fit: cover"
+                                    src='{{ asset('assets/client/images/user-profile-2.png') }}' alt="">
+                            @endif
+
                         </a>
                         <div class="info mx-4">
                             <h4 class="font-md"><a
@@ -24,10 +33,10 @@
                                     @endif
                                 @endfor
 
-                                <span class="px-2 font-md">%{{ $item->rating * 20 }}</span>
-                                <i class="fa fa-fw fa-briefcase"></i>
+                                <span class="px-2 font-sm color-gray-dark ">%{{ $item->rating * 20 }}</span>
+                                <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
 
-                                <span class="color-gray-dark px-2 font-md">{{ $item->specialization }}</span>
+                                <span class="color-gray-dark px-2 font-sm">{{ $item->specialization }}</span>
                             </div>
 
                         </div>
@@ -38,7 +47,7 @@
 
                             <a tabindex="-1" class="wak_btn" href="#">
                                 <i class="fa fa-fw fa-send"></i>
-                                <span class="action-text">وظفني </span>
+                                <span class="action-text">كلفني </span>
                             </a>
 
                             <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"

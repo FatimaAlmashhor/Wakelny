@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Constants\GlobalConstants;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
@@ -126,24 +130,24 @@ class User extends Authenticatable
         return $users->paginate(10);
     }
 
-
-    public static function profileCreation()
+    public static function handle(Registered $event)
     {
-        $role = 'seeker';
-        // check if the user still empty
-        $checkUsers = User::first();
-        if (is_null($checkUsers)) {
-            $role = 'admin';
+        if ($event->user instanceof MustVerifyEmail && !$event->user->hasVerifiedEmail()) {
+            $event->user->sendEmailVerificationNotification();
         }
+    }
 
-        
-        // if the user not admin
-        if ($role !== 'admin') {
-            // setup the profile
-            $profile = new Profile();
-            $profile->name = $name;
-            $profile->user_id = $u->id;
-            $profile->save();
-        }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    protected function buildMailMessage($url)
+    {
+        return (new MailMessage)
+            ->subject(Lang::get('تأكيد البريد الاكتروني'))
+            ->line(Lang::get('رجاء قم بالضغط على الزر في الاسفل لتفعيل البريد الاكتروني'))
+            ->action(Lang::get('تأكيد البريد الاكتروني'), $url)
+            ->line(Lang::get('اذا واجهتك مشاكل في الضغط على الزرار يمكنك الضغط على الرابط ادناه'));
     }
 }

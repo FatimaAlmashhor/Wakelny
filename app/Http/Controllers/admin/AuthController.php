@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthController extends Controller
 {
@@ -33,25 +37,57 @@ class AuthController extends Controller
 
 
 
+    // this function show the the verfiy message
+    public function show()
+    {
+        return view('client.user.verify-email');
+    }
+
+
+    // send notification for the laravel
+    public function request()
+    {
+        auth()->user()->sendEmailVerificationNotification();
+
+        return back()
+            ->with(['message' => 'تم ارسال رسال التأكيد ', 'type' => 'alert-success']);
+    }
+
+    public function verify(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()->route('profile')->with(['message' => 'تم تأكيد الحساب بنجاح ! انطلق ', 'type' => 'alert-success']);; // <-- change this to whatever you want
+    }
+
+
+    // public function handle()
+    // {
+    //     //
+
+    //     event(new Registered($user));
+    // }
     ///////////////// add user //////////////////
     public function register(Request $request)
     {
         Validator::validate($request->all(), [
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:8', 'max:50', 'regex:/[a-z]/', 'regex:/[A-Z]/'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'user_pass' => ['required', 'min:5'],
+            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
             'confirm_pass' => ['same:user_pass']
-
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 3 حروف',
+            'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
             'email.unique' => 'الايميل موجود مسبقا',
             'email.required' => 'ادخل الايميل',
             'email.email' => 'ادخل الايميل بشكل صحيح',
             'user_pass.required' => 'ادخل كلمة السر',
-            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 3 خانات',
-            'confirm_pass.same' => 'كلمة السرغير متطابقة ',
+            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 8 خانات',
+            'user_pass.max' => 'يجب ام تكون كلمة السر اقل من 20 خانات',
+            'user_pass.regex' => 'يجب ام تكون كلمة السر تحتوي على حروف صغيرة "a=z" وحروف كبيرة "A-Z" وارقام"0-9"ورموز"@$!%*#?&" ',
+            'confirm_pass.same' => 'كلمة السر غير متطابقة ',
 
 
         ]);
@@ -78,13 +114,13 @@ class AuthController extends Controller
             $to_email = $request->email;
             $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
 
-            Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)
-                    ->subject('تسجيل عضوية جديدة');
-                $message->from('kalefnyinfo@gmail.com', 'كلفني');
-            });
-
-
+            // Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
+            //     $message->to($to_email, $to_name)
+            //         ->subject('تسجيل عضوية جديدة');
+            //     $message->from('kalefnyinfo@gmail.com', 'كلفني');
+            // });
+            $u->sendEmailVerificationNotification();
+            // $u->notify(new VerifyEmail);
             // if the user not admin
             if ($role !== 'admin') {
                 // setup the profile
@@ -129,15 +165,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         Validator::validate($request->all(), [
-            'email' => ['email', 'required', 'min:3', 'max:50'],
-            'user_pass' => ['required', 'min:5']
+            'email' => ['email', 'required'],
+            'user_pass' => ['required']
 
 
         ], [
             'email.required' => 'ادخل بريدك الالكتروني',
-            'email.email' => 'ادخل بؤيدك الالكتروني بشكل صحيح',
-            'user_pass.required' => 'اخل كلمة السر',
-            'user_pass.min' => 'يجب ان بكون كلمة السر اكبر من 5 خانات',
+            'email.email' => 'ادخل بريدك الالكتروني بشكل صحيح',
+            'user_pass.required' => 'ادخل كلمة السر',
+
 
 
         ]);
@@ -151,8 +187,7 @@ class AuthController extends Controller
                 // return redirect()->route('home');
             }
         } else {
-            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الاسم والايميل ',  'type' => 'alert-danger']);
-
+            return redirect()->route('login')->with(['message' => 'يرجى التحقق من الايميل وكلمة السر ',  'type' => 'alert-danger']);
         }
     }
     ///////////////// logout function //////////////////
@@ -171,8 +206,54 @@ class AuthController extends Controller
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->save();
             Auth::login($user);
-            return redirect()->route('home')->with(['message' => 'تم تفعيل حسابك بنجاح', 'type' => 'alert-success']);;
+            return redirect()->route('profile')->with(['message' => 'تم تفعيل حسابك بنجاح', 'type' => 'alert-success']);;
         } else
             echo "invalid token";
     }
+    // start change password
+
+    public function changePassword()
+    {
+        return view('admin.change-password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+
+
+        ], [
+            'old_password.required' => 'ادخل كلمة السر القديمة ',
+            'new_password.confirmed' => 'الكلمة ليست متطابقة',
+            'new_password.required' => 'ادخل كلمة السر الجديدة',
+
+
+
+        ]);
+
+
+
+        #Match The Old Password
+  
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "الكلمة القديمة ليست صحيحة!");
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+
+        return back()->with("status", "تم تغيير كلمة السر بنجاح!");
 }
+// end change password
+}
+
+
+

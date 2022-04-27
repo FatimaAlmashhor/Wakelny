@@ -28,10 +28,9 @@
             </li>
         </ul>
         @if (Auth::check())
-            @role('provider')
-                <p>{{ auth()->user()->role }}</p>
-            @endrole
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                 <li class="nav-item ms-3 user-items">
                     <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </li>
@@ -42,35 +41,47 @@
                     <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell"></i></a>
                 </li>
                 <li class="dropdown rtl">
+
                     <img class="img-avatar rounded-circle dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"
                         src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}>
 
                     <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
-                        <li class="">
-                            <a class="dropdown-item color-black" href="{{ route('userProfile', Auth::user()->id) }}">
-                                <i class="fa-solid fa-user ms-1"></i>
-                                <span>{{ Auth::user()->name }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item color-black" href="#">
-                                <i class="fa-solid fa-bookmark ms-1"></i>
-                                <span>{{ __('navigation.favorite') }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item color-black" href="#">
-                                <i class="fa-solid fa-dollar-sign ms-1"></i>
-                                <span>{{ __('navigation.balance') }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item color-black" href="{{ route('profile') }}">
-                                <i class="fa-solid fa-sliders ms-1"></i>
-                                <span>{{ __('navigation.update_settings') }}</span>
-                            </a>
-                        </li>
+                        @if (!Auth::user()->hasRole('admin'))
+                            <li class="">
+                                <a class="dropdown-item color-black"
+                                    href="{{ route('userProfile', Auth::user()->id) }}">
+                                    <i class="fa-solid fa-user ms-1"></i>
+                                    <span>{{ Auth::user()->name }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="#">
+                                    <i class="fa-solid fa-bookmark ms-1"></i>
+                                    <span>{{ __('navigation.favorite') }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="#">
+                                    <i class="fa-solid fa-dollar-sign ms-1"></i>
+                                    <span>{{ __('navigation.balance') }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item color-black" href="{{ route('profile') }}">
+                                    <i class="fa-solid fa-sliders ms-1"></i>
+                                    <span>{{ __('navigation.update_settings') }}</span>
+                                </a>
+                            </li>
+                        @else
+                            <li>
+                                <a class="dropdown-item color-black" href="{{ route('admin') }}">
+                                    <i class="fa-solid fa-sliders ms-1"></i>
+                                    <span>{{ __('navigation.dashboard') }}</span>
+                                </a>
+                            </li>
+                        @endif
+
                         <hr>
                         <li>
                             <a class="dropdown-item color-black" href="{{ route('logout') }}">
