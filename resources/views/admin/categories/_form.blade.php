@@ -33,7 +33,7 @@
                                         <label class="form-label" for="multicol-username">{{ __('dash.category_name') }}</label>
                                         <input value="{{ $data->title ?? old('title') }}" name='title' type="text" id="multicol-username" class="form-control" placeholder="" />
                                         @error('title')
-                                            <span class="text-danger">{{ $message }}</span>              
+                                            <span class="text-danger w-100">{{ $message }}</span>              
                                         @enderror
                                     </div>
                   <div class="col-md-6 ">

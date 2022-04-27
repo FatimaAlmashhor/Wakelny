@@ -10,7 +10,7 @@
              <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="name"
                  value="{{ $d->name }}">
              {{-- @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror --}}
          </div>
          <div class="form-group mb-2">
@@ -18,7 +18,7 @@
              <input type="file" class="form-control rounded-left" placeholder="Enter Your Name" name="avatar"
                  value="{{ $d->avater }}" required="required">
              {{-- @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror --}}
          </div>
          <div class="form-group mb-2">
@@ -26,7 +26,7 @@
              <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="gender"
                  value="{{ $d->gender }}"> --}}
              {{-- @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror --}}
                                     <select class="form-control" name="gender" required="required">
     <option @if( $d->gender==1) selected @endif value="1">male</option>
@@ -39,7 +39,7 @@
              {{-- <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="country"
                  value="{{ $d->country }}"> --}}
              {{-- @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror --}}
                                      <select class="form-control" name="country" required="required">
     <option @if( $d->country=="yem") selected @endif value="yem">yemen</option>
@@ -54,7 +54,7 @@
              <input type="text" class="form-control rounded-left" placeholder="Enter Your Name" name="mobile"
                  value="{{ $d->mobile}}">
              {{-- @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror --}}
          </div>
          <button type="submit" class="wak_btn d-grid w-100">{{ __('login.register') }}
