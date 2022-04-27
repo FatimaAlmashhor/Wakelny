@@ -68,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item color-black" href="{{ route('profile') }}">
+                                <a class="dropdown-item color-black" href="{{ route('profile', Auth::user()->id) }}">
                                     <i class="fa-solid fa-sliders ms-1"></i>
                                     <span>تعديل الحساب</span>
                                 </a>

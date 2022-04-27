@@ -97,7 +97,7 @@ Route::group([
         //    shoud verfid the email
         Route::group(['middleware' =>  'verified'], function () {
             // the authization of the user controllpanalle
-            Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
+            Route::get('/controllPannal/{user_id}', [ControllPannelController::class, 'index'])->name('profile');
 
             Route::post('/profile-update', [ControllPannelController::class, 'profile_save'])->name('profile_save');
             // use profile skills section
