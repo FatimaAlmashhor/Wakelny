@@ -27,25 +27,13 @@ use App\Http\Controllers\client\postController;
 |
 */
 
+Auth::routes(['verify' => true]);
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
 
 
-Route::get('/verify-email', [AuthController::class, 'show'])
-    ->middleware('auth')
-    ->name('verification.notice');
-
-
-Route::post('/verify-email/request', [AuthController::class, 'request'])
-    ->middleware('auth')
-    ->name('verification.request');
-
-
-Route::get('/verify-email/{id}/{hash}', [AuthController::class, 'verify'])
-    ->middleware(['auth', 'signed']) // <-- don't remove "signed"
-    ->name('verification.verify'); // <-- don't change the route name
 // ------------------------------------------------------------------------
 // reset password
 // ------------------------------------------------------------------------
@@ -81,6 +69,7 @@ Route::group([
         Route::get('/post', [postController::class, 'index'])->name('post');
 
     // end post routing
+
 
 
 
@@ -152,8 +141,19 @@ Route::group([
     });
 });
 
-// start change password
-Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-// end change password
+//  start email verify
+Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
+//  end email verify
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Auth::routes();
