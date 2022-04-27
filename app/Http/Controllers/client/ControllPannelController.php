@@ -85,9 +85,10 @@ class ControllPannelController extends Controller
         return view('admin.index');
     }
 
-    public function edit_pro()
+    public function edit_pro($user_id)
     {
-        $current_user_id = Auth::user()->id;
+        // $current_user_id = Auth::user()->id;
+        $current_user_id = $user_id;
         $profile = Profile::where('user_id', $current_user_id)->get();
         //  print_r($profile);
         return view('client.userProfile.editUserProfile')
