@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class UserSeeder extends Seeder
 
         $Fatima = User::create([
             'name' => 'فاطمة المشهور',
-            'email' => 'fatima@gmail.com',
+            'email' => 'fatima.almashhor@gmail.com',
             'password' => Hash::make('Fatima@22?!'),
             'remember_token' => Str::random(60),
         ]);
@@ -36,7 +37,7 @@ class UserSeeder extends Seeder
 
         $Afnan = User::create([
             'name' => 'أفنان القدسي',
-            'email' => 'afnan@gmail.com',
+            'email' => 'afnanalkadasi22@gmail.com',
             'password' => Hash::make('Afnan@22?!'),
             'remember_token' => Str::random(60),
         ]);
@@ -44,7 +45,7 @@ class UserSeeder extends Seeder
 
         $Roqaiah = User::create([
             'name' => 'رقية سيف',
-            'email' => 'roqaiah@gmail.com',
+            'email' => 'ruqaiah.saif@gmail.com',
             'password' => Hash::make('Roqaiah@22?!'),
             'remember_token' => Str::random(60),
         ]);
@@ -52,7 +53,7 @@ class UserSeeder extends Seeder
         
         $Mohammed = User::create([
             'name' => 'محمد الدعيس',
-            'email' => 'mohammed@gmail.com',
+            'email' => 'mohammedaldoais1996@gmail.com',
             'password' => Hash::make('Mohammed@22?!'),
             'remember_token' => Str::random(60),
         ]);
