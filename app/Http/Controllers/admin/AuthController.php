@@ -44,7 +44,7 @@ class AuthController extends Controller
     }
 
 
-    // send notification for the laravel 
+    // send notification for the laravel
     public function request()
     {
         auth()->user()->sendEmailVerificationNotification();
@@ -233,11 +233,11 @@ class AuthController extends Controller
 
 
         ]);
-         
+
 
 
         #Match The Old Password
-   return back()->with("error", "Old Password Doesn't match!");
+  
 
         if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with("error", "الكلمة القديمة ليست صحيحة!");
