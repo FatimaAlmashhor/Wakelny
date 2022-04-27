@@ -16,15 +16,15 @@ class ControllPannelController extends Controller
 {
     //here the defualt function
 
-    function index()
+    function index($user_id)
     {
         // give all the categories
         $categories = category::where('is_active', 1)->get();
 
-        $profile = Profile::where('user_id', Auth::id())->get();
+        $profile = Profile::where('user_id', $user_id)->get();
 
         // give the roles of the user
-        $user = User::find(Auth::id());
+        $user = User::find($user_id);
         $userRole = 'seeker';
         if ($user->hasRole('provider') && $user->hasRole('seeker')) {
             $userRole = 'both';
@@ -85,9 +85,10 @@ class ControllPannelController extends Controller
         return view('admin.index');
     }
 
-    public function edit_pro()
+    public function edit_pro($user_id)
     {
-        $current_user_id = Auth::user()->id;
+        // $current_user_id = Auth::user()->id;
+        $current_user_id = $user_id;
         $profile = Profile::where('user_id', $current_user_id)->get();
         //  print_r($profile);
         return view('client.userProfile.editUserProfile')

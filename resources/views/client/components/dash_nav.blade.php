@@ -29,7 +29,7 @@
         <div class="text-center">
             <a class="text-prof fs-5 fw-bold " href="">{{ auth()->user()->name }}</a>
             <p class="my-2 border-top  mb-3"></p>
-            <a class=" font-sm w-full " href='{{ route('account') }}'>تعديل معلومات الحساب</a>
+            <a class=" font-sm w-full " href="{{ route('account', Auth::user()->id) }}">تعديل معلومات الحساب</a>
         </div>
     </div>
 

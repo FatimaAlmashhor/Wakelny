@@ -44,7 +44,7 @@
 
                     <img class="img-avatar rounded-circle dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"
-                        src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}>
+                        src="{{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}">
 
                     <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
                         @if (!Auth::user()->hasRole('admin'))
@@ -68,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item color-black" href="{{ route('profile') }}">
+                                <a class="dropdown-item color-black" href="{{ route('profile', Auth::user()->id) }}">
                                     <i class="fa-solid fa-sliders ms-1"></i>
                                     <span>تعديل الحساب</span>
                                 </a>

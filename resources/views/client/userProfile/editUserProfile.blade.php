@@ -2,7 +2,7 @@
 @section('content')
     @foreach ($data as $d)
         <!-- My Brief -->
-        <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
+        <form action="{{ route('account_save', Auth::user()->id) }}" method="POST" class="login-form" enctype="multipart/form-data">
             <div class="container-fluid border-bottom px-5 pt-5">
                 <!-- User Identety Brief-->
                 <div class="profile-identity row">
