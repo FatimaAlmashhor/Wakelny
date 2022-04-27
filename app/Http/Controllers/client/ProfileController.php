@@ -94,10 +94,11 @@ class ProfileController extends Controller
 
     function showSkills()
     {
+        $profile = Profile::where('user_id', Auth::id())->first();
         $skills = Skill::where('is_active', 1)->get();
         $myskills = UserSkills::join('skills', 'skills.id', '=', 'user_skills.skill_id')->where('user_id', Auth::id())->get(['skills.name', 'user_skills.skill_id']);
         // $myskills = User::with(['skills'])->where('id', Auth::id())->get();
-        return view('client.userProfile.editSkills')->with(['skills' => $skills, 'myskills' => $myskills]);
+        return view('client.userProfile.editSkills')->with(['item' => $profile, 'skills' => $skills, 'myskills' => $myskills]);
     }
     function saveSkills(Request $request)
     {

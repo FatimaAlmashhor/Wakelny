@@ -108,6 +108,10 @@ a:hover {
   color: var(--main-green-color);
 }
 
+.color-orange {
+  color: var(--main-orange-color);
+}
+
 /* fonts */
 .font-xs {
   font-size: var(--font-xs) !important;
