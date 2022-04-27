@@ -56,7 +56,7 @@ class GoogleController extends Controller
                     'password' => Hash::make($user->getName() . '@' . $user->getId())
                 ]);
                 $saveUser->attachRole('seeker');
-
+                $saveUser->sendEmailVerificationNotification();
                 // 
                 $profile = new Profile();
                 $profile->name = $user->getName();
