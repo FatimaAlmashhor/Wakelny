@@ -18,7 +18,7 @@ class ProfileSeeder extends Seeder
     {
         //
         $Dhoha = Profile::create([
-            'user_id' => 125,
+            'user_id' => 197,
             // 'user_id' => User::all()->random()->id,
             'name' => 'ضحى الخراساني',
             'gender' => 'female',
@@ -27,7 +27,7 @@ class ProfileSeeder extends Seeder
             
             'account_type' => 'provider',
             'job_title' => 'backend developer',
-            'specialization' => '',
+            'specialization' => 'backend developer',
             'bio' => '"إنه قارئ ومفسر ومبدع في آنٍ واحد.. ذلك هو المترجم." بيجاي كومار داس.
 
             مترجمة محترفة على مستوى عالي من الدقة والمهارة. خريجة بكالوريوس لغة انجليزية وترجمة وحاصلة على شهادة التوفل وتدريبات مكثفة في اللغة الانجليزية والترجمة. امتلك من الخبرة مايزيد عن 12 عام في هذا المجال.
@@ -51,7 +51,7 @@ class ProfileSeeder extends Seeder
             تواصل معي عبر الرسائل لمناقشة تفاصيل مشروعك.',
         ]);
         $Fatima = Profile::create([
-            'user_id' => 126,
+            'user_id' => 198,
             // 'user_id' => User::all()->random()->id,
             'name' => 'فاطمة المشهور',
             'gender' => 'female',
@@ -60,7 +60,7 @@ class ProfileSeeder extends Seeder
             
             'account_type' => 'provider',
             'job_title' => 'fullstack developer',
-            'specialization' => '',
+            'specialization' => 'fullstack developer',
             'bio' => '"هداء" مصممة جرافيك .
 
             أمتلك خبرة العديد من السنوات في العمل على برامج التصميم المتنوعة بإتقان وإحترافية.
@@ -90,7 +90,7 @@ class ProfileSeeder extends Seeder
             اشكركم لاهتمامكم وطابت أوقاتكم بالخير ،،',
         ]);
         $Afnan = Profile::create([
-            'user_id' => 127,
+            'user_id' => 199,
             // 'user_id' => User::all()->random()->id,
             'name' => 'أفنان القدسي',
             'gender' => 'female',
@@ -99,7 +99,7 @@ class ProfileSeeder extends Seeder
             
             'account_type' => 'provider',
             'job_title' => 'frontend developer',
-            'specialization' => '',
+            'specialization' => 'frontend developer',
             'bio' => 'خليل النوونو
 
             مصمم جرافيك من سنة 2009
@@ -116,16 +116,15 @@ class ProfileSeeder extends Seeder
             قمت بتفعيل حسابي في موقع مستقل في شهر 10 / 2021',
         ]);
         $Roqaiah = Profile::create([
-            'user_id' => 128,
+            'user_id' => 200,
             // 'user_id' => User::all()->random()->id,
             'name' => 'رقية سيف',
             'gender' => 'female',
             'mobile' => '770695605',
             'country'=> 'Yemen',
-            'rating' => 'frontend developer',
             'account_type' => 'provider',
-            'job_title' => '',
-            'specialization' => '',
+            'job_title' => 'frontend developer',
+            'specialization' => 'frontend developer',
             'bio' => 'مصمم جرافيك
 
             مخرج صحفي
@@ -143,16 +142,15 @@ class ProfileSeeder extends Seeder
             - جودة العمل هي أهم شيء بالنسبة لي ويمكنني دائمًا تقديمها سواء كان المشروع كبيرًا أو صغيرًا.',
         ]);
         $Mohammed = Profile::create([
-            'user_id' => 129,
+            'user_id' => 201,
             // 'user_id' => User::all()->random()->id,
             'name' => 'محمد الدعيس',
             'gender' => 'male',
             'mobile' => '770527144',
             'country'=> 'Yemen',
-            'rating' => 'photoshop designer',
             'account_type' => 'provider',
-            'job_title' => '',
-            'specialization' => '',
+            'job_title' => 'photoshop designer',
+            'specialization' => 'photoshop designer',
             'bio' => 'انا مطور ويب full stack اعمل بلغات html5 ,css3. javascript, jquery, ajax, laravel framework, json, bootstrap
 
             حاصل على بكالريوس نظم معلومات ادارية بتقدير امتياز
@@ -160,7 +158,7 @@ class ProfileSeeder extends Seeder
             حاصل على شهادة معتمدة من مركز يات التعليمى بالمعادى فى مصر',
         ]);
         $Haifa = Profile::create([
-            'user_id' => 130,
+            'user_id' => 202,
             // 'user_id' => User::all()->random()->id,
             'name' => 'هيفاء نبيل',
             'gender' => 'female',
@@ -201,8 +199,9 @@ class ProfileSeeder extends Seeder
             أشكرك على وقتك الثمين، وكن مطمئنًا لأن عملك معي سيفوق توقعاتك.',
         ]);
         $Mokhtar = Profile::create([
-            'user_id' => 131,
+            'user_id' => 203,
             // 'user_id' => User::all()->random()->id,
+            'name' => 'مختار غالب',
             'country'=> 'Yemen',
             
             'account_type' => 'provider',
@@ -231,7 +230,7 @@ class ProfileSeeder extends Seeder
             تحياتي....',
         ]);
         $Haitham = Profile::create([
-            'user_id' => 132,
+            'user_id' => 204,
             // 'user_id' => User::all()->random()->id,
             'name' => 'هيثم أمين',
             'country'=> 'Yemen',
@@ -260,6 +259,6 @@ class ProfileSeeder extends Seeder
             - أصمم أغلفة ( Cover ) لمواقع التواصل الاجتماعي، وكذلك أغلفة للكتب او الكتيبات وتكون جاهزة للطباعة.
             تواصل(ي) معي إذا كان لديك أي استفسار حول عملي وسأكون سعيد بالرد عليك في أقرب وقت ممكن.',
         ]);
-        
+
     }
 }
