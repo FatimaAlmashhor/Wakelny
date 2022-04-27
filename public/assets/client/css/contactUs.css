@@ -24,7 +24,7 @@
 }
 
 .contact-form .first-container {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("https://colorlib.com/etc/cf/ContactFrom_v17/images/bg-01.jpg") center center/cover no-repeat;
+    background: linear-gradient(rgba(43, 45, 66, 0.75), rgba(43, 45, 66, 0.75)), url("https://colorlib.com/etc/cf/ContactFrom_v17/images/bg-01.jpg") center center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
