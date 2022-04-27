@@ -109,7 +109,7 @@
         @elseif (Auth::guest())
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links font-xs" href="{{ route('login') }}">تسجيل الدخول</a>
+                    <a class="nav-link fs-6 nav-links " href="{{ route('login') }}">تسجيل الدخول</a>
                 </li>
             </ul>
         @endif
