@@ -45,7 +45,7 @@
                         </div>
 
                         <div  class=" mx-auto pt-3">
-                            <button class="wak_btn w-full">تغيير</button>
+                            <button class="wak_btn w-full">حفظ</button>
                         </div>
 
                     </form>

@@ -122,10 +122,12 @@
                                             الاعدادات</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
                                             المحفظة</a></li>
+
                                     <li>
                                     <li><a class="dropdown-item" href="{{ route('change-password') }}"><i
                                                 class="icon-mid bi bi-wallet me-2"></i>
                                             تغيير كلمة السر</a></li>
+
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
