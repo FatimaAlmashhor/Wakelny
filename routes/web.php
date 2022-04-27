@@ -57,7 +57,7 @@ Route::group([
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
-    // this is the subsection of howen the freelncers 
+    // this is the subsection of howen the freelncers
     Route::post('/freelancers_filter', [UserController::class, 'filter'])->name('freelancers.filter');
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
@@ -134,4 +134,19 @@ Route::group([
 //  start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
 //  end email verify
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// start change password
+Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
+// end change password
 Auth::routes();
