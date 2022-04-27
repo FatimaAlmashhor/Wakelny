@@ -37,7 +37,6 @@ class CategoriesController extends Controller
         ! please is this mean delete?
          */
         $cat->is_active *= -1;
-       
 
         if ($cat->save())
             if($cat->is_active==-1)
