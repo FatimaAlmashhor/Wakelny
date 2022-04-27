@@ -50,14 +50,14 @@ class AuthController extends Controller
         auth()->user()->sendEmailVerificationNotification();
 
         return back()
-            ->with('success', 'Verification link sent!');
+            ->with(['message' => 'تم ارسال رسال التأكيد ', 'type' => 'alert-success']);
     }
 
     public function verify(EmailVerificationRequest $request)
     {
         $request->fulfill();
 
-        return redirect()->route('profile'); // <-- change this to whatever you want
+        return redirect()->route('profile')->with(['message' => 'تم تأكيد الحساب بنجاح ! انطلق ', 'type' => 'alert-success']);; // <-- change this to whatever you want
     }
 
 
