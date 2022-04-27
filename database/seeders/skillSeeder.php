@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Skill;
-use App\Models\category;
 use Illuminate\Support\Facades\Hash;
 
 class skillSeeder extends Seeder
@@ -23,11 +22,13 @@ class skillSeeder extends Seeder
             $skills = Skill::create([
                 'name' => 'فتشوب',
                 'level' => 'متقدم',
-                'is_active'=> 'مفعل'
+                'is_active'=> 'مفعل',
+
 
             ]);
 
-
+            $skills->attachRole('admin');
+        }
     }
-}
+
 
