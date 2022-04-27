@@ -19,7 +19,7 @@ class ControllPannelController extends Controller
     function index()
     {
         // give all the categories
-        $categories = category::all();
+        $categories = category::where('is_active', 1)->get();
 
         $profile = Profile::where('user_id', Auth::id())->get();
 

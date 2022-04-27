@@ -12,8 +12,17 @@
                         <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
                             {{-- the image --}}
                             <div class="position-relative" style="border-radius: 50%; width:170px;height:170px">
-                                <img src="{{ $d->avatar }}" class="" alt="avatar"
-                                    style=" object-fit: cover;border-radius: 100%; width:100%;height:100%" id='avatar_show'>
+                                @if ($d->avatar !== 'http://localhost:8000/images/' )
+                                    <img src="{{ $d->avatar }}" class="" alt="avatar"
+                                        style=" object-fit: cover;border-radius: 100%; width:100%;height:100%"
+                                        id='avatar_show'>
+                                @else
+                                    <img src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                                        class="" alt="avatar"
+                                        style=" object-fit: cover;border-radius: 100%; width:100%;height:100%"
+                                        id='avatar_show'>
+                                @endif
+
 
                                 {{-- the icon for upload --}}
                                 <div class="position-absolute" style="bottom: 4%;left: 10%;">

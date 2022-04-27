@@ -4,8 +4,14 @@
         <div class="col-12  d-flex justify-content-center align-items-center p-4 ">
             <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
                 style="width: 230px ; height: 230px;">
-                <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
-                    style="width: 100%; height:100%; object-fit: cover">
+                @if ($item->avatar !== 'http://localhost:8000/images/')
+                    <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
+                        style="width: 100%; height:100%; object-fit: cover">
+                @else
+                    <img src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                        class="profile-avatar position-absoulte" style="width: 100%; height:100%; object-fit: cover">
+                @endif
+
             </div>
             {{-- <a role="button" data-bs-toggle="" data-bs-target="" href="/user-account"
                 class="position-absolute bg-white border border-primary rounded d-flex justify-content-center align-items-lg-center rounded-circle"
@@ -30,22 +36,22 @@
     <!-- dashboard nav -->
     <div class="card account p-3 my-4 pt-0 bg-opacity-0">
         <nav class="card px-3 py-4 mt-3 d-flex gap-3">
-            <a href="/profile" id="personal"
+            <a href='{{ route('profile') }}' id="personal" style="cursor: pointer"
                 class="text-prof d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa fa-user pe-2"></i>
                 <span class="fs-6 fw-bold mx-4">{{ __('profile.Personal_Info') }}</span>
             </a>
-            <a href="/skills" id="skill"
+            <a id="skill" href='{{ route('skills') }}'
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa fa-object-group pe-2"></i>
                 <span class="fs-6 fw-bold mx-4">{{ __('profile.skills') }}</span>
             </a>
 
-            <a href="#" id="note"
+            <p style="cursor: pointer" id="note"
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa fa-book pe-2"></i>
                 <span class="fs-6 fw-bold mx-4">{{ __('profile.notifacation') }}</span>
-            </a>
+            </p>
 
 
         </nav>
