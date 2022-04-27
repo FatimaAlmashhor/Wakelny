@@ -121,6 +121,10 @@
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-links " href="{{ route('login') }}">تسجيل الدخول</a>
                 </li>
+
+                <li class="nav-item border">
+                    <a class="nav-link fs-6 nav-links " href="{{ route('create_user') }}">حساب جديد </a>
+                </li>
             </ul>
         @endif
     </div>
