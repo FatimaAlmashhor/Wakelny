@@ -1,9 +1,9 @@
 <?php
 return [
- 
-    "Dashboard" => "لوحة التحكم", 
+
+    "Dashboard" => "لوحة التحكم",
     "pages" => "الصفحات",
-    "Categories" => "الاقسام", 
+    "Categories" => "الاقسام",
     "Skills" => "المهارات",
     "Skill_name" => "اسم المهارة",
     "Skill_level" => "المستوى",
@@ -18,6 +18,5 @@ return [
     "delete" => "حذف",
     "ACTION" => "العمليات",
     "State" => "الحالة",
-    
+    "chang_password" => "تغيير كلمة السر",
 ];
-   

@@ -85,7 +85,11 @@ Route::group([
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
     Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-
+    // start change password
+    Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
+    Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
+    // end change password
+    
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
@@ -145,8 +149,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// start change password
-Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-// end change password
+
 Auth::routes();
