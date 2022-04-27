@@ -21,7 +21,7 @@
 
                                     <form action="{{ route('verification.request') }}" method="post">
                                         @csrf
-                                        <button class='wak_btn' type="submit">Request a new link</button>
+                                        <button class='wak_btn' type="submit">اضفط هنا لاعاده الارسال</button>
                                     </form>
                                 </div>
                             </div>
