@@ -20,8 +20,8 @@
                   
                     <div class="card-content">
                         <!-- table head dark -->
-                        <div class="table" style="overflow: none;padding: 10px 20px;">
-                            <table class="table mb-0 mt-3" style="overflow: none">
+                        <div class="card-body" style="overflow: none;padding: 10px 20px;">
+                            <table class="table mb-0 mt-3 " id="table1" style="overflow: none">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
@@ -31,7 +31,11 @@
                                         <th>{{ __('dash.State') }}</th>
                                         <th>{{ __('dash.ACTION') }}</th>
                                     </tr>
+
                                 </thead>
+                              
+         
+                 
                                 <tbody>
                                     @foreach ($skills as $item)
                                         <tr>
@@ -48,30 +52,30 @@
                                               @endif
                                               </td>
                                             <td>
-                                                {{-- Drop down --}}
-                                                <div class="btn-group dropdown mb-1">
-
-                                                    <a class="fas fa-ellipsis-v" data-bs-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        <span class="sr-only"><i
-                                                                class="fa-regular fa-ellipsis-vertical"></i></span>
-                                                    </a>
-                                                    <div class="dropdown-menu">
-                                                        
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('edit_skill', $item->id) }}">{{ __('dash.edit') }}</a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('toggle_skill', $item->id) }}">{{ __('dash.delete') }}</a>
-                                                    </div>
-                                                </div>
-
+                                            <td>
+                                                <a  href="{{ route('edit_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a>
+                                             
+                                                <a   href="{{ route('toggle_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                    
+                                                        @if($item->is_active == 1) 
+                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+                                                            @else
+                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                        @endif
+                                             
+                                                </a>
                                             </td>
+                                               
                                         </tr>
+                                        
                                     @endforeach
 
                                 </tbody>
                             </table>
                         </div>
+                      
                     </div>
                 </div>
             </div>
