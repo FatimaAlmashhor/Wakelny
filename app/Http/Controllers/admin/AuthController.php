@@ -227,8 +227,10 @@ class AuthController extends Controller
 
 
         #Match The Old Password
-        if (!Hash::check($request->old_password, auth()->user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+   return back()->with("error", "Old Password Doesn't match!");
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "الكلمة القديمة ليست صحيحة!");
         }
 
 
@@ -237,7 +239,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
-    }
-    // end change password
+
+        return back()->with("status", "تم تغيير كلمة السر بنجاح!");
 }
+// end change password
+}
+
+
+
