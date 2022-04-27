@@ -51,7 +51,7 @@
     {{-- alerts --}}
     @if (session()->has('message'))
         <div id='alert' class="px-4 alert position-fixed {{ session()->get('type') }}" role="alert"
-            style="width: fit-content; position: absolute; bottom: 20% ; right: 0px ; z-index: 9999999">
+            style="width: fit-content; position: absolute; top: 20% ; right: 0px ; z-index: 9999999">
 
             {{ session()->get('message') }}
         </div>
