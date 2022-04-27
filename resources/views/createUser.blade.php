@@ -9,15 +9,13 @@
                         <h3 class="text-center mb-4">{{ __('login.create_account') }}</h3>
                         <p style="text-align: center"> {{ __('login.start_joriny') }}!</p>
 
-                        <form action="{{ route('save_user') }}" method="POST"
-                            class="login-form >
+                        <form action="{{ route('save_user') }}" method="POST" class="login-form">
                             @csrf
-                            <div class="
-                            form-group mb-2">
-                            <label for="username" class="form-label">{{ __('login.name') }}</label>
+                            <div class="form-group mb-2">
+                                <label for="username" class="form-label">{{ __('login.name') }}</label>
 
-                            <input type="text" class="form-control rounded-left" placeholder="ادخل اسمك" name="name"
-                                value="{{ old('name') }}">
+                                <input type="text" class="form-control rounded-left" placeholder="ادخل اسمك" name="name"
+                                    value="{{ old('name') }}">
 
                                 @error('name')
                                     <span class="text-danger w-100">{{ $message }}</span>
@@ -40,51 +38,46 @@
                                         aria-describedby="password" name="password" />
 
 
+                                    {{-- @error('user_pass')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror --}}
+                                </div>
+                            </div>
                             @error('user_pass')
-                                <span class="text-danger">{{ $message }}</span>
+                                <div class="text-danger  w-100">{{ $message }}</div>
                             @enderror
-                        </div>
-                    </div>
+                            <div class="mb-3 form-password-toggle">
+                                <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password" />
 
-
-                                    @error('user_pass')
-                                        <span class="text-danger  w-100">{{ $message }}</span>
+                                    @error('confirm_pass')
+                                        <div class="text-danger  w-100">{{ $message }}</div>
                                     @enderror
+                                    {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
                                 </div>
                             </div>
 
-
-                    <div class="mb-3 form-password-toggle">
-                        <label class="form-label" for="password">{{ __('login.cpassword') }}</label>
-                        <div class="input-group input-group-merge">
-                            <input style="height: 38px;" type="password" class="form-control" name="confirm_pass"
-                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                aria-describedby="password" />
-
-                            @error('confirm_pass')
-                                <div class="text-danger  w-100">{{ $message }}</div>
-                            @enderror
-                            {{-- <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> --}}
-                        </div>
-
+                            <button class="wak_btn d-grid w-100">
+                                {{ __('login.register') }}
+                            </button>
+                            {{ csrf_field() }}
+                            <div class="d-flex mt-4  colot-black  w-100 mt-3">
+                                <a href="{{ route('loginWithGoogle') }} " class="text-center wak_btn green_border ">
+                                    {{ __('login.register') }} مع Google
+                                    <i class="fab fa-google fa-fw"></i>
+                                </a>
+                            </div>
+                            <p class="text-center font-sm mt-3">
+                                <span>{{ __('login.have_account') }}</span>
+                                <a href="{{ route('login') }}">
+                                    <span style="color: #0d41fd">تسجيل الدخول</span>
+                                </a>
+                            </p>
+                        </form>
                     </div>
-                    <button class="wak_btn d-grid w-100">
-                        {{ __('login.register') }}
-                    </button>
-                    {{ csrf_field() }}
-                    <div class="d-flex mt-4  colot-black  w-100 mt-3">
-                        <a href="{{ route('loginWithGoogle') }} " class="text-center wak_btn green_border ">
-                            {{ __('login.register') }} مع Google
-                            <i class="fab fa-google fa-fw"></i>
-                        </a>
-                    </div>
-                    <p class="text-center mt-3">
-                        <span>{{ __('login.have_account') }}</span>
-                        <a href="{{ route('login') }}">
-                            <span style="color: #0d41fd">تسجيل الدخول</span>
-                        </a>
-                    </p>
-                    </form>
                 </div>
             </div>
         </div>
