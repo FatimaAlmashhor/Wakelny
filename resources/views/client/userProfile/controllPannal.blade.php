@@ -1,44 +1,45 @@
 @extends('client.master_layout')
 @section('content')
+    @foreach ($data as $item)
+        <main class="container">
+            <!-- top nav start -->
+            <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
+                <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
+                    <ol class="breadcrumb ms-3">
+                        <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> تغيير
+                                إعدادات الحساب </a></li>
+                    </ol>
 
-    <main class="container">
-        <!-- top nav start -->
-        <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
-            <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
-                <ol class="breadcrumb ms-3">
-                    <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
-                    <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> تغيير
-                            إعدادات الحساب </a></li>
-                </ol>
+                </nav>
+            </div>
+            <!-- top nav end -->
 
-            </nav>
-        </div>
-        <!-- top nav end -->
-
-        <!-- side sec -->
-        <div class="row">
-
-
-            <!-- Dashboard Nav Section -->
-
-            @include('client.components.dash_nav')
-
-            <!-- info Section -->
-            <section class="col-lg-8 col-md-8 col-12" id="perso">
-
-                <div class="card shadow-sm ">
+            <!-- side sec -->
+            <div class="row">
 
 
-                    <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-                        <h3 class="fs-5" style="color:rgba(77, 212, 172, 1);">{{ __('profile.Personal_Info') }}
-                        </h3>
-                    </div>
+                <!-- Dashboard Nav Section -->
 
-                    <div class="card-body">
-                        <form action="{{ route('profile_save') }}" method="POST" class="login-form"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @foreach ($data as $item)
+                @include('client.components.dash_nav')
+
+                <!-- info Section -->
+                <section class="col-lg-8 col-md-8 col-12" id="perso">
+
+                    <div class="card shadow-sm ">
+
+
+                        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                            <h3 class="fs-5" style="color:rgba(77, 212, 172, 1);">
+                                {{ __('profile.Personal_Info') }}
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+                            <form action="{{ route('profile_save') }}" method="POST" class="login-form"
+                                enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">{{ __('profile.type') }}</h6>
@@ -92,7 +93,7 @@
                                                 value="{{ $item->specialization }}">
                                         </div>
                                         @error('job_title')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <span class="text-danger w-100">{{ $message }}</span>
                                         @enderror
                                     </div>
 
@@ -104,7 +105,7 @@
                                     <textarea class="form-control" placeholder=" {{ __('profile.person5') }}" id=""
                                         name="bio">{{ $item->bio }}</textarea>
                                     @error('bio')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger w-100">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="block border-top mt-5 w-full"></div>
@@ -116,22 +117,23 @@
                                         value="{{ $item->video }}">
 
                                 </div> @error('video')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
 
+                        </div>
+
+                        <div class="row w-full  ">
+
+                            <button class="wak_btn w-full" type="submit">أحفظ</button>
+
+                        </div>
+
+                        {{ csrf_field() }}
+                        </form>
                     </div>
 
-                    <div class="row w-full  ">
-
-                        <button class="wak_btn w-full" type="submit">أحفظ</button>
-
-                    </div>
-                    @endforeach
-                    {{ csrf_field() }}
-                    </form>
-                </div>
-
-            </section>
-        </div>
-    </main>
+                </section>
+            </div>
+        </main>
+    @endforeach
 @endsection

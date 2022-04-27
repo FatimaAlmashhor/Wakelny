@@ -16,7 +16,7 @@
 
 
                 <li class="sidebar-item active ">
-                    <a href="{{ route('home') }}" class='sidebar-link'>
+                    <a href="{{ route('admin') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span class="mx-4">{{ __('dash.Dashboard') }}</span>
                     </a>

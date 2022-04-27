@@ -18,7 +18,7 @@
                                     placeholder="ادخل البريد الاكتروني الخاص يك" name="email" value="{{ old('email') }}">
 
                                 @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -47,13 +47,13 @@
                                 {{ __('login.register') }} مع Google
                             </button> --}}
 
-                            <p class="text-center mt-3">
+                            <p class="text-center font-sm mt-3">
                                 <span>{{ __('login.reset_password') }}</span>
                                 <a href="/forget-password">
                                     <span style="color: #0d41fd"> نسيت كلمة السر! </span>
                                 </a>
                             </p>
-                            <p class="text-center mt-3">
+                            <p class="text-center font-sm mt-3">
                                 <span>{{ __('login.have_account') }}</span>
 
                                 <a href="{{ route('create_user') }}">

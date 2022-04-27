@@ -55,26 +55,22 @@ class GoogleController extends Controller
                     'remember_token' => $token,
                     'password' => Hash::make($user->getName() . '@' . $user->getId())
                 ]);
-                $saveUser->attachRole($role);
+                $saveUser->attachRole('seeker');
+                $saveUser->sendEmailVerificationNotification();
+                // 
+                $profile = new Profile();
+                $profile->name = $user->getName();
+                $profile->user_id = $saveUser->id;
+                $profile->save();
             } else {
                 $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),
                 ]);
                 $saveUser = User::where('email', $user->getEmail())->first();
-                $role = 'admin';
             }
 
-
-            // if the user not admin
-            if ($role !== 'admin') {
-                // setup the profile
-                $profile = new Profile();
-                $profile->name = $user->name;
-                $profile->user_id = $saveUser->id;
-                $profile->save();
-            }
             Auth::loginUsingId($saveUser->id);
-            if ($role == 'admin')
+            if ($saveUser->hasRole('admin'))
                 return redirect()->route('admin');
             else
                 return redirect()->route('profile');

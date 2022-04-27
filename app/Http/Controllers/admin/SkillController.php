@@ -72,7 +72,10 @@ public function toggle($skill_id){
     $skill=Skill::find($skill_id);
     $skill->is_active*=-1;
     if($skill->save())
-    return back()->with(['message' => 'تم الحذف بنجاح', 'type' => 'alert-success']);
+        if($skill->is_active==-1)
+                return back()->with(['message' => 'تم تعطيل المهارة بنجاح', 'type' => 'alert-success']);
+            else
+                return back()->with(['message' => 'تم تفعيل المهارة بنجاح', 'type' => 'alert-success']);
     return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
 
 }
