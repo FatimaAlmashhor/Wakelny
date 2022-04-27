@@ -52,7 +52,6 @@ class skillSeeder extends Seeder
                 'is_active'=> 'مفعل',
                 'created_at	'=>'2022-04-26 21:26:07',
                 'updated_at'=>'2022-04-26 21:26:04',
-
             ]);
 
             $translate = Skill::create([

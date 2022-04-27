@@ -16,10 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+<<<<<<< HEAD
             RoleSeeder::class,
             AdminSeeder::class,
             skillSeeder::class,
             scategorySeeder::class,
+=======
+            // RoleSeeder::class,
+            AdminSeeder::class,
+            UserSeeder::class,
+            ProfileSeeder::class
+>>>>>>> a780fcf9ec03053858a9c6865b40232067477715
         ]);
     }
 }

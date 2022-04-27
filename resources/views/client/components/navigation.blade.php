@@ -29,54 +29,68 @@
         </ul>
         @if (Auth::check())
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex jusify-content-center align-item-center">
 
-                <li class="nav-item ms-3 user-items">
-                    <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <li class="nav-item ms-2 user-items">
+                    <a class="nav-link color-offwhite fs-5" href="#"><i
+                            class="fa-solid fa-magnifying-glass font-sm"></i></a>
                 </li>
-                <li class="nav-item ms-3 user-items">
-                    <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-comment-dots"></i></a>
+                <li class="nav-item ms-2 user-items">
+                    <a class="nav-link color-offwhite fs-5" href="#"><i
+                            class="fa-solid fa-comment-dots font-sm"></i></a>
                 </li>
-                <li class="nav-item ms-3 user-items">
-                    <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell"></i></a>
+                <li class="nav-item ms-2 user-items">
+                    <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell font-sm"></i></a>
                 </li>
                 <li class="dropdown rtl">
 
-                    <img class="img-avatar rounded-circle dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <div class=" rounded-circle position-relative  dropdown-toggle" aria-expanded="false" type="button"
+                        id="dropdownMenuButton1" style="width: 40px ; height: 40px;" data-bs-toggle="dropdown">
+                        @if ($item->avatar !== 'http://localhost:8000/images/')
+                            <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
+                                style="width: 100%; height:100%; object-fit: cover">
+                        @else
+                            <img src="/assets/client/images/user-profile-2.png"
+                                class="profile-avatar position-absoulte dropdown-toggle"
+                                style="width: 100%; height:100%; object-fit: cover">
+                        @endif
+
+                    </div>
+                    {{-- <img class="img-avatar rounded-circle dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"
-                        src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}>
+                        src={{ $item->avatar ?? '/assets/client/images/user-profile-2.png' }}> --}}
 
                     <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
                         @if (!Auth::user()->hasRole('admin'))
                             <li class="">
                                 <a class="dropdown-item color-black"
                                     href="{{ route('userProfile', Auth::user()->id) }}">
-                                    <i class="fa-solid fa-user ms-1"></i>
+                                    <i class="fa-solid fa-user ms-1 font-xs"></i>
                                     <span>{{ Auth::user()->name }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item color-black" href="#">
-                                    <i class="fa-solid fa-bookmark ms-1"></i>
+                                    <i class="fa-solid fa-bookmark  ms-1 font-xs"></i>
                                     <span>المفضلة</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item color-black" href="#">
-                                    <i class="fa-solid fa-dollar-sign ms-1"></i>
+                                    <i class="fa-solid fa-dollar-sign ms-1 font-xs"></i>
                                     <span>الرصيد</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item color-black" href="{{ route('profile') }}">
-                                    <i class="fa-solid fa-sliders ms-1"></i>
+                                    <i class="fa-solid fa-sliders ms-1 font-xs"></i>
                                     <span>تعديل الحساب</span>
                                 </a>
                             </li>
                         @else
                             <li>
                                 <a class="dropdown-item color-black" href="{{ route('admin') }}">
-                                    <i class="fa-solid fa-sliders ms-1"></i>
+                                    <i class="fa-solid fa-sliders ms-1 font-xs"></i>
                                     <span>لوحه التحكم</span>
                                 </a>
                             </li>
@@ -85,7 +99,7 @@
                         <hr>
                         <li>
                             <a class="dropdown-item color-black" href="{{ route('logout') }}">
-                                <i class="fa-solid fa-arrow-right-from-bracket ms-1"></i>
+                                <i class="fa-solid fa-arrow-right-from-bracket ms-1 font-xs"></i>
                                 <span>تسجيل الخروج</span>
                             </a>
                         </li>
@@ -95,7 +109,7 @@
         @elseif (Auth::guest())
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-6 nav-links" href="{{ route('login') }}">تسجيل الدخول</a>
+                    <a class="nav-link fs-6 nav-links " href="{{ route('login') }}">تسجيل الدخول</a>
                 </li>
             </ul>
         @endif
