@@ -19,7 +19,7 @@ class ControllPannelController extends Controller
     function index()
     {
         // give all the categories
-        $categories = category::all();
+        $categories = category::where('is_active', 1)->get();
 
         $profile = Profile::where('user_id', Auth::id())->get();
 
@@ -125,38 +125,40 @@ class ControllPannelController extends Controller
         //     ]
 
         // );
-          Validator::validate($request->all(),[
-           'name' => 'required|min:10',
-          'gender' => 'required',
-          'country' => 'required',
-          'mobile'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
-          'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        Validator::validate($request->all(), [
+            'name' => 'required|min:10',
+            'gender' => 'required',
+            'country' => 'required',
+            'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
+            'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
 
-      ],[
-          'name.required' => 'ادخل الاسم',
-          'name.min' => 'يجب ان يكون الاسم اكثر من 10 حروف',
-          'gender.required' => ' هذا الحقل مطلوب',
-          'country.required' => 'ادخل الدولة',
-          'avatar.required' => 'اضف صورة',
-          'avatar.image'=>'الصيغة غير صحيحة' ,
-          'avatar.mimes'=>'نوع الصورة يجب ان يكون jpgاوpngاوjpegاوgifاوsvg',
-          'mobile.required'=>'ادخل رقم الهاتف',
-          'mobile.regex'=>' ادخل  صيغة رقم صحيح ',
-           'mobile.min'=>' يجب ان يكون الرقم اكبر 8 ارقام ',
-
-
-      ]);
-        $pro=Profile::where('user_id', $current_user_id)->first();
-         $pro->name=$request->name;
-        $pro->gender=$request->gender;
-        $pro->country=$request->country;
-        $pro->mobile=$request->mobile;
+        ], [
+            'name.required' => 'ادخل الاسم',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 10 حروف',
+            'gender.required' => ' هذا الحقل مطلوب',
+            'country.required' => 'ادخل الدولة',
+            'avatar.required' => 'اظف صورة',
+            'avatar.image' => 'الصيغة غير صحيحة',
+            'avatar.mimes' => 'نوع الصورة يجب ان يكون jpgاوpngاوjpegاوgifاوsvg',
+            'mobile.required' => 'ادخل رقم الهاتف',
+            'mobile.regex' => ' ادخل  صيغة رقم صحيح ',
+            'mobile.min' => ' يجب ان يكون الرقم اكبر 8 ارقام ',
 
 
-        if($request->hasFile('avatar'))
-        $pro->avatar=$this->uploadFile($request->file('avatar'));
-        if($pro->save())
+        ]);
+        $pro = Profile::where('user_id', $current_user_id)->first();
+        $pro->name = $request->name;
+        $pro->gender = $request->gender;
+        $pro->country = $request->country;
+        $pro->mobile = $request->mobile;
 
-        return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
+
+        if ($request->hasFile('avatar'))
+            $pro->avatar = $this->uploadFile($request->file('avatar'));
+        else {
+        }
+        if ($pro->save())
+
+            return redirect()->route('account')->with(['message' => 'تم تعديل بياناتك الشخصيه بنجاح', 'type' => 'alert-success']);
     }
 }

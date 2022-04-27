@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">تغيير كلمة السر</div>
+                    <div class="card-header"><h5 class="text-center">تغيير كلمة السر</h5></div>
 
                     <form action="{{ route('update-password') }}" method="POST">
                         @csrf
