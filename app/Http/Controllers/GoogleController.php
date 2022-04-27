@@ -67,11 +67,10 @@ class GoogleController extends Controller
                     'google_id' => $user->getId(),
                 ]);
                 $saveUser = User::where('email', $user->getEmail())->first();
-                $role = 'admin';
             }
 
             Auth::loginUsingId($saveUser->id);
-            if ($role == 'admin')
+            if ($saveUser->hasRole('admin'))
                 return redirect()->route('admin');
             else
                 return redirect()->route('profile');
