@@ -42,7 +42,7 @@
     left: 0;
     height: 23px;
     width: 23px;
-    background-color: #eee;
+    background-color: rgb(181, 181, 181);
     transition: all 0.3s;
 }
 

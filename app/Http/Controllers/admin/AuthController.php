@@ -13,7 +13,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthController extends Controller
@@ -35,6 +37,36 @@ class AuthController extends Controller
 
 
 
+    // this function show the the verfiy message
+    public function show()
+    {
+        return view('client.user.verify-email');
+    }
+
+
+    // send notification for the laravel 
+    public function request()
+    {
+        auth()->user()->sendEmailVerificationNotification();
+
+        return back()
+            ->with('success', 'Verification link sent!');
+    }
+
+    public function verify(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()->route('profile'); // <-- change this to whatever you want
+    }
+
+
+    // public function handle()
+    // {
+    //     //
+
+    //     event(new Registered($user));
+    // }
     ///////////////// add user //////////////////
     public function register(Request $request)
     {
@@ -82,11 +114,12 @@ class AuthController extends Controller
             $to_email = $request->email;
             $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
 
-            Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)
-                    ->subject('تسجيل عضوية جديدة');
-                $message->from('kalefnyinfo@gmail.com', 'كلفني');
-            });
+            // Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
+            //     $message->to($to_email, $to_name)
+            //         ->subject('تسجيل عضوية جديدة');
+            //     $message->from('kalefnyinfo@gmail.com', 'كلفني');
+            // });
+            $u->sendEmailVerificationNotification();
             // $u->notify(new VerifyEmail);
             // if the user not admin
             if ($role !== 'admin') {
@@ -179,13 +212,13 @@ class AuthController extends Controller
     }
     // start change password
 
- public function changePassword()
-{
-   return view('admin.change-password');
-}
+    public function changePassword()
+    {
+        return view('admin.change-password');
+    }
 
-public function updatePassword(Request $request)
-{
+    public function updatePassword(Request $request)
+    {
         # Validation
         $request->validate([
             'old_password' => 'required',
@@ -194,7 +227,7 @@ public function updatePassword(Request $request)
 
 
         #Match The Old Password
-        if(!Hash::check($request->old_password, auth()->user()->password)){
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->with("error", "Old Password Doesn't match!");
         }
 
@@ -205,9 +238,6 @@ public function updatePassword(Request $request)
         ]);
 
         return back()->with("status", "Password changed successfully!");
+    }
+    // end change password
 }
-// end change password
-}
-
-
-
