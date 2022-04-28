@@ -1,0 +1,163 @@
+@extends('client.master_layout')
+@section('content')
+<style>
+
+
+</style>
+
+<div class=" d-flex flex-column" >
+<h2 class="mt-5 px-4">الأعمال الخاصة بي</h2>
+    <div class=" d-flex flex-row justify-content-between ">
+      
+        <div id="filter_toggle" class="mx-4">
+            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ تصنيف</button>
+        </div>
+
+        <div id="" class="mx-4 mt-2" style="position: absolute;
+    left: .1rem;">
+            <a href="{{ route('userWork') }}" class="wak_btn green_border"  >  أضافة  </a>
+        </div>
+    </div>  
+    <div class=" d-flex my-5">
+
+        {{-- filter --}}
+        <aside class="border-start">
+            <form class="filter" id='filter' method="GET">
+                {{ csrf_field() }}
+                <input name="_token" type="hidden" />
+                <div class="filter_container">
+                    <a href="javascript:void(0)" id='filter_close' class="closebtn" onclick="closeNav()"><i
+                            class="fas fa-times"></i></a>
+                    <div class="container-fluid ">
+                        <div class="row d-flex justify-content-start">
+                            <div class="w-full">
+                                <div class="">
+                                    <article class="filter-group">
+
+                                        <h6 class="title">{{ __('filter.search_keys') }} </h6>
+                                        <div>
+                                            <div class="card-body"  >
+                                                <input type="text" id='search_by_name' name='search_by_keys'
+                                                    class="wak_input" style="border-radius: 5px;" />
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <article class="filter-group">
+
+                                            <h6 class="title my-4">{{ __('filter.skills') }} </h6>
+                                            <div class="my-2  "style="margin:4px 14px;" >
+                                               
+                                                <select class="selectpicker "  value="بالاختيار" name="skills[]" multiple aria-label="size 3 select example"
+                                                    data-actions-box="true">
+                                                    <!-- <option value="" selected="selected"> جميع المهارات</option> -->
+                                                    @foreach ($skills as $item)
+                                                   
+                                                        <option id='skills' value="{{ $item->id }}" >{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                    </article>
+                                    <article class="filter-group">
+
+                                        <h6 class="title my-4">الأعمال المضافة خلال آخر </h6>
+                                        <div class="mt-2  "style="margin:0px 14px;" >
+                                        
+                                            <select class="selectpicker "  value="" name="year"  data-actions-box="true" style="transform: translate3d(-4px, 212px, 0px);">
+                                                <!-- <option value="" selected="selected"> جميع الاعمال</option> -->
+                                                <option value=""  > اسبوع</option>
+                                                <option value="" > شهر </option>
+                                                <option value="" > 3 أشهر </option>
+                                                <option value="" >  6 أشهر</option>
+                                                <option value="" > سنة </option>
+                                            </select>
+                                        </div>
+                                    </article>
+
+                              
+           
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </aside>
+        <main id='works' class="container px-lg-5" style="overflow: hidden;">
+        </p>
+  </header>
+
+
+ 
+  <div class="py-5">
+    
+    <div class="row">
+      <!-- 1 Item-->
+      <div class="col-lg-6 mb-3 mb-lg-0">
+        <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-1-content px-5 py-4">
+            <h3 class="hover-1-title text-uppercase  mb-0"> <span class="font-weight-light">Hot Coffee logo </span></h3>
+            <p class="hover-1-description font-weight-light mb-0">Afnan Alkadasi</p>
+            <div class="col-3 pl-2 pr-0 pt-1 text-left " style="font-size: 10px">
+            24 <span class="fas fa-eye"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  2 Item-->
+      <div class="col-lg-6">
+        <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-1-content px-5 py-4">
+            <h3 class="hover-1-title text-uppercase  mb-0"> <span class="font-weight-light">Healthcare Landing  </span></h3>
+            <p class="hover-1-description font-weight-light mb-0">Roqui Seaf</p>
+            <div class="col-3 pl-2 pr-0 pt-1 text-left " style="font-size: 10px">
+            34 <span class="fas fa-eye"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        </main>
+    </div>
+</div>
+@endsection
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    const toggle = document.getElementById("filter_toggle");
+
+    function openNav() {
+        document.getElementById("filter").style.width = "350px";
+        toggle.style.display = "none";
+    }
+
+    function closeNav() {
+        document.getElementById("filter").style.width = "0";
+        document.getElementById("works").style.marginLeft = "0";
+        toggle.style.display = "block";
+    }
+
+    // for solving the filter closing in the phone stats and then back to desckop
+    function Media(x) {
+        if (x.matches) { // If media query matches
+            document.getElementById("filter").style.width = "350px";
+        }
+    }
+    var x = window.matchMedia("(min-width: 980px)")
+    Media(x) // Call listener function at run time
+    x.addListener(Media) // Attach listener function on state changes
+</script>
+
+<script type="text/javascript" src="/assets/client/js/filterOfProvider.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.combobox').combobox()
+    });
+</script>
+{{-- <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script> --}}

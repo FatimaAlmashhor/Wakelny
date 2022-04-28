@@ -28,6 +28,16 @@
             </li>
         </ul>
         @if (Auth::check())
+            @role('provider')
+                <p>{{ auth()->user()->role }}</p>
+            @endrole
+            <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                        <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
+                </li>
+            </ul>
+        @endif
+        @if (Auth::check())
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex jusify-content-center align-item-center">
 
@@ -44,17 +54,27 @@
                 </li>
                 <li class="dropdown rtl">
 
-                    <div class=" rounded-circle position-relative  dropdown-toggle" aria-expanded="false" type="button"
-                        id="dropdownMenuButton1" style="width: 40px ; height: 40px;" data-bs-toggle="dropdown">
-                        @if ($item->avatar !== 'http://localhost:8000/images/')
-                            <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
-                                style="width: 100%; height:100%; object-fit: cover">
+                    <div class=" mt-2 rounded-circle position-relative  dropdown-toggle" aria-expanded="false"
+                        type="button" id="dropdownMenuButton1" style="width: 32px ; height: 32px;"
+                        data-bs-toggle="dropdown">
+                        {{-- @if (!Auth::user()->hasRole('admin'))
+                            @if ($item->avatar !== 'http://localhost:8000/images/')
+                                <img src="{{ $item->avatar }}" class="profile-avatar position-absoulte"
+                                    style="width: 100%; height:100%; object-fit: cover">
+                            @else
+                                <img src="/assets/client/images/user-profile-2.png"
+                                    class="profile-avatar position-absoulte dropdown-toggle"
+                                    style="width: 100%; height:100%; object-fit: cover">
+                            @endif
                         @else
                             <img src="/assets/client/images/user-profile-2.png"
                                 class="profile-avatar position-absoulte dropdown-toggle"
                                 style="width: 100%; height:100%; object-fit: cover">
-                        @endif
+                        @endif --}}
 
+                        <img src="/assets/client/images/user-profile-2.png"
+                            class="profile-avatar position-absoulte dropdown-toggle"
+                            style="width: 100%; height:100%; object-fit: cover">
                     </div>
                     {{-- <img class="img-avatar rounded-circle dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"
@@ -110,6 +130,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link fs-6 nav-links " href="{{ route('login') }}">تسجيل الدخول</a>
+                </li>
+
+                <li class="nav-item border">
+                    <a class="nav-link fs-6 nav-links " href="{{ route('create_user') }}">حساب جديد </a>
                 </li>
             </ul>
         @endif
