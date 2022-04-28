@@ -15,7 +15,6 @@
             font-size: 15px;
             padding: 5px;
             background-color: white;
-            border: 2px solid rgba(240, 157, 96, 0.49);
         }
 
     </style>
@@ -56,7 +55,7 @@
 
                     <form action="{{ route('editSkills') }}" method="POST">
                         @csrf
-                        <div class="container mx-5 my-4 ">
+                        <div class="container mx-5 my-4 " style="margin-left: 10px;" >
                             <select class="selectpicker" name="skills[]" multiple aria-label="size 3 select example"
                                 data-actions-box="true">
                                 @foreach ($skills as $item)
@@ -66,8 +65,10 @@
                         </div>
 
                         <hr>
-                        <div class="row col-md-8  ">
-                            <button class="wak_btn " type="submit">Save</button>
+                        <div class="row w-full  ">
+
+                           <button class="wak_btn w-full my-4" style="margin-right: 10px;"  type="submit">أحفظ</button>
+
                         </div>
                     </form>
                     <div class="d-flex my-4">

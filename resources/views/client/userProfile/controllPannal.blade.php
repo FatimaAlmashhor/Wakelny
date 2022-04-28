@@ -24,9 +24,9 @@
                 @include('client.components.dash_nav')
 
                 <!-- info Section -->
-                <section class="col-lg-8 col-md-8 col-12" id="perso">
+            <section class="col-lg-8 col-md-8 col-12" id="perso">
 
-                    <div class="card shadow-sm ">
+                <div class="card shadow-sm ">
 
 
                         <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
@@ -35,8 +35,8 @@
                             </h3>
                         </div>
 
-                        <div class="card-body">
-                            <form action="{{ route('profile_save') }}" method="POST" class="login-form"
+                    <div class="card-body">
+                        <form action="{{ route('profile_save') }}" method="POST" class="login-form"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -115,24 +115,22 @@
                                     <label for="" class="col-md-12 col-form-label"> {{ __('profile.person6') }}</label>
                                     <input type="url" class="form-control" id="" name="video"
                                         value="{{ $item->video }}">
-
-                                </div> @error('video')
+                                    @error('video')
                                     <span class="text-danger w-100">{{ $message }}</span>
-                                @enderror
+                                    @enderror
+                                </div> 
 
-                        </div>
+                                <div class="row w-full  ">
 
-                        <div class="row w-full  ">
+                                    <button class="wak_btn w-full my-4 " style="margin-right: 10px;" type="submit">أحفظ</button>
 
-                            <button class="wak_btn w-full" type="submit">أحفظ</button>
-
-                        </div>
+                                </div>
 
                         {{ csrf_field() }}
                         </form>
                     </div>
-
-                </section>
+                </div>
+            </section>
             </div>
         </main>
     @endforeach

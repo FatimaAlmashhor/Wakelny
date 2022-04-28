@@ -28,6 +28,16 @@
             </li>
         </ul>
         @if (Auth::check())
+            @role('provider')
+                <p>{{ auth()->user()->role }}</p>
+            @endrole
+            <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                        <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
+                </li>
+            </ul>
+        @endif
+        @if (Auth::check())
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex jusify-content-center align-item-center">
 

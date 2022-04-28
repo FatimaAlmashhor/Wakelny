@@ -14,6 +14,8 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\client\postController;
+use App\Http\Controllers\client\WorksController;
+
 
 /*
 
@@ -81,6 +83,12 @@ Route::group([
         Route::get('/post', [postController::class, 'index'])->name('post');
 
     // end post routing
+
+    // this is the page of the my_works
+    Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
+    Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
+    // this is the subsection of howen the my_works 
+    // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
 
 
