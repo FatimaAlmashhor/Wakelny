@@ -38,6 +38,8 @@ class PostController extends Controller
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
         $comments =  Comments::select(
             'profiles.name',
+            'profiles.specialization',
+            'profiles.rating',
             'profiles.user_id',
             'comments.duration',
             'comments.cost',
