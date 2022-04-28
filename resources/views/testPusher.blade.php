@@ -79,7 +79,8 @@
         // Pusher.logToConsole = true;
 
         var pusher = new Pusher('f057611248050c852fc4', {
-            encrypted: true
+            encrypted: true,
+            cluster: 'ap2'
         });
 
         // Subscribe to the channel we specified in our Laravel Event
