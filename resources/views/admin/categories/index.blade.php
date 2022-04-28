@@ -41,7 +41,7 @@
                                               @if($item->is_active == 1) 
                                               <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                               @else
-                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">غير مفعل</span>
+                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;"> معطل</span>
                                               @endif
                                               </td>
                                              
@@ -53,9 +53,9 @@
                                                 <a  href="{{ route('toggle_category', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
                                                     
                                                         @if($item->is_active == 1) 
-                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+                                                            <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
                                                             @else
-                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
                                                         @endif
                                              
                                                 </a>
