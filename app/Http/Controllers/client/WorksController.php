@@ -20,6 +20,11 @@ class WorksController extends Controller
 
         $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL);
 
+        /**
+         * ! why the model in the small?
+         */
+       
+
         $skill = Skill::where('is_active', 1)->get();
 
 
