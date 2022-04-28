@@ -189,3 +189,9 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+
+Route::view('/pusher', 'testPusher')->name('pusher');
+Route::get('test', function () {
+	event(new App\Events\StatusLiked('Someone'));
+	return "Event has been sent!";
+});
