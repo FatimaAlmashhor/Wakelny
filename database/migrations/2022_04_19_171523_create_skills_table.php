@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('level');
             $table->boolean('is_active')->default('1');
             $table->timestamps();
         });

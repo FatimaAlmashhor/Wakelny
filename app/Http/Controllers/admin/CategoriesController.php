@@ -14,7 +14,7 @@ class CategoriesController extends Controller
         /**
          * !should this show only the item that are active?
          */
-        $categories = category::orderBy('id', 'desc')->get();
+        $categories = category::get();
         return view('admin.categories.index')
             ->with('categories', $categories);
     }

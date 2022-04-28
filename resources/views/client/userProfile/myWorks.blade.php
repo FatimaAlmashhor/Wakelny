@@ -1,12 +1,19 @@
 @extends('client.master_layout')
 @section('content')
-<style>
 
+<div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
+                <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
+                    <ol class="breadcrumb ms-3">
+                        <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> 
+                                </a></li>
+                    </ol>
 
-</style>
+                </nav>
+</div>
 
 <div class=" d-flex flex-column" >
-<h2 class="mt-5 px-4">الأعمال الخاصة بي</h2>
+<h2 class=" px-4">الأعمال الخاصة بي</h2>
     <div class=" d-flex flex-row justify-content-between ">
       
         <div id="filter_toggle" class="mx-4">
@@ -43,7 +50,7 @@
                                         </div>
                                     </article>
 
-                                    <article class="filter-group">
+                                    <article class="filter-group ">
 
                                             <h6 class="title my-4">{{ __('filter.skills') }} </h6>
                                             <div class="my-2  "style="margin:4px 14px;" >
@@ -95,7 +102,10 @@
     <div class="row">
       <!-- 1 Item-->
       <div class="col-lg-6 mb-3 mb-lg-0">
+
         <a href="{{ route('detailsWork') }}" >
+
+
         <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
           <div class="hover-overlay"></div>
           <div class="hover-1-content px-5 py-4">
@@ -106,10 +116,12 @@
             </div>
           </div>
         </div>
+        </a>
       </div>
       </a>
       <!--  2 Item-->
       <div class="col-lg-6">
+      <a  href="{{ route('detailsWork') }}">
         <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
           <div class="hover-overlay"></div>
           <div class="hover-1-content px-5 py-4">
@@ -120,10 +132,13 @@
             </div>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </div>
 
+
+    
         </main>
     </div>
 </div>

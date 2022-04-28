@@ -22,8 +22,8 @@
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                     <ol class="breadcrumb ms-3">
                         <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>&nbsp&nbsp/&nbsp
-                        <li class=" fs-6 fw-bold">  تفاصيل العمل &nbsp&nbsp /</li>
-                        <li class=" active fs-6 fw-bold" aria-current="page"> 
+                        <li class=" active fs-6 fw-bold" aria-current="page">                         <li class=" fs-6 fw-bold">  تفاصيل العمل &nbsp&nbsp /</li>
+
                               &nbsp  Hot Coffee logo  </li>
                     </ol>
 

@@ -18,7 +18,16 @@
         width:675px; 
 }
 </style>
+<div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
+                <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
+                    <ol class="breadcrumb ms-3">
+                        <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> 
+                               أضافة عمل جديد </a></li>
+                    </ol>
 
+                </nav>
+</div>
     <div class="container">
         <h3 class="my-5"> إضافة عمل جديد</h3>
         <div class="row my-5">
@@ -105,7 +114,7 @@
                                 
                             </div>
                             <div class="row ">
-                                <div class="col-md-6">
+                                <div class="col-md-6 my-2">
                                     <label for="" class="col-md-6 col-form-label"  style="" >
                                     {{ __('filter.skills') }}</label>
                                         <select class="selectpicker col-md-6 " value="بالاختيار" name="skills[]" multiple aria-label="size 2 select example"
