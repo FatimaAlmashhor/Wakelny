@@ -32,9 +32,15 @@ class WorksController extends Controller
     public function create()
     {
         $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL);
-        
+
         $skill = Skill::get();
 
         return view('client.userProfile.userWork')->with(['data' => $providers, 'skills' => $skill]);
     }
+    public function showDetails()
+    {
+
+        return view('client.userProfile.detailsWork');
+    }
+    
 }

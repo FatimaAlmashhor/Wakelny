@@ -43,6 +43,22 @@
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
+                        <span class="mx-4">{{ __('dash.specialization') }}</span>
+                    </a>
+
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('list_specialization') }}"
+                                class="mx-2">{{ __('dash.show_all') }}</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('add_specialization') }}" class="mx-2">{{ __('dash.add') }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
                         <span class="mx-4">{{ __('dash.Skills') }}</span>
                     </a>
 
