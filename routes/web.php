@@ -79,10 +79,7 @@ Route::group([
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
     Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
-    //  start post routing
-        Route::get('/post', [postController::class, 'index'])->name('post');
 
-    // end post routing
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
@@ -134,6 +131,12 @@ Route::group([
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+
+            //  start post routing
+            Route::get('/post', [postController::class, 'index'])->name('post');
+            Route::post('/post/save', [postController::class, 'save'])->name('savePost');
+
+            // end post routing
         });
     });
     // ------------------------------------------------------------------------
@@ -164,4 +167,3 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
-
