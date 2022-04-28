@@ -33,7 +33,7 @@
                             <!-- Name input -->
                             <div>
                                 <label class="form-label" for="name">عنوان المشروع</label>
-                                <input class="form-control" name='title' id="name" value="{{ old('name') }}" type="text"
+                                <input class="form-control" name='title' id="name" value="{{ old('title') }}" type="text"
                                     data-sb-validations="required" required />
                                 <p class="text-muted font-xs">أدرج عنوانا موجزا يصف مشروعك بشكل دقيق.</p>
                                 @error('title')
@@ -49,8 +49,8 @@
                                 <div class="form-group  ">
                                     <label> القسم <em class="text--danger">*</em>
                                     </label>
-                                    <select class="form-select" value="{{ old('category') }}"
-                                        aria-label="Default select example" name="category" required="required">
+                                    <select class="form-select" aria-label="Default select example" name="category"
+                                        value="{{ old('category') }}" required="required">
                                         @foreach ($categories as $cate)
                                             <option value="{{ $cate->id }}">{{ $cate->title }}</option>
                                         @endforeach
@@ -70,8 +70,8 @@
                             <div class="col-12">
                                 <label for="" class="col-md-6 col-form-label" style="">
                                     {{ __('filter.skills') }}</label>
-                                <select class="selectpicker col-12 w-full " value="{{ old('skills') }}" name="skills[]"
-                                    multiple style="width: 100% ; border:1px solid gray ;border-radius: 5px"
+                                <select class="selectpicker col-12 w-full " name="skills[]" multiple
+                                    style="width: 100% ; border:1px solid gray ;border-radius: 5px"
                                     aria-label="size 2 select example" data-actions-box="true">
                                     @foreach ($skills as $item)
                                         <option id='skills' value="{{ $item->id }}" autocomplete="off">
@@ -86,8 +86,8 @@
                             <!-- Message input -->
                             <div>
                                 <label class="form-label" for="message">تفاصيل المشروع</label>
-                                <textarea class="form-control" name='message' value="{{ old('message') }}" id="message" type="text"
-                                    style="height: 10rem;" data-sb-validations="required" required></textarea>
+                                <textarea class="form-control" name='message' id="message" type="text" style="height: 10rem;"
+                                    data-sb-validations="required" required>{{ old('message') }}</textarea>
                                 <p class="text-muted font-xs">أدخل وصفاً مفصلاً لمشروعك وأرفق أمثلة لما تريد ان
                                     أمكن.
                                 </p>
@@ -104,21 +104,20 @@
                                 <div class="form-group  ">
                                     <label>الميزانية المتوقعة <em class="text--danger">*</em>
                                     </label>
-                                    <select class="form-select" value="{{ old('cost') }}"
-                                        aria-label="Default select example" name="cost" required="required">
-                                        <option> </option>
-                                        <option>50-25 دولار </option>
-                                        <option>100-50 دولار </option>
-                                        <option>250-100 دولار </option>
-                                        <option>500-250 دولار </option>
-                                        <option>1000-500 دولار </option>
-                                        <option>2500-1000 دولار </option>
-                                        <option>5000-2500 دولار </option>
-                                        <option>10000-5000 دولار </option>
+                                    <select class="form-select" aria-label="Default select example" name="cost"
+                                        value="{{ old('cost') }}" required="required">
+                                        <option value="0-25"> 0 -15 دولار</option>
+                                        <option value="50-25">50-25 دولار </option>
+                                        <option value="100-50">50-100 دولار </option>
+                                        <option value="250-100">250-100 دولار </option>
+                                        <option value="500-250">500-250 دولار </option>
+                                        <option value="1000-500">1000-500 دولار </option>
+                                        <option value="2500-5000">2500-5000 دولار </option>
+                                        <option value="5000-10000">5000-10000 دولار </option>
 
 
                                     </select>
-                                    <p class="text-muted font-xs">اختر ميزانية مناسبة لتحصل على عروض جيدة
+                                    <p class="text-muted font-xs">اختر ميزانية مناسبة لتحصل على عروض جيدة</p>
                                 </div>
                                 @error('cost')
                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
