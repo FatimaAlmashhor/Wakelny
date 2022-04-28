@@ -106,6 +106,7 @@ class ControllPannelController extends Controller
 
         return $filename;
     }
+    
     public function account_save(Request $request)
     {
 

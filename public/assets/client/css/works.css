@@ -1,51 +1,56 @@
 .bootstrap-select>.dropdown-toggle.bs-placeholder,
- .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
- .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
- .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
- [type=button]:not(:disabled), 
- [type=reset]:not(:disabled),
- .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled),
-  .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled) { 
-    color: black;
-    width: 300px;
-    height: 40px;
-    font-size: 15px;
-    padding: 5px;
-  
-   background-color:white;
-    border: 2px solid black;
-   
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
+/* [type=button]:not(:disabled),
+[type=reset]:not(:disabled), */
+.bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled),
+.bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled) {
+  color: black;
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  padding: 5px;
+
+  background-color: white;
+  border: 2px solid black;
+
 }
-    .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
-    overflow: hidden;
-    text-align: right;
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+  overflow: hidden;
+  text-align: right;
 }
 
 .dropdown-menu.show {
-    display: block;
-    text-align: right;
-   
+  display: block;
+  text-align: right;
+
 }
-.dropdown-item.active, .dropdown-item:active {
-    color: #fff;
-    text-decoration: none;
-    background-color: rgba(77, 212, 172, 1);
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: rgba(77, 212, 172, 1);
 }
+
 .bootstrap-select .bs-ok-default:after {
-    content: '';
-    display: block;
-    width: 0.5em;
-    height: 1em;
-    border-style: solid;
-    border-width: 0 0.26em 0.26em 0;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    color:  rgba(77, 212, 172, 1);
+  content: '';
+  display: block;
+  width: 0.5em;
+  height: 1em;
+  border-style: solid;
+  border-width: 0 0.26em 0.26em 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  color: rgba(77, 212, 172, 1);
 }
+
 .hover {
   overflow: hidden;
   position: relative;
@@ -119,5 +124,3 @@
 .hover-1:hover .hover-overlay {
   opacity: 0;
 }
-
-

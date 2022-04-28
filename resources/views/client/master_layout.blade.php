@@ -37,7 +37,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
 
     {{--  --}}
-    <title>Wakelny</title>
+    <title>Kallefiny</title>
 
 
 
