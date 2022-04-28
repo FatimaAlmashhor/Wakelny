@@ -10,10 +10,12 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\client\CommentController;
+use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\client\postController;
+use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
 
 
@@ -77,8 +79,10 @@ Route::group([
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
-    Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
+
+    Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
+    Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
 
 
     // this is the page of the my_works
@@ -132,11 +136,20 @@ Route::group([
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
 
-            //  start post routing
-            Route::get('/post', [postController::class, 'index'])->name('post');
-            Route::post('/post/save', [postController::class, 'save'])->name('savePost');
+            //--------  start post form routing
 
-            // end post routing
+            // this route for the show the post form
+            Route::get('/post', [PostController::class, 'index'])->name('post');
+
+            // this route for save new post
+            Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
+
+            // --------end post routing
+
+            //--------- start comment
+            // this route for save new comment 
+            Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
+            //--------  end comment
         });
     });
     // ------------------------------------------------------------------------

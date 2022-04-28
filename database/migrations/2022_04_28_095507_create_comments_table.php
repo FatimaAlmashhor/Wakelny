@@ -13,22 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->string('cost');
             $table->integer('duration');
+            $table->float('cost');
+            $table->float('cost_after_taxs');
+            $table->text('description');
+            $table->boolean('is_active')->default(1);
             $table->string('file')->nullable();
-            $table->string('status')->nullable(); // here if its publish or drif
-            $table->integer('offers')->default(0); // how many people offer
-
-            // not sure if its within category
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

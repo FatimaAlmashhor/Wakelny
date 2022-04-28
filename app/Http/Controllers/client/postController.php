@@ -4,16 +4,53 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use App\Models\Comments;
 use App\Models\PostModel;
 use App\Models\Posts;
 use App\Models\PostSkills;
 use App\Models\Skill;
 use Dotenv\Validator;
+use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class postController extends Controller
+class PostController extends Controller
 {
+    // this page show the list of the posts
+    public function showAll()
+    {
+        $projects =  Posts::select(
+            'posts.id',
+            'posts.title',
+            'posts.offers',
+            'posts.description',
+            'profiles.name'
+        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->get();
+
+        // return response()->json($projects);
+        return view('client.user.projectlancer')->with('posts', $projects);
+    }
+
+
+    // this route show one page
+    public function showOne($post_id)
+    {
+        $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
+        $comments =  Comments::select(
+            'profiles.name',
+            'profiles.specialization',
+            'profiles.rating',
+            'profiles.user_id',
+            'comments.duration',
+            'comments.cost',
+            'comments.description',
+        )
+            ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
+            ->where('post_id', $post_id)->get();
+        // return response()->json($comments);
+        return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id]);
+    }
+    // page for show the form of create new post
     public function index()
     {
         $skill = Skill::where('is_active', 1)->get();
@@ -28,7 +65,7 @@ class postController extends Controller
                 'title' => ['required', 'min:15'],
                 'category' => ['required'],
                 'cost' => ['required'],
-                'description' => ['required', 'min:100'],
+                'message' => ['required', 'min:100'],
                 'duration' => ['required', 'numeric'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
@@ -36,10 +73,10 @@ class postController extends Controller
                 'title.max' => 'يجب ان يحتوي العنوان على 35 حرف على الاكثر',
                 'category.required' => 'رجاء ادخل القسم ',
                 'cost.required' => 'رجاء قم بأدخال التكلفه لهذا المشروع',
-                'description.required' => 'اضف وصف للمشروع',
-                'description.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
+                'message.required' => 'اضف وصف للمشروع',
+                'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
                 'duration.required' => 'حقل المده مطلوب',
-                'duration.number' => 'يجب ان يكون حق المده من نوع رقمي',
+                'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
 
             ]);
 
@@ -70,6 +107,7 @@ class postController extends Controller
                             PostSkills::insert(['skill_id' => $value, 'post_id' =>  $post->id]);
                         }
                     }
+
                 return redirect()->route('profile')
                     ->with(['message' => 'تم اضافة مشروع جديدة بنجاح', 'type' => 'alert-success']);
             } else
