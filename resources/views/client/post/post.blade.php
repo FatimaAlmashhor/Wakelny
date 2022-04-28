@@ -152,17 +152,26 @@
                             </div>
                             <div class="mb-1">
                                 <label class="form-label" for="message">ملفات توضيحية</label>
-                                <input class="form-control" id="message" name='files' type="file"
+                                <input class="form-control" id="dropzone" multiple name='files' type="file"
                                     value="{{ old('files') }}" data-sb-validations="required">
 
 
                             </div>
-
-                            <!-- Form submit button -->
                             <div>
-                                <button class="wak_btn " type="submit">انشر الان
+                                <button class="wak_btn w-full" type="submit">انشر الان
                                 </button>
-
+                            </div>
+                            <!-- Form submit button -->
+                            {{-- <div class="row">
+                                <div class="col-md-8">
+                                    <button class="wak_btn " type="submit">انشر الان
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="wak_btn " type="submit"> حفظ كمسوده
+                                    </button>
+                                </div>
+                            </div> --}}
                         </form>
                     </div>
                 </div>
