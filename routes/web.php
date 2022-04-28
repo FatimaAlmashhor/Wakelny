@@ -11,10 +11,12 @@ use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\client\CommentController;
+use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\client\postController;
+use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
 
 
@@ -78,12 +80,11 @@ Route::group([
 
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
-    Route::view('/projectlancer', 'client.user.projectlancer')->name('projectlancer');
 
-    //  start post routing
-        Route::get('/post', [postController::class, 'index'])->name('post');
 
-    // end post routing
+    Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
+    Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
+
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
@@ -135,6 +136,21 @@ Route::group([
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
+
+            //--------  start post form routing
+
+            // this route for the show the post form
+            Route::get('/post', [PostController::class, 'index'])->name('post');
+
+            // this route for save new post
+            Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
+
+            // --------end post routing
+
+            //--------- start comment
+            // this route for save new comment 
+            Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
+            //--------  end comment
         });
     });
     // ------------------------------------------------------------------------
@@ -173,4 +189,3 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
-

@@ -20,11 +20,7 @@ class WorksController extends Controller
 
         $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL);
 
-        /**
-         * ! why the model in the small?
-         */
-       
-        $skill = Skill::get();
+        $skill = Skill::where('is_active', 1)->get();
 
 
         return view('client.userProfile.myWorks')->with(['data' => $providers, 'skills' => $skill]);
@@ -33,7 +29,7 @@ class WorksController extends Controller
     {
         $providers = User::getProviders('', GlobalConstants::ALL, GlobalConstants::ALL);
 
-        $skill = Skill::get();
+        $skill = Skill::where('is_active', 1)->get();
 
         return view('client.userProfile.userWork')->with(['data' => $providers, 'skills' => $skill]);
     }
@@ -44,3 +40,4 @@ class WorksController extends Controller
     }
     
 }
+

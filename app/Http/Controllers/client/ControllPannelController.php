@@ -106,6 +106,7 @@ class ControllPannelController extends Controller
 
         return $filename;
     }
+    
     public function account_save(Request $request)
     {
 
@@ -126,7 +127,7 @@ class ControllPannelController extends Controller
 
         // );
         Validator::validate($request->all(), [
-            'name' => 'required|min:10',
+            'name' => 'required|min:8',
             'gender' => 'required',
             'country' => 'required',
             'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
@@ -134,7 +135,7 @@ class ControllPannelController extends Controller
 
         ], [
             'name.required' => 'ادخل الاسم',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 10 حروف',
+            'name.min' => 'يجب ان يكون الاسم اكثر من 8حروف',
             'gender.required' => ' هذا الحقل مطلوب',
             'country.required' => 'ادخل الدولة',
             'avatar.required' => 'اظف صورة',

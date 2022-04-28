@@ -120,11 +120,11 @@
                                         </label>
                                         <select class="form-select" aria-label="Default select example" name="country"
                                             required="required">
-                                            <option @if ($d->country == 'yem') selected @endif value="yem">اليمن
+                                            <option @if ($d->country == 'Yemen') selected @endif value="yem">اليمن
                                             </option>
                                             <option @if ($d->country == 'ksa') selected @endif value="ksa">السعودية
                                             </option>
-                                            <option @if ($d->country == 'egy') selected @endif value="egy">مصر
+                                            <option @if ($d->country == 'Egypt') selected @endif value="egy">مصر
                                             </option>
                                             <option @if ($d->country == 'UAE') selected @endif value="UAE">الامارات
                                             </option>
