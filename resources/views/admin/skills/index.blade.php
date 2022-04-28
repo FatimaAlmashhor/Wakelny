@@ -27,7 +27,6 @@
                                         <th>#</th>
                                       
                                         <th>{{ __('dash.Skill_name') }}</th>
-                                        <th>{{ __('dash.Skill_level') }}</th>
                                         <th>{{ __('dash.State') }}</th>
                                         <th>{{ __('dash.ACTION') }}</th>
                                     </tr>
@@ -43,15 +42,14 @@
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                     
                                             <td class="text-bold-500">{{ $item->name }}</td>
-                                            <td class="text-bold-500">{{ $item->level }}</td>
                                             <td>
                                               @if($item->is_active == 1) 
                                               <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                               @else
-                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">غير مفعل</span>
+                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">معطل</span>
                                               @endif
                                               </td>
-                                            <td>
+                                            
                                             <td>
                                                 <a  href="{{ route('edit_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
                                                      <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
@@ -60,9 +58,9 @@
                                                 <a   href="{{ route('toggle_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
                                                     
                                                         @if($item->is_active == 1) 
-                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
                                                             @else
-                                                            <i class="fas fa-trash-alt bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
                                                         @endif
                                              
                                                 </a>
