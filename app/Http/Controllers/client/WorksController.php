@@ -24,6 +24,7 @@ class WorksController extends Controller
          * ! why the model in the small?
          */
        
+
         $skill = Skill::where('is_active', 1)->get();
 
 
@@ -44,3 +45,4 @@ class WorksController extends Controller
     }
     
 }
+

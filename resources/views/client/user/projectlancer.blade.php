@@ -157,64 +157,8 @@
                 </div>
             </div>
         </aside>
-        <main id='freelancers' class="container px-lg-5">
-            {{-- one card --}}
-            <div class="card px-3 container my-4" style="direction: rtl;">
-                <div class="box d-flex justify-content-between">
-                    <div class="image d-flex">
-                        <p style="font-size: 18px;"> تعديل موقع الكتروني برمجة خاص,</p>
-
-                    </div>
-                    <div class="card--actions hidden-xs">
-                        <div class="dropdown btn-group">
-
-                            <a tabindex="-1" class="wak_btn" href="#">
-                                {{-- <i class="fa fa-fw fa-send"></i> --}}
-                                <span class="action-text"> أضف عرضك </span>
-                            </a>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="info mx-0">
-
-
-                    <div class="rate">
-                        <ul class="project__meta list-meta-items d-flex justify-content-start-flex margin-right: -23px;">
-
-
-                            <li class="text-muted font-sm color-gray-dark">
-                                <i class="fa fa-fw fa-user"></i> أحمد ا.
-                            </li>
-                            <li class="text-muted font-sm color-gray-dark px-3">
-                                <time datetime="2022-04-23 12:21:47" title="" itemprop="datePublished" data-toggle="tooltip"
-                                    data-original-title="2022-04-23 12:21:47">
-                                    <i class="fa fa-clock-o"></i> منذ
-                                    دقيقتين
-                                </time>
-                            </li>
-
-                            <li class="text-muted font-sm color-gray-dark">
-                                <i class="fa fa-fw fa-ticket"></i>
-                                أضف أول عرض
-                            </li>
-
-                        </ul>
-                    </div>
-
-                </div>
-
-                <p class="font-sm mt-0">مرحبا بك أعمل كمصمم حر، ولي خبرة في تصميم الشعارات والتصاميم الإعلانية الخاصة
-                    بالمواقع والواجهات وعلى
-                    مواقع التواصل الأجتماعي , الواجهة البصرية هي أقوى طريقة للفت انتباه العملاء ، لذا الحصول على تصميم جذاب
-                    يضمن لك فرصة قوية بلفت النظر لمنتجك .</p>
-
-            </div>
-
-
+        <main id='posts' class="container px-lg-5">
+            @include('client.components.posts_data')
         </main>
 
     </div>
