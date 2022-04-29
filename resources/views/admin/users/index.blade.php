@@ -19,7 +19,7 @@
                 <div class="card">
 
                     <div class="card-content">
-                        <!-- table head dark -->
+                        <!-- table head dark --->
                         <div class="card-body" style="overflow: none;padding: 10px 20px;">
                             <table class="table mb-0 mt-3 " id="table1" style="overflow: none">
                                 <thead class="thead-dark">
@@ -58,7 +58,7 @@
 
 
 
-                                </tbody> 
+                                </tbody>
                             </table>
                         </div>
 
