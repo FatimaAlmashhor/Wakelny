@@ -18,6 +18,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+use App\Http\Controllers\admin\settingUserController;
+
 
 
 /*
@@ -91,7 +93,7 @@ Route::group([
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
     Route::get('/detailsWork', [WorksController::class, 'showDetails'])->name('detailsWork');
 
-    // this is the subsection of howen the my_works 
+    // this is the subsection of howen the my_works
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
 
@@ -148,7 +150,7 @@ Route::group([
             // --------end post routing
 
             //--------- start comment
-            // this route for save new comment 
+            // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
             //--------  end comment
         });
@@ -195,3 +197,7 @@ Route::get('test', function () {
 	event(new App\Events\StatusLiked('Someone'));
 	return "Event has been sent!";
 });
+
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+//end active & block users
