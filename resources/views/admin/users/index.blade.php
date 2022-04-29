@@ -12,7 +12,7 @@
         <h3>{{ __('dash.all_users') }}</h3>
     </div>
 
-    <!-- Table head options start -->
+    <!-- Table head options start-->
     <section class="section">
         <div class="row" id="table-head">
             <div class="col-12">
