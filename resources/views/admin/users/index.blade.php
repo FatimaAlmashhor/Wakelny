@@ -45,7 +45,15 @@
 
                                             <td class="text-bold-500">{{ $item->name }}</td>
                                             <td class="text-bold-500">{{ $item->email }}</td>
-                                            <td class="text-bold-500">{{ $item->isban }}</td>
+                                            <td >
+                                            @if( $item->isban=='0')
+                                            <label class="py-2 px- badge btn-primary">مفعل </label>
+                                            @elseif($item->isban=='1')
+                                            <label class="py-2 px- badge btn-danger">حظر </label>
+                                            @endif
+
+
+                                            </td>
                                             <td>
                                               @if($item->is_active == 1)
                                               <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>

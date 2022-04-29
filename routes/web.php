@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\settingUserController;
 
 
 
+
 /*
 
 |--------------------------------------------------------------------------
@@ -186,6 +187,14 @@ Route::group([
           Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
           Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
     });
+});
+
+ // ------------------------------------------------------------------------
+    // Admin Block unBlock Uers
+    // ------------------------------------------------------------------------
+Route::group(['middleware' =>  ['auth','isUser']], function () {
+    // the authization of the user controllpanalle
+    Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 });
 
 // start change password
