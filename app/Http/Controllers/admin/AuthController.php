@@ -24,7 +24,6 @@ class AuthController extends Controller
     public function listAll()
     {
         $users = User::where('is_active', 1)
-            ->orderBy('id', 'desc')
             ->get();
         return view('admin.users')->with('users', $users);
     }

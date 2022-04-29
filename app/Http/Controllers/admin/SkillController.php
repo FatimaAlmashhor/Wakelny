@@ -13,7 +13,7 @@ class SkillController extends Controller
 
 
     public function list_skills(){
-        $skills = Skill::orderBy('id', 'desc')->get();
+        $skills = Skill::get();
         return view('admin.skills.index')->with('skills', $skills);
     }
     public function add_skill(){
@@ -26,21 +26,16 @@ class SkillController extends Controller
 
    Validator::validate($request->all(),[
     'name' => ['required','max:25'],
-    'level' => ['required','max:15'],
     'is_active' => ['required'],
 
 
 ],[
     'name.required' => 'ادخل اسم المهارة',
     'name.max' => 'يجب ان يكون الاسم اقل من 25 حروف',
-    'level.required'=>'ادخل المستوى',
-    'level.max'=>'يجب ان يكون الاسم اقل من 15 حروف',
-
 ]);
 
 $skill=new Skill();
 $skill->name=$request->name;
-$skill->level=$request->level;
 $skill->is_active=$request->is_active;
 
 
@@ -59,7 +54,6 @@ public function update(Request $request,$skill_id){
 
 $skill=Skill::find($skill_id);
 $skill->name=$request->name;
-$skill->level=$request->level;
 $skill->is_active=$request->is_active;
 
 if($skill->save())

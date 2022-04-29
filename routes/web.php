@@ -8,6 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SkillController;
+use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\client\CommentController;
@@ -88,10 +89,10 @@ Route::group([
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
+    Route::get('/detailsWork', [WorksController::class, 'showDetails'])->name('detailsWork');
+
     // this is the subsection of howen the my_works 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
-
-
 
 
     // ------------------------------------------------------------------------
@@ -173,6 +174,14 @@ Route::group([
         Route::get('/edit_category/{cat_id}', [CategoriesController::class, 'edit'])->name('edit_category');
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
+
+          //////////////////////CRUD Specialization ////////////////
+          Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
+          Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
+          Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
+          Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
+          Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
+          Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
     });
 });
 
@@ -180,3 +189,9 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+
+Route::view('/pusher', 'testPusher')->name('pusher');
+Route::get('test', function () {
+	event(new App\Events\StatusLiked('Someone'));
+	return "Event has been sent!";
+});

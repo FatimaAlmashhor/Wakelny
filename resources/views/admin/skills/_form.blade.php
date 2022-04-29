@@ -37,31 +37,16 @@
                         <span class="text-danger w-100">{{ $message }}</span>              
                     @enderror
                   </div>
+              
                   <div class="col-md-6 ">
-                    <label class="form-label" for="multicol-email">{{ __('dash.Skill_level') }} </label>
-                    <select name="level"   value="{{ $data->level ?? old('level') }}" class="form-select item-details mb-2">
-             
-                
-                        <option> متقدم</option>
-                        <option> متوسط</option>
-                        <option> ضعيف</option>
-                    </select>
-                    @error('level')
-                        <span class="text-danger w-100">{{ $message }}</span>
-                    @enderror
+                    <label class="form-label" for="multicol-email">{{ __('dash.is_active') }} </label>
+                    <select  name="is_active" id="formtabs-country" class="select2 form-select" data-allow-clear="true">
+                                                    
+                                                    <option value="1">مفعل</option>
+                                                    <option value="-1">معطل</option>
+                                                </select>
+
               </div>
-            <div class="col-md-6">
-              <div class="row">
-                <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-country">{{ __('dash.is_active') }} </label>
-                <div class="col-sm-9">
-                  <select  name="is_active" id="formtabs-country" class="select2 form-select" data-allow-clear="true">
-                    
-                    <option value="1">مفعل</option>
-                    <option value="-1">معطل</option>
-                  </select>
-                </div>
-              </div>
-            </div>
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="submit" class="wak_btn">{{ __('dash.save') }}</button>
                                     </div>

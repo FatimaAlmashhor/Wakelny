@@ -13,6 +13,7 @@ use Dotenv\Validator;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Expectation;
 
 class PostController extends Controller
 {
@@ -112,7 +113,7 @@ class PostController extends Controller
                     ->with(['message' => 'تم اضافة مشروع جديدة بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-        } catch (\Throwable $th) {
+        } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
