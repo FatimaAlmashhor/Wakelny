@@ -22,4 +22,9 @@ return [
     "ACTION" => "العمليات",
     "State" => "الحالة",
     "chang_password" => "تغيير كلمة السر",
+    "users"=> "المستخدمين",
+     "all_users" => "عرض المستخدمين",
+     "usre_name"=>"اسم المستخدم",
+     "user_email"=>"ايميل المستخدم",
+     "user_is_active"=>"حظر"
 ];
