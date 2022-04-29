@@ -10,6 +10,6 @@ class settingUserController extends Controller
 {
      public function show(){
         $users = User::orderBy('id', 'desc')->get();
-        return view('admin.users.index')->with('data', $users);
+        return view('admin.users.index')->with('users', $users);
     }
 }

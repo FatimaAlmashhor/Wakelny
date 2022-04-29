@@ -28,6 +28,7 @@
 
                                         <th>{{ __('dash.usre_name') }}</th>
                                         <th>{{ __('dash.user_email') }}</th>
+                                        <th>{{ __('dash.user_isBan_unBan') }}</th>
                                         <th>{{ __('dash.user_is_active') }}</th>
 
                                     </tr>
@@ -37,26 +38,41 @@
 
 
                                 <tbody>
-
+                                    @foreach ($users as $item)
                                         <tr>
 
-                                            <td class="text-bold-500"></td>
+                                            <td class="text-bold-500">{{ $loop->iteration }}</td>
 
-                                            <td class="text-bold-500"></td>
-                                            <td class="text-bold-500"></td>
+                                            <td class="text-bold-500">{{ $item->name }}</td>
+                                            <td class="text-bold-500">{{ $item->email }}</td>
+                                            <td class="text-bold-500">{{ $item->isban }}</td>
                                             <td>
-
+                                              @if($item->is_active == 1)
+                                              <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                              @else
+                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">معطل</span>
+                                              @endif
                                               </td>
+
                                             <td>
-                                            <td>
+                                                <a  href="{{ route('edit_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a>
 
+                                                <a   href="{{ route('toggle_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
 
+                                                        @if($item->is_active == 1)
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
+                                                            @else
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
+                                                        @endif
 
+                                                </a>
                                             </td>
 
                                         </tr>
 
-
+                                    @endforeach
 
                                 </tbody>
                             </table>

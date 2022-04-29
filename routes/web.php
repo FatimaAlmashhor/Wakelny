@@ -164,6 +164,7 @@ Route::group([
         //////////////////////CRUD skills ////////////////
         Route::get('/list_skills', [SkillController::class, 'list_skills'])->name("list_skills");
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
+        // Route::get('/listUsers', [AuthController::class, 'showuser']);
         Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
         Route::post('/edit_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
