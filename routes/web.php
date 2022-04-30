@@ -85,12 +85,15 @@ Route::group([
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
 
-
+    
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
-    Route::get('/detailsWork', [WorksController::class, 'showDetails'])->name('detailsWork');
-
+    Route::post('/saveUserWork', [WorksController::class,'store'])->name('works.saveUserWork');
+    Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
+    Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
+    Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
+    Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
     // this is the subsection of howen the my_works 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
