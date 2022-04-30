@@ -91,52 +91,45 @@
                 </div>
             </form>
         </aside>
-        <main id='works' class="container px-lg-5" style="overflow: hidden;">
+<main id='works' class="container px-lg-5" style="overflow: hidden;">
         </p>
   </header>
 
 
  
-  <div class="py-5">
+<div class="py-5">
     
-    <div class="row">
+    <div class="row ">
       <!-- 1 Item-->
-      <div class="col-lg-6 mb-3 mb-lg-0">
-      <a  href="{{ route('detailsWork') }}">
-        <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
-          <div class="hover-overlay"></div>
-          <div class="hover-1-content px-5 py-4">
-            <h3 class="hover-1-title text-uppercase  mb-0"> <span class="font-weight-light">Hot Coffee logo </span></h3>
-            <p class="hover-1-description font-weight-light mb-0">Afnan Alkadasi</p>
-            <div class="col-3 pl-2 pr-0 pt-1 text-left " style="font-size: 10px">
-            24 <span class="fas fa-eye"></span>
-            </div>
-          </div>
+      @foreach ($works as $item)
+        <div class="col-lg-6 mb-3 mb-lg-0 my-4">
+      
+
+            <a href="{{ route('detailsWork', $item->id) }}" >
+
+
+                <div class="hover hover-1 text-white rounded"><img src="/images/{{ $item->main_image}}" alt="">
+                    <div class="hover-overlay"></div>
+                    <div class="hover-1-content px-5 py-4">
+                        <h3 class="hover-1-title text-uppercase  mb-0"> <span class="font-weight-light">{{ $item->title}}</span></h3>
+                        <p class="hover-1-description font-weight-light mb-0">{{ $item->name }}</p>
+                        <div class="col-3 pl-2 pr-0 pt-1 text-left " style="font-size: 10px">
+                        24 <span class="fas fa-eye"></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
-        </a>
-      </div>
-      <!--  2 Item-->
-      <div class="col-lg-6">
-      <a  href="{{ route('detailsWork') }}">
-        <div class="hover hover-1 text-white rounded"><img src="/images/file2.jpg" alt="">
-          <div class="hover-overlay"></div>
-          <div class="hover-1-content px-5 py-4">
-            <h3 class="hover-1-title text-uppercase  mb-0"> <span class="font-weight-light">Healthcare Landing  </span></h3>
-            <p class="hover-1-description font-weight-light mb-0">Roqui Seaf</p>
-            <div class="col-3 pl-2 pr-0 pt-1 text-left " style="font-size: 10px">
-            34 <span class="fas fa-eye"></span>
-            </div>
-          </div>
-        </div>
-        </a>
-      </div>
+        @endforeach
     </div>
-  </div>
+</div>
+
 
 
     
-        </main>
+</main>
     </div>
+
 </div>
 @endsection
 
