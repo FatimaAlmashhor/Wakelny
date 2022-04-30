@@ -57,7 +57,7 @@
                                                      <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
                                                 </a> --}}
 
-                                                <a  href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                <a href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
 
                                                         @if($item->isban == 1)
                                                         <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
