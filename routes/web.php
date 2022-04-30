@@ -202,6 +202,9 @@ Route::group(['middleware' => [ 'auth','isUser']], function () {
     Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 });
 
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+//end active & block users
 
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
@@ -214,6 +217,3 @@ Route::get('test', function () {
 	return "Event has been sent!";
 });
 
-// start active & block users
-Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
-//end active & block users
