@@ -45,7 +45,6 @@ public function edit($user_id){
     return view('admin.users._formUserBlock')->with(['data' =>$users ]);
 }
 
-
 public function ban($user_id){
     $user=User::find($user_id);
     if($user->isban == 1)
@@ -62,7 +61,6 @@ public function ban($user_id){
 
                 // return back()->with(['message' => 'تم فك حظر المستخدم بنجاح', 'type' => 'alert-success']);
     // return back()->with(['message' => 'فشلت عمليه الحظر الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-
 }
 
 }
