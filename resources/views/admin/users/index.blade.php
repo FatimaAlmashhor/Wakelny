@@ -50,7 +50,6 @@
                                             <label class="py-2 px- badge btn-danger">حظر </label>
                                             @endif
 
-
                                             </td>
                                             <td>
                                                 {{-- <a  href="{{ route('edit_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
