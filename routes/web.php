@@ -18,6 +18,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+use App\Http\Controllers\admin\settingUserController;
+
 
 
 /*
@@ -89,12 +91,14 @@ Route::group([
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
+
     Route::post('/saveUserWork', [WorksController::class,'store'])->name('works.saveUserWork');
     Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
     Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
     Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
     Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
     // this is the subsection of howen the my_works 
+
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
 
@@ -151,7 +155,7 @@ Route::group([
             // --------end post routing
 
             //--------- start comment
-            // this route for save new comment 
+            // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
             //--------  end comment
         });
@@ -192,3 +196,13 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+
+Route::view('/pusher', 'testPusher')->name('pusher');
+Route::get('test', function () {
+	event(new App\Events\StatusLiked('Someone'));
+	return "Event has been sent!";
+});
+
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+//end active & block users

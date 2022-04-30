@@ -33,6 +33,7 @@ class WorksController extends Controller
             'profiles.name'
         )->join('profiles', 'profiles.user_id', '=', 'works.user_id')->where('is_active', 1)->get();
     
+
         $skill = Skill::where('is_active', 1)->get();
         return view('client.userProfile.myWorks')->with(['works'=>$works, 'skills'=> $skill ]);
     }
