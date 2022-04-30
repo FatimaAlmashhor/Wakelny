@@ -25,7 +25,8 @@
                                         enctype="multipart/form-data"> --}}
                             {{-- @endif --}}
 
-                        
+
+
                             @csrf
                             <div class="form-body">
                                 <div class="row">
