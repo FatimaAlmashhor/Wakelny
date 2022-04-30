@@ -55,15 +55,23 @@
 
                                             </td>
                                             <td>
-                                              @if($item->is_active == 1)
-                                              <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
-                                              @else
-                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">معطل</span>
-                                              @endif
-                                              </td>
+                                                {{-- <a  href="{{ route('edit_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a> --}}
 
-                                            <td>
-                                                <a  href="{{ route('edit_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                <a   href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+
+                                                        @if($item->isban == 1)
+                                                        <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
+                                                        @else
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
+                                                        @endif
+
+                                                </a>
+                                            </td>
+
+                                            {{-- <td>
+                                                <a  href="{{ route('edit_skill') }}" class="btn btn-icon btn-outline-dribbble">
                                                      <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
                                                 </a>
 
@@ -76,7 +84,7 @@
                                                         @endif
 
                                                 </a>
-                                            </td>
+                                            </td> --}}
 
                                         </tr>
 

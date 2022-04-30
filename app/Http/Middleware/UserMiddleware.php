@@ -23,9 +23,8 @@ class UserMiddleware
 
             $banned =Auth::user()->isban=='1';
             Auth::logout();
-
+            $message = '';
             if($banned==1){
-
                 $message='حسابك قد تم حظره. منفضلك راجع مدير الموقع' ;
             }
 

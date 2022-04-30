@@ -22,7 +22,6 @@ use App\Http\Controllers\admin\settingUserController;
 
 
 
-
 /*
 
 |--------------------------------------------------------------------------
@@ -165,9 +164,14 @@ Route::group([
         //////////////////////CRUD skills ////////////////
         Route::get('/list_skills', [SkillController::class, 'list_skills'])->name("list_skills");
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
-        // Route::get('/listUsers', [AuthController::class, 'showuser']);
         Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add_user');
+        Route::get('/edit_user/{user_id}', [settingUserController::class, 'edit'])->name('edit_user');
+        Route::get('/ban_user/{user_id}', [settingUserController::class, 'ban'])->name('ban_user');
+
+
         Route::post('/edit_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
         Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
 
@@ -190,12 +194,14 @@ Route::group([
 });
 
  // ------------------------------------------------------------------------
-    // Admin Block unBlock Uers
+    // Admin Block UnBlock- Users
     // ------------------------------------------------------------------------
-Route::group(['middleware' =>  ['auth','isUser']], function () {
+
+Route::group(['middleware' => [ 'auth','isUser']], function () {
     // the authization of the user controllpanalle
     Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 });
+
 
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
