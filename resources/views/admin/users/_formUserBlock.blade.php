@@ -44,12 +44,11 @@
                     <label class="form-label" for="multicol-email">{{ __('dash.user-stat') }} </label>
                     <select  name="isban" id="formtabs-country" class="select2 form-select" data-allow-clear="true">
 
-
                                                     <option value="1">متاح</option>
                                                     <option value="-1">محضور</option>
                                                 </select>
 
-              </div>
+                                            </div>
 {{--
               <div class="col-md-6 ">
                 <label class="form-label" for="multicol-email">{{ __('dash.user-stat') }} </label>
