@@ -79,7 +79,6 @@
                                                             @else
                                                             <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
                                                         @endif
-
                                                 </a>
                                             </td> --}}
 
