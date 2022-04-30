@@ -35,8 +35,6 @@
 
                                 </thead>
 
-
-
                                 <tbody>
                                     @foreach ($users as $item)
                                         <tr>
