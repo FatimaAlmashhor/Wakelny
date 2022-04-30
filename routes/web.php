@@ -166,7 +166,8 @@ Route::group([
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
         Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////     Admit can Block && unBlock User            ///////////////////////
 Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add_user');
         Route::get('/edit_user/{user_id}', [settingUserController::class, 'edit'])->name('edit_user');
         Route::get('/ban_user/{user_id}', [settingUserController::class, 'ban'])->name('ban_user');
@@ -210,6 +211,7 @@ Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUser
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+
 
 
 Route::view('/pusher', 'testPusher')->name('pusher');
