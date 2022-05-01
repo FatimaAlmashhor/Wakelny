@@ -161,6 +161,8 @@ class PostController extends Controller
         // return response()->json($projects);
         return view('client.post.myProject')->with('posts', $projects);
     }
+
+
      public function update(Request $request, $post_id)
     {
         try {
@@ -185,7 +187,7 @@ class PostController extends Controller
 
 
 
-            $post = new Posts();
+            $post=Posts::find($post_id);
             $post->user_id = Auth::id();
             $post->title = $request->title;
             $post->description = $request->message;
@@ -196,29 +198,26 @@ class PostController extends Controller
             if ($request->hasFile('files'))
                 $post->file = $this->uploadFile($request->file('files'));
 
-            if ($post->save()) {
+            if ($post->save()){
 
-
-                $skills = $request->skills;
-                $needToInsert = false;
-                // insert if the skills are new
-                if (!blank($skills))
-                    foreach ($skills  as $value) {
-                        $findSkill = PostSkills::where('post_id', $post->id)->where('skill_id', $value)->get();
-
-                        if ($findSkill->isEmpty()) {
-                            PostSkills::insert(['skill_id' => $value, 'post_id' =>  $post->id]);
-                        }
-                    }
 
                 return redirect()->route('myProject')
-                    ->with(['message' => 'تم اضافة مشروع جديدة بنجاح', 'type' => 'alert-success']);
+                    ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
             } else
-                return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+                return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         } catch (Expectation   $th) {
             // throw $th;
-            return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+            return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
+    }
+
+    public function toggle($post_id){
+
+        $post=Posts::find($post_id);
+        $post->is_active*=-1;
+         if($post->save())
+        return back()->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
+        return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 
 }

@@ -53,9 +53,9 @@
                                     <label> القسم <em class="text--danger">*</em>
                                     </label>
                                     <select class="form-select" aria-label="Default select example" name="category"
-                                        value="{{ old('category') }}" required="required">
+                                        required="required">
                                         @foreach ($categories as $cate)
-                                         @if ($data->id == $cate->id )
+                                         @if ($data->category_id == $cate->id )
                                                 <option value="{{ $cate->id }}" selected>{{ $cate->title }}</option>
                                             @else
                                             <option value="{{ $cate->id }}">{{ $cate->title }}</option>

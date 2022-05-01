@@ -90,6 +90,7 @@ Route::group([
     Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
     Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
 	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
+	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
 
 // //////////////////
     // this is the page of the my_works
