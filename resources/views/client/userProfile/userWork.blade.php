@@ -37,8 +37,16 @@
 
 
                     <div class="card-body">
-                    <form action="" method="POST" class="login-form"
+                    @if (Route::currentRouteName() == 'edit_work')
+                    <form action="{{ route('update_work', $data->id) }}" method="POST" class="login-form"
                             enctype="multipart/form-data">
+        
+                                @else
+                                <form action="{{ route('works.saveUserWork') }}" method="POST" class="login-form"
+                            enctype="multipart/form-data">
+                            @endif
+
+              
                             @csrf
 
 
@@ -47,19 +55,29 @@
                                     <label for="" class="col-md-6 col-form-label">
                                                      عنوان العمل</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="" name="title"
-                                            value="">
+                                        <input type="text" class="form-control" id="" value="{{$data->title ??  old('title') }}" name="title"
+                                            >
                                     </div>
-                                   
+                                    @error('title')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="col-md-6 col-form-label">
                                               تاريخ الإنجاز</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="" name="comple_date"
+                                        <input type="date" class="form-control" id="" value="{{ $data->comple_date ?? old('comple_date') }}" name="comple_date"
                                             value="">
                                     </div>
-                                  
+                                    @error('comple_date')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             
                              
@@ -70,19 +88,29 @@
                                     <label for="" class="col-md-6 col-form-label">
                                                  صورة مصغرة</label>
                                     <div class="col-sm-10">
-                                        <input type="file"  class="form-control" id="" name="main_image"
+                                        <input type="file"  class="form-control" id="" value="{{ $data->main_image ?? old('main_image') }}" name="main_image"
                                             value="">
                                     </div>
-                                   
+                                    @error('main_image')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="col-md-6 col-form-label">
                                     رابط العمل</label>
                                     <div class="col-sm-10">
-                                        <input type="url" class="form-control" id="" name="link"
+                                        <input type="url" class="form-control" id="" value="{{ $data->link ?? old('link') }}" name="link"
                                             value="">
                                     </div>
-                                  
+                                    @error('link')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             
                              
@@ -91,14 +119,19 @@
                             <div class="row" style="margin-right:1px;">
 
                                 <label for="" class="col-md-6 col-form-label"> تفاصيل العمل</label>
-                                <textarea class="form-control" placeholder=" تفاصيل العمل" id=""
+                                <textarea class="form-control" placeholder=" تفاصيل العمل" id=""value="{{ $data->details ?? old('details') }}"
                                     name="details"></textarea>
-                               
+                                    @error('details')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                   
                             </div>
                     
 
-                            <div class="row ">
+                            <!-- <div class="row ">
                          
 
                                
@@ -106,13 +139,18 @@
                                     <label for="" class="col-md-6 col-form-label">
                                            صور وملفات العمل</label>
                                     <div class="col-sm-10">
-                                        <input type="file"  class="form-control" multiple id="" name="more_file"
-                                            value="">
+                                        <input type="file"  class="form-control" multiple id="" name="more_file[]"
+                                            value="{{ $data->more_file ?? old('more_file') }}">
                                     </div>
-                                   
+                                    @error('more_file')
+                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                                 
-                            </div>
+                            </div>  -->
                             <div class="row ">
                                 <div class="col-md-6 my-2">
                                     <label for="" class="col-md-6 col-form-label"  style="" >
@@ -124,7 +162,8 @@
                                                         <option id='skills' value="{{ $item->id }}" autocomplete="off">{{ $item->name }}</option>
                                                     @endforeach
                                         </select>
-                     
+                                
+                              
                                 </div>
                             </div> 
 
