@@ -83,11 +83,17 @@ Route::group([
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
 
-
+// post router
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
+    Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
+    // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
+    Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
+	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
+	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
 
-    
+// //////////////////
+
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
@@ -97,7 +103,7 @@ Route::group([
     Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
     Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
     Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
-    // this is the subsection of howen the my_works 
+    // this is the subsection of howen the my_works
 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
