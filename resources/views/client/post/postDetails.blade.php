@@ -18,7 +18,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
                         <li class="text-end my-2 px-2">
-                            <a tabindex="-1" href="{{ route('editPosts') }}">
+                            <a tabindex="-1" href="{{ route('posts.details',$post_id) }}">
                                 <i class="fa fa-fw fa-gear"></i>
                                 <span class="action-text">تعديل المشروع</span>
                             </a>
