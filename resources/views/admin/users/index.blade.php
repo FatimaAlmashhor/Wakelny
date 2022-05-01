@@ -44,9 +44,9 @@
                                             <td class="text-bold-500">{{ $item->name }}</td>
                                             <td class="text-bold-500">{{ $item->email }}</td>
                                             <td >
-                                            @if( $item->isban=='0')
+                                            @if( $item->is_active==1)
                                             <label class="py-2 px- badge btn-primary">مفعل </label>
-                                            @elseif($item->isban=='1')
+                                            @elseif($item->is_active==0)
                                             <label class="py-2 px- badge btn-danger">حظر </label>
                                             @endif
 
@@ -58,7 +58,7 @@
 
                                                 <a href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
 
-                                                        @if($item->isban == 1)
+                                                        @if($item->is_active == 0)
                                                         <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
                                                         @else
                                                         <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>

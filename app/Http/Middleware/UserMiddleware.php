@@ -19,9 +19,9 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        if(Auth::check() && Auth::user()->isban){
+        if(Auth::check() && !Auth::user()->is_active){
 
-            $banned =Auth::user()->isban=='1';
+            $banned =Auth::user()->is_active==0;
             Auth::logout();
             $message = '';
             if($banned==1){

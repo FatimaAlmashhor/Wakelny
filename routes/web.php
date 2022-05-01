@@ -87,7 +87,7 @@ Route::group([
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
 
-    
+
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
@@ -97,7 +97,7 @@ Route::group([
     Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
     Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
     Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
-    // this is the subsection of howen the my_works 
+    // this is the subsection of howen the my_works
 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
@@ -127,9 +127,8 @@ Route::group([
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
-
         //    shoud verfid the email
-        Route::group(['middleware' =>  'verified'], function () {
+      Route::group(['middleware' =>  ['verified','isUser'] ], function () {
             // the authization of the user controllpanalle
             Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
@@ -203,10 +202,11 @@ Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add
     // Admin Block UnBlock- Users
     // ------------------------------------------------------------------------
 
-Route::group(['middleware' => [ 'auth','isUser']], function () {
-    // the authization of the user controllpanalle
-    Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
-});
+
+// Route::group(['middleware' => [ 'auth','isUser']], function () {
+//     // the authization of the user controllpanalle
+//     Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
+// });
 
 // start active & block users
 Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");

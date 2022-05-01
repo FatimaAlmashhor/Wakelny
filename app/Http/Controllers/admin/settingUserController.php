@@ -47,10 +47,10 @@ public function edit($user_id){
 
 public function ban($user_id){
     $user=User::find($user_id);
-    if($user->isban == 1)
-        $user->isban = 0;
+    if($user->is_active == 1)
+        $user->is_active = 0;
     else
-        $user->isban = 1;
+        $user->is_active = 1;
 
     $user->save();
     return back();
