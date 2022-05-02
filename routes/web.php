@@ -83,9 +83,16 @@ Route::group([
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
 
-
+// post router
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
+    Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
+    // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
+    Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
+	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
+	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
+
+// //////////////////
 
 
     // this is the page of the my_works
