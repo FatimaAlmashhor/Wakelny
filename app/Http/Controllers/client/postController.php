@@ -220,4 +220,13 @@ class PostController extends Controller
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 
-}
+    // update comment
+    public function editComment($comment_id){
+       $post = Comments::find($comment_id);
+
+
+        return view('client.post.editPost')->with(['data'=>$post, 'skills' => $skill, 'categories' => $categories]);
+    }
+    }
+
+
