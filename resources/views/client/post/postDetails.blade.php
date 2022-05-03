@@ -173,10 +173,10 @@
                                         و في الأخير نتمنى العمل معك .</p>
 
                                     <div class="m-2">
-                                        <a tabindex="-1" class="wak_btn mx-2" href="#">
+                                        <button tabindex="-1" class="wak_btn mx-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa fa-check px-1"></i>
                                             <span class="action-text"> قبول العرض </span>
-                                        </a>
+                                        </button>
                                         <a tabindex="-1" class="wak_btn green_border" href="#">
                                             <i class="fa fa-send px-1"></i>
                                             <span class="action-text"> تواصل مع المستقل </span>
@@ -196,6 +196,36 @@
 
                 </div>
 
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title order-2" id="exampleModalLabel">قبول العرض</h5>
+                                <button type="button" class="btn-close order-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <!-- Modal Taps -->
+                            <div class="modal-tabs row d-flex justify-content-start align-items-center">
+                                <nav class="nav fw-bold col-auto">
+                                    <p class="nav-link color-black tab tab-A is-active" id="credit_card" data-current="tab-A">بطاقة ائتمانية</p>
+                                    <p class="nav-link color-black tab tab-B" id="payPal" data-current="tab-B">Pay Pal</p>
+                                    <p class="nav-link color-black tab tab-C" id="coupon" data-current="tab-C">قسمية</p>
+                                </nav>
+                            </div>
+                            <!-- /Moda Taps -->
+
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
