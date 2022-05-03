@@ -4,13 +4,12 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class StatusLiked implements ShouldBroadcast
+class Comment implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $username;
@@ -36,7 +35,16 @@ class StatusLiked implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        return new PrivateChannel('comments-channel');
+        // return new Channel('comments-channel');
+    }
+    public function broadcastAs()
+    {
         // return new PrivateChannel('channel-name');
-        return ['status-liked'];
+        return 'comment-replay';
+    }
+    public function broadcastWith()
+    {
+        return ['username' => $this->username, 'message' => $this->message];
     }
 }

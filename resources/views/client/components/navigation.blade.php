@@ -33,7 +33,7 @@
             @endrole
             <ul class="navbar-nav  ">
                 <li class="nav-item ">
-                        <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
+                    <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
                 </li>
             </ul>
         @endif
@@ -140,3 +140,21 @@
     </div>
     <!-- </div> -->
 </nav>
+@push('scripts')
+    <script>
+        $(function() {
+
+            const Http = window.axios;
+            const Echo = window.Echo;
+            // const name = ${''}
+            // Http.get("{{ url('test') }}");
+
+            console.log('here we go', window.Echo);
+            let channal = Echo.channel('comments-channel');
+            channal.listen('Comment', function(event) {
+                alert(event.data);
+                console.log(event.data)
+            })
+        })
+    </script>
+@endpush

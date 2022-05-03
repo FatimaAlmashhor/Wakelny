@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\StatusLiked;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\ControllPannelController;
@@ -175,13 +176,13 @@ Route::group([
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
 
-          //////////////////////CRUD Specialization ////////////////
-          Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
-          Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
-          Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
-          Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
-          Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
-          Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
+        //////////////////////CRUD Specialization ////////////////
+        Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
+        Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
+        Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
+        Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
+        Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
+        Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
     });
 });
 
@@ -189,9 +190,3 @@ Route::group([
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
-
-Route::view('/pusher', 'testPusher')->name('pusher');
-Route::get('test', function () {
-	event(new App\Events\StatusLiked('Someone'));
-	return "Event has been sent!";
-});
