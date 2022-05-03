@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class PostNotification extends Notification
 {
     use Queueable;
-
+    private $data;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -29,7 +29,7 @@ class PostNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -40,10 +40,11 @@ class PostNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $message = 'هناك مشروع جديد في قسم  ' . $this->data['category'] . '   قد ينال اعجابك';
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('لديك اشعارات جديد  لم تقرأ')
+            ->action('دعني اراها', $this->data['url'])
+            ->line('شكرا');
     }
 
     /**
@@ -52,10 +53,28 @@ class PostNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'category' => $this->data['category'],
+            'post_title' => $this->data['post_title'],
+            'url' => $this->data['url'],
+            'type' => 'post',
+            // 'userId' => $this->data['userId']
+        ];
+    }
     public function toArray($notifiable)
     {
         return [
-            //
+            'id' => $this->id,
+            'read_at' => null,
+            'data' => [
+                'name' => $this->data['name'],
+                'post_title' => $this->data['post_title'],
+                'url' => $this->data['url'],
+                'type' => 'post',
+                // 'userId' => $this->data['userId']
+            ],
         ];
     }
 }

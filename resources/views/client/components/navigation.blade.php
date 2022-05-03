@@ -72,8 +72,13 @@
 
                             @foreach (auth()->user()->unreadNotifications as $notification)
                                 <a class="dropdown-item color-black" href="{{ $notification->data['url'] }}">
-                                    {{ $notification->data['name'] }}
-                                    <span> قام بأضافه عرض جديد على مشروعك</span>
+                                    @if ($notification->data['type'] == 'comment')
+                                        {{ $notification->data['name'] }}
+                                        <span> قام بأضافه عرض جديد على مشروعك</span>
+                                    @else
+                                        <span> {{ $notification->data['post_title'] }} جديد قد ينال اعجابك </span>
+                                    @endif
+
                                 </a>
                             @endforeach
                         </li>
