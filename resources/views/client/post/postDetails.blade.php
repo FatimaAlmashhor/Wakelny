@@ -197,9 +197,9 @@
                 </div>
 
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <!-- Acceptance Modal -->
+                <div class="modal"id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title order-2" id="exampleModalLabel">قبول العرض</h5>
@@ -207,25 +207,100 @@
                             </div>
 
                             <!-- Modal Taps -->
-                            <div class="modal-tabs row d-flex justify-content-start align-items-center">
-                                <nav class="nav fw-bold col-auto">
-                                    <p class="nav-link color-black tab tab-A is-active" id="credit_card" data-current="tab-A">بطاقة ائتمانية</p>
-                                    <p class="nav-link color-black tab tab-B" id="payPal" data-current="tab-B">Pay Pal</p>
-                                    <p class="nav-link color-black tab tab-C" id="coupon" data-current="tab-C">قسمية</p>
+                            <div class="modal-tabs">
+                                <nav class="nav col-auto d-flex align-items-center">
+                                    <p class="nav-link color-black modal-tab tab-A is-active" id="credit_card" data-current="tab-A"><i class="fa-solid fa-credit-card ms-2"></i>بطاقة ائتمانية</p>
+                                    <p class="nav-link color-black modal-tab tab-B" id="payPal" data-current="tab-B"><i class="fa-brands fa-paypal ms-2"></i>Pay Pal</p>
+                                    <p class="nav-link color-black modal-tab tab-C" id="coupon" data-current="tab-C"><i class="fa-solid fa-tags ms-2"></i>قسيمة</p>
                                 </nav>
                             </div>
                             <!-- /Moda Taps -->
 
-                            <div class="modal-body">
-                                ...
+                            <div class="modal-body d-flex">
+                                <!-- credit card -->
+                                <div class="color-black px-3 modal-panel is-show supSection" id="tab-A">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>المبلغ المتفق عليه <em class="text--danger text-danger">*</em></label>
+                                            <div class="input-group mt-1">
+                                                <input name="amount" class='form-control' id="amount" type="text"
+                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                    aria-describedby="basic-addon1">
+                                                <span class="input-group-text" id="basic-addon1">$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 d-flex justify-content-between">
+                                        <div class="col-6">
+                                            <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
+                                            <div class="input-group mt-1">
+                                                <input name="amount" class='form-control' id="name" type="text"
+                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                    aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
+                                            <div class="input-group mt-1">
+                                                <input name="amount" class='form-control' id="credit_NO" type="number"
+                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                    aria-describedby="basic-addon1" placeholder=".Card NO">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <input type="checkbox" class="ms-1" id="remember-card" checked>
+                                        <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
+                                    </div>
+
+                                    <div class="row border-top mt-4 py-3">
+                                        <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3% على عملية الدفع: <span class="color-orange font-lg">3082.50$</span> </p>
+                                        <p class="text-muted font-xs"><em class="text--danger text-danger">*</em> رسوم عملية الدفع تقتطعها بوابات الدفع الالكترونية مثل PayPal والبطاقات الائتمانية. </p>
+                                    </div>
+                                </div>
+                                <!-- /credit card -->
+
+                                <!-- Pay Pal -->
+                                <div class="col-12 color-black px-3 modal-panel tab-B supSection" id="tab-B">
+                                    <div class="row">
+                                        <section class="card shadow-sm col-12 col-sm-12">
+                                            <div>
+                                                <div class="section-title">
+                                                    <h5>بايبال</h5>
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <!-- /Pay Pal -->
+
+                                <!-- coupon -->
+                                <div class="col-12 color-black px-3 modal-panel tab-C supSection" id="tab-C">
+                                    <div class="row">
+                                        <section class="card shadow-sm col-12 col-sm-12">
+                                            <div class="my-ratings">
+                                                <div class="section-title">
+                                                    <h5>قسيمة</h5>
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <!-- /coupon -->
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                            <div class="modal-footer d-flex ">
+                                <button type="button" class="btn wak_btn">قبول العرض</button>
+                                <button type="button" class="btn wak_btn green_border" data-bs-dismiss="modal">تراجع</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /Acceptance Modal -->
+
 
             </div>
 
@@ -533,4 +608,6 @@
             </div>
         </div>
     </div>
+
+    <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
 @endsection
