@@ -83,23 +83,23 @@ Route::group([
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
 
-// post router
+    // post router
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
     Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
     // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
     Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
-	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
-	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
+    Route::post('/update_post/{post_id}', [PostController::class, 'update'])->name('update_post');
+    Route::get('/toggle_post/{post_id}', [PostController::class, 'toggle'])->name('toggle_post');
 
-// //////////////////
+    // //////////////////
 
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
 
-    Route::post('/saveUserWork', [WorksController::class,'store'])->name('works.saveUserWork');
+    Route::post('/saveUserWork', [WorksController::class, 'store'])->name('works.saveUserWork');
     Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
     Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
     Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
@@ -135,7 +135,7 @@ Route::group([
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
         //    shoud verfid the email
-      Route::group(['middleware' =>  ['verified','isUser'] ], function () {
+        Route::group(['middleware' =>  ['verified', 'isUser']], function () {
             // the authization of the user controllpanalle
             Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
@@ -178,8 +178,8 @@ Route::group([
         Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
 
-/////////     Admit can Block && unBlock User            ///////////////////////
-Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add_user');
+        /////////     Admit can Block && unBlock User            ///////////////////////
+        Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add_user');
         Route::get('/edit_user/{user_id}', [settingUserController::class, 'edit'])->name('edit_user');
         Route::get('/ban_user/{user_id}', [settingUserController::class, 'ban'])->name('ban_user');
 
@@ -195,19 +195,19 @@ Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
 
-          //////////////////////CRUD Specialization ////////////////
-          Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
-          Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
-          Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
-          Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
-          Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
-          Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
+        //////////////////////CRUD Specialization ////////////////
+        Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
+        Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
+        Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
+        Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
+        Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
+        Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
     });
 });
 
- // ------------------------------------------------------------------------
-    // Admin Block UnBlock- Users
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// Admin Block UnBlock- Users
+// ------------------------------------------------------------------------
 
 
 // Route::group(['middleware' => [ 'auth','isUser']], function () {
@@ -224,11 +224,10 @@ Route::get('/change-password', [AuthController::class, 'changePassword'])->name(
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
 
+// make the notification as red
+Route::get('/markAsRead', function () {
 
+    auth()->user()->unreadNotifications->markAsRead();
 
-Route::view('/pusher', 'testPusher')->name('pusher');
-Route::get('test', function () {
-	event(new App\Events\StatusLiked('Someone'));
-	return "Event has been sent!";
-});
-
+    return redirect()->back();
+})->name('mark');
