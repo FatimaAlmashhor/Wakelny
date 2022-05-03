@@ -1,24 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\SettingsController;
-use App\Http\Controllers\client\ControllPannelController;
-use App\Http\Controllers\client\ProfileController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\admin\AuthController;
-use App\Http\Controllers\admin\CategoriesController;
-use App\Http\Controllers\admin\SkillController;
-use App\Http\Controllers\admin\SpecializationController;
-use App\Http\Controllers\admin\ForgotPasswordController;
-use App\Http\Controllers\admin\ResetPasswordController;
-use App\Http\Controllers\client\CommentController;
-use App\Http\Controllers\client\CommentsController;
-use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\client\CommentController;
+use App\Http\Controllers\client\ProfileController;
+use App\Http\Controllers\client\ProjectController;
+use App\Http\Controllers\client\CommentsController;
+use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\admin\ForgotPasswordController;
+use App\Http\Controllers\admin\SpecializationController;
+use App\Http\Controllers\client\ControllPannelController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
@@ -91,6 +92,11 @@ Route::group([
     Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
 	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
 	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
+
+
+    // Accept Offer
+    Route::post('/accept-offer', [ProjectController::class, 'notifyProvider'])->name('accept-offer');
+    Route::get('/confirm-offer', [ProjectController::class, 'providerConfirmation'])->name('provider-confirmation');
 
 // //////////////////
 
