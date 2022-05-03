@@ -19,6 +19,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+use App\Http\Controllers\admin\settingUserController;
+
 
 
 /*
@@ -82,17 +84,29 @@ Route::group([
     Route::get('/user-profile/{user_id}', [UserController::class, 'showUserProfile'])->name('userProfile');
     Route::view('/editUserProfile', 'client.userProfile.editUserProfile')->name('editUserProfile');
 
-
+    // post router
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
+    Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
+    // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
+    Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
+    Route::post('/update_post/{post_id}', [PostController::class, 'update'])->name('update_post');
+    Route::get('/toggle_post/{post_id}', [PostController::class, 'toggle'])->name('toggle_post');
+
+    // //////////////////
 
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
     Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
-    Route::get('/detailsWork', [WorksController::class, 'showDetails'])->name('detailsWork');
 
-    // this is the subsection of howen the my_works 
+    Route::post('/saveUserWork', [WorksController::class, 'store'])->name('works.saveUserWork');
+    Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
+    Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
+    Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
+    Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
+    // this is the subsection of howen the my_works
+
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
 
 
@@ -121,9 +135,8 @@ Route::group([
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
 
-
         //    shoud verfid the email
-        Route::group(['middleware' =>  'verified'], function () {
+        Route::group(['middleware' =>  ['verified', 'isUser']], function () {
             // the authization of the user controllpanalle
             Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
 
@@ -149,7 +162,7 @@ Route::group([
             // --------end post routing
 
             //--------- start comment
-            // this route for save new comment 
+            // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
             //--------  end comment
         });
@@ -165,6 +178,13 @@ Route::group([
         Route::get('/add_skill', [SkillController::class, 'add_skill'])->name('add_skill');
         Route::post('/add_skill', [SkillController::class, 'store'])->name('save_skill');
         Route::get('/edit_skill/{skill_id}', [SkillController::class, 'edit'])->name('edit_skill');
+
+        /////////     Admit can Block && unBlock User            ///////////////////////
+        Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add_user');
+        Route::get('/edit_user/{user_id}', [settingUserController::class, 'edit'])->name('edit_user');
+        Route::get('/ban_user/{user_id}', [settingUserController::class, 'ban'])->name('ban_user');
+
+
         Route::post('/edit_skill/{skill_id}', [SkillController::class, 'update'])->name('update_skill');
         Route::get('/toggle_skill/{skill_id}', [SkillController::class, 'toggle'])->name('toggle_skill');
 
@@ -186,7 +206,29 @@ Route::group([
     });
 });
 
+// ------------------------------------------------------------------------
+// Admin Block UnBlock- Users
+// ------------------------------------------------------------------------
+
+
+// Route::group(['middleware' => [ 'auth','isUser']], function () {
+//     // the authization of the user controllpanalle
+//     Route::get('/controllPannal', [ControllPannelController::class, 'index'])->name('profile');
+// });
+
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+//end active & block users
+
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-// end change password
+
+
+// notification make it read
+Route::get('/markAsRead', function () {
+
+    auth()->user()->unreadNotifications->markAsRead();
+
+    return redirect()->back();
+})->name('mark');
