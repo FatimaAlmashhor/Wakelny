@@ -69,9 +69,12 @@
             color: white;
         }
 
-        .dropdown-menu-end.show {
-            right: auto;
-        }
+       .dropdown-menu-end.show {
+    right: auto;
+    text-align: right;
+    direction: rtl;
+    padding: 0px 15px;
+}
 
     </style>
 </head>

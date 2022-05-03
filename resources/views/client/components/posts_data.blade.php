@@ -6,7 +6,7 @@
                 <p style="font-size: 18px;"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
-                @if (Auth::user()->hasRole('provider'))
+                @if (Auth::check() && Auth::user()->hasRole('provider'))
                     <div class="dropdown btn-group">
 
                         <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->id) }}">
