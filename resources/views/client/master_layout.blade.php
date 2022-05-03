@@ -27,7 +27,6 @@
 
     <link href="/assets/client/css/about.css" rel="stylesheet">
 
-    <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script>
     {{--  --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/css/intlTelInput.css" rel="stylesheet"
         media="screen">
@@ -72,15 +71,15 @@
 
 
     <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script src="/assets/client/js/helper/bootstrap.min.js"></script>
-    <script src="/js/app.js"></script>
+    {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
+    <script src="{{ asset('assets/client/js/helper/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/client/js/profile/profile.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
         integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="/js/app.js"></script>
 
     @stack('scripts')
     <script>

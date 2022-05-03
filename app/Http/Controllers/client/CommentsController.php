@@ -53,7 +53,7 @@ class CommentsController extends Controller
                 'userid' => $postOwner->userId,
                 'postid' => $postOwner->id,
                 'post_title' => $postOwner->title,
-                'url' => '/post/details/' . $postOwner->id
+                'url' => '//post//details//' . $postOwner->id
             );
 
             $user->notify(new CommentNotification($data));

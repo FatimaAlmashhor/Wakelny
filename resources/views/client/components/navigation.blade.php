@@ -38,13 +38,13 @@
             </ul>
         @endif
 
-          @if (Auth::check())
+        @if (Auth::check())
             @role('seeker')
                 <p>{{ auth()->user()->role }}</p>
             @endrole
             <ul class="navbar-nav  ">
                 <li class="nav-item ">
-                        <a class="nav-link fs-6 nav-links" href="{{ route('myProject') }}">مشاريعي </a>
+                    <a class="nav-link fs-6 nav-links" href="{{ route('myProject') }}">مشاريعي </a>
                 </li>
             </ul>
         @endif
@@ -60,8 +60,17 @@
                     <a class="nav-link color-offwhite fs-5" href="#"><i
                             class="fa-solid fa-comment-dots font-sm"></i></a>
                 </li>
+
+                {{-- notification --}}
                 <li class="nav-item ms-2 user-items">
                     <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell font-sm"></i></a>
+                    {{-- {{ auth()->user()->unreadNotifications->count() }}
+
+
+
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            {{ $notification->data['post'] }}
+                        @endforeach --}}
                 </li>
                 <li class="dropdown rtl">
 
@@ -151,7 +160,7 @@
     </div>
     <!-- </div> -->
 </nav>
-@push('scripts')
+{{-- @push('scripts')
     <script>
         $(function() {
 
@@ -168,4 +177,4 @@
             })
         })
     </script>
-@endpush
+@endpush --}}
