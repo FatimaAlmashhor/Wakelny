@@ -103,32 +103,35 @@ class ProjectController extends Controller
     // here the project show details to the provider
     function confirmProject($project_id, $seeker_id)
     {
-        // try {
-        $projects = Project::select(
-            'comments.id',
-            'comments.duration',
-            'comments.cost',
-            'comments.description as comment_description',
-            'posts.title',
-            'posts.description as post_description',
-            'projects.offer_id',
-            'projects.amount',
-            'projects.seeker_id',
-            'projects.id as project_id',
-        )
-            ->join('comments', 'comments.id', '=', 'projects.offer_id')
-            ->join('posts', 'posts.user_id', '=', 'projects.seeker_id')
-            ->where('posts.user_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->where('projects.status', 'pending')
-            ->where('projects.provider_id', Auth::id())
-            ->first();
+        try {
+            $projects = Project::select(
+                'comments.id',
+                'comments.duration',
+                'comments.cost',
+                'comments.description as comment_description',
+                'posts.title',
+                'posts.description as post_description',
+                'projects.offer_id',
+                'projects.amount',
+                'projects.seeker_id',
+                'projects.status',
+                'projects.id as project_id',
+            )
+                ->join('comments', 'comments.id', '=', 'projects.offer_id')
+                ->join('posts', 'posts.user_id', '=', 'projects.seeker_id')
+                ->where('posts.user_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->where('projects.provider_id', Auth::id())
+                ->first();
 
-        // print_r($projects);
-        if ($projects->status == 'panding')
-            return view('client.post.providerConfirmation')->with(['project' => $projects, 'amount' => $projects->amount]);
-        else
-            return redirect()->back()->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+            // print_r($projects);
+            if ($projects->status == 'pending')
+                return view('client.post.providerConfirmation')->with(['project' => $projects, 'amount' => $projects->amount]);
+            else
+                return redirect()->back()->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        } catch (\Exception $th) {
+            //throw $th;
+        }
     }
 
     // if ther use accept the project
@@ -152,7 +155,7 @@ class ProjectController extends Controller
             'userId' => Auth::id()
         ];
 
-        Project::updated([
+        Project::where('id', $project_id)->update([
             'status' => 'at_work',
         ]);
         $providerNotify->notify(new AcceptProjectNotification($data));
@@ -180,7 +183,7 @@ class ProjectController extends Controller
             'userId' => Auth::id()
         ];
 
-        Project::updated([
+        Project::where('id', $project_id)->update([
             'status' => 'rejected',
         ]);
         $providerNotify->notify(new RejectProjectNotification($data));
