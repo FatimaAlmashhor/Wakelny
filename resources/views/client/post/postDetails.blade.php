@@ -640,7 +640,7 @@
                                     </div>
                                     <!-- /Moda Taps -->
 
-                                    <form action="{{ route('accept-offer') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('accept-offer') }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $item->provider_id }}" name="provider_id">
                                         <input type="hidden" value="{{ $item->offer_id }}" name="offer_id">

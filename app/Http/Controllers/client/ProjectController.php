@@ -43,7 +43,7 @@ class ProjectController extends Controller
         }
     }
 
-    function showProviderConfirmation($amount){
+    function showProviderConfirmation($amount=null){
 
         $projects = Comments::select(
             'comments.id',

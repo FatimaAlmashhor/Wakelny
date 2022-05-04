@@ -13,7 +13,7 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
-                        <form id="confirm-data" action="{{ route('provider-confirm', $item->id) }}" method="POST" enctype="multipart/form-data">
+                        <form id="confirm-data" action="{{ route('provider-confirm', $item->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $item->id }}" name="offer_id" />
 

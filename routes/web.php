@@ -95,8 +95,8 @@ Route::group([
 
 
     // Accept Offer
-    Route::post('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
-    Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
+    Route::get('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
+    // Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
     Route::post('/confirm-offer/{offer_id}', [ProjectController::class, 'providerResponse'])->name('provider-confirm');
 
 // //////////////////
@@ -133,10 +133,10 @@ Route::group([
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
     Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-    // start change password
+    // // start change password
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-    // end change password
+    // // end change password
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
@@ -225,13 +225,6 @@ Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add
 // start active & block users
 Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
 //end active & block users
-
-// start change password
-Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-// end change password
-
-
 
 Route::view('/pusher', 'testPusher')->name('pusher');
 Route::get('test', function () {
