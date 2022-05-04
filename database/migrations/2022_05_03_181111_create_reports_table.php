@@ -13,21 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('duration');
-            $table->double('cost');
-            $table->double('cost_after_taxs');
-            $table->text('description');
-            $table->boolean('is_active')->default(1);
-            $table->string('file')->nullable();
-
+            $table->string('type_report')->nullable();
+            $table->string('massege')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->boolean("is_active")->default(1);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
+            
             $table->unsignedBigInteger('post_id')->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('reports');
     }
 };
