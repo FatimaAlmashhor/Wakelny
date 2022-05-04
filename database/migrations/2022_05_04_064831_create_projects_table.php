@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('seeker_id')->nullable();
             $table->unsignedBigInteger('provider_id')->nullable();
             $table->unsignedBigInteger('offer_id')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->nullable()->default('pending');
             $table->timestamps();
 
             $table->foreign('seeker_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

@@ -4,7 +4,6 @@
 @foreach ($projects as $item)
     <div class="container">
             <div class="d-flex justify-content-between flex-wrap">
-                <!-- <h3 class="my-5"> تصميم شعار لموقع بيع ملابس</h3> -->
                 <h3 class="my-5">{{ $item->title }}</h3>
             </div>
     </div>
@@ -14,9 +13,10 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
-                        <form id="confirm-data" action="" method="post" enctype="multipart/form-data">
+                        <form id="confirm-data" action="{{ route('provider-confirm', $item->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <!-- <input type="hidden" value="" name="post_id" /> -->
+                            <input type="hidden" value="{{ $item->id }}" name="offer_id" />
+
 
                             {{-- estamte cost --}}
                             <div class="col-lg-6 col-sm-12 col-xs-12 pt-3">
@@ -67,8 +67,8 @@
                                     style="height: 10rem;" data-sb-validations="required" readonly>{{ $item->comment_description }}</textarea>
                             </div>
                             <div class="mt-4">
-                                <button class="wak_btn" type="submit" name="confirm">تأكيد الموافقة</button>
-                                <button class="wak_btn" type="submit" name="reject">رفض</button>
+                                <input class="wak_btn" type="submit" name="confirm" value="تأكيد الموافقة">
+                                <input class="wak_btn" type="submit" name="reject" value="رفض">
                             </div>
                         </form>
                     </div>

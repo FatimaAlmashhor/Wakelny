@@ -8,7 +8,9 @@ use App\Models\Comments;
 use Mockery\Expectation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 class ProjectController extends Controller
 {
@@ -23,22 +25,24 @@ class ProjectController extends Controller
             ]);
 
             $project = new Project();
+            $project->seeker_id = Auth::id();
+            $project->provider_id = $request->provider_id;
             $project->offer_id = $request->offer_id;
             $project->status = 'pending';
 
             if ($project->save()){
                 return redirect()->route('provider-confirmation');
             }
-            
 
         } catch (Expectation $th) {
             return back()->with(['message' => 'فشلت عملية قبول الطلب!! أعد المحاولة', 'type' => 'alert-danger']);
         }
     }
 
-    function providerConfirmation(){
+    function showProviderConfirmation(){
 
-        $project = Comments::select(
+        $projects = Comments::select(
+            'comments.id',
             'comments.duration', 
             'comments.cost', 
             'comments.description as comment_description', 
@@ -46,6 +50,18 @@ class ProjectController extends Controller
             'posts.description as post_description'
         )->join('posts', 'posts.id', '=', 'comments.post_id')->where('comments.is_active', 1)->get();
 
-        return view('client.post.providerConfirmation')->with('projects', $project);
+        return view('client.post.providerConfirmation')->with('projects', $projects);
+        // return redirect()->route('provider-confirm')->with('projects', $projects);
+    }
+
+    function providerResponse(Request $request){
+        if ($request->input('confirm')){
+            $project = Project::where('offer_id', $request->offer_id)->update(['status' => 'at work']);
+        }
+        elseif ($request->input('reject')) {
+            $project = Project::where('offer_id', $request->offer_id)->update(['status' => 'rejected']);
+        }
+
+        return back();
     }
 }

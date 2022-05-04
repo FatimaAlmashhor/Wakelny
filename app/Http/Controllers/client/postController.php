@@ -45,10 +45,9 @@ class PostController extends Controller
             'comments.duration',
             'comments.cost',
             'comments.description',
-            'comments.id'
-        )
-            ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
-            ->where('post_id', $post_id)->get();
+            'comments.id as offer_id',
+            'comments.user_id as provider_id'
+        )->join('profiles', 'profiles.user_id', '=', 'comments.user_id')->where('post_id', $post_id)->get();
         // return response()->json($comments);
         return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id]);
     }
