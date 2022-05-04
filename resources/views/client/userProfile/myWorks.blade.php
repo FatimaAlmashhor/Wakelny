@@ -103,10 +103,12 @@
       <!-- 1 Item-->
       @foreach ($works as $item)
         <div class="col-lg-6 mb-3 mb-lg-0 my-4">
-      
+
+            @if (Auth::user()->hasRole('provider'))
 
             <a href="{{ route('detailsWork', $item->id) }}" >
 
+            @endif
 
                 <div class="hover hover-1 text-white rounded"><img src="/images/{{ $item->main_image}}" alt="">
                     <div class="hover-overlay"></div>
@@ -136,18 +138,15 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     const toggle = document.getElementById("filter_toggle");
-
     function openNav() {
         document.getElementById("filter").style.width = "350px";
         toggle.style.display = "none";
     }
-
     function closeNav() {
         document.getElementById("filter").style.width = "0";
         document.getElementById("works").style.marginLeft = "0";
         toggle.style.display = "block";
     }
-
     // for solving the filter closing in the phone stats and then back to desckop
     function Media(x) {
         if (x.matches) { // If media query matches
