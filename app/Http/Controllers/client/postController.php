@@ -55,10 +55,12 @@ class PostController extends Controller
         )
             ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
             ->where('post_id', $post_id)->get();
+
         $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
         // return response()->json($comments);
         return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id, 'hasComment' => $hasComment > 0 ? true : false]);
+
     }
     // page for show the form of create new post
     public function index()
@@ -189,7 +191,9 @@ class PostController extends Controller
             'posts.offers',
             'posts.description',
             'profiles.name'
+
         )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('posts.user_id', Auth::id())->get();
+
 
         // return response()->json($projects);
         return view('client.post.myProject')->with('posts', $projects);
@@ -253,4 +257,5 @@ class PostController extends Controller
             return back()->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
+
 }

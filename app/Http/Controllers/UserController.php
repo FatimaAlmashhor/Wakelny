@@ -18,11 +18,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class UserController extends Controller
-{    
-    
+{
 
 
-  
+
+
     function index(Request $request)
     {
 
@@ -31,17 +31,17 @@ class UserController extends Controller
         /**
          * ! why the model in the small?
          */
-<<<<<<< HEAD
+
         $cates = category::where('is_active', 1)->get();
         $skill = Skill::where('is_active', 1)->get();
 
-=======
+
         $cates = category::get();
         $skill = Skill::get();
         $posts = Posts::get();
         $users = User::get();
         $reports = Report::get();
->>>>>>> 2dcc39840a673decd71429eea133db038569fda4
+
 
         // $filter = QueryBuilder::for(Profile::class)
         //     ->allowedFilters([
@@ -56,7 +56,7 @@ class UserController extends Controller
         //     ->get();
 
 
-        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates, 'users' => $users,'skills' => $skill,'posts' => $posts, 'reports' => $reports]);
+        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates, 'users' => $users, 'skills' => $skill, 'posts' => $posts, 'reports' => $reports]);
     }
 
 
@@ -73,7 +73,7 @@ class UserController extends Controller
         // $sort_by = $request->rating;
         $rating = $request->rating;
         if ($request->ajax()) {
-            $data = User::getProviders($query, $cate, $rating,$posts,$users);
+            $data = User::getProviders($query, $cate, $rating, $posts, $users);
             return view('client.components.provider_data', compact('data'))->render();
             // return 'done';
         }
@@ -110,29 +110,28 @@ class UserController extends Controller
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
         $reports =  Report::select(
             'reports.id',
-                    'reports.type_report',
-                    'reports.massege',
-                    'profiles.user_id',
-                    'profiles.name'
+            'reports.type_report',
+            'reports.massege',
+            'profiles.user_id',
+            'profiles.name'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
-       
-        ->where('post_id', $post_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post,'post_id' => $post_id]);
+
+            ->where('post_id', $post_id)->get();
+        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id]);
     }
     public function insert_user($provider_id)
     {
         $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
         $reports =  Report::select(
-                    'reports.id',
-                    'users.id',
-                    'reports.type_report',
-                    'reports.massege',
-                    'profiles.user_id',
-                    'profiles.name'
+            'reports.id',
+            'users.id',
+            'reports.type_report',
+            'reports.massege',
+            'profiles.user_id',
+            'profiles.name'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
-        ->join('users', 'users.id', '=', 'reports.user_id')
-        ->where('provider_id', $provider_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'provider' => $provider,'provider_id' => $provider_id]);
+            ->join('users', 'users.id', '=', 'reports.user_id')
+            ->where('provider_id', $provider_id)->get();
+        return view('admin.report._form')->with(['reports' => $reports, 'provider' => $provider, 'provider_id' => $provider_id]);
     }
-
 }

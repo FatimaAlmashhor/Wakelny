@@ -67,6 +67,7 @@ class CommentsController extends Controller
 
         // }
     }
+
     // update comment
     public function editComment($comment_id)
     {
@@ -78,7 +79,9 @@ class CommentsController extends Controller
 
     public function update(Request $request, $comment_id)
     {
+
         $request->validate([
+
             'cost' => ['required', 'numeric'],
             'duration' => ['required', 'numeric'],
             'message' => ['required'],
@@ -89,8 +92,10 @@ class CommentsController extends Controller
             'message.required' => 'اضف وصف للمشروع',
             // 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
         ]);
+
         $comment = Comments::find($comment_id);
         // $comment->user_id = Auth::id();
+
         //   $comment->user_id = Auth::id();
         // $comment->post_id = $request->post_id;
         $comment->cost = $request->cost;
@@ -98,6 +103,7 @@ class CommentsController extends Controller
         $comment->description = $request->message;
         $comment->is_active = 1;
         $comment->cost_after_taxs = $request->cost / 0.5;
+
 
         if ($comment->save()) {
             return redirect()->back()
