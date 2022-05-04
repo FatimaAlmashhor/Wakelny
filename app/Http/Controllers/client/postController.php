@@ -8,11 +8,16 @@ use App\Models\Comments;
 use App\Models\PostModel;
 use App\Models\Posts;
 use App\Models\PostSkills;
+use App\Models\Profile;
 use App\Models\Skill;
+use App\Models\User;
+use App\Notifications\PostNotification;
 use Dotenv\Validator;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Mockery\Expectation;
 
 class PostController extends Controller
@@ -50,10 +55,12 @@ class PostController extends Controller
         )
             ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
             ->where('post_id', $post_id)->get();
-            $hasComment=Comments::where('post_id',$post_id)->where('user_id',Auth::id())->count();
+
+        $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
         // return response()->json($comments);
-       return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id, 'hasComment'=>$hasComment>0 ? true: false]);
+        return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id, 'hasComment' => $hasComment > 0 ? true : false]);
+
     }
     // page for show the form of create new post
     public function index()
@@ -101,6 +108,29 @@ class PostController extends Controller
             if ($post->save()) {
 
 
+                // ! send notification to all the users in the same category in the database except the owner 
+                // !still not working 
+                // $users = Profile::select('profiles.user_id')->join('categories', 'profiles.category_id', '=', 'categories.id')->where('categories.id', $request->category)->get();
+                $users = User::select(
+                    'users.id',
+                    'users.name',
+                    'categories.title'
+                )
+                    ->join('profiles', 'profiles.user_id', '=', 'users.id')
+                    ->join('categories', 'profiles.category_id', '=', 'categories.id')
+                    ->where('categories.id', $request->category)
+                    ->get();
+                // $users = User::with( 'inTheSameCategoriy')->where('category_id', $request->category)->get();
+                $data = [
+                    'category' => '',
+                    'post_title' => $request->title,
+                    'url' => url('posts/derails/' .  $post->id)
+                ];
+                // FacadesNotification::send($users, new PostNotification($data));
+                print_r($users);
+
+
+
                 $skills = $request->skills;
                 $needToInsert = false;
                 // insert if the skills are new
@@ -113,7 +143,7 @@ class PostController extends Controller
                         }
                     }
 
-                return redirect()->route('profile')
+                return redirect('/posts/details/' . $post->id)
                     ->with(['message' => 'تم اضافة مشروع جديدة بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
@@ -136,23 +166,24 @@ class PostController extends Controller
 
         return $filename;
     }
-// /////////////////////////////
+    // /////////////////////////////
 
     // edit post
-     public function editPosts($post_id)
-    { $post = Posts::find($post_id);
-     $skill = Skill::where('is_active', 1)->get();
-    $categories = category::where('is_active', 1)->get();
+    public function editPosts($post_id)
+    {
+        $post = Posts::find($post_id);
+        $skill = Skill::where('is_active', 1)->get();
+        $categories = category::where('is_active', 1)->get();
 
-        return view('client.post.editPost')->with(['data'=>$post, 'skills' => $skill, 'categories' => $categories]);
+        return view('client.post.editPost')->with(['data' => $post, 'skills' => $skill, 'categories' => $categories]);
     }
-     public function postDesciption()
+    public function postDesciption()
     {
 
         return view('client.post.postdescription');
     }
 
-       public function showProject()
+    public function showProject()
     {
         $projects =  Posts::select(
             'posts.id',
@@ -160,14 +191,16 @@ class PostController extends Controller
             'posts.offers',
             'posts.description',
             'profiles.name'
-        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('posts.user_id',Auth::id())->get();
+
+        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('posts.user_id', Auth::id())->get();
+
 
         // return response()->json($projects);
         return view('client.post.myProject')->with('posts', $projects);
     }
 
 
-     public function update(Request $request, $post_id)
+    public function update(Request $request, $post_id)
     {
         try {
             $request->validate([
@@ -191,7 +224,7 @@ class PostController extends Controller
 
 
 
-            $post=Posts::find($post_id);
+            $post = Posts::find($post_id);
             $post->user_id = Auth::id();
             $post->title = $request->title;
             $post->description = $request->message;
@@ -202,7 +235,7 @@ class PostController extends Controller
             if ($request->hasFile('files'))
                 $post->file = $this->uploadFile($request->file('files'));
 
-            if ($post->save()){
+            if ($post->save()) {
 
 
                 return redirect()->route('myProject')
@@ -215,17 +248,14 @@ class PostController extends Controller
         }
     }
 
-    public function toggle($post_id){
+    public function toggle($post_id)
+    {
 
-        $post=Posts::find($post_id);
-        $post->is_active*=-1;
-         if($post->save())
-        return back()->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
+        $post = Posts::find($post_id);
+        $post->is_active *= -1;
+        if ($post->save())
+            return back()->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 
-
-
-    }
-
-
+}

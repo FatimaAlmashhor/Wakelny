@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('duration');
-            $table->float('cost');
-            $table->float('cost_after_taxs');
+            $table->bigIncrements('duration');
+            $table->double('cost');
+            $table->double('cost_after_taxs');
             $table->text('description');
             $table->boolean('is_active')->default(1);
             $table->string('file')->nullable();
