@@ -163,7 +163,7 @@ Route::group([
             //--------- start comment
             // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
-            //--------  end comment
+                        //--------  end comment
         });
     });
     // ------------------------------------------------------------------------
@@ -212,3 +212,11 @@ Route::get('test', function () {
 // start active & block users
 Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
 //end active & block users
+
+
+// edit comment
+Route::get('/editcomment/{comment_id}', [CommentsController::class, 'editComment'])->name('editComment');
+	Route::post('/update_comment/{comment_id}',[CommentsController::class,'update'])->name('update_comment');
+
+//
+
