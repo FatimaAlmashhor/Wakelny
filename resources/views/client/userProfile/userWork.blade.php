@@ -12,7 +12,6 @@
                                 border: 1px solid #d5dadf; 
                                 width: 257px;
                                 text-align: right;
-
                             }
     .bootstrap-select[class*=col-] .dropdown-toggle {
         width:675px; 
@@ -39,11 +38,14 @@
                     <div class="card-body">
                     @if (Route::currentRouteName() == 'edit_work')
                     <form action="{{ route('update_work', $data->id) }}" method="POST" class="login-form"
+
                             enctype="multipart/form-data">
         
                                 @else
                                 <form action="{{ route('works.saveUserWork') }}" method="POST" class="login-form"
                             enctype="multipart/form-data">
+
+
                             @endif
 
               
@@ -133,7 +135,6 @@
 
                             <!-- <div class="row ">
                          
-
                                
                                 <div class="col-md-6">
                                     <label for="" class="col-md-6 col-form-label">
