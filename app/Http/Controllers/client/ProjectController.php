@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\client;
 
+use App\Models\Posts;
+use App\Models\Project;
+use App\Models\Comments;
 use Mockery\Expectation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class ProjectController extends Controller
 {
     //
-    function notifyProvider(Request $request){
+    function acceptOffer(Request $request){
         try {
             $request->validate ([
                 'amount' => ['required']
@@ -18,8 +21,7 @@ class ProjectController extends Controller
             [
                 'amount.required' => 'المبلغ المتفق عليه مطلوب *',
             ]);
-
-            // return redirect()->route('provider-confirmation')->with($request->amount);
+            
             return redirect()->route('provider-confirmation');
 
         } catch (Expectation $th) {
@@ -28,6 +30,15 @@ class ProjectController extends Controller
     }
 
     function providerConfirmation(){
-        return view('client.post.providerConfirmation');
+
+        $project = Comments::select(
+            'comments.duration', 
+            'comments.cost', 
+            'comments.description as comment_description', 
+            'posts.title',
+            'posts.description as post_description'
+        )->join('posts', 'posts.id', '=', 'comments.post_id')->where('comments.is_active', 1)->get();
+
+        return view('client.post.providerConfirmation')->with('projects', $project);
     }
 }
