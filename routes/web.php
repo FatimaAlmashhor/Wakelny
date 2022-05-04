@@ -95,7 +95,7 @@ Route::group([
 
 
     // Accept Offer
-    Route::post('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
+    Route::post('/accept-offer/{offer_id}', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
     Route::get('/confirm-offer', [ProjectController::class, 'providerConfirmation'])->name('provider-confirmation');
 
 // //////////////////

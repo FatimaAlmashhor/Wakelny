@@ -45,6 +45,7 @@ class PostController extends Controller
             'comments.duration',
             'comments.cost',
             'comments.description',
+            'comments.id'
         )
             ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
             ->where('post_id', $post_id)->get();

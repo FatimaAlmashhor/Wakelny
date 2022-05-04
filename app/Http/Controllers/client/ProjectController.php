@@ -21,8 +21,15 @@ class ProjectController extends Controller
             [
                 'amount.required' => 'المبلغ المتفق عليه مطلوب *',
             ]);
+
+            $project = new Project();
+            $project->offer_id = $request->offer_id;
+            $project->status = 'pending';
+
+            if ($project->save()){
+                return redirect()->route('provider-confirmation');
+            }
             
-            return redirect()->route('provider-confirmation');
 
         } catch (Expectation $th) {
             return back()->with(['message' => 'فشلت عملية قبول الطلب!! أعد المحاولة', 'type' => 'alert-danger']);
