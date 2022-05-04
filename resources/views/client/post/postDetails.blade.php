@@ -73,6 +73,7 @@
                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
 
+                                {{-- accordion body / collabes --}}
                                 <div class="card p-4  my-3" style="direction: rtl;">
                                     <div class="box d-flex justify-content-between flex-wrap">
                                         <div class="image d-flex flex-wrap">
@@ -173,7 +174,8 @@
                                         و في الأخير نتمنى العمل معك .</p>
 
                                     <div class="m-2">
-                                        <button tabindex="-1" class="wak_btn mx-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button tabindex="-1" class="wak_btn mx-2" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
                                             <i class="fa fa-check px-1"></i>
                                             <span class="action-text"> قبول العرض </span>
                                         </button>
@@ -185,7 +187,7 @@
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
 
@@ -203,7 +205,7 @@
                         });
                     </script>
                 @endif --}}
-                
+
 
 
             </div>
@@ -305,11 +307,12 @@
 
     {{--  --}}
     <div class="container">
-        <h3 class="my-5"> اضف عرض جديد</h3>
+
         <div class="row my-5">
             <div class="col-md-8 col-sm-12">
                 {{-- comment post condition --}}
                 @if (!$hasComment)
+                    <h3 class="my-5"> اضف عرض جديد</h3>
                     <div class="card shadow-sm ">
                         <div class="card-body">
 
@@ -429,11 +432,11 @@
                     </div>
                 @endif
             </div>
+            {{-- all comments --}}
             <div class="col-md-8 col-sm-12">
+
                 @if (!empty($comments))
                     @foreach ($comments as $item)
-                    
-
                         <div class="card p-4 container my-3" style="direction: rtl;">
                             <div class="row">
                                 <div class="col-6 image d-flex">
@@ -476,13 +479,65 @@
 
                                 </div>
                                 {{-- تعديل الكومنتات --}}
-                                <div class="col-6 ">
-                                    @if ($item->user_id == auth()->user()->id)
-                                        <button class="wak_btn" data-bs-toggle="collapse" data-bs-target="#demo">
-                                            <i class="fa fa-fw fa-edit"></i>
-                                            <span class="action-text">تعديل العرض </span>
-                                        </button>
-                                    @endif
+                                <div class="row col-6">
+                                    <div class="col-6 ">
+                                        @if ($item->user_id == auth()->user()->id)
+                                            <button class="wak_btn w-full" data-bs-toggle="collapse" data-bs-target="#demo"
+                                                style="width:100% ; padding: .6rem">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                                <span class="action-text">تعديل العرض </span>
+                                            </button>
+                                        @endif
+                                    </div>
+                                    <div class="card--actions hidden-xs col-6">
+                                        <div class="dropdown btn-group">
+
+                                            <a tabindex="-1" class="wak_btn green_border" href="#"
+                                                style="width:100% ; padding: .6rem">
+                                                <i class="fa-solid fa-gear px-1"></i>
+                                                <span class="action-text">خيارات </span>
+                                            </a>
+
+                                            <button class="dropdown-toggle wak_btn " style="border-radius: 0px"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                {{-- <i class="fa fa-caret-down"></i> --}}
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
+                                                aria-labelledby="خيارات">
+
+                                                <li class="text-end my-2 px-2">
+                                                    <a tabindex="-1"
+                                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
+                                                        <i class="fa fa-fw fa-flag"></i>
+                                                        <span class="action-text">تبليغ عن محتوى</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                {{-- more info --}}
+                                <div>
+                                    <div class="d-flex justify-content-around m-3 bg-lighter-gray p-3">
+                                        <div>
+                                            <div>المبلغ</div>
+                                            <div>35.00$</div>
+                                        </div>
+                                        <div>
+                                            <div>مدة التنفيذ</div>
+                                            <div>3 أيام</div>
+                                        </div>
+                                        <div>
+                                            <div>معرض الأعمال</div>
+                                            <div>9 أعمال</div>
+                                        </div>
+                                        <div>
+                                            <div>تقييم العرض</div>
+                                            <div><i class="fa-thin fa-circle"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <p class=" col-12 font-sm mt-3">{{ $item->description }}</p>
                                 {{-- فورم التعديل --}}
@@ -617,19 +672,33 @@
                                 @endif
                             </div>
 
-
+                            <div class="m-2">
+                                <button tabindex="-1" class="wak_btn orange mx-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    <i class="fa fa-check px-1"></i>
+                                    <span class="action-text"> قبول العرض </span>
+                                </button>
+                                <a tabindex="-1" class="wak_btn green_border" href="#">
+                                    <i class="fa fa-send px-1"></i>
+                                    <span class="action-text"> تواصل مع المستقل </span>
+                                </a>
+                            </div>
                         </div>
 
 
                         <!-- Acceptance Modal -->
-                        <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title order-2" id="exampleModalLabel">قبول العرض</h5>
-                                        <button type="button" class="btn-close order-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close order-2" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
 
+
+                                    {{-- model for acceptence --}}
                                     <form action="{{ route('accept-offer') }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $item->provider_id }}" name="provider_id">
@@ -639,11 +708,12 @@
                                             <div class="color-black px-3 modal-panel is-show supSection" id="tab-A">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <label>المبلغ المتفق عليه <em class="text--danger text-danger">*</em></label>
+                                                        <label>المبلغ المتفق عليه <em
+                                                                class="text--danger text-danger">*</em></label>
                                                         <div class="input-group mt-1">
-                                                            <input name="amount" class='form-control' id="amount" type="text"
-                                                                value="{{ old('cost') }}" aria-label="Username"
-                                                                aria-describedby="basic-addon1">
+                                                            <input name="amount" class='form-control' id="amount"
+                                                                type="text" value="{{ old('cost') }}"
+                                                                aria-label="Username" aria-describedby="basic-addon1">
                                                             <span class="input-group-text" id="basic-addon1">$</span>
                                                         </div>
                                                         @error('amount')
@@ -655,32 +725,36 @@
                                                 </div>
 
                                                 <!-- <div class="row mt-3 d-flex justify-content-between">
-                                                    <div class="col-6">
-                                                        <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
-                                                        <div class="input-group mt-1">
-                                                            <input name="amount" class='form-control' id="name" type="text"
-                                                                value="{{ old('amount') }}" aria-label="Username"
-                                                                aria-describedby="basic-addon1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
-                                                        <div class="input-group mt-1">
-                                                            <input name="amount" class='form-control' id="credit_NO" type="number"
-                                                                value="{{ old('amount') }}" aria-label="Username"
-                                                                aria-describedby="basic-addon1" placeholder=".Card NO">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="mt-3">
-                                                    <input type="checkbox" class="ms-1" id="remember-card" checked>
-                                                    <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
-                                                </div> -->
+                                                                                                                                                                                                <div class="col-6">
+                                                                                                                                                                                                    <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                    <div class="input-group mt-1">
+                                                                                                                                                                                                        <input name="amount" class='form-control' id="name" type="text"
+                                                                                                                                                                                                            value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                            aria-describedby="basic-addon1">
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div class="col-6">
+                                                                                                                                                                                                    <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                    <div class="input-group mt-1">
+                                                                                                                                                                                                        <input name="amount" class='form-control' id="credit_NO" type="number"
+                                                                                                                                                                                                            value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                            aria-describedby="basic-addon1" placeholder=".Card NO">
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                            
+                                                                                                                                                                                            <div class="mt-3">
+                                                                                                                                                                                                <input type="checkbox" class="ms-1" id="remember-card" checked>
+                                                                                                                                                                                                <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
+                                                                                                                                                                                            </div> -->
 
                                                 <div class="row border-top mt-4 py-3">
-                                                    <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3% على عملية الدفع: <span class="color-orange font-lg">3082.50$</span> </p>
-                                                    <p class="text-muted font-xs"><em class="text--danger text-danger">*</em> رسوم عملية الدفع تقتطعها بوابات الدفع الالكترونية مثل PayPal والبطاقات الائتمانية. </p>
+                                                    <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3% على عملية الدفع: <span
+                                                            class="color-orange font-lg">3082.50$</span> </p>
+                                                    <p class="text-muted font-xs"><em
+                                                            class="text--danger text-danger">*</em> رسوم عملية الدفع
+                                                        تقتطعها بوابات الدفع الالكترونية مثل PayPal والبطاقات الائتمانية.
+                                                    </p>
                                                 </div>
                                             </div>
                                             <!-- /credit card -->
@@ -690,7 +764,7 @@
                                                 <div class="row">
                                                     <section class="card shadow-sm col-12 col-sm-12">
                                                         <div>
-                                                            
+
                                                         </div>
                                                     </section>
                                                 </div>
@@ -698,19 +772,20 @@
                                             <!-- /Pay Pal -->
 
                                             <!-- coupon -->
-                                            
+
                                             <!-- /coupon -->
                                         </div>
                                         <div class="modal-footer d-flex ">
                                             <input type="submit" class="btn wak_btn" value="قبول العرض">
-                                            <button type="button" class="btn wak_btn green_border" data-bs-dismiss="modal">تراجع</button>
+                                            <button type="button" class="btn wak_btn green_border"
+                                                data-bs-dismiss="modal">تراجع</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- /Acceptance Modal -->
 
+                        <!-- /Acceptance Modal -->
                     @endforeach
                 @else
                     <p>لايوجد عروض حاليا</p>

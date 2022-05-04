@@ -42,7 +42,7 @@ class CommentNotification extends Notification
     {
         $message = 'قام ' . $this->data['name'] . 'بالرد على مشوعك ';
         return (new MailMessage)
-            ->line('لديك اشعارات جديد  لم تقرأ')
+            ->line($message)
             ->action('دعني اراها', $this->data['url'])
             ->line('شكرا');
     }

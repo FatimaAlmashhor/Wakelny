@@ -80,6 +80,14 @@
                                     @if ($notification->data['type'] == 'comment')
                                         {{ $notification->data['name'] }}
                                         <span> قام بأضافه عرض جديد على مشروعك</span>
+                                    @endif
+                                    @if ($notification->data['type'] == 'accept_offer')
+                                        <span>
+                                            قام
+                                            {{ $notification->data['name'] }}
+                                            بقبول عرض لعمل مشروع
+                                            {{ $notification->data['project_title'] }}
+                                        </span>
                                     @else
                                         <span> {{ $notification->data['post_title'] }} جديد قد ينال اعجابك </span>
                                     @endif
