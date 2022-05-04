@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class work extends Model
 {
     use HasFactory;
-    
+
     public function getImageAttribute($value){
         return url("images/")."/".$value;
 

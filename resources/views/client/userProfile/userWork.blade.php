@@ -38,11 +38,14 @@
                     <div class="card-body">
                     @if (Route::currentRouteName() == 'edit_work')
                     <form action="{{ route('update_work', $data->id) }}" method="POST" class="login-form"
+
                             enctype="multipart/form-data">
         
                                 @else
                                 <form action="{{ route('works.saveUserWork') }}" method="POST" class="login-form"
                             enctype="multipart/form-data">
+
+
                             @endif
 
               
