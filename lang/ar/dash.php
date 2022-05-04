@@ -22,4 +22,10 @@ return [
     "ACTION" => "العمليات",
     "State" => "الحالة",
     "chang_password" => "تغيير كلمة السر",
+    "all_report"=>" البلاغات",
+    "type_report"=>"نوع البلاغ",
+    "massege"=>"الرسالة",
+    "provider_id"=>"  المبلغ عنه",
+    "user_id"=>" المبلغ ",
+    "post_id"=>"المحتوى المبلغ عنه",
 ];

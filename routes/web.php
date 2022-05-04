@@ -18,10 +18,13 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\admin\settingUserController;
+
+
 
 
 /*
-
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -85,14 +88,13 @@ Route::group([
     Route::get('/posts', [PostController::class, 'showAll'])->name('projectlancer');
     Route::get('/posts/details/{post_id}', [PostController::class, 'showOne'])->name('posts.details');
 
-
-    // this is the page of the my_works
-    Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
-    Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
-    Route::get('/detailsWork', [WorksController::class, 'showDetails'])->name('detailsWork');
-
+    
+  
     // this is the subsection of howen the my_works 
+
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
+    
+   
 
 
     // ------------------------------------------------------------------------
@@ -147,10 +149,28 @@ Route::group([
 
             // --------end post routing
 
+            // this is the page of the my_works
+            Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
+            Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
+            Route::post('/saveUserWork', [WorksController::class,'store'])->name('works.saveUserWork');
+            Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
+            Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
+            Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
+            Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
+            // --------end post routing
+
             //--------- start comment
-            // this route for save new comment 
+            // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
             //--------  end comment
+            
+            // this is the page of the report           
+
+          
+            Route::get('/report_content/{post_id}', [UserController::class, 'insert_content'])->name('report_content');
+            Route::get('/report_provider/{provider_id}', [UserController::class, 'insert_user'])->name('report_provider');
+            Route::post('/saveReport', [ReportController::class,'store'])->name('saveReport');
+
         });
     });
     // ------------------------------------------------------------------------
@@ -182,10 +202,25 @@ Route::group([
           Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
           Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
           Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
-    });
+   
+          Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
+          Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
+
+   
+        });
 });
 
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
+
+Route::view('/pusher', 'testPusher')->name('pusher');
+Route::get('test', function () {
+	event(new App\Events\StatusLiked('Someone'));
+	return "Event has been sent!";
+});
+
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+//end active & block users
