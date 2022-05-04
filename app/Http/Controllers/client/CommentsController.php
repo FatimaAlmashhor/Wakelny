@@ -41,6 +41,46 @@ class CommentsController extends Controller
         // } catch (\Throwable $th) {
         //throw $th;
         // return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+
         // }
     }
-}
+     // update comment
+       public function editComment($comment_id){
+       $comment = Comments::find($comment_id);
+
+
+        return view('client.post.editComment')->with('data',$comment);
+    }
+
+    public function update(Request $request, $comment_id)
+    {
+         $request->validate([
+            'cost' => ['required', 'numeric'],
+            'duration' => ['required', 'numeric'],
+            'message' => ['required'],
+        ], [
+            'cost.required' => 'رجاء قم بأدخال التكلفه لهذا المشروع',
+            'duration.required' => 'حقل المده مطلوب',
+            'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
+            'message.required' => 'اضف وصف للمشروع',
+            // 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
+        ]);
+       $comment = Comments::find($comment_id);
+            // $comment->user_id = Auth::id();
+        //   $comment->user_id = Auth::id();
+        // $comment->post_id = $request->post_id;
+        $comment->cost = $request->cost;
+        $comment->duration = $request->duration;
+        $comment->description = $request->message;
+        $comment->is_active = 1;
+        $comment->cost_after_taxs = $request->cost / 0.5;
+
+             if ($comment->save()){
+                  return redirect()->back()
+                    ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
+            } else
+                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        }
+    }
+
+
