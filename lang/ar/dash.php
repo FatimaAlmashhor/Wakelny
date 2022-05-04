@@ -26,5 +26,10 @@ return [
      "all_users" => "عرض المستخدمين",
      "usre_name"=>"اسم المستخدم",
      "user_email"=>"ايميل المستخدم",
-     "user_is_active"=>"حظر"
+     "user_is_active"=>"حظر",
+     "user_isBan_unBan"=>" متاح/حظر",
+     "user_status"=>" حالة المستخدمين",
+     "user_name"=>" اسم المستخدمين",
+     "user-stat"=>" حالة المستخدم",
+
 ];

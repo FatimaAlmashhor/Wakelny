@@ -35,7 +35,6 @@ class AuthController extends Controller
 
 
 
-
     // this function show the the verfiy message
     public function show()
     {
