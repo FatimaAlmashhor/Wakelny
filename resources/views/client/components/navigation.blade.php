@@ -81,7 +81,7 @@
                                         {{ $notification->data['name'] }}
                                         <span> قام بأضافه عرض جديد على مشروعك</span>
                                     @else
-                                        <span> {{ $notification->data['post_title'] }} جديد قد ينال اعجابك </span>
+                                        <span> {{ $notification->data['message'] }} </span>
                                     @endif
 
                                 </a>

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostNotification extends Notification
+class AcceptProjectNotification extends Notification
 {
     use Queueable;
     private $data;
@@ -40,7 +40,7 @@ class PostNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $message = 'هناك مشروع جديد في قسم  ' . $this->data['category'] . '   قد ينال اعجابك';
+        $message = 'قام ' . $this->data['name'] . 'بقبول مشروعك   ';
         return (new MailMessage)
             ->line($message)
             ->action('دعني اراها', $this->data['url'])
@@ -56,11 +56,13 @@ class PostNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'category' => $this->data['category'],
-            'post_title' => $this->data['post_title'],
+            'name' => $this->data['name'],
+            'project_id' => $this->data['project_id'],
+            'project_title' => $this->data['project_title'],
             'url' => $this->data['url'],
-            'type' => 'post',
-            // 'userId' => $this->data['userId']
+            'type' => 'accept_offer',
+            'message' => $this->data['message'],
+            'userId' => $this->data['userId']
         ];
     }
     public function toArray($notifiable)
@@ -70,10 +72,12 @@ class PostNotification extends Notification
             'read_at' => null,
             'data' => [
                 'name' => $this->data['name'],
-                'post_title' => $this->data['post_title'],
+                'project_id' => $this->data['project_id'],
+                'project_title' => $this->data['project_title'],
                 'url' => $this->data['url'],
-                'type' => 'post',
-                // 'userId' => $this->data['userId']
+                'type' => 'accept_offer',
+                'message' => $this->data['message'],
+                'userId' => $this->data['userId']
             ],
         ];
     }

@@ -104,6 +104,9 @@ Route::group([
     Route::get('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
     // Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
     Route::post('/confirm-offer/{offer_id}', [ProjectController::class, 'providerResponse'])->name('provider-confirm');
+    Route::get('/confirm-project/{project_id}/{seeker_id}', [ProjectController::class, 'confirmProject'])->name('confirm-project');
+    Route::get('/accept-project/{project_id}/{seeker_id}', [ProjectController::class, 'acceptProject'])->name('AcceptProject');
+    Route::get('/reject-project/{project_id}/{seeker_id}', [ProjectController::class, 'rejectProject'])->name('rejectProject');
 
 
 
@@ -116,12 +119,12 @@ Route::group([
     // Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
     Route::post('/confirm-offer/{offer_id}', [ProjectController::class, 'providerResponse'])->name('provider-confirm');
 
-// //////////////////
+    // //////////////////
 
     // this is the subsection of howen the my_works 
 
-    
-  
+
+
     // this is the subsection of howen the my_works 
 
     // this is the page of the my_works
@@ -137,8 +140,8 @@ Route::group([
 
 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
-    
-   
+
+
 
 
 
@@ -198,7 +201,7 @@ Route::group([
             Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
             Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
 
-            Route::post('/saveUserWork', [WorksController::class,'store'])->name('works.saveUserWork');
+            Route::post('/saveUserWork', [WorksController::class, 'store'])->name('works.saveUserWork');
             Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
             Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
             Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
@@ -211,16 +214,13 @@ Route::group([
 
             //--------  end comment
 
-            
+
             // this is the page of the report           
 
-          
+
             Route::get('/report_content/{post_id}', [UserController::class, 'insert_content'])->name('report_content');
             Route::get('/report_provider/{provider_id}', [UserController::class, 'insert_user'])->name('report_provider');
-            Route::post('/saveReport', [ReportController::class,'store'])->name('saveReport');
-
-
-
+            Route::post('/saveReport', [ReportController::class, 'store'])->name('saveReport');
         });
     });
     // ------------------------------------------------------------------------
@@ -253,20 +253,17 @@ Route::group([
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
 
 
-          //////////////////////CRUD Specialization ////////////////
-          Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
-          Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
-          Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
-          Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
-          Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
-          Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
-   
-          Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
-          Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
+        //////////////////////CRUD Specialization ////////////////
+        Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
+        Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
+        Route::post('/add_specialization', [SpecializationController::class, 'store'])->name('save_specialization');
+        Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
+        Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
+        Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
 
-   
-        });
-
+        Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
+        Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
+    });
 });
 
 // ------------------------------------------------------------------------
