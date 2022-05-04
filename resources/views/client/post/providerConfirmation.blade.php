@@ -24,9 +24,8 @@
                                     <em class="text--danger">*</em>
                                 </label>
                                 <div class="input-group mb-3">
-                                    <input name="cost" class='form-control' type="number" value="{{ $item->cost }}"
-                                        aria-label="Username" aria-describedby="basic-addon1" readonly>
-                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                    <input name="cost" class='form-control' type="number" value="{{ $amount }}"
+                                        aria-label="Username" aria-describedby="basic-addon1" readonly></span>
                                 </div>
                             </div>
 

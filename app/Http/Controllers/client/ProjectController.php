@@ -30,8 +30,12 @@ class ProjectController extends Controller
             $project->offer_id = $request->offer_id;
             $project->status = 'pending';
 
+            $amount = $request->amount;
+            // print_r($amount);
+
             if ($project->save()){
-                return redirect()->route('provider-confirmation');
+                // return redirect()->route('provider-confirmation')->with(['amount' => $amount]);
+                return $this->showProviderConfirmation($amount);
             }
 
         } catch (Expectation $th) {
@@ -39,7 +43,7 @@ class ProjectController extends Controller
         }
     }
 
-    function showProviderConfirmation(){
+    function showProviderConfirmation($amount){
 
         $projects = Comments::select(
             'comments.id',
@@ -50,7 +54,7 @@ class ProjectController extends Controller
             'posts.description as post_description'
         )->join('posts', 'posts.id', '=', 'comments.post_id')->where('comments.is_active', 1)->get();
 
-        return view('client.post.providerConfirmation')->with('projects', $projects);
+        return view('client.post.providerConfirmation')->with(['projects' => $projects, 'amount' => $amount]);
         // return redirect()->route('provider-confirm')->with('projects', $projects);
     }
 
@@ -62,6 +66,6 @@ class ProjectController extends Controller
             $project = Project::where('offer_id', $request->offer_id)->update(['status' => 'rejected']);
         }
 
-        return back();
+        return redirect()->back();
     }
 }
