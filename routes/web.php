@@ -1,29 +1,35 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\SettingsController;
-use App\Http\Controllers\client\ControllPannelController;
-use App\Http\Controllers\client\ProfileController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\admin\AuthController;
-use App\Http\Controllers\admin\CategoriesController;
-use App\Http\Controllers\admin\SkillController;
-use App\Http\Controllers\admin\SpecializationController;
-use App\Http\Controllers\admin\ForgotPasswordController;
-use App\Http\Controllers\admin\ResetPasswordController;
-use App\Http\Controllers\client\CommentController;
-use App\Http\Controllers\client\CommentsController;
-use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
+
+use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\client\CommentController;
+use App\Http\Controllers\client\ProfileController;
+use App\Http\Controllers\client\ProjectController;
+use App\Http\Controllers\client\CommentsController;
+use App\Http\Controllers\admin\CategoriesController;
+
+use App\Http\Controllers\admin\ReportController;
+
+
 use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\admin\ForgotPasswordController;
+use App\Http\Controllers\admin\SpecializationController;
+use App\Http\Controllers\client\ControllPannelController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 
 
 /*
-
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -92,8 +98,19 @@ Route::group([
     Route::post('/update_post/{post_id}', [PostController::class, 'update'])->name('update_post');
     Route::get('/toggle_post/{post_id}', [PostController::class, 'toggle'])->name('toggle_post');
 
-    // //////////////////
 
+
+    // Accept Offer
+    Route::get('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
+    // Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
+    Route::post('/confirm-offer/{offer_id}', [ProjectController::class, 'providerResponse'])->name('provider-confirm');
+
+
+
+
+
+
+    // this is the subsection of howen the my_works 
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
@@ -106,7 +123,10 @@ Route::group([
     Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
     // this is the subsection of howen the my_works
 
+
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
+
+
 
 
     // ------------------------------------------------------------------------
@@ -126,10 +146,10 @@ Route::group([
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
     Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-    // start change password
+    // // start change password
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-    // end change password
+    // // end change password
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
@@ -160,10 +180,28 @@ Route::group([
 
             // --------end post routing
 
+            // this is the page of the my_works
+            Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
+            Route::get('/userWork', [WorksController::class, 'create'])->name('userWork');
+            Route::post('/saveUserWork', [WorksController::class, 'store'])->name('works.saveUserWork');
+            Route::get('/detailsWork/{work_id}', [WorksController::class, 'showDetails'])->name('detailsWork');
+            Route::get('/edit_work/{work_id}', [WorksController::class, 'edit'])->name('edit_work');
+            Route::post('/edit_work/{work_id}', [WorksController::class, 'update'])->name('update_work');
+            Route::get('/toggle_work/{work_id}', [WorksController::class, 'toggle'])->name('toggle_work');
+            // --------end post routing
+
             //--------- start comment
             // this route for save new comment
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
+
             //--------  end comment
+
+            // this is the page of the report           
+
+
+            Route::get('/report_content/{post_id}', [UserController::class, 'insert_content'])->name('report_content');
+            Route::get('/report_provider/{provider_id}', [UserController::class, 'insert_user'])->name('report_provider');
+            Route::post('/saveReport', [ReportController::class, 'store'])->name('saveReport');
         });
     });
     // ------------------------------------------------------------------------
@@ -195,6 +233,7 @@ Route::group([
         Route::post('/edit_category/{cat_id}', [CategoriesController::class, 'update'])->name('update_category');
         Route::get('/toggle_category/{cat_id}', [CategoriesController::class, 'toggle'])->name('toggle_category');
 
+
         //////////////////////CRUD Specialization ////////////////
         Route::get('/list_specialization', [SpecializationController::class, 'list_specialization'])->name('list_specialization');
         Route::get('/add_specialization', [SpecializationController::class, 'add_specialization'])->name('add_specialization');
@@ -202,6 +241,9 @@ Route::group([
         Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
         Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
         Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
+
+        Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
+        Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
     });
 });
 
@@ -219,6 +261,7 @@ Route::group([
 Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
 //end active & block users
 
+
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
@@ -231,3 +274,13 @@ Route::get('/markAsRead', function () {
 
     return redirect()->back();
 })->name('mark');
+
+// start active & block users
+Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
+
+//end active & block users
+
+
+// edit comment
+Route::get('/editcomment/{comment_id}', [CommentsController::class, 'editComment'])->name('editComment');
+Route::post('/update_comment/{comment_id}', [CommentsController::class, 'update'])->name('update_comment');

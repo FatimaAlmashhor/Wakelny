@@ -72,6 +72,15 @@
                             <a href="{{ route('add_skill') }}" class="mx-2">{{ __('dash.add') }}</a>
                         </li>
                     </ul>
+
+                 
+                     <li class=" sidebar-title">
+    <a href="{{ route('reports') }}" class='sidebar-link'>{{ __('dash.all_report') }}</a>
+
+</li>
+ <li class=" sidebar-title">
+    <a href="{{ route('change-password') }}" class='sidebar-link'>{{ __('dash.chang_password') }}</a>
+
                 </li>
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -87,10 +96,6 @@
 
                     </ul>
 
-
-
-                </li>
-            </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>
