@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('seeker_id');
-            $table->unsignedBigInteger('provider_id');
-            $table->unsignedBigInteger('offer_id');
-            $table->string('status');
+            $table->unsignedBigInteger('seeker_id')->nullable();
+            $table->unsignedBigInteger('provider_id')->nullable();
+            $table->unsignedBigInteger('offer_id')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->foreign('seeker_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('offer_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
