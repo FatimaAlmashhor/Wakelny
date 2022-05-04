@@ -28,6 +28,7 @@ class ReportController extends Controller
         return view('admin.report.index')->with(['reports'=>$reports ]);
 
     }
+    ////////////////////add new report ///////////
 
     public function store(Request $request)
     {
