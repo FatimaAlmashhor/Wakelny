@@ -61,15 +61,20 @@
                             class="fa-solid fa-comment-dots font-sm"></i></a>
                 </li>
                 <li class="nav-item ms-2 user-items">
-                    <div class="nav-link color-offwhite fs-5" aria-expanded="false" type="button"
-                        id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                    <div class="nav-link color-offwhite fs-5 " aria-expanded="false" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown" style="position: relative">
                         <i class="fa-solid fa-bell font-sm"></i>
-                        <span style="width:5px; height:5px border-radias : 50% ;background:red"></span>
+                        @if (auth()->user()->unreadNotifications->count() > 0)
+                            <span
+                                style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
+                        @endif
                     </div>
+
                     <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
 
-                        <li class="">
-
+                        <li class="" style="color: gray">
                             @foreach (auth()->user()->unreadNotifications as $notification)
                                 <a class="dropdown-item color-black" href="{{ $notification->data['url'] }}">
                                     @if ($notification->data['type'] == 'comment')
@@ -83,7 +88,7 @@
                             @endforeach
                         </li>
                     </ul>
-                    {{ auth()->user()->unreadNotifications->count() }}
+
 
 
                 </li>
