@@ -27,8 +27,8 @@ class UserController extends Controller
         /**
          * ! why the model in the small?
          */
-        $cates = category::get();
-        $skill = Skill::get();
+        $cates = category::where('is_active', 1)->get();
+        $skill = Skill::where('is_active', 1)->get();
 
 
         // $filter = QueryBuilder::for(Profile::class)
