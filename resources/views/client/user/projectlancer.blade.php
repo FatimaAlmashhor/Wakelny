@@ -15,7 +15,7 @@
                             class="fas fa-times"></i></a>
                     <div class="container-fluid ">
                         <div class="row d-flex justify-content-start">
-                            <div class="w-full">
+                            <div class="">
                                 <div class="">
                                     <article class="filter-group">
 

@@ -9,7 +9,9 @@ use App\Models\Skill;
 use App\Models\User;
 use App\Models\WorkSkill;
 use App\Models\work;
+
 use App\Models\Posts;
+
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -48,6 +50,7 @@ class WorksController extends Controller
 
 
     public function showDetails($work_id)
+
     {
         $works = work::where('id', $work_id)->where('is_active', 1)->get();
         $works =  work::select(
@@ -69,6 +72,7 @@ class WorksController extends Controller
     
     public function store(Request $request)
     {
+
         try {
             $request->validate([
                 'title' => ['required', 'min:15','max:35'],
@@ -95,7 +99,7 @@ class WorksController extends Controller
 
             $work = new work();
             $work->user_id = Auth::id();
-        
+
             $work->title = $request->title;
             $work->comple_date = $request->comple_date;
             $work->main_image = $request->hasFile('main_image')?$this->uploadFile($request->file('main_image')):"default.png";
@@ -176,12 +180,15 @@ class WorksController extends Controller
         $work->is_active*=-1;
         if($work->save())
             if($work->is_active==-1)
+
                     return back()->with(['message' => 'تم تعطيل العمل بنجاح', 'type' => 'alert-success']);
                 else
                     return back()->with(['message' => 'تم تفعيل العمل بنجاح', 'type' => 'alert-success']);
+
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     
     }
+
 
 
     public function uploadFile($file){

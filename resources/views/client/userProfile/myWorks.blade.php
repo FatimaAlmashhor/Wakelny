@@ -103,11 +103,13 @@
       <!-- 1 Item-->
       @foreach ($works as $item)
         <div class="col-lg-6 mb-3 mb-lg-0 my-4">
+
             @if (Auth::user()->hasRole('provider'))
 
             <a href="{{ route('detailsWork', $item->id) }}" >
 
             @endif
+
                 <div class="hover hover-1 text-white rounded"><img src="/images/{{ $item->main_image}}" alt="">
                     <div class="hover-overlay"></div>
                     <div class="hover-1-content px-5 py-4">

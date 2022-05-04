@@ -22,10 +22,22 @@ return [
     "ACTION" => "العمليات",
     "State" => "الحالة",
     "chang_password" => "تغيير كلمة السر",
+
     "all_report"=>" البلاغات",
     "type_report"=>"نوع البلاغ",
     "massege"=>"الرسالة",
     "provider_id"=>"  المبلغ عنه",
     "user_id"=>" المبلغ ",
     "post_id"=>"المحتوى المبلغ عنه",
+
+    "users"=> "المستخدمين",
+     "all_users" => "عرض المستخدمين",
+     "usre_name"=>"اسم المستخدم",
+     "user_email"=>"ايميل المستخدم",
+     "user_is_active"=>"حظر",
+     "user_isBan_unBan"=>" متاح/حظر",
+     "user_status"=>" حالة المستخدمين",
+     "user_name"=>" اسم المستخدمين",
+     "user-stat"=>" حالة المستخدم",
+
 ];
