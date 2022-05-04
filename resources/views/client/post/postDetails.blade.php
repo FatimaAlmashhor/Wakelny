@@ -630,16 +630,6 @@
                                         <button type="button" class="btn-close order-2" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <!-- Modal Taps -->
-                                    <div class="modal-tabs">
-                                        <nav class="nav col-auto d-flex align-items-center">
-                                            <p class="nav-link color-black modal-tab tab-A is-active" id="credit_card" data-current="tab-A"><i class="fa-solid fa-credit-card ms-2"></i>بطاقة ائتمانية</p>
-                                            <p class="nav-link color-black modal-tab tab-B" id="payPal" data-current="tab-B"><i class="fa-brands fa-paypal ms-2"></i>Pay Pal</p>
-                                            <!-- <p class="nav-link color-black modal-tab tab-C" id="coupon" data-current="tab-C"><i class="fa-solid fa-tags ms-2"></i>قسيمة</p> -->
-                                        </nav>
-                                    </div>
-                                    <!-- /Moda Taps -->
-
                                     <form action="{{ route('accept-offer') }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $item->provider_id }}" name="provider_id">
