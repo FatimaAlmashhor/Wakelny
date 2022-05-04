@@ -1,27 +1,30 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\SettingsController;
-use App\Http\Controllers\client\ControllPannelController;
-use App\Http\Controllers\client\ProfileController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\admin\AuthController;
-use App\Http\Controllers\admin\CategoriesController;
-use App\Http\Controllers\admin\SkillController;
-use App\Http\Controllers\admin\SpecializationController;
-use App\Http\Controllers\admin\ForgotPasswordController;
-use App\Http\Controllers\admin\ResetPasswordController;
-use App\Http\Controllers\client\CommentController;
-use App\Http\Controllers\client\CommentsController;
-use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\WorksController;
 
+use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\client\CommentController;
+use App\Http\Controllers\client\ProfileController;
+use App\Http\Controllers\client\ProjectController;
+use App\Http\Controllers\client\CommentsController;
+use App\Http\Controllers\admin\CategoriesController;
+
 use App\Http\Controllers\admin\ReportController;
 
+
 use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\admin\ForgotPasswordController;
+use App\Http\Controllers\admin\SpecializationController;
+use App\Http\Controllers\client\ControllPannelController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
@@ -95,6 +98,12 @@ Route::group([
 	Route::post('/update_post/{post_id}',[PostController::class,'update'])->name('update_post');
 	Route::get('/toggle_post/{post_id}',[PostController::class,'toggle'])->name('toggle_post');
 
+
+    // Accept Offer
+    Route::get('/accept-offer', [ProjectController::class, 'acceptOffer'])->name('accept-offer');
+    // Route::get('/confirm-offer', [ProjectController::class, 'showProviderConfirmation'])->name('provider-confirmation');
+    Route::post('/confirm-offer/{offer_id}', [ProjectController::class, 'providerResponse'])->name('provider-confirm');
+
 // //////////////////
 
 
@@ -136,10 +145,10 @@ Route::group([
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('loginWithGoogle');
     Route::any('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-    // start change password
+    // // start change password
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
-    // end change password
+    // // end change password
 
     // check if the user is login in
     Route::group(['middleware' => ['auth', 'role:provider|seeker']], function () {
@@ -254,11 +263,11 @@ Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add
 Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
 //end active & block users
 
+
 // start change password
 Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
 // end change password
-
 
 Route::view('/pusher', 'testPusher')->name('pusher');
 Route::get('test', function () {
