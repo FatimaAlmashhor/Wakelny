@@ -65,19 +65,22 @@
                         id="dropdownMenuButton1" data-bs-toggle="dropdown" style="position: relative">
                         <i class="fa-solid fa-bell font-sm"></i>
                         @if (auth()->user()->unreadNotifications->count() > 0)
-                            <span
+                            {{-- <span
                                 style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
                                 {{ auth()->user()->unreadNotifications->count() }}
-                            </span>
+                            </span> --}}
                         @endif
                     </div>
 
-                    <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5" aria-labelledby="dropdownMenuButton1">
 
-                        <li class="" style="color: gray">
-                            @foreach (auth()->user()->unreadNotifications as $notification)
-                                <a class="dropdown-item color-black" href="{{ $notification->data['url'] }}">
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            <li class=""
+                                style="color: gray ; width:340px ; overflow-wrap: break-word; height: fit-content ;   ">
+                                <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
+                                    style=' color: gray ; border-right: 4px solid gray ; padding-right: 2px ; width:inherit; height: fit-content; '>
                                     @if ($notification->data['type'] == 'comment')
+                                    
                                         {{ $notification->data['name'] }}
                                         <span> قام بأضافه عرض جديد على مشروعك</span>
                                     @else
@@ -85,8 +88,8 @@
                                     @endif
 
                                 </a>
-                            @endforeach
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
 
 
