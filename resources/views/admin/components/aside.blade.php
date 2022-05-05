@@ -22,6 +22,13 @@
 
                 <li class=" sidebar-title"> <i class="fa-solid fa-minus"></i> {{ __('dash.pages') }}</li>
 
+                <li class="sidebar-item"> 
+                    <a href="{{ route('showUsers') }}" class='sidebar-link'>
+                    <i class="fa-solid fa-users"></i>
+                        <span class="mx-4">{{ __('dash.users') }}</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="fa-solid fa-layer-group"></i>
@@ -78,14 +85,6 @@
                         <span class="mx-4">{{ __('dash.all_report') }}</span>
                     </a>
                 </li>
-                    
-                <li class="sidebar-item"> 
-                    <a href="{{ route('showUsers') }}" class='sidebar-link'>
-                    <i class="fa-solid fa-users"></i>
-                        <span class="mx-4">{{ __('dash.users') }}</span>
-                    </a>
-                </li>
-
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>
