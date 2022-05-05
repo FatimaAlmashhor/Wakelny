@@ -96,20 +96,11 @@ class CommentsController extends Controller
         $comment->is_active = 1;
         $comment->cost_after_taxs = $request->cost / 0.5;
 
-<<<<<<< HEAD
-             if ($comment->save()){
-                  return redirect()->back()
-                    ->with(['message' => 'تم تعديل العرض بنجاح', 'type' => 'alert-success']);
-            } else
-                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-        }
-=======
 
         if ($comment->save()) {
             return redirect()->back()
                 ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
         } else
             return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
->>>>>>> 028ee4633fa0fce5ceb59e2b4f65babf2373cd12
     }
 }
