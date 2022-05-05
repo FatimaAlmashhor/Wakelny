@@ -30,7 +30,8 @@ class PostController extends Controller
             'posts.title',
             'posts.offers',
             'posts.description',
-            'profiles.name'
+            'profiles.name', 
+            'profiles.user_id as provider_id'
         )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->get();
 
         // return response()->json($projects);
