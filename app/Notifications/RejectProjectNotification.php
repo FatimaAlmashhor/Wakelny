@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
 class RejectProjectNotification extends Notification
 {
@@ -42,6 +43,7 @@ class RejectProjectNotification extends Notification
     {
         $message = 'قام ' . $this->data['name'] . 'برفض مشروعك   ';
         return (new MailMessage)
+            ->subject(Lang::get('تم رفض مشروعك'))
             ->line($message)
             ->action('دعني اراها', $this->data['url'])
             ->line('شكرا');
