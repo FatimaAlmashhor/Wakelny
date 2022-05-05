@@ -82,7 +82,13 @@ class ControllPannelController extends Controller
 
     function admin()
     {
-        return view('admin.index');
+         // Show account Users && Posts && Rports
+
+         $post= DB::table('posts')->count();
+         $reports= DB::table('reports')->count();
+         $users = DB::table('users')->count();
+         return view('admin.index',compact('users','reports','post'));
+
     }
 
     public function edit_pro()
@@ -106,7 +112,7 @@ class ControllPannelController extends Controller
 
         return $filename;
     }
-    
+
     public function account_save(Request $request)
     {
 
