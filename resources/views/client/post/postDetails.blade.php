@@ -481,7 +481,7 @@
                                 {{-- تعديل الكومنتات --}}
                                 <div class="row col-6">
                                     <div class="col-6 ">
-                                        @if ($item->user_id == auth()->user()->id)
+                                        @if (Auth::check() && $item->user_id == auth()->user()->id)
                                             <button class="wak_btn w-full" data-bs-toggle="collapse" data-bs-target="#demo"
                                                 style="width:100% ; padding: .6rem">
                                                 <i class="fa fa-fw fa-edit"></i>
@@ -541,7 +541,7 @@
                                 </div>
                                 <p class=" col-12 font-sm mt-3">{{ $item->description }}</p>
                                 {{-- فورم التعديل --}}
-                                @if ($item->user_id == auth()->user()->id)
+                                @if (Auth::check() && $item->user_id == auth()->user()->id)
                                     <div class="col-12 collapse" id="demo">
 
                                         <div class="card shadow-sm ">
@@ -725,28 +725,28 @@
                                                 </div>
 
                                                 <!-- <div class="row mt-3 d-flex justify-content-between">
-                                                                                                                                                                                                <div class="col-6">
-                                                                                                                                                                                                    <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
-                                                                                                                                                                                                    <div class="input-group mt-1">
-                                                                                                                                                                                                        <input name="amount" class='form-control' id="name" type="text"
-                                                                                                                                                                                                            value="{{ old('amount') }}" aria-label="Username"
-                                                                                                                                                                                                            aria-describedby="basic-addon1">
+                                                                                                                                                                                                    <div class="col-6">
+                                                                                                                                                                                                        <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                        <div class="input-group mt-1">
+                                                                                                                                                                                                            <input name="amount" class='form-control' id="name" type="text"
+                                                                                                                                                                                                                value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                aria-describedby="basic-addon1">
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="col-6">
+                                                                                                                                                                                                        <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                        <div class="input-group mt-1">
+                                                                                                                                                                                                            <input name="amount" class='form-control' id="credit_NO" type="number"
+                                                                                                                                                                                                                value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                aria-describedby="basic-addon1" placeholder=".Card NO">
+                                                                                                                                                                                                        </div>
                                                                                                                                                                                                     </div>
                                                                                                                                                                                                 </div>
-                                                                                                                                                                                                <div class="col-6">
-                                                                                                                                                                                                    <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
-                                                                                                                                                                                                    <div class="input-group mt-1">
-                                                                                                                                                                                                        <input name="amount" class='form-control' id="credit_NO" type="number"
-                                                                                                                                                                                                            value="{{ old('amount') }}" aria-label="Username"
-                                                                                                                                                                                                            aria-describedby="basic-addon1" placeholder=".Card NO">
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                            </div>
-                            
-                                                                                                                                                                                            <div class="mt-3">
-                                                                                                                                                                                                <input type="checkbox" class="ms-1" id="remember-card" checked>
-                                                                                                                                                                                                <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
-                                                                                                                                                                                            </div> -->
+                                
+                                                                                                                                                                                                <div class="mt-3">
+                                                                                                                                                                                                    <input type="checkbox" class="ms-1" id="remember-card" checked>
+                                                                                                                                                                                                    <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
+                                                                                                                                                                                                </div> -->
 
                                                 <div class="row border-top mt-4 py-3">
                                                     <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3% على عملية الدفع: <span
