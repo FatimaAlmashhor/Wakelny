@@ -276,3 +276,11 @@ Route::get('/markAsRead', function () {
 
     return redirect()->back();
 })->name('mark');
+
+
+Route::get('/markAsRead/{notification}', function ($notification) {
+    $mark = Auth()->user()->unreadNotifications->where('id', $notification)->first();
+
+    $mark->update(['read' => true]);
+})->name('markAsReadOne');
+
