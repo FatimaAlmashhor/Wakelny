@@ -36,13 +36,17 @@
                     </a>
 
                     <ul class="submenu">
-                        <i class="fa-solid fa-border-all"></i>
-                        <!-- <li class="submenu-item"> -->
-                            <a href="{{ route('list_categories') }}" class="mx-2">{{ __('dash.show_all') }}</a>
+                        <li class="submenu-item">
+                            <a href="{{ route('list_categories') }}">
+                                <i class="bi bi-grid-fill"></i>
+                                <span class="me-1"> {{ __('dash.show_all') }} </span>
+                            </a>
                         </li>
                         <li class="submenu-item ">
-                        <!-- <i class="fa-solid fa-plus"></i> -->
-                            <a href="{{ route('add_category') }}" class="mx-2">{{ __('dash.add') }}</a>
+                            <a href="{{ route('add_category') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="me-1"> {{ __('dash.add') }} </span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -54,11 +58,17 @@
                     </a>
 
                     <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('list_specialization') }}" class="mx-2">{{ __('dash.show_all') }}</a>
+                        <li class="submenu-item">
+                            <a href="{{ route('list_specialization') }}">
+                                <i class="bi bi-grid-fill"></i>
+                                <span class="me-1"> {{ __('dash.show_all') }} </span>
+                            </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('add_specialization') }}" class="mx-2">{{ __('dash.add') }}</a>
+                            <a href="{{ route('add_specialization') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="me-1"> {{ __('dash.add') }} </span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -70,11 +80,17 @@
                     </a>
 
                     <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('list_skills') }}" class="mx-2">{{ __('dash.show_all') }}</a>
+                        <li class="submenu-item">
+                            <a href="{{ route('list_skills') }}">
+                                <i class="bi bi-grid-fill"></i>
+                                <span class="me-1"> {{ __('dash.show_all') }} </span>
+                            </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('add_skill') }}" class="mx-2">{{ __('dash.add') }}</a>
+                            <a href="{{ route('add_skill') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="me-1"> {{ __('dash.add') }} </span>
+                            </a>
                         </li>
                     </ul>
                 </li>
