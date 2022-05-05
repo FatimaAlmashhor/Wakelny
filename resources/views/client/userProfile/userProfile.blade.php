@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid border-bottom px-5 pt-5">
         <!-- User Identety Brief-->
-        <div class="profile-identity row">
+        <div class="profile-identity row align-items-center">
             <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
                 style="width: 200px ; height: 200px;">
                 @if ($data->avatar !== 'http://localhost:8000/images/')
@@ -16,10 +16,11 @@
                 <div class="inactive-dot rounded-circle"></div>
             </div>
 
-            <div class="user-info color-black mt-5 py-0 col-md-8">
+            <div class="user-info color-black mt-5 py-0 col-md-6">
                 <div class="username color-black">
 
                     <h5>{{ $data->name }}</h5>
+
                 </div>
 
                 <div class="user-brief text-muted">
@@ -44,8 +45,52 @@
                     @endif
 
                 </div>
+
             </div>
+
+{{-- user report --}}
+        <div class="card--actions hidden-xs float-start col-2">
+            <div class="dropdown btn-group">
+
+                <a tabindex="-1" class="wak_btn" href="#">
+                    <i class="fa fa-fw fa-send"></i>
+                    <span class="action-text">كلفني </span>
+                </a>
+
+
+
+                <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    {{-- <i class="fa fa-caret-down"></i> --}}
+                </button>
+                <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
+                    <li class="my-2 border-bottom text-end ">
+                        <a tabindex="-1" href="">
+                            <i class="fa fa-fw fa-bookmark"></i>
+                            <span class="action-text">أضف إلى المفضلة</span>
+                        </a>
+                    </li>
+
+
+
+
+                    <li class="text-end my-2 px-2">
+                        <a tabindex="-1" href="{{ route('report_provider', $data->user_id) }}">
+                            <i class="fa fa-fw fa-flag"></i>
+                            <span class="action-text">تبليغ عن مستخدم</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
         </div>
+        {{-- user report --}}
+
+        </div>
+
+
+
         <!-- /User Identety Brief-->
 
         <!-- Profile Taps -->

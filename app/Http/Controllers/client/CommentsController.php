@@ -67,15 +67,7 @@ class CommentsController extends Controller
 
         // }
     }
-
-    // update comment
-    public function editComment($comment_id)
-    {
-        $comment = Comments::find($comment_id);
-
-
-        return view('client.post.editComment')->with('data', $comment);
-    }
+     // update comment
 
     public function update(Request $request, $comment_id)
     {
@@ -86,10 +78,10 @@ class CommentsController extends Controller
             'duration' => ['required', 'numeric'],
             'message' => ['required'],
         ], [
-            'cost.required' => 'رجاء قم بأدخال التكلفه لهذا المشروع',
+            'cost.required' => 'رجاء قم بأدخال التكلفه لهذا العرض',
             'duration.required' => 'حقل المده مطلوب',
             'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
-            'message.required' => 'اضف وصف للمشروع',
+            'message.required' => 'اضف تفاصيل للعرض ',
             // 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
         ]);
 
