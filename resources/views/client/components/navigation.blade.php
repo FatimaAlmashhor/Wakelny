@@ -33,18 +33,18 @@
             @endrole
             <ul class="navbar-nav  ">
                 <li class="nav-item ">
-                        <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
+                    <a class="nav-link fs-6 nav-links" href="{{ route('myWorks') }}">اعمالي </a>
                 </li>
             </ul>
         @endif
 
-          @if (Auth::check())
+        @if (Auth::check())
             @role('seeker')
                 <p>{{ auth()->user()->role }}</p>
             @endrole
             <ul class="navbar-nav  ">
                 <li class="nav-item ">
-                        <a class="nav-link fs-6 nav-links" href="{{ route('myProject') }}">مشاريعي </a>
+                    <a class="nav-link fs-6 nav-links" href="{{ route('myProject') }}">مشاريعي </a>
                 </li>
             </ul>
         @endif
@@ -61,7 +61,36 @@
                             class="fa-solid fa-comment-dots font-sm"></i></a>
                 </li>
                 <li class="nav-item ms-2 user-items">
-                    <a class="nav-link color-offwhite fs-5" href="#"><i class="fa-solid fa-bell font-sm"></i></a>
+                    <div class="nav-link color-offwhite fs-5 " aria-expanded="false" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown" style="position: relative">
+                        <i class="fa-solid fa-bell font-sm"></i>
+                        @if (auth()->user()->unreadNotifications->count() > 0)
+                            <span
+                                style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
+                        @endif
+                    </div>
+
+                    <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
+
+                        <li class="" style="color: gray">
+                            @foreach (auth()->user()->unreadNotifications as $notification)
+                                <a class="dropdown-item color-black" href="{{ $notification->data['url'] }}">
+                                    @if ($notification->data['type'] == 'comment')
+                                        {{ $notification->data['name'] }}
+                                        <span> قام بأضافه عرض جديد على مشروعك</span>
+                                    @else
+                                        <span> {{ $notification->data['message'] }} </span>
+                                    @endif
+
+                                </a>
+                            @endforeach
+                        </li>
+                    </ul>
+
+
+
                 </li>
                 <li class="dropdown rtl">
 

@@ -27,6 +27,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Profile::class);
     }
+    public function inTheSameCategoriy()
+    {
+        return $this->belongsTo(Profile::class, 'category_id');
+    }
 
     /**
      * The attributes that are mass assignable.
