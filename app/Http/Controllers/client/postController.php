@@ -65,10 +65,10 @@ class PostController extends Controller
             'comments.description',
             'comments.id as offer_id',
             'comments.user_id as provider_id',
-            DB::raw("count(works.id) as workcount")
+            // DB::table('works')->raw("count(works.id) as workcount")
         )
             ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
-            ->join('works', 'works.user_id', '=', 'comments.user_id')
+            // ->join('works', 'works.user_id', '=', 'comments.user_id')
             ->where('post_id', $post_id)
             ->groupBy([
                 'comments.id',
@@ -83,6 +83,7 @@ class PostController extends Controller
             ])
             ->get();
 
+        // print_r($comments);
         $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
         // return response()->json($comments);
@@ -287,7 +288,7 @@ class PostController extends Controller
         $post = Posts::find($post_id);
         $post->is_active *= -1;
         if ($post->save())
-            return redirect()->route('myWorks')->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
+            return redirect()->route('myProject')->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 }
