@@ -74,8 +74,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon red">
-                                            <i class="bi bi-stack"></i>
-                                        </div>
+                                            <i class="fa-solid fa-flag-checkered"></i>                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Saved Post</h6>
