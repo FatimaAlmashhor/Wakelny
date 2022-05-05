@@ -9,7 +9,6 @@
                 @if (Auth::check() && Auth::user()->hasRole('provider'))
                     @if (auth()->user()->id != $item->user_id)
                         <div class="dropdown btn-group">
-                            {{ $item->user_id }}
                             <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->id) }}">
                                 {{-- <i class="fa fa-fw fa-send"></i> --}}
                                 <span class="action-text"> أضف عرضك </span>
