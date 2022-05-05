@@ -23,7 +23,7 @@ class ReportController extends Controller
             'reports.massege',
             'profiles.name'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')->where('is_active', 1)->get();
-    
+
 
         return view('admin.report.index')->with(['reports'=>$reports ]);
 
@@ -32,18 +32,18 @@ class ReportController extends Controller
 
     public function store(Request $request)
     {
-       
+try {
             $request->validate([
                 'type_report' => ['required'],
-                'massege' => ['required', 'min:100'],
-                
+
+
             ], [
                 'type_report.required' => 'يجب ان تقوم بأدخال  نوع البلاغ',
-                'massege.required' => 'اضف وصف للبلاغ',
-                'massege.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
+
+
             ]);
 
-          
+
 
             $report = new report();
             $report->user_id = Auth::id();
@@ -51,17 +51,19 @@ class ReportController extends Controller
             $report->provider_id = $request->provider_id;
             $report->type_report = $request->type_report;
             $report->massege = $request->massege;
-          
-    
-           
+
+
+
 
             if ($report->save()) {
 
                 return redirect()->route('freelancers')
                     ->with(['message' => 'تم اضافة بلاغ  بنجاح', 'type' => 'alert-success']);
             } else
-                return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-       
+            return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+            } catch (Expectation   $th) {
+
+            }
     }
     public function toggle($report_id){
         $report=report::find($report_id);
@@ -72,6 +74,6 @@ class ReportController extends Controller
                 else
                     return back()->with(['message' => 'تم تفعيل البلاغ بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-    
+
     }
 }

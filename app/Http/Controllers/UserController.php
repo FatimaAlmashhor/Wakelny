@@ -18,11 +18,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class UserController extends Controller
-{    
-    
+{
 
 
-  
+
+
     function index(Request $request)
     {
 
@@ -33,8 +33,6 @@ class UserController extends Controller
          */
         $cates = category::get();
         $skill = Skill::get();
-        $posts = Posts::get();
-        $users = User::get();
         $reports = Report::get();
 
         // $filter = QueryBuilder::for(Profile::class)
@@ -49,14 +47,14 @@ class UserController extends Controller
         //     ])
         //     ->get();
 
-
-        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates, 'users' => $users,'skills' => $skill,'posts' => $posts, 'reports' => $reports]);
+// print_r($posts);
+        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates, 'skills' => $skill,'reports' => $reports]);
     }
 
 
     function filter(Request $request)
     {
-        // other try 
+        // other try
 
         $query = $request->search_query;
         $cate = $request->cates;
@@ -74,7 +72,7 @@ class UserController extends Controller
     }
 
 
-    // show the user info 
+    // show the user info
 
     function showUserProfile($user_id)
     {
@@ -104,12 +102,12 @@ class UserController extends Controller
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
         $reports =  Report::select(
             'reports.id',
-                    'reports.type_report',
-                    'reports.massege',
-                    'profiles.user_id',
-                    'profiles.name'
+            'reports.type_report',
+            'reports.massege',
+            'profiles.user_id',
+            'profiles.name'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
-       
+
         ->where('post_id', $post_id)->get();
         return view('admin.report._form')->with(['reports' => $reports, 'post' => $post,'post_id' => $post_id]);
     }

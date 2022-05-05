@@ -107,9 +107,9 @@ Route::group([
 // //////////////////
 
 
-    
-  
-    // this is the subsection of howen the my_works 
+
+
+    // this is the subsection of howen the my_works
 
     // this is the page of the my_works
     Route::get('/myWorks', [WorksController::class, 'index'])->name('myWorks');
@@ -124,8 +124,8 @@ Route::group([
 
 
     // Route::post('/myWorks_filter', [UserController::class, 'filter'])->name('myWorks.filter');
-    
-   
+
+
 
 
     // ------------------------------------------------------------------------
@@ -194,10 +194,10 @@ Route::group([
             Route::post('/comment/add', [CommentsController::class, 'save'])->name('comment.add');
 
             //--------  end comment
-            
-            // this is the page of the report           
 
-          
+            // this is the page of the report
+
+
             Route::get('/report_content/{post_id}', [UserController::class, 'insert_content'])->name('report_content');
             Route::get('/report_provider/{provider_id}', [UserController::class, 'insert_user'])->name('report_provider');
             Route::post('/saveReport', [ReportController::class,'store'])->name('saveReport');
@@ -241,11 +241,11 @@ Route::get('/add_userBlock', [settingUserController::class, 'store'])->name('add
           Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
           Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
           Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
-   
+
           Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
           Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
-   
+
         });
 });
 
@@ -283,7 +283,6 @@ Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUser
 
 
 // edit comment
-Route::get('/editcomment/{comment_id}', [CommentsController::class, 'editComment'])->name('editComment');
 	Route::post('/update_comment/{comment_id}',[CommentsController::class,'update'])->name('update_comment');
 
 //
