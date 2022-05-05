@@ -2,8 +2,8 @@
 
         {{-- freelancers --}}
         @foreach ($data as $item)
-      
-                        
+
+
             <div class="card p-4 container my-3" style="direction: rtl;">
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
@@ -49,9 +49,9 @@
                                 <i class="fa fa-fw fa-send"></i>
                                 <span class="action-text">كلفني </span>
                             </a>
-    
-                       
-                            
+
+
+
                             <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{-- <i class="fa fa-caret-down"></i> --}}
@@ -65,24 +65,18 @@
                                         <span class="action-text">أضف إلى المفضلة</span>
                                     </a>
                                 </li>
-                                @foreach ($posts as $it) 
-                                    <li class="text-end my-2 px-2">
-                                    <a tabindex="-1"
-                                        href="{{ route('report_content', $it->id)}}">
-                                        <i class="fa fa-fw fa-flag"></i>
-                                        <span class="action-text">تبليغ عن محتوى</span>
-                                    </a>
-                                </li>
-                                @endforeach
-                               
+
+                                
+
+
                                     <li class="text-end my-2 px-2">
                                     <a tabindex="-1"
                                         href="{{ route('report_provider',  $item->user_id)}}">
-                                        <i class="fa fa-fw fa-flag"></i> 
+                                        <i class="fa fa-fw fa-flag"></i>
                                         <span class="action-text">تبليغ عن مستخدم</span>
                                     </a>
                                 </li>
-                              
+
                             </ul>
                         </div>
 
@@ -93,5 +87,5 @@
 
             </div>
         @endforeach
-        
+
         {{-- one card --}}

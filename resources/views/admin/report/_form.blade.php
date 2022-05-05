@@ -1,27 +1,27 @@
 @extends('client.master_layout')
 @section('content')
 <style>
-    .bootstrap-select>.dropdown-toggle.bs-placeholder, 
+    .bootstrap-select>.dropdown-toggle.bs-placeholder,
 .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
  .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
   .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
-   [type=button]:not(:disabled), [type=reset]:not(:disabled), 
+   [type=button]:not(:disabled), [type=reset]:not(:disabled),
    .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled),
     .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled)
                             {
-                                border: 1px solid #d5dadf; 
+                                border: 1px solid #d5dadf;
                                 width: 257px;
                                 text-align: right;
                             }
     .bootstrap-select[class*=col-] .dropdown-toggle {
-        width:675px; 
+        width:675px;
 }
 </style>
 <div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                     <ol class="breadcrumb ms-3">
                         <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
-                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> 
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}">
                                عمل بلاغ </a></li>
                     </ol>
 
@@ -50,19 +50,19 @@
                                                         نوع الشكوى</label>
                                             <div class=" form-group mx-4">
                                             @if (Route::currentRouteName() == 'report_content')
-                                            <div class="radio"> 
+                                            <div class="radio">
                                                 <label><input value=" هذا المحتوى لم  يعجبني" type="radio" name="type_report">  هذا المحتوى لم  يعجبني</label></div>
-                                            <div class="radio"> 
+                                            <div class="radio">
                                                 <label><input value="هذا المحتوى مزعج , متكرر" type="radio" name="type_report"> هذا المحتوى مزعج , متكرر</label></div>
-                                            
-                                            <div class="radio"> 
+
+                                            <div class="radio">
                                                 <label><input value=" هذا المحتوى يخالف شروط استخدام الموقع" type="radio" name="type_report"> هذا المحتوى يخالف شروط استخدام الموقع</label></div>
-                                        
+
                                             @else
-                                            <div class="radio"> 
-                                                <label><input value="هذا المسخدم   يزعجني" type="radio" name="type_report"> هذا المسخدم لم  يزعجني</label></div>
-                                        
-                                            <div class="radio "> 
+                                            <div class="radio">
+                                                <label><input value="هذا المسخدم   يزعجني" type="radio" name="type_report"> هذا المسخدم يزعجني</label></div>
+
+                                            <div class="radio ">
                                                 <label ><input value="هذا المسخدم يخالف شروط استخدام الموقع" type="radio" name="type_report"> هذا المسخدم يخالف شروط استخدام الموقع</label></div>
                                             </div>
                                             @endif
@@ -86,7 +86,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    
+
                                 </div>
 
                                 <div class="row w-full  ">
@@ -97,11 +97,11 @@
 
                         {{ csrf_field() }}
                         </form>
-            
+
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
-         
+
             </div>
 
         </div>
