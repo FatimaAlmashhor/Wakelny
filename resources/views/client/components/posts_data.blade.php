@@ -12,6 +12,19 @@
                             {{-- <i class="fa fa-fw fa-send"></i> --}}
                             <span class="action-text"> أضف عرضك </span>
                         </a>
+                        <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{-- <i class="fa fa-caret-down"></i> --}}
+                            </button>
+                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
+                                aria-labelledby="خيارات">
+                                <li class="my-2 border-bottom text-end ">
+                                    <a tabindex="-1"
+                                        href="{{ route('report_content',  $item->id)}}">
+                                        <i class="fa fa-fw fa-bookmark"></i>
+                                        <span class="action-text">تبليغ عن محتوى</span>
+                                    </a>
+                                </li>
                     </div>
                 @endif
             </div>

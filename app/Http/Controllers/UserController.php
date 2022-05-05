@@ -35,11 +35,6 @@ class UserController extends Controller
         $cates = category::where('is_active', 1)->get();
         $skill = Skill::where('is_active', 1)->get();
 
-
-        $cates = category::get();
-        $skill = Skill::get();
-        $posts = Posts::get();
-        $users = User::get();
         $reports = Report::get();
 
 
@@ -56,13 +51,13 @@ class UserController extends Controller
         //     ->get();
 
 
-        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates, 'users' => $users, 'skills' => $skill, 'posts' => $posts, 'reports' => $reports]);
+        return view('client.user.freelancers')->with(['data' => $providers, 'cates' => $cates,  'skills' => $skill, 'reports' => $reports]);
     }
 
 
     function filter(Request $request)
     {
-        // other try 
+        // other try
 
         $query = $request->search_query;
         $cate = $request->cates;
@@ -80,7 +75,7 @@ class UserController extends Controller
     }
 
 
-    // show the user info 
+    // show the user info
 
     function showUserProfile($user_id)
     {
