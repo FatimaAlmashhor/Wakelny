@@ -20,7 +20,7 @@
                                 aria-labelledby="خيارات">
                                 <li class="my-2 border-bottom text-end ">
                                     <a tabindex="-1"
-                                        href="{{ route('report_content',  $item->id)}}">
+                                        href="{{ route('report_content',  ['post_id' => $item->id, 'provider_id' => $item->provider_id])}}">
                                         <i class="fa fa-fw fa-bookmark"></i>
                                         <span class="action-text">تبليغ عن محتوى</span>
                                     </a>

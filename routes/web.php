@@ -173,7 +173,7 @@ Route::group([
 
 
             // this is the page of the report
-            Route::get('/report_content/{post_id}', [UserController::class, 'insert_content'])->name('report_content');
+            Route::get('/report_content/{post_id}/{provider_id}', [UserController::class, 'insert_content'])->name('report_content');
             Route::get('/report_provider/{provider_id}', [UserController::class, 'insert_user'])->name('report_provider');
             Route::post('/saveReport', [ReportController::class, 'store'])->name('saveReport');
 
