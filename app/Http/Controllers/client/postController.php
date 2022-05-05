@@ -17,6 +17,7 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Mockery\Expectation;
 
@@ -27,6 +28,7 @@ class PostController extends Controller
     {
         $projects =  Posts::select(
             'posts.id',
+            'posts.user_id',
             'posts.title',
             'posts.offers',
             'posts.description',
@@ -62,10 +64,24 @@ class PostController extends Controller
             'comments.cost',
             'comments.description',
             'comments.id as offer_id',
-            'comments.user_id as provider_id'
+            'comments.user_id as provider_id',
+            DB::raw("count(works.id) as workcount")
         )
             ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
-            ->where('post_id', $post_id)->get();
+            ->join('works', 'works.user_id', '=', 'comments.user_id')
+            ->where('post_id', $post_id)
+            ->groupBy([
+                'comments.id',
+                'profiles.name',
+                'profiles.specialization',
+                'profiles.rating',
+                'profiles.user_id',
+                'comments.cost',
+                'comments.description',
+                'comments.user_id',
+                'comments.duration',
+            ])
+            ->get();
 
         $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
