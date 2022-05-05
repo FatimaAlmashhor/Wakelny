@@ -41,7 +41,18 @@ class PostController extends Controller
     // this route show one page
     public function showOne($post_id)
     {
-        $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
+        $post = Posts::select(
+            'posts.*',
+            'profiles.name as post_user_name',
+            'profiles.user_id as post_user_id',
+            'profiles.specialization as post_user_specialization',
+        )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', $post_id)->where('is_active', 1)->first();
+        $skills = PostSkills::select('skills.name')
+            ->join('skills', 'skills.id', '=', 'post_skills.skill_id')
+            ->where('post_id', $post_id)
+            ->get();
+
+
         $comments =  Comments::select(
             'profiles.name',
             'profiles.specialization',
@@ -59,8 +70,13 @@ class PostController extends Controller
         $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
         // return response()->json($comments);
-        return view('client.post.postDetails')->with(['post' => $post, 'comments' => $comments, 'post_id' => $post_id, 'hasComment' => $hasComment > 0 ? true : false]);
-
+        return view('client.post.postDetails')->with([
+            'post' => $post,
+            'comments' => $comments,
+            'post_id' => $post_id,
+            'skills' => $skills,
+            'hasComment' => $hasComment > 0 ? true : false
+        ]);
     }
     // page for show the form of create new post
     public function index()
@@ -101,6 +117,7 @@ class PostController extends Controller
             $post->cost = $request->cost;
             $post->duration = $request->duration;
             $post->category_id = $request->category;
+            $post->status = 'open';
 
             if ($request->hasFile('files'))
                 $post->file = $this->uploadFile($request->file('files'));
@@ -254,8 +271,7 @@ class PostController extends Controller
         $post = Posts::find($post_id);
         $post->is_active *= -1;
         if ($post->save())
-            return back()->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
+            return redirect()->route('myWorks')->with(['message' => 'تم حذف المشروع بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
-
 }
