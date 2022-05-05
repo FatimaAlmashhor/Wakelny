@@ -10,9 +10,9 @@
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
     <!--[if lt IE 9]>
- <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
- <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
- <![endif]-->
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -78,36 +78,36 @@
         // Enable pusher logging - don't include this in production
         // Pusher.logToConsole = true;
 
-        var pusher = new Pusher('f057611248050c852fc4', {
-            encrypted: true,
-            cluster: 'ap2'
+        var pusher = new Pusher('926be69fa323dd8af3bd', {
+            encrypted: true
         });
-
         // Subscribe to the channel we specified in our Laravel Event
         var channel = pusher.subscribe('status-liked');
 
+        console.log(channel);
         // Bind a function to a Event (the full Laravel class)
         channel.bind('App\\Events\\StatusLiked', function(data) {
+            alert(data);
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
             var newNotificationHtml = `
-		  <li class="notification active">
-			  <div class="media">
-				<div class="media-left">
-				  <div class="media-object">
-					<img src="https://api.adorable.io/avatars/71/` + avatar + `.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
-				  </div>
-				</div>
-				<div class="media-body">
-				  <strong class="notification-title">` + data.message + `</strong>
-				  <!--p class="notification-desc">Extra description can go here</p-->
-				  <div class="notification-meta">
-					<small class="timestamp">about a minute ago</small>
-				  </div>
-				</div>
-			  </div>
-		  </li>
-		`;
+          <li class="notification active">
+              <div class="media">
+                <div class="media-left">
+                  <div class="media-object">
+                    <img src="https://api.adorable.io/avatars/71/` + avatar + `.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                  </div>
+                </div>
+                <div class="media-body">
+                  <strong class="notification-title">` + data.message + `</strong>
+                  <!--p class="notification-desc">Extra description can go here</p-->
+                  <div class="notification-meta">
+                    <small class="timestamp">about a minute ago</small>
+                  </div>
+                </div>
+              </div>
+          </li>
+        `;
             notifications.html(newNotificationHtml + existingNotifications);
 
             notificationsCount += 1;

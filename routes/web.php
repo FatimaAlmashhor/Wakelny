@@ -276,3 +276,9 @@ Route::get('/markAsRead', function () {
 
     return redirect()->back();
 })->name('mark');
+
+
+Route::get('test', function () {
+    event(new App\Events\StatusLiked('Someone'));
+    return "Event has been sent!";
+});
