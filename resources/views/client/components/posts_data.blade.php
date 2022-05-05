@@ -6,9 +6,8 @@
                 <p style="font-size: 18px;"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
-                @if (Auth::check() && Auth::user()->hasRole('provider'))
+                @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
                     <div class="dropdown btn-group">
-
                         <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->id) }}">
                             {{-- <i class="fa fa-fw fa-send"></i> --}}
                             <span class="action-text"> أضف عرضك </span>
