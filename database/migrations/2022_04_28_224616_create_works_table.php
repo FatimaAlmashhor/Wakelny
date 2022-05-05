@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->string('title');     
+            $table->string('title');
             $table->date('comple_date');
-            $table->string('main_image');
-            $table->string('link');
+            $table->string('main_image')->nullable();
+            $table->string('link')->nullable();
             $table->text('details')->nullable();
             $table->string('more_file')->nullable();
             $table->boolean("is_active")->default(1);

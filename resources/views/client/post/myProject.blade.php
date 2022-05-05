@@ -33,13 +33,7 @@
                                         <span class="action-text">تعديل المشروع</span>
                                     </a>
                                 </li>
-                                <li class="text-end my-2 px-2">
-                                    <a tabindex="-1"
-                                        href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                        <i class="fa fa-fw fa-flag"></i>
-                                        <span class="action-text">تبليغ عن محتوى</span>
-                                    </a>
-                                </li>
+                            
                             </ul>
                         </div>
 

@@ -1,27 +1,27 @@
 @extends('client.master_layout')
 @section('content')
 <style>
-    .bootstrap-select>.dropdown-toggle.bs-placeholder, 
+    .bootstrap-select>.dropdown-toggle.bs-placeholder,
 .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
  .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
   .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
-   [type=button]:not(:disabled), [type=reset]:not(:disabled), 
+   [type=button]:not(:disabled), [type=reset]:not(:disabled),
    .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled),
     .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled)
                             {
-                                border: 1px solid #d5dadf; 
+                                border: 1px solid #d5dadf;
                                 width: 257px;
                                 text-align: right;
                             }
     .bootstrap-select[class*=col-] .dropdown-toggle {
-        width:675px; 
+        width:675px;
 }
 </style>
 <div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                     <ol class="breadcrumb ms-3">
                         <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>/&nbsp&nbsp&nbsp
-                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> 
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}">
                                أضافة عمل جديد </a></li>
                     </ol>
 
@@ -40,7 +40,7 @@
                     <form action="{{ route('update_work', $data->id) }}" method="POST" class="login-form"
 
                             enctype="multipart/form-data">
-        
+
                                 @else
                                 <form action="{{ route('works.saveUserWork') }}" method="POST" class="login-form"
                             enctype="multipart/form-data">
@@ -48,7 +48,7 @@
 
                             @endif
 
-              
+
                             @csrf
 
 
@@ -81,8 +81,8 @@
                                     </div>
                                 @enderror
                                 </div>
-                            
-                             
+
+
 
                             </div>
                             <div class="row">
@@ -114,28 +114,27 @@
                                     </div>
                                 @enderror
                                 </div>
-                            
-                             
+
+
 
                             </div>
                             <div class="row" style="margin-right:1px;">
 
                                 <label for="" class="col-md-6 col-form-label"> تفاصيل العمل</label>
-                                <textarea class="form-control" placeholder=" تفاصيل العمل" id=""value="{{ $data->details ?? old('details') }}"
-                                    name="details"></textarea>
+                                <textarea class="form-control" placeholder=" تفاصيل العمل" id="" name="details">{{ $data->details ?? old('details') }}</textarea>
                                     @error('details')
                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
                                         style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                  
+
                             </div>
-                    
+
 
                             <!-- <div class="row ">
-                         
-                               
+
+
                                 <div class="col-md-6">
                                     <label for="" class="col-md-6 col-form-label">
                                            صور وملفات العمل</label>
@@ -150,7 +149,7 @@
                                     </div>
                                 @enderror
                                 </div>
-                                
+
                             </div>  -->
                             <div class="row ">
                                 <div class="col-md-6 my-2">
@@ -159,14 +158,14 @@
                                         <select class="selectpicker col-md-6 " value="بالاختيار" name="skills[]" multiple aria-label="size 2 select example"
                                                     data-actions-box="true">
                                                     @foreach ($skills as $item)
-                                                   
+
                                                         <option id='skills' value="{{ $item->id }}" autocomplete="off">{{ $item->name }}</option>
                                                     @endforeach
                                         </select>
-                                
-                              
+
+
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row w-full  ">
 
