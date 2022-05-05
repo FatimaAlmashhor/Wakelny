@@ -7,6 +7,7 @@ use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\Skill;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Models\Profile;
 use App\Models\UserSkills;
 use Illuminate\Support\Facades\Auth;
