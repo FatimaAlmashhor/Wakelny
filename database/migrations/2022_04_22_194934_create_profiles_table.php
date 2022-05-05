@@ -19,7 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('name');
             $table->string('avatar')->nullable();
-            $table->string('gender');
+            $table->string('gender')->nullable();
             $table->string('mobile')->nullable();
             $table->string('country')->nullable();
             $table->double('rating')->default(0.0);
