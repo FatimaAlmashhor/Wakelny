@@ -43,57 +43,62 @@ class PostController extends Controller
     // this route show one page
     public function showOne($post_id)
     {
-        $post = Posts::select(
-            'posts.*',
-            'profiles.name as post_user_name',
-            'profiles.user_id as post_user_id',
-            'profiles.specialization as post_user_specialization',
-        )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', $post_id)->where('is_active', 1)->first();
-        $skills = PostSkills::select('skills.name')
-            ->join('skills', 'skills.id', '=', 'post_skills.skill_id')
-            ->where('post_id', $post_id)
-            ->get();
+        try {
+            $post = Posts::select(
+                'posts.*',
+                'profiles.name as post_user_name',
+                'profiles.user_id as post_user_id',
+                'profiles.specialization as post_user_specialization',
+            )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', $post_id)->where('is_active', 1)->first();
+            $skills = PostSkills::select('skills.name')
+                ->join('skills', 'skills.id', '=', 'post_skills.skill_id')
+                ->where('post_id', $post_id)
+                ->where('is_active', 1)
+                ->get();
 
 
-        $comments =  Comments::select(
-            'profiles.name',
-            'profiles.specialization',
-            'profiles.rating',
-            'profiles.user_id',
-            'comments.duration',
-            'comments.cost',
-            'comments.description',
-            'comments.id as offer_id',
-            'comments.user_id as provider_id',
-            // DB::table('works')->raw("count(works.id) as workcount")
-        )
-            ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
-            // ->join('works', 'works.user_id', '=', 'comments.user_id')
-            ->where('post_id', $post_id)
-            ->groupBy([
-                'comments.id',
+            $comments =  Comments::select(
                 'profiles.name',
                 'profiles.specialization',
                 'profiles.rating',
                 'profiles.user_id',
+                'comments.duration',
                 'comments.cost',
                 'comments.description',
-                'comments.user_id',
-                'comments.duration',
-            ])
-            ->get();
+                'comments.id as offer_id',
+                'comments.user_id as provider_id',
+                // DB::table('works')->raw("count(works.id) as workcount")
+            )
+                ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
+                // ->join('works', 'works.user_id', '=', 'comments.user_id')
+                ->where('post_id', $post_id)
+                ->groupBy([
+                    'comments.id',
+                    'profiles.name',
+                    'profiles.specialization',
+                    'profiles.rating',
+                    'profiles.user_id',
+                    'comments.cost',
+                    'comments.description',
+                    'comments.user_id',
+                    'comments.duration',
+                ])
+                ->get();
 
-        // print_r($comments);
-        $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
+            // print_r($comments);
+            $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
 
-        // return response()->json($comments);
-        return view('client.post.postDetails')->with([
-            'post' => $post,
-            'comments' => $comments,
-            'post_id' => $post_id,
-            'skills' => $skills,
-            'hasComment' => $hasComment > 0 ? true : false
-        ]);
+            // return response()->json($comments);
+            return view('client.post.postDetails')->with([
+                'post' => $post,
+                'comments' => $comments,
+                'post_id' => $post_id,
+                'skills' => $skills,
+                'hasComment' => $hasComment > 0 ? true : false
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        }
     }
     // page for show the form of create new post
     public function index()

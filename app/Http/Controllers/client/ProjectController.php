@@ -127,10 +127,12 @@ class ProjectController extends Controller
             // print_r($projects);
             if ($projects->status == 'pending')
                 return view('client.post.providerConfirmation')->with(['project' => $projects, 'amount' => $projects->amount]);
-            else
-                return redirect()->back()->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+            else {
+                return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+            }
         } catch (\Exception $th) {
             //throw $th;
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
     }
 

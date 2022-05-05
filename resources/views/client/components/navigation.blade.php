@@ -79,12 +79,19 @@
                             <li class=""
                                 style="color: gray ; width:340px ; overflow-wrap: break-word; height: fit-content ;   ">
                                 <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
-                                    style=' color: gray ; border-right: 4px solid gray ; padding-right: 2px ; width:inherit; height: fit-content; '>
+                                    style=' color: gray ; border-right: 4px solid {{ $notification->read_at == null ? 'red' : 'gray' }}  ; padding-right: 2px ; width:inherit; height: fit-content; '>
                                     @if ($notification->data['type'] == 'comment')
-                                        {{ $notification->data['name'] }}
-                                        <span> قام بأضافه عرض جديد على مشروعك</span>
+                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                        <span> قام بأضافه
+                                            {{ $notification->data['name'] }}
+                                            عرض جديد على مشروعك</span>
+                                        {{-- </a> --}}
                                     @else
-                                        <span> {{ $notification->data['message'] }} </span>
+                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                        <span>
+                                            {{ $notification->data['message'] }}
+                                        </span>
+                                        {{-- </a> --}}
                                     @endif
 
                                 </a>
