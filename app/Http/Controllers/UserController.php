@@ -100,11 +100,13 @@ class UserController extends Controller
 
         return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole]);
     }
-    public function insert_content($post_id)
+    public function insert_content($post_id, $provider_id)
     {
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
+        $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
         $reports =  Report::select(
             'reports.id',
+            // 'users.id',
             'reports.type_report',
             'reports.massege',
             'profiles.user_id',
@@ -112,7 +114,7 @@ class UserController extends Controller
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
 
             ->where('post_id', $post_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id]);
+        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id, 'provider_id' => $provider_id]);
     }
     public function insert_user($provider_id)
     {

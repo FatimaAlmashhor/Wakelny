@@ -67,26 +67,36 @@
                         @if (auth()->user()->unreadNotifications->count() > 0)
                             <span
                                 style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
-                                {{ auth()->user()->unreadNotifications->count() }}
+                                {{-- {{ auth()->user()->unreadNotifications->count() }} --}}
                             </span>
                         @endif
                     </div>
 
-                    <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5" aria-labelledby="dropdownMenuButton1"
+                        style="overflow: auto;">
 
-                        <li class="" style="color: gray">
-                            @foreach (auth()->user()->unreadNotifications as $notification)
-                                <a class="dropdown-item color-black" href="{{ $notification->data['url'] }}">
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            <li class=""
+                                style="color: gray ; width:340px ; overflow-wrap: break-word; height: fit-content ;   ">
+                                <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
+                                    style=' color: gray ; border-right: 4px solid {{ $notification->read_at == null ? 'red' : 'gray' }}  ; padding-right: 2px ; width:inherit; height: fit-content; '>
                                     @if ($notification->data['type'] == 'comment')
-                                        {{ $notification->data['name'] }}
-                                        <span> قام بأضافه عرض جديد على مشروعك</span>
+                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                        <span> قام بأضافه
+                                            {{ $notification->data['name'] }}
+                                            عرض جديد على مشروعك</span>
+                                        {{-- </a> --}}
                                     @else
-                                        <span> {{ $notification->data['message'] }} </span>
+                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                        <span>
+                                            {{ $notification->data['message'] }}
+                                        </span>
+                                        {{-- </a> --}}
                                     @endif
 
                                 </a>
-                            @endforeach
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
 
 

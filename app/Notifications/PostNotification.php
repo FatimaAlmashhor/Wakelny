@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
 class PostNotification extends Notification
 {
@@ -42,6 +43,7 @@ class PostNotification extends Notification
     {
         $message = 'هناك مشروع جديد في قسم  ' . $this->data['category'] . '   قد ينال اعجابك';
         return (new MailMessage)
+            ->subject(Lang::get(' هناك مشاريع جديده قد تنال اعجابك '))
             ->line($message)
             ->action('دعني اراها', $this->data['url'])
             ->line('شكرا');

@@ -6,9 +6,8 @@
                 <p style="font-size: 18px;"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
-                @if (Auth::check() && Auth::user()->hasRole('provider'))
+                @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
                     <div class="dropdown btn-group">
-
                         <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->id) }}">
                             {{-- <i class="fa fa-fw fa-send"></i> --}}
                             <span class="action-text"> أضف عرضك </span>
@@ -21,7 +20,7 @@
                                 aria-labelledby="خيارات">
                                 <li class="my-2 border-bottom text-end ">
                                     <a tabindex="-1"
-                                        href="{{ route('report_content',  $item->id)}}">
+                                        href="{{ route('report_content',  ['post_id' => $item->id, 'provider_id' => $item->provider_id])}}">
                                         <i class="fa fa-fw fa-bookmark"></i>
                                         <span class="action-text">تبليغ عن محتوى</span>
                                     </a>
