@@ -7,7 +7,7 @@
     </header>
 
     <div class="page-heading">
-        <h3>Profile Statistics</h3>
+        <h3>{{  __('dash.user_Statistics')}} </h3>
     </div>
     <div class="page-content">
         <section class="row">
@@ -18,13 +18,15 @@
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="stats-icon purple">
-                                            <i class="iconly-boldShow"></i>
+                                        <div class="stats-icon blue">
+                                            <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
+
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Profile Views</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="text-muted font-semibold ">{{ __('dash.user_numb') }} </h6>
+                                        <h6 class="font-extrabold mb-0">{{ $users }}</h6>
+
                                     </div>
                                 </div>
                             </div>
@@ -34,15 +36,16 @@
                         <div class="card">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="stats-icon blue">
-                                            <i class="iconly-boldProfile"></i>
+                                       <div class="col-md-4">
+                                        <div class="stats-icon red">
+                                            <i class="iconly-boldBookmark"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Followers</h6>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                        <h6 class="text-muted font-semibold">{{ __('dash.post_numb') }} </h6>
+                                        <h6 class="font-extrabold mb-0">{{ $post }}</h6>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -53,12 +56,13 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon green">
-                                            <i class="iconly-boldAdd-User"></i>
+                                            <i class="iconly-boldShow"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Following</h6>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
+                                        <h6 class="text-muted font-semibold">البلاغات</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $reports }}</h6>
+
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +74,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon red">
-                                            <i class="iconly-boldBookmark"></i>
-                                        </div>
+                                            <i class="fa-solid fa-flag-checkered"></i>                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Saved Post</h6>
@@ -274,6 +277,18 @@
             </div>
         </section>
     </div>
+
+    <footer>
+        <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+                <p>2021 &copy; Mazer</p>
+            </div>
+            <div class="float-end">
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                        href="http://ahmadsaugi.com">A. Saugi</a></p>
+            </div>
+        </div>
+    </footer>
 
     <footer>
         <div class="footer clearfix mb-0 text-muted">
