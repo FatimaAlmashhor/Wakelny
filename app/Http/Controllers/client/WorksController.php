@@ -33,7 +33,7 @@ class WorksController extends Controller
             'works.link',
             'works.details',
             'profiles.name'
-        )->join('profiles', 'profiles.user_id', '=', 'works.user_id')->where('is_active', 1)->get();
+        )->join('profiles', 'profiles.user_id', '=', 'works.user_id')->where('is_active', 1)->where('works.user_id', Auth::id())->get();
 
 
         $skill = Skill::where('is_active', 1)->get();
@@ -86,7 +86,7 @@ class WorksController extends Controller
                 'title.required' => 'يجب ان تقوم بأدخال عنوان لعملك',
 
                 'comple_date.required' => 'رجاء ادخل تاريخ الانجاز ',
-                
+
                 'details.required' => 'اضف وصف للعمل',
 
                 // 'more_file.mimes' => ' يجب ان يكون pdf,csv,xlx,png,jepg,rar',
