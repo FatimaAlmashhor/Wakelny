@@ -32,7 +32,7 @@ class PostController extends Controller
             'posts.title',
             'posts.offers',
             'posts.description',
-            'profiles.name', 
+            'profiles.name',
             'profiles.user_id as provider_id'
         )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->get();
 
@@ -51,6 +51,8 @@ class PostController extends Controller
                 'profiles.user_id as post_user_id',
                 'profiles.specialization as post_user_specialization',
             )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', $post_id)->where('is_active', 1)->first();
+
+
             $skills = PostSkills::select('skills.name')
                 ->join('skills', 'skills.id', '=', 'post_skills.skill_id')
                 ->where('post_id', $post_id)

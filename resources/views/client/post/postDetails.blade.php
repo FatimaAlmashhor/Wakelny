@@ -24,12 +24,11 @@
                                     <span class="action-text">تعديل المشروع</span>
                                 </a>
                             </li>
-
                             <li class="text-end my-2 px-2">
-                                <a tabindex="-1" href="{{ route('report_content', $post_id) }}">
+                                <a tabindex="-1"
+                                    href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
                                     <i class="fa fa-fw fa-flag"></i>
-                                    <span class="action-text">تبليغ عن
-                                        محتوى</span>
+                                    <span class="action-text">تبليغ عن محتوى</span>
                                 </a>
                             </li>
                         </ul>
@@ -144,7 +143,7 @@
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
 
-                                                <span class="text-muted font-xs">بعد خصم عمولة موقع كلفني</span>
+                                                <span class="text-muted font-xs">بعد خصم عمولة موقع مستقل</span>
                                                 @error('cost_after_taxs')
                                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning"
                                                         role="alert"
@@ -334,7 +333,9 @@
 
                                                                     <li class="text-end my-2 px-2">
                                                                         <a tabindex="-1"
+
                                                                             href="{{ route('report_provider', $item->user_id) }}">
+
                                                                             <i class="fa fa-fw fa-flag"></i>
                                                                             <span class="action-text">تبليغ عن
                                                                                 محتوى</span>
@@ -580,6 +581,28 @@
                                                                     </div>
 
                                                                     <!-- <div class="row mt-3 d-flex justify-content-between">
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-6">
+                                                                                                                                                                                                                                                                                                                                                                                            <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="input-group mt-1">
+                                                                                                                                                                                                                                                                                                                                                                                                <input name="amount" class='form-control' id="name" type="text"
+                                                                                                                                                                                                                                                                                                                                                                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                                                                                                                                                                                                    aria-describedby="basic-addon1">
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-6">
+                                                                                                                                                                                                                                                                                                                                                                                            <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="input-group mt-1">
+                                                                                                                                                                                                                                                                                                                                                                                                <input name="amount" class='form-control' id="credit_NO" type="number"
+                                                                                                                                                                                                                                                                                                                                                                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                                                                                                                                                                                                    aria-describedby="basic-addon1" placeholder=".Card NO">
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                    <div class="mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                        <input type="checkbox" class="ms-1" id="remember-card" checked>
+                                                                                                                                                                                                                                                                                                                                                                                        <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
+                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
 
 
                                                                         <div class="row border-top mt-4 py-3">
@@ -596,6 +619,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- /credit card -->
+
 
                                                                     <!-- Pay Pal -->
                                                                     <div class="col-12 color-black px-3 modal-panel tab-B supSection"

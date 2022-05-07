@@ -48,44 +48,44 @@
 
             </div>
 
-{{-- user report --}}
-        <div class="card--actions hidden-xs float-start col-2">
-            <div class="dropdown btn-group">
+            {{-- user report --}}
+            <div class="card--actions hidden-xs float-start col-2">
+                <div class="dropdown btn-group">
 
-                <a tabindex="-1" class="wak_btn" href="#">
-                    <i class="fa fa-fw fa-send"></i>
-                    <span class="action-text">كلفني </span>
-                </a>
-
-
-
-                <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    {{-- <i class="fa fa-caret-down"></i> --}}
-                </button>
-                <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
-                    <li class="my-2 border-bottom text-end ">
-                        <a tabindex="-1" href="">
-                            <i class="fa fa-fw fa-bookmark"></i>
-                            <span class="action-text">أضف إلى المفضلة</span>
-                        </a>
-                    </li>
+                    <a tabindex="-1" class="wak_btn" href="#">
+                        <i class="fa fa-fw fa-send"></i>
+                        <span class="action-text">كلفني </span>
+                    </a>
 
 
 
+                    <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{-- <i class="fa fa-caret-down"></i> --}}
+                    </button>
+                    <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
+                        <li class="my-2 border-bottom text-end ">
+                            <a tabindex="-1" href="">
+                                <i class="fa fa-fw fa-bookmark"></i>
+                                <span class="action-text">أضف إلى المفضلة</span>
+                            </a>
+                        </li>
 
-                    <li class="text-end my-2 px-2">
-                        <a tabindex="-1" href="{{ route('report_provider', $data->user_id) }}">
-                            <i class="fa fa-fw fa-flag"></i>
-                            <span class="action-text">تبليغ عن مستخدم</span>
-                        </a>
-                    </li>
 
-                </ul>
+
+
+                        <li class="text-end my-2 px-2">
+                            <a tabindex="-1" href="{{ route('report_provider', $data->user_id) }}">
+                                <i class="fa fa-fw fa-flag"></i>
+                                <span class="action-text">تبليغ عن مستخدم</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
-
-        </div>
-        {{-- user report --}}
+            {{-- user report --}}
 
         </div>
 
@@ -278,12 +278,12 @@
                                     <p class="">
                                         <i class="fa-solid fa-clipboard-check ms-1"></i>
                                         <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
-                                        <span class="me-1">2</span>
+                                        <span class="me-1">{{ $data->reseved }}</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-spinner ms-1"></i>
                                         <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
-                                        <span class="me-1">0</span>
+                                        <span class="me-1">{{ 4 - $data->limit }}</span>
                                     </p>
                                     <p class="">
                                         <i class="fa-solid fa-star ms-1"></i>

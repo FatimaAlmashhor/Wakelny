@@ -18,4 +18,9 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'provider_id');
     }
+
+    public function post()
+    {
+        return $this->hasMany(Posts::class);
+    }
 }
