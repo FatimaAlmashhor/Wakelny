@@ -604,6 +604,7 @@
                                                                                                                                                                                                                                                                                                                                                                                         <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
                                                                                                                                                                                                                                                                                                                                                                                     </div> -->
 
+
                                                                         <div class="row border-top mt-4 py-3">
                                                                             <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3%
                                                                                 على عملية الدفع: <span
@@ -618,6 +619,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- /credit card -->
+
 
                                                                     <!-- Pay Pal -->
                                                                     <div class="col-12 color-black px-3 modal-panel tab-B supSection"
