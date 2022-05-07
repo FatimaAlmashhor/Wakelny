@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <h3 class="m-5"> المشاريع الخاصة بي</h3>
+    <h3 class="m-5"> المشاريع اللتي اعمل عليها حاليه </h3>
     @foreach ($data as $item)
         {{-- one card --}}
         <div class="container card px-3 my-3 ">

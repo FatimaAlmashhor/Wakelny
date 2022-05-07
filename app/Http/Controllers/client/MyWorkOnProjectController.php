@@ -124,9 +124,9 @@ class MyWorkOnProjectController extends Controller
     // where the seeker accept the received file
     function markAsAccept(Request $request)
     {
-        $project_id = $request->project_id;
-        $provider_id = $request->provider_id;
         try {
+            $project_id = $request->project_id;
+            $provider_id = $request->provider_id;
             $project = Project::where('id', $project_id)
                 ->where('seeker_id', Auth::id())
                 ->where('provider_id', $provider_id)
@@ -142,19 +142,29 @@ class MyWorkOnProjectController extends Controller
             // add the evaluation and reting
             $rating = new Evaluation();
             $rating->value = $request->rating;
-            $rating->message = $request->message;
+            $rating->message = $request->massege;
             $rating->user_id = $provider_id;
             $rating->project_id = $project_id;
             $rating->save();
 
             // edit user profile
             $profile = Profile::where('user_id', $provider_id)->first();
-            $profile->limit < 4 &&  $profile->limit > 0 ?  $profile->limit  =  $profile->limit - 1 :  $profile->limit;
+            $limitValue = $profile->limit;
+            if ($limitValue <= 4 && $limitValue > 0) {
+                $profile->limit =  $limitValue - 1;
+            } else {
+                $profile->limit = 4;
+            }
             $profile->reseved =  $profile->reseved + 1;
+            $profile->save();
+
 
             // notification
             $providerNotify = User::find($provider_id);
             $post = Posts::find($project->post_id);
+            $post->status = 'closed';
+            $post->save();
+
             $data = [
                 'project_id' => $project_id,
                 'name' => $profile->name,
@@ -170,9 +180,11 @@ class MyWorkOnProjectController extends Controller
             //! user project done + 1 
             //! evaluate the user  
             //! notification of acceptence
-            // return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
+
+            // return response()->json($profile);
+            return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
-            //throw $th;
+            //     //throw $th;
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
     }
