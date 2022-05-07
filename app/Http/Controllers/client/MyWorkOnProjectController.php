@@ -37,7 +37,7 @@ class MyWorkOnProjectController extends Controller
                 ->where('posts.is_active', 1)
 
                 ->get();
-            return response()->json($data);
+            // return response()->json($data);
             if (empty($data)) {
                 return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
             } else
