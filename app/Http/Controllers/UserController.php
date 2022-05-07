@@ -104,12 +104,6 @@ class UserController extends Controller
     {
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
         $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
-        // $provider = User::select(
-        //     'users.name as reported'
-        // )->where('id', $provider_id)
-        // ->where('is_active', 1)->get();
-
-        // print_r($provider);
 
         $reports =  Report::select(
             'reports.id',
@@ -132,7 +126,7 @@ class UserController extends Controller
             'reports.type_report',
             'reports.massege',
             'profiles.user_id',
-            'profiles.name'
+            'profiles.name as reporter'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
             ->join('users', 'users.id', '=', 'reports.user_id')
             ->where('provider_id', $provider_id)->get();
