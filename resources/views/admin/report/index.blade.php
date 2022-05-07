@@ -39,9 +39,9 @@
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                             <td class="text-bold-500">{{ $item->type_report }}</td> 
-                                            <td class="text-bold-500">{{ $item->user_id }}</td> 
-                                            <td class="text-bold-500">{{ $item->provider_id }}</td> 
-                                            <td class="text-bold-500">{{ $item->post_id }}</td>                                
+                                            <td class="text-bold-500">{{ $item->reporter }}</td> 
+                                            <td class="text-bold-500">{{ $item->reported }}</td> 
+                                            <td class="text-bold-500">{{ $item->title }}</td>                                
                                             <td class="" style=" width: 1px;">{{ $item->massege }}</td>
                                             <td>
                                               @if($item->is_active == 1) 

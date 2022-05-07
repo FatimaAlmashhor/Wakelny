@@ -14,6 +14,7 @@ class ReportController extends Controller
 {
     ////////////////////show report in dashboard///////////
     public function showAll(){
+        // $reported = User::where('is_active', 1)->get();
         $reports =  report::select(
             'reports.id',
             'reports.user_id',
@@ -21,11 +22,12 @@ class ReportController extends Controller
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            'profiles.name'
-        )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')->where('is_active', 1)->get();
+            'profiles.name as reporter'
+        )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
+        ->where('reports.is_active', 1)->get();
 
 
-        return view('admin.report.index')->with(['reports'=>$reports ]);
+        return view('admin.report.index')->with(['reports'=>$reports]);
 
     }
     ////////////////////add new report ///////////
