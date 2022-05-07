@@ -8,6 +8,7 @@ use App\Models\Comments;
 use Mockery\Expectation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use App\Notifications\AcceptOfferNotification;
 use App\Notifications\AcceptProjectNotification;
@@ -32,6 +33,7 @@ class ProjectController extends Controller
         );
 
         $amount = $request->amount;
+        $duration = $request->duration;
 
         $project = new Project();
         $project->seeker_id = Auth::id();
@@ -39,20 +41,22 @@ class ProjectController extends Controller
         $project->offer_id = $request->offer_id;
         $project->status = 'pending';
         $project->amount = $amount;
+        $project->duration = $duration;
+        $project->post_id = $request->post_id;
 
         // print_r($amount);
 
         if ($project->save()) {
             // return redirect()->route('provider-confirmation')->with(['amount' => $amount]);
 
-            return $this->showProviderConfirmation($amount, $request->provider_id, $request->offer_id, $project->id);
+            return $this->showProviderConfirmation($request->provider_id, $request->offer_id, $project->id);
         }
         // } catch (Expectation $th) {
         //     return back()->with(['message' => 'فشلت عملية قبول الطلب!! أعد المحاولة', 'type' => 'alert-danger']);
         // }
     }
 
-    function showProviderConfirmation($amount = null, $provider_id, $comment_id, $project_id)
+    function showProviderConfirmation($provider_id, $comment_id, $project_id)
     {
 
         // try {
@@ -113,6 +117,7 @@ class ProjectController extends Controller
                 'posts.description as post_description',
                 'projects.offer_id',
                 'projects.amount',
+                'projects.duration',
                 'projects.seeker_id',
                 'projects.status',
                 'projects.id as project_id',
@@ -139,57 +144,71 @@ class ProjectController extends Controller
     // if ther use accept the project
     function acceptProject($project_id, $seeker_id)
     {
-        // notify the provider about the acceptence of the offer
-        $providerNotify = User::find($seeker_id);
+        try {
+            // notify the provider about the acceptence of the offer
+            $providerNotify = User::find($seeker_id);
 
-        $project = Project::select(
-            'posts.title'
-        )->join('posts', 'posts.user_id', 'projects.seeker_id')
-            ->where('projects.seeker_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->first();
-        $data = [
-            'project_id' => $project_id,
-            'name' => $providerNotify->name,
-            'project_title' => $project->title,
-            'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
-            'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
-            'userId' => Auth::id()
-        ];
+            $project = Project::select(
+                'posts.title'
+            )->join('posts', 'posts.user_id', 'projects.seeker_id')
+                ->where('projects.seeker_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->first();
+            $data = [
+                'project_id' => $project_id,
+                'name' => $providerNotify->name,
+                'project_title' => $project->title,
+                'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
+                'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
+                'userId' => Auth::id()
+            ];
 
-        Project::where('id', $project_id)->update([
-            'status' => 'at_work',
-        ]);
-        $providerNotify->notify(new AcceptProjectNotification($data));
-        return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
+            Project::where('id', $project_id)->update([
+                'status' => 'at_work',
+                'stated_at' => date("Y/m/d"),
+            ]);
+
+            Profile::where('user_id', Auth::id())
+                ->where('limit', '<=', 4)
+                ->where('limit', '>=', 0)
+                ->decrement('limit');
+            $providerNotify->notify(new AcceptProjectNotification($data));
+            return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 
     // if the provider reject the project
     function rejectProject($project_id, $seeker_id)
     {
-        // notify the provider about the acceptence of the offer
-        $providerNotify = User::find($seeker_id);
+        try {
+            // notify the provider about the acceptence of the offer
+            $providerNotify = User::find($seeker_id);
 
-        $project = Project::select(
-            'posts.title'
-        )->join('posts', 'posts.user_id', 'projects.seeker_id')
-            ->where('projects.seeker_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->first();
-        $data = [
-            'project_id' => $project_id,
-            'name' => $providerNotify->name,
-            'project_title' => $project->title,
-            'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
-            'message' => 'لقد قام' . Auth::user()->name . 'برفض مشروعك ' . $project->title,
-            'userId' => Auth::id()
-        ];
+            $project = Project::select(
+                'posts.title'
+            )->join('posts', 'posts.user_id', 'projects.seeker_id')
+                ->where('projects.seeker_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->first();
+            $data = [
+                'project_id' => $project_id,
+                'name' => $providerNotify->name,
+                'project_title' => $project->title,
+                'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
+                'message' => 'لقد قام' . Auth::user()->name . 'برفض مشروعك ' . $project->title,
+                'userId' => Auth::id()
+            ];
 
-        Project::where('id', $project_id)->update([
-            'status' => 'rejected',
-        ]);
-        $providerNotify->notify(new RejectProjectNotification($data));
-        return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله الرفض الطرف الاخر', 'type' => 'alert-success']);
+            Project::where('id', $project_id)->update([
+                'status' => 'rejected',
+            ]);
+            $providerNotify->notify(new RejectProjectNotification($data));
+            return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله الرفض الطرف الاخر', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 
     function providerResponse(Request $request)

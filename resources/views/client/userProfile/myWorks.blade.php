@@ -5,7 +5,7 @@
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                     <ol class="breadcrumb ms-3">
                         <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>
-                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}"> 
+                        <li class=" active fs-6 fw-bold" aria-current="page"> <a href="{{ route('account') }}">
                                 </a></li>
                     </ol>
 
@@ -15,7 +15,7 @@
 <div class=" d-flex flex-column" >
 <h2 class=" px-4">الأعمال الخاصة بي</h2>
     <div class=" d-flex flex-row justify-content-between ">
-      
+
         <div id="filter_toggle" class="mx-4">
             <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ تصنيف</button>
         </div>
@@ -24,7 +24,7 @@
     left: .1rem;">
             <a href="{{ route('userWork') }}" class="wak_btn green_border"  >  أضافة  </a>
         </div>
-    </div>  
+    </div>
     <div class=" d-flex my-5">
 
         {{-- filter --}}
@@ -54,12 +54,12 @@
 
                                             <h6 class="title my-4">{{ __('filter.skills') }} </h6>
                                             <div class="my-2  "style="margin:4px 14px;" >
-                                               
+
                                                 <select class="selectpicker "  value="بالاختيار" name="skills[]" multiple aria-label="size 3 select example"
                                                     data-actions-box="true">
                                                     <!-- <option value="" selected="selected"> جميع المهارات</option> -->
                                                     @foreach ($skills as $item)
-                                                   
+
                                                         <option id='skills' value="{{ $item->id }}" >{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -69,7 +69,7 @@
 
                                         <h6 class="title my-4">الأعمال المضافة خلال آخر </h6>
                                         <div class="mt-2  "style="margin:0px 14px;" >
-                                        
+
                                             <select class="selectpicker "  value="" name="year"  data-actions-box="true" style="transform: translate3d(-4px, 212px, 0px);">
                                                 <!-- <option value="" selected="selected"> جميع الاعمال</option> -->
                                                 <option value=""  > اسبوع</option>
@@ -81,8 +81,8 @@
                                         </div>
                                     </article>
 
-                              
-           
+
+
 
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
 
  
 <div class="py-5">
-    
+
     <div class="row ">
       <!-- 1 Item-->
       @foreach ($works as $item)
@@ -128,7 +128,7 @@
 
 
 
-    
+
 </main>
     </div>
 

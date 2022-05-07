@@ -7,6 +7,9 @@ use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\Skill;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use App\Models\Report;
+use App\Models\Posts;
 use App\Models\Profile;
 use App\Models\UserSkills;
 use Illuminate\Support\Facades\Auth;
@@ -82,7 +85,13 @@ class ControllPannelController extends Controller
 
     function admin()
     {
-        return view('admin.index');
+         // Show account Users && Posts && Rports
+
+         $post= DB::table('posts')->count();
+         $reports= DB::table('reports')->count();
+         $users = DB::table('users')->count();
+         return view('admin.index',compact('users','reports','post'));
+
     }
 
     public function edit_pro()
@@ -106,7 +115,7 @@ class ControllPannelController extends Controller
 
         return $filename;
     }
-    
+
     public function account_save(Request $request)
     {
 
