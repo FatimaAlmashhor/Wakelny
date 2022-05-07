@@ -729,11 +729,5 @@
 
 
     </div>
-
-    </div>
-
-
-
-
     <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
 @endsection
