@@ -582,20 +582,21 @@
                                                                     <!-- <div class="row mt-3 d-flex justify-content-between">
 
 
-                                                                            <div class="row border-top mt-4 py-3">
-                                                                                <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3%
-                                                                                    على عملية الدفع: <span
-                                                                                        class="color-orange font-lg">3082.50$</span>
-                                                                                </p>
-                                                                                <p class="text-muted font-xs"><em
-                                                                                        class="text--danger text-danger">*</em>
-                                                                                    رسوم عملية الدفع
-                                                                                    تقتطعها بوابات الدفع الالكترونية مثل PayPal
-                                                                                    والبطاقات الائتمانية.
-                                                                                </p>
-                                                                            </div>
+                                                                        <div class="row border-top mt-4 py-3">
+                                                                            <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3%
+                                                                                على عملية الدفع: <span
+                                                                                    class="color-orange font-lg">3082.50$</span>
+                                                                            </p>
+                                                                            <p class="text-muted font-xs"><em
+                                                                                    class="text--danger text-danger">*</em>
+                                                                                رسوم عملية الدفع
+                                                                                تقتطعها بوابات الدفع الالكترونية مثل PayPal
+                                                                                والبطاقات الائتمانية.
+                                                                            </p>
                                                                         </div>
-                                                                        <!-- /credit card -->
+                                                                    </div>
+                                                                    <!-- /credit card -->
+
 
                                                                     <!-- Pay Pal -->
                                                                     <div class="col-12 color-black px-3 modal-panel tab-B supSection"
