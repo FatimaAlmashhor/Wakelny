@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('duration');
+            $table->double('duration');
             $table->double('cost');
             $table->double('cost_after_taxs');
             $table->text('description');

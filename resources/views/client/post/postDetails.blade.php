@@ -24,12 +24,11 @@
                                     <span class="action-text">تعديل المشروع</span>
                                 </a>
                             </li>
-
                             <li class="text-end my-2 px-2">
-                                <a tabindex="-1" href="{{ route('report_content', $post_id) }}">
+                                <a tabindex="-1"
+                                    href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
                                     <i class="fa fa-fw fa-flag"></i>
-                                    <span class="action-text">تبليغ عن
-                                        محتوى</span>
+                                    <span class="action-text">تبليغ عن محتوى</span>
                                 </a>
                             </li>
                         </ul>
@@ -38,13 +37,12 @@
 
 
                 <!-- confirm delete Modal -->
-                <div class="modal" id="deleteModel" tabindex="-1" aria-labelledby="deleteModel" aria-hidden="true">
+                <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="deleteModel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="deleteModel">حذف المشروع</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                             </div>
                             <div class="modal-body">
                                 هل تريد حذف {{ $post->title }}
@@ -144,7 +142,7 @@
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
 
-                                                <span class="text-muted font-xs">بعد خصم عمولة موقع كلفني</span>
+                                                <span class="text-muted font-xs">بعد خصم عمولة موقع مستقل</span>
                                                 @error('cost_after_taxs')
                                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning"
                                                         role="alert"
@@ -334,7 +332,7 @@
 
                                                                     <li class="text-end my-2 px-2">
                                                                         <a tabindex="-1"
-                                                                            href="{{ route('report_provider', $item->user_id) }}">
+                                                                            href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
                                                                             <i class="fa fa-fw fa-flag"></i>
                                                                             <span class="action-text">تبليغ عن
                                                                                 محتوى</span>
@@ -580,47 +578,67 @@
                                                                     </div>
 
                                                                     <!-- <div class="row mt-3 d-flex justify-content-between">
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-6">
+                                                                                                                                                                                                                                                                                                                                                                                            <label>الاسم على البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="input-group mt-1">
+                                                                                                                                                                                                                                                                                                                                                                                                <input name="amount" class='form-control' id="name" type="text"
+                                                                                                                                                                                                                                                                                                                                                                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                                                                                                                                                                                                    aria-describedby="basic-addon1">
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-6">
+                                                                                                                                                                                                                                                                                                                                                                                            <label>رقم البطاقة <em class="text--danger text-danger">*</em> </label>
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="input-group mt-1">
+                                                                                                                                                                                                                                                                                                                                                                                                <input name="amount" class='form-control' id="credit_NO" type="number"
+                                                                                                                                                                                                                                                                                                                                                                                                    value="{{ old('amount') }}" aria-label="Username"
+                                                                                                                                                                                                                                                                                                                                                                                                    aria-describedby="basic-addon1" placeholder=".Card NO">
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                    <div class="mt-3">
+                                                                                                                                                                                                                                                                                                                                                                                        <input type="checkbox" class="ms-1" id="remember-card" checked>
+                                                                                                                                                                                                                                                                                                                                                                                        <label for="#remember-card">احفظ البطاقة لتسهيل الدفع في المستقبل</label>
+                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
 
-
-                                                                            <div class="row border-top mt-4 py-3">
-                                                                                <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3%
-                                                                                    على عملية الدفع: <span
-                                                                                        class="color-orange font-lg">3082.50$</span>
-                                                                                </p>
-                                                                                <p class="text-muted font-xs"><em
-                                                                                        class="text--danger text-danger">*</em>
-                                                                                    رسوم عملية الدفع
-                                                                                    تقتطعها بوابات الدفع الالكترونية مثل PayPal
-                                                                                    والبطاقات الائتمانية.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- /credit card -->
-
-                                                                    <!-- Pay Pal -->
-                                                                    <div class="col-12 color-black px-3 modal-panel tab-B supSection"
-                                                                        id="tab-B">
-                                                                        <div class="row">
-                                                                            <section
-                                                                                class="card shadow-sm col-12 col-sm-12">
-                                                                                <div>
-
-                                                                                </div>
-                                                                            </section>
-                                                                        </div>
+                                                                    <div class="row border-top mt-4 py-3">
+                                                                        <p>المبلغ النهائي بعد اضافة رسوم إجرائية بنسبة 3%
+                                                                            على عملية الدفع: <span
+                                                                                class="color-orange font-lg">3082.50$</span>
+                                                                        </p>
+                                                                        <p class="text-muted font-xs"><em
+                                                                                class="text--danger text-danger">*</em>
+                                                                            رسوم عملية الدفع
+                                                                            تقتطعها بوابات الدفع الالكترونية مثل PayPal
+                                                                            والبطاقات الائتمانية.
+                                                                        </p>
                                                                     </div>
-                                                                    <!-- /Pay Pal -->
-
-                                                                    <!-- coupon -->
-
-                                                                    <!-- /coupon -->
                                                                 </div>
-                                                                <div class="modal-footer d-flex ">
-                                                                    <input type="submit" class="btn wak_btn"
-                                                                        value="قبول العرض">
-                                                                    <button type="button" class="btn wak_btn green_border"
-                                                                        data-bs-dismiss="modal">تراجع</button>
+                                                                <!-- /credit card -->
+
+                                                                <!-- Pay Pal -->
+                                                                <div class="col-12 color-black px-3 modal-panel tab-B supSection"
+                                                                    id="tab-B">
+                                                                    <div class="row">
+                                                                        <section class="card shadow-sm col-12 col-sm-12">
+                                                                            <div>
+
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
                                                                 </div>
+                                                                <!-- /Pay Pal -->
+
+                                                                <!-- coupon -->
+
+                                                                <!-- /coupon -->
+                                                            </div>
+                                                            <div class="modal-footer d-flex ">
+                                                                <input type="submit" class="btn wak_btn"
+                                                                    value="قبول العرض">
+                                                                <button type="button" class="btn wak_btn green_border"
+                                                                    data-bs-dismiss="modal">تراجع</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -652,97 +670,98 @@
 
 
             </div>
-        </div>
-
-        {{-- more information --}}
-        <div class="col-md-4 col-sm-12">
-            <div class="card">
-                <h5 class="card-header">بطاقة المشروع</h5>
-
-                <div class="card-body">
-                    <div class="d-flex justify-content-between ">
-                        <div>
-                            <div class="my-3"> حالة المشروع</div>
-                            <div class="my-3"> تاريخ النشر</div>
-                            <div class="y-3"> الميزانية </div>
-                            <div class="my-3"> مدة التنفيذ</div>
-                            <div class="my-3"> عدد العروض</div>
-                        </div>
-                        <div>
-                            <div class="my-3"> <span class="px-1"
-                                    style="background-color: green ; color:white;">{{ $post->status }}</span></div>
-                            <div class="my-3"> {{ $post->created_at }}</div>
-                            <div class="my-3"> ${{ $post->cost }}</div>
-
-                            <div class="my-3"> {{ $post->duration }}</div>
-
-                            <div class="my-3"> {{ $post->offers }}</div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div>
-                    <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
-
-                </div>
-                <hr>
-                <div>
-                    <p>صاحب المشروع</p>
-                    <div class="image d-flex">
 
 
+            {{-- more information --}}
+            <div class="col-md-4 col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">بطاقة المشروع</h5>
 
-                        <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                            src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
-
-
-
-                        <div class="info mx-4">
-                            <h4 class="font-md">
-                                <a
-                                    href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
-                            </h4>
-
-                            <div class="rate">
-                                <span class="px-1 font-sm color-gray-dark "></span>
-                                <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
-                                <span class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between ">
+                            <div>
+                                <div class="my-3"> حالة المشروع</div>
+                                <div class="my-3"> تاريخ النشر</div>
+                                <div class="y-3"> الميزانية </div>
+                                <div class="my-3"> مدة التنفيذ</div>
+                                <div class="my-3"> عدد العروض</div>
                             </div>
+                            <div>
+                                <div class="my-3"> <span class="px-1"
+                                        style="background-color: green ; color:white;">{{ $post->status }}</span></div>
+                                <div class="my-3"> {{ $post->created_at }}</div>
+                                <div class="my-3"> ${{ $post->cost }}</div>
 
+                                <div class="my-3"> {{ $post->duration }}</div>
+
+                                <div class="my-3"> {{ $post->offers }}</div>
+                            </div>
                         </div>
                     </div>
+                    <hr>
+                    <div>
+                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+
+                    </div>
+                    <hr>
+                    <div>
+                        <p>صاحب المشروع</p>
+                        <div class="image d-flex">
+
+
+
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
+
+
+
+                            <div class="info mx-4">
+                                <h4 class="font-md">
+                                    <a
+                                        href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
+                                </h4>
+
+                                <div class="rate">
+                                    <span class="px-1 font-sm color-gray-dark "></span>
+                                    <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
+                                    <span
+                                        class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                <div class="card mt-3">
+                    <h5 class="card-header">شارك المشروع</h5>
 
-            </div>
-            <div class="card mt-3">
-                <h5 class="card-header">شارك المشروع</h5>
+                    <div class=" mt-3">
+                        <form class=" m-3">
+                            <input type="text">
+                        </form>
 
-                <div class=" mt-3">
-                    <form class=" m-3">
-                        <input type="text">
-                    </form>
+                        <!-- Facebook -->
+                        <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
+                                class="fab fa-facebook-f"></i></a>
 
-                    <!-- Facebook -->
-                    <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-
-                    <!-- Twitter -->
-                    <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
-                            class="fab fa-twitter"></i></a>
+                        <!-- Twitter -->
+                        <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
+                                class="fab fa-twitter"></i></a>
 
 
-                    </a>
-                    <!-- Linkedin -->
-                    <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
-                            class="fab fa-linkedin-in"></i></a>
+                        </a>
+                        <!-- Linkedin -->
+                        <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
+
+
         </div>
-
-
-    </div>
 
     </div>
 
