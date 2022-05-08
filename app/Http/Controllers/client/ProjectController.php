@@ -155,11 +155,25 @@ class ProjectController extends Controller
                 ->where('projects.id', $project_id)
                 ->first();
 
+            $response = Http::withHeaders([
+                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+                'Content-Type' => 'application/x-www-form-urlencoded'
+            ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
+                'order_reference' => '123412',
+                'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
+                'total_amount' => '133',
+                'currency' => 'YEN',
+                'success_url' => '/',
+                'cancel_url' => '/logout',
+                'metadata' => ' { "Customer name": "somename", "order id": 0}'
+            ]);
+
             $data = [
                 'project_id' => $project_id,
                 'name' => $seekerNotify->name,
                 'project_title' => $project->title,
-                'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
+                'url' => url($response['next_url']),
                 'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
                 'userId' => Auth::id()
             ];
