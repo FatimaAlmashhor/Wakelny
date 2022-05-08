@@ -36,6 +36,7 @@ class MyWorkOnProjectController extends Controller
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
                 ->where('projects.provider_id', Auth::id())
+                ->where('projects.finshed', 0)
                 ->where('projects.status', 'at_work')
                 ->orWhere('projects.status', 'done')
                 ->orWhere('projects.status', 'nonrecevied')
@@ -260,6 +261,7 @@ class MyWorkOnProjectController extends Controller
                 ->first();
 
             $project->status = 'nonrecevied';
+            $project->finshed = 1;
             $project->save();
             $post = Posts::find($project->post_id);
             $profile = Profile::where('user_id', Auth::id())->first();
@@ -286,7 +288,26 @@ class MyWorkOnProjectController extends Controller
         }
     }
 
+    // this function work when press into the continue project after rejection
+    function markAsContinue($project_id)
+    {
+        try {
+            $currentProject = Project::find($project_id);
 
+            $newProject = new Project();
+            $newProject->provider_id = $currentProject->provider_id;
+            $newProject->seeker_id = $currentProject->seeker_id;
+            $newProject->post_id = $currentProject->post_id;
+            $newProject->offer_id = $currentProject->offer_id;
+            $newProject->amount = $currentProject->amount;
+            $newProject->duration = $currentProject->duration;
+            $newProject->status = 'pending';
+            $newProject->save();
+            return back()->with(['message' => '   تم استأناف العمل على المشروع ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        }
+    }
 
     // upload files
     public function uploadFile($file)

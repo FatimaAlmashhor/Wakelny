@@ -102,8 +102,10 @@ class ReportController extends Controller
             }
 
             $report->save();
+            return back()->with(['message' => 'تم ارسال رساله بلاغ رجاء انتظر رد الاداره ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             //throw $th;
+            return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
     }
 }

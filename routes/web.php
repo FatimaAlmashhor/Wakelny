@@ -211,7 +211,10 @@ Route::group([
 
 
             // !report fatima vertion
-            Route::get('/reporting', [ReportController::class, 'reporting'])->name('reporting');
+            Route::post('/reporting', [ReportController::class, 'reporting'])->name('reporting');
+
+            // continue the project after rejection
+            Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
         });
     });
 

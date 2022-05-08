@@ -60,13 +60,14 @@
                                     @endif
                                     @if ($item->status == 'nonrecevied')
                                         <div class="d-flex x-space-2">
-                                            <button tabindex="-1" class="wak_btn mr-1" aria-disabled="true">
+                                            <a tabindex="-1" class="wak_btn mr-1"
+                                                href='{{ route('continueProject', [$item->project_id]) }}'>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> استأناف المشروع </span>
 
-                                            </button>
-                                            <a tabindex="-1" class="wak_btn mx-1"
-                                                href='{{ route('reporting', ['type=project']) }}'
+                                            </a>
+                                            <a tabindex="-1" class="wak_btn mx-1" data-bs-toggle="modal"
+                                                data-bs-target="#reject_{{ $item->project_id }}"
                                                 style='background-color: red'>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> قدم شكوى </span>
@@ -151,11 +152,58 @@
                             </form>
                         </div>
                     </div>
+
+
+
+                    {{-- reject --}}
+                    <div class="modal fade" id="reject_{{ $item->project_id }}" tabindex="-1"
+                        aria-labelledby="reject_{{ $item->project_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
+                                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                                </div>
+
+                                <div class="model-body px-2">
+                                    <form method='POST' action='{{ route('reporting', ['type=project']) }}'>
+                                        @csrf
+                                        <input hidden type='text' name="seeker_id" value='{{ $item->seeker_id }}' />
+                                        <input hidden type='text' name="project_id" value='{{ $item->project_id }}' />
+                                        <div class="pt-3">
+                                            <label class="my-2">اكتب السبب الذي يمنعك من قبول المشروع <em
+                                                    class="text--danger">*</em>
+                                            </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group mb-3">
+                                                    <textarea name="massege" class='form-control' type="text" aria-label="Username" aria-describedby="basic-addon1"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">تاكيد الرفض</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">الغاء</button>
+                                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
         </div>
     @endforeach
+
+
     <script>
         $('[data-countdown]').each(function() {
             var $this = $(this),
