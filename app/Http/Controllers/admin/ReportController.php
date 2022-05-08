@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
-    ////////////////////show report in dashboard///////////
+    ////////////////////show Project in dashboard////////////////////////
     public function showAll(){
         // $reported = User::where('is_active', 1)->get();
         $reports =  report::select(
