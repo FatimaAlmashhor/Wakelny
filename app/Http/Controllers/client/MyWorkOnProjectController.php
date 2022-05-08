@@ -50,6 +50,38 @@ class MyWorkOnProjectController extends Controller
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
     }
+    // this function show the my cuurent work table
+    function doneWork()
+    {
+        try {
+            $data = Project::select(
+                'posts.id as post_id',
+                'posts.title',
+                'posts.description',
+                'projects.duration',
+                'projects.id as project_id',
+                'projects.seeker_id as seeker_id',
+                'projects.stated_at',
+                'projects.status',
+                'projects.amount',
+            )
+                ->join('posts', 'posts.id', '=', 'projects.post_id')
+                ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
+                ->where('projects.provider_id', Auth::id())
+                ->where('projects.finshed', 1)
+                ->orWhere('projects.status', 'received')
+                ->where('posts.is_active', 1)
+
+                ->get();
+            // return response()->json($data);
+            if (empty($data)) {
+                return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+            } else
+                return view('client.projects.myProjects')->with('data', $data);
+        } catch (\Exception $th) {
+            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        }
+    }
 
 
     // this table send the project to the owner

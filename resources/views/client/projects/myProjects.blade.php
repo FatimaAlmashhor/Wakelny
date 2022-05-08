@@ -1,6 +1,25 @@
 @extends('client.master_layout')
 @section('content')
-    <h3 class="m-5"> المشاريع اللتي اعمل عليها حاليه </h3>
+    <div class=" container d-flex justify-content-between mt-5 mb-2">
+        <h3 class=""> المشاريع اللتي اعمل عليها حاليه </h3>
+        <div class="dropdown btn-group">
+            <a tabindex="-1" class="wak_btn" href="#">
+                <i class="fa-solid fa-filter font-sm mx-1"></i>
+                <span class="action-text"> اعمالي الحاليه </span>
+            </a>
+            <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {{-- <i class="fa fa-caret-down"></i> --}}
+            </button>
+            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
+                <li class="my-2  text-end ">
+                    <a tabindex="-1" href="{{ route('doneWork') }}">
+                        <i class="fa-solid fa-check font-sm px-3"></i>
+                        <span class="action-text"> اعمالي المنجزه </span>
+                    </a>
+                </li>
+        </div>
+    </div>
     @foreach ($data as $item)
         {{-- one card --}}
 
@@ -29,7 +48,8 @@
                                             <span class="action-text">تسليم المشروع </span>
 
                                         </a>
-                                    @else
+                                    @endif
+                                    @if ($item->status == 'done')
                                         <button tabindex="-1" class="wak_btn orange" aria-disabled="true">
                                             <i class="fa-solid fa-spinner"></i>
                                             <span class="action-text"> انتظار الرد... </span>

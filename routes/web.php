@@ -203,6 +203,7 @@ Route::group([
 
             // the project that provider work on 
             Route::get('/myWorkOnProject', [MyWorkOnProjectController::class, 'index'])->name('workonProject');
+            Route::get('/myWorkOnProject/done', [MyWorkOnProjectController::class, 'doneWork'])->name('doneWork');
             Route::post('/mark_as_done', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
             Route::get('/confirm-receive/{project_id}/{provider_id}', [MyWorkOnProjectController::class, 'markAsRecive'])->name('markAsRecive');
             Route::post('/accept-receive', [MyWorkOnProjectController::class, 'markAsAccept'])->name('markAsAccept');
