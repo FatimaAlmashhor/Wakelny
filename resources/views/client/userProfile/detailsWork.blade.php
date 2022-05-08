@@ -71,15 +71,10 @@
                     <div class="card shadow-sm ">
                         <div class="card-body">
                             @csrf
-                            <div class="row my-4  border border-1 rounded pt-2 pb-2 ">
-                                <img src="/images/{{ $item->main_image }}" alt="">
+                            <div class="row my-4  pt-2 pb-2 " >
+                                <img src="/images/{{ $item->main_image }}"  alt="">
                             </div>
-                            <div class="row my-4  border border-1 rounded pt-2 pb-2 ">
-                                <img src="/images/file2.jpg" alt="">
-                            </div>
-                            <div class="row my-4  border border-1 rounded pt-2 pb-2 ">
-                                <img src="/images/file2.jpg" alt="">
-                            </div>
+                          
                             <div class="row my-4   ">
                                 <label for="" class="col-md-6 col-form-label fw-bold color-green ">
                                     تفاصيل العمل</label>
