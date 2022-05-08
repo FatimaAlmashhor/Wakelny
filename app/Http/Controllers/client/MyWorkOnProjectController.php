@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MyWorkOnProjectController extends Controller
 {
+
+    // this function show the my cuurent work table
     function index()
     {
         try {
@@ -28,12 +30,14 @@ class MyWorkOnProjectController extends Controller
                 'projects.id as project_id',
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
+                'projects.status',
                 'projects.amount',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
                 ->where('projects.provider_id', Auth::id())
                 ->where('projects.status', 'at_work')
+                ->orWhere('projects.status', 'done')
                 ->where('posts.is_active', 1)
 
                 ->get();
@@ -48,39 +52,55 @@ class MyWorkOnProjectController extends Controller
     }
 
 
-    function markAsDone($project_id, $seeker_id)
+    // this table send the project to the owner
+    function markAsDone(Request $request)
     {
+        // try {
+        $project_id = $request->project_id;
+        $seeker_id = $request->seeker_id;
+        // send notification 
+        $project = Project::where('id', $project_id)
+            ->where('provider_id', Auth::id())
+            ->where('seeker_id', $seeker_id)
+            ->where('status', 'at_work')
+            ->first();
 
-        try {
-            // send notification 
-            $project = Project::where('id', $project_id)
-                ->where('provider_id', Auth::id())
-                ->where('seeker_id', $seeker_id)
-                ->where('status', 'at_work')
-                ->first();
 
-            $project->status = 'done';
-            $project->save();
-
-            $seeker = User::find($seeker_id);
-            $post =  Posts::where('id', $project->post_id)->where('is_active', 1)->first();
-
-            $data = [
-                'project_id' => $project_id,
-                'name' => auth()->user()->name,
-                'project_title' => $post->title,
-                // @prarm project id -> for get the data from
-                // @prarm Auth id -> for get the provider data from
-                'url' => url('confirm-receive/' . $project_id . '/' . Auth::id()),
-                'message' => 'لقد قام' . Auth::user()->name . 'بتسليم  مشروعك ' . $post->title,
-                'userId' => Auth::id()
-            ];
-            $seeker->notify(new MarkAsDoneNotification($data));
-            // return response()->json($project);
-            return back()->with(['message' => 'تم تسليم المشروع رجاء انتظر الطرف الاخر', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        if ($request->other_option == 'on') {
+            $project->other_way_send_files = 1;
+        } else {
+            if ($request->file !== '' || $request->url !== '') {
+                $project->files = $request->file;
+                $project->url = $request->url;
+            } else
+                return redirect()->back()->with(['message' => 'رجاء قم بارسال الملفات المطلوبه او اضغط على طريقه اخرى', 'type' => 'alert-danger']);
         }
+        print_r($request->file);
+        print_r($request->url);
+        print_r($request->other_option);
+
+        $project->status = 'done';
+        $project->save();
+
+        $seeker = User::find($seeker_id);
+        $post =  Posts::where('id', $project->post_id)->where('is_active', 1)->first();
+
+        $data = [
+            'project_id' => $project_id,
+            'name' => auth()->user()->name,
+            'project_title' => $post->title,
+            // @prarm project id -> for get the data from
+            // @prarm Auth id -> for get the provider data from
+            'url' => url('confirm-receive/' . $project_id . '/' . Auth::id()),
+            'message' => 'لقد قام' . Auth::user()->name . 'بتسليم  مشروعك ' . $post->title,
+            'userId' => Auth::id()
+        ];
+        $seeker->notify(new MarkAsDoneNotification($data));
+        // return response()->json($project);
+        return back()->with(['message' => 'تم تسليم المشروع رجاء انتظر الطرف الاخر', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        // }
     }
 
     function markAsRecive($project_id, $provider_id)
