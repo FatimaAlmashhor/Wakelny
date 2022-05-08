@@ -49,8 +49,9 @@
                                 هل تريد حذف {{ $post->title }}
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('toggle_post', $post_id) }}" class="btn btn-danger">تاكيد الحذف</a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                <a href="{{ route('toggle_post', $post_id) }}" class="btn wak_btn">تاكيد الحذف</a>
+                                <button type="button" class="btn wak_btn green_border"
+                                    data-bs-dismiss="modal">الغاء</button>
                                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 
                             </div>
@@ -208,17 +209,7 @@
                                                 <button class="wak_btn w-full" type="submit">انشر الان
                                                 </button>
                                             </div>
-                                            <!-- Form submit button -->
-                                            {{-- <div class="row">
-                            <div class="col-md-8">
-                                <button class="wak_btn " type="submit">انشر الان
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="wak_btn " type="submit"> حفظ كمسوده
-                                </button>
-                            </div>
-                        </div> --}}
+
                                         </form>
                                     </div>
 
@@ -247,64 +238,63 @@
                             </button>
                         </h2>
 
-
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
 
                                 {{-- accordion body / collabes --}}
-                                <div class="">
 
-                                    @if (!empty($comments))
-                                        @foreach ($comments as $item)
-                                            <div class="card p-4 container my-3" style="direction: rtl;">
-                                                <div class="row">
-                                                    <div class="col-6 image d-flex">
-                                                        <a href="{{ route('userProfile', $item->user_id) }}">
 
-                                                            {{-- @if ($item->avatar !== 'http://localhost:8000/images/')
+                                @if (!empty($comments))
+                                    @foreach ($comments as $item)
+                                        <div class="card p-4 container my-3" style="direction: rtl;">
+                                            <div class="row">
+                                                <div class="col-6 image d-flex">
+                                                    <a href="{{ route('userProfile', $item->user_id) }}">
+
+                                                        {{-- @if ($item->avatar !== 'http://localhost:8000/images/')
                                                             <img class="rounded-circle mr-4 border"
                                                                 style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
                                                                 alt="">
                                                         @else --}}
-                                                            <img class="rounded-circle mr-4 border"
-                                                                style="width:60px ; height:60px ; object-fit: cover"
-                                                                src="{{ asset('assets/client/images/user-profile-2.png') }}"
-                                                                alt="">
-                                                            {{-- @endif --}}
+                                                        <img class="rounded-circle mr-4 border"
+                                                            style="width:60px ; height:60px ; object-fit: cover"
+                                                            src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                                                            alt="">
+                                                        {{-- @endif --}}
 
-                                                        </a>
-                                                        <div class="info mx-4">
-                                                            <h4 class="font-md"><a
-                                                                    href="{{ route('userProfile', $item->user_id) }}">{{ $item->name }}</a>
-                                                            </h4>
+                                                    </a>
+                                                    <div class="info mx-4">
+                                                        <h4 class="font-md"><a
+                                                                href="{{ route('userProfile', $item->user_id) }}">{{ $item->name }}</a>
+                                                        </h4>
 
-                                                            <div class="rate">
-                                                                @for ($i = 0; $i < 5; $i++)
-                                                                    @if ((int) $item->rating > $i)
-                                                                        <i class="fa fa-star clr-amber rating-star"
-                                                                            style="color: orange;"></i>
-                                                                    @else
-                                                                        <i class="fa fa-star clr-amber rating-star"
-                                                                            style="color: gainsboro;"></i>
-                                                                    @endif
-                                                                @endfor
+                                                        <div class="rate">
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                @if ((int) $item->rating > $i)
+                                                                    <i class="fa fa-star clr-amber rating-star"
+                                                                        style="color: orange;"></i>
+                                                                @else
+                                                                    <i class="fa fa-star clr-amber rating-star"
+                                                                        style="color: gainsboro;"></i>
+                                                                @endif
+                                                            @endfor
 
-                                                                <span
-                                                                    class="px-2 font-sm color-gray-dark ">%{{ $item->rating * 20 }}</span>
-                                                                <i
-                                                                    class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
+                                                            <span
+                                                                class="px-2 font-sm color-gray-dark ">%{{ $item->rating * 20 }}</span>
+                                                            <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
 
-                                                                <span
-                                                                    class="color-gray-dark px-2 font-sm">{{ $item->specialization }}</span>
-                                                            </div>
-
+                                                            <span
+                                                                class="color-gray-dark px-2 font-sm">{{ $item->specialization }}</span>
                                                         </div>
 
                                                     </div>
-                                                    {{-- تعديل الكومنتات --}}
-                                                    <div class="row col-6">
-                                                        <div class="col-6 ">
+
+                                                </div>
+                                                {{-- تعديل الكومنتات --}}
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="row ">
+                                                        <div class="col-6  ">
                                                             @if (Auth::check() && $item->user_id == auth()->user()->id)
                                                                 <button class="wak_btn w-full" data-bs-toggle="collapse"
                                                                     data-bs-target="#demo"
@@ -314,7 +304,7 @@
                                                                 </button>
                                                             @endif
                                                         </div>
-                                                        <div class="card--actions hidden-xs col-6">
+                                                        <div class="card--actions hidden-xs col-6 ">
                                                             <div class="dropdown btn-group">
 
                                                                 <a tabindex="-1" class="wak_btn green_border" href="#"
@@ -345,289 +335,296 @@
 
                                                         </div>
                                                     </div>
-
-                                                    {{-- more info --}}
-                                                    <div>
-                                                        <div class="d-flex justify-content-around m-3 bg-lighter-gray p-3">
-                                                            <div>
-                                                                <div>المبلغ</div>
-                                                                <div>${{ $item->cost }}</div>
-                                                            </div>
-                                                            <div>
-                                                                <div>مدة التنفيذ</div>
-                                                                <div>{{ $item->duration }} أيام</div>
-                                                            </div>
-                                                            <div>
+                                                </div>
+                                                {{-- more info --}}
+                                                <div>
+                                                    <div class="d-flex justify-content-around m-3 bg-lighter-gray p-3">
+                                                        <div>
+                                                            <div>المبلغ</div>
+                                                            <div>${{ $item->cost }}</div>
+                                                        </div>
+                                                        <div>
+                                                            <div>مدة التنفيذ</div>
+                                                            <div>{{ $item->duration }} أيام</div>
+                                                        </div>
+                                                        {{-- <div>
                                                                 <div>معرض الأعمال</div>
                                                                 <div>{{ $post->workcount }} أعمال</div>
-                                                            </div>
-                                                            <div>
+                                                            </div> --}}
+                                                        {{-- <div>
                                                                 <div>تقييم العرض</div>
                                                                 <div><i class="fa-thin fa-circle"></i></div>
-                                                            </div>
-                                                        </div>
+                                                            </div> --}}
                                                     </div>
-                                                    <p class=" col-12 font-sm mt-3">{{ $item->description }}</p>
-                                                    {{-- فورم التعديل --}}
-                                                    @if (Auth::check() && $item->user_id == auth()->user()->id)
-                                                        <div class="col-12 collapse" id="demo">
+                                                </div>
+                                                <p class=" col-12 font-sm mt-3">{{ $item->description }}</p>
+                                                {{-- فورم التعديل --}}
+                                                @if (Auth::check() && $item->user_id == auth()->user()->id)
+                                                    <div class="col-12 collapse" id="demo">
 
-                                                            <div class="card shadow-sm ">
-                                                                <div class="card-body">
-                                                                    <form id="contactForm" class="row g-3"
-                                                                        action='{{ route('update_comment', $item->offer_id) }}'
-                                                                        method="post" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        {{-- <input type="hidden" value="{{ $post_id }}" name="post_id" /> --}}
+                                                        <div class="card shadow-sm ">
+                                                            <div class="card-body">
+                                                                <form id="contactForm" class="row g-3"
+                                                                    action='{{ route('update_comment', $item->offer_id) }}'
+                                                                    method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    {{-- <input type="hidden" value="{{ $post_id }}" name="post_id" /> --}}
 
-                                                                        {{-- estamte cost --}}
-                                                                        <div class="col-sm-4 col-xs-12 pt-3">
-                                                                            <label>قيمة العرض
-                                                                                <em class="text--danger">*</em>
-                                                                            </label>
-                                                                            <div class="input-group mb-3">
+                                                                    {{-- estamte cost --}}
+                                                                    <div class="col-sm-4 col-xs-12 pt-3">
+                                                                        <label>قيمة العرض
+                                                                            <em class="text--danger">*</em>
+                                                                        </label>
+                                                                        <div class="input-group mb-3">
 
-                                                                                <input name="cost" class='form-control'
-                                                                                    type="number"
-                                                                                    value="{{ $item->cost ?? old('cost') }}"
-                                                                                    aria-label="Username"
-                                                                                    aria-describedby="basic-addon1">
-                                                                                <span class="input-group-text"
-                                                                                    id="basic-addon1">$</span>
+                                                                            <input name="cost" class='form-control'
+                                                                                type="number"
+                                                                                value="{{ $item->cost ?? old('cost') }}"
+                                                                                aria-label="Username"
+                                                                                aria-describedby="basic-addon1">
+                                                                            <span class="input-group-text"
+                                                                                id="basic-addon1">$</span>
+                                                                        </div>
+
+                                                                        <p class="text-muted font-xs">اختر ميزانية
+                                                                            مناسبة</p>
+                                                                        @error('cost')
+                                                                            <div id='alert '
+                                                                                class="   px-4 alert position-fixed  alert-warning"
+                                                                                role="alert"
+                                                                                style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                                                                {{ $message }}
                                                                             </div>
+                                                                        @enderror
 
-                                                                            <p class="text-muted font-xs">اختر ميزانية
-                                                                                مناسبة</p>
-                                                                            @error('cost')
-                                                                                <div id='alert '
-                                                                                    class="   px-4 alert position-fixed  alert-warning"
-                                                                                    role="alert"
-                                                                                    style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
+                                                                    </div>
 
+
+                                                                    {{-- estamte cost --}}
+                                                                    <div class="col-sm-4 col-xs-12 pt-3">
+                                                                        <label>مستحقاتك <em class="text--danger">*</em>
+                                                                        </label>
+                                                                        <div class="input-group mb-3">
+
+                                                                            <input disabled name="cost_after_taxs"
+                                                                                class='form-control' type="number"
+                                                                                value="{{ $item->cost_after_taxs ?? old('cost_after_taxs') }}"
+                                                                                aria-label="Username"
+                                                                                aria-describedby="basic-addon1">
+                                                                            <span class="input-group-text"
+                                                                                id="basic-addon1">$</span>
                                                                         </div>
 
-
-                                                                        {{-- estamte cost --}}
-                                                                        <div class="col-sm-4 col-xs-12 pt-3">
-                                                                            <label>مستحقاتك <em
-                                                                                    class="text--danger">*</em>
-                                                                            </label>
-                                                                            <div class="input-group mb-3">
-
-                                                                                <input disabled name="cost_after_taxs"
-                                                                                    class='form-control' type="number"
-                                                                                    value="{{ $item->cost_after_taxs ?? old('cost_after_taxs') }}"
-                                                                                    aria-label="Username"
-                                                                                    aria-describedby="basic-addon1">
-                                                                                <span class="input-group-text"
-                                                                                    id="basic-addon1">$</span>
+                                                                        <span class="text-muted font-xs">بعد خصم عمولة
+                                                                            موقع مستقل</span>
+                                                                        @error('cost_after_taxs')
+                                                                            <div id='alert '
+                                                                                class="   px-4 alert position-fixed  alert-warning"
+                                                                                role="alert"
+                                                                                style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                                                                {{ $message }}
                                                                             </div>
+                                                                        @enderror
 
-                                                                            <span class="text-muted font-xs">بعد خصم عمولة
-                                                                                موقع مستقل</span>
-                                                                            @error('cost_after_taxs')
-                                                                                <div id='alert '
-                                                                                    class="   px-4 alert position-fixed  alert-warning"
-                                                                                    role="alert"
-                                                                                    style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
+                                                                    </div>
+                                                                    {{-- duration --}}
+                                                                    <div class="col-sm-4 col-xs-12 pt-3">
+                                                                        <label>المدة المتوقعة للتسليم <em
+                                                                                class="text--danger">*</em>
+                                                                        </label>
+                                                                        <div class="input-group mb-3">
 
+                                                                            <input name="duration" class='form-control'
+                                                                                id="phone" type="number"
+                                                                                value="{{ $item->duration ?? old('duration') }}"
+                                                                                aria-label="Username"
+                                                                                aria-describedby="basic-addon1">
+                                                                            <span class="input-group-text"
+                                                                                id="basic-addon1">ايام</span>
                                                                         </div>
-                                                                        {{-- duration --}}
-                                                                        <div class="col-sm-4 col-xs-12 pt-3">
-                                                                            <label>المدة المتوقعة للتسليم <em
-                                                                                    class="text--danger">*</em>
-                                                                            </label>
-                                                                            <div class="input-group mb-3">
 
-                                                                                <input name="duration" class='form-control'
-                                                                                    id="phone" type="number"
-                                                                                    value="{{ $item->duration ?? old('duration') }}"
-                                                                                    aria-label="Username"
-                                                                                    aria-describedby="basic-addon1">
-                                                                                <span class="input-group-text"
-                                                                                    id="basic-addon1">ايام</span>
+                                                                        <span class="text-muted font-xs">متى تحتاج
+                                                                            لتنفيذ مشروعك</span>
+                                                                        @error('duration')
+                                                                            <div id='alert '
+                                                                                class="   px-4 alert position-fixed  alert-warning"
+                                                                                role="alert"
+                                                                                style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                                                                {{ $message }}
                                                                             </div>
+                                                                        @enderror
 
-                                                                            <span class="text-muted font-xs">متى تحتاج
-                                                                                لتنفيذ مشروعك</span>
-                                                                            @error('duration')
-                                                                                <div id='alert '
-                                                                                    class="   px-4 alert position-fixed  alert-warning"
-                                                                                    role="alert"
-                                                                                    style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
+                                                                    </div>
 
-                                                                        </div>
-
-                                                                        <!-- Message input -->
-                                                                        <div>
-                                                                            <label class="form-label"
-                                                                                for="message">تفاصيل العرض</label>
-                                                                            <textarea class="form-control" name='message' id="message" type="text" style="height: 10rem;"
-                                                                                data-sb-validations="required"
-                                                                                required>{{ $item->description ?? old('description') }}</textarea>
-                                                                            <p class="text-muted font-xs">أدخل وصفاً مفصلاً
-                                                                                لمشروعك وأرفق أمثلة
-                                                                                لما تريد ان
-                                                                                أمكن.
-                                                                            </p>
-                                                                            @error('message')
-                                                                                <div id='alert '
-                                                                                    class="   px-4 alert position-fixed  alert-warning"
-                                                                                    role="alert"
-                                                                                    style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
-                                                                        </div>
+                                                                    <!-- Message input -->
+                                                                    <div>
+                                                                        <label class="form-label" for="message">تفاصيل
+                                                                            العرض</label>
+                                                                        <textarea class="form-control" name='message' id="message" type="text" style="height: 10rem;"
+                                                                            data-sb-validations="required"
+                                                                            required>{{ $item->description ?? old('description') }}</textarea>
+                                                                        <p class="text-muted font-xs">أدخل وصفاً مفصلاً
+                                                                            لمشروعك وأرفق أمثلة
+                                                                            لما تريد ان
+                                                                            أمكن.
+                                                                        </p>
+                                                                        @error('message')
+                                                                            <div id='alert '
+                                                                                class="   px-4 alert position-fixed  alert-warning"
+                                                                                role="alert"
+                                                                                style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </div>
 
 
-                                                                        <div class="mb-1">
-                                                                            <label class="form-label"
-                                                                                for="message">ملفات توضيحية</label>
-                                                                            <input class="form-control" id="dropzone"
-                                                                                multiple name='files' type="file"
-                                                                                value="{{ $item->files ?? old('files') }}"
-                                                                                data-sb-validations="required">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="message">ملفات
+                                                                            توضيحية</label>
+                                                                        <input class="form-control" id="dropzone"
+                                                                            multiple name='files' type="file"
+                                                                            value="{{ $item->files ?? old('files') }}"
+                                                                            data-sb-validations="required">
 
 
-                                                                        </div>
-                                                                        <div>
-                                                                            <button class="wak_btn w-full"
-                                                                                type="submit">حفظ التعديلات
-                                                                            </button>
-                                                                        </div>
-                                                                        {{-- <button class="wak_btn" data-bs-toggle="collapse"
+                                                                    </div>
+                                                                    <div>
+                                                                        <button class="wak_btn w-full" type="submit">حفظ
+                                                                            التعديلات
+                                                                        </button>
+                                                                    </div>
+                                                                    {{-- <button class="wak_btn" data-bs-toggle="collapse"
                                                                             data-bs-target="#demo">
                                                                             <i class="fa fa-fw fa-edit"></i>
                                                                             <span class="action-text">تعديل العرض </span>
                                                                         </button> --}}
-                                                                    </form>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                    @endif
-                                                </div>
-                                                @if (Auth::check() && $post->user_id == Auth::id())
-                                                    <div class="m-2">
-                                                        <button tabindex="-1" class="wak_btn orange mx-2" type="button"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                            <i class="fa fa-check px-1"></i>
-                                                            <span class="action-text"> قبول العرض </span>
-                                                        </button>
-                                                        <a tabindex="-1" class="wak_btn green_border" href="#">
-                                                            <i class="fa fa-send px-1"></i>
-                                                            <span class="action-text"> تواصل مع المستقل </span>
-                                                        </a>
                                                     </div>
                                                 @endif
-
                                             </div>
+                                            @if (Auth::check() && $post->user_id == Auth::id())
+                                                <div class="raw m-2">
+                                                    <button tabindex="-1" class="wak_btn orange mx-2 col-sm-6 " type="button"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        <i class="fa fa-check px-1"></i>
+                                                        <span class="action-text"> قبول العرض </span>
+                                                    </button>
+                                                    <a tabindex="-1" class="wak_btn green_border col-sm-6 " href="#">
+                                                        <i class="fa fa-send px-1"></i>
+                                                        <span class="action-text"> تواصل مع المستقل </span>
+                                                    </a>
+                                                </div>
+                                            @endif
+
+                                        </div>
 
 
-                                            <!-- Acceptance Modal -->
-                                            <div class="modal" id="exampleModal" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title order-2" id="exampleModalLabel">قبول
-                                                                العرض</h5>
-                                                            <button type="button" class="btn-close order-2"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-
-
-                                                        {{-- model for acceptence --}}
-                                                        <form action="{{ route('accept-offer') }}"
-                                                            enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="hidden" value="{{ $item->provider_id }}"
-                                                                name="provider_id">
-                                                            <input type="hidden" value="{{ $item->offer_id }}"
-                                                                name="offer_id">
-                                                            <input type="hidden" value="{{ $post_id }}"
-                                                                name="post_id">
-                                                            <div class="modal-body ">
-                                                                <!-- credit card -->
-                                                                <div class=" row color-black px-3 modal-panel is-show supSection"
-                                                                    id="tab-A">
-                                                                    <div class="row">
-                                                                        <div class="col-6">
-                                                                            <label>المبلغ المتفق عليه <em
-                                                                                    class="text--danger text-danger">*</em></label>
-                                                                            <div class="input-group mt-1">
-                                                                                <input name="amount" class='form-control'
-                                                                                    id="amount" type="text"
-                                                                                    value="{{ old('cost') }}"
-                                                                                    aria-label="Username"
-                                                                                    aria-describedby="basic-addon1">
-                                                                                <span class="input-group-text"
-                                                                                    id="basic-addon1">$</span>
-                                                                            </div>
-                                                                            @error('amount')
-                                                                                <p class="text-danger" role="alert">
-                                                                                    {{ $message }}
-                                                                                </p>
-                                                                            @enderror
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label>المده المتفق عليه <em
-                                                                                    class="text--danger text-danger">*</em></label>
-                                                                            <div class="input-group mt-1">
-                                                                                <input name="duration" class='form-control'
-                                                                                    id="duration" type="text"
-                                                                                    value="{{ old('duration') }}"
-                                                                                    aria-label="Username"
-                                                                                    aria-describedby="basic-addon1">
-                                                                                <span class="input-group-text"
-                                                                                    id="basic-addon1">$</span>
-                                                                            </div>
-                                                                            @error('duration')
-                                                                                <p class="text-danger" role="alert">
-                                                                                    {{ $message }}
-                                                                                </p>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-                                                                <div class="row modal-footer  ">
-                                                                    <input type="submit" class="btn wak_btn"
-                                                                        value="قبول العرض">
-                                                                    <button type="button" class="btn wak_btn green_border"
-                                                                        data-bs-dismiss="modal">تراجع</button>
-                                                                </div>
-                                                        </form>
+                                        <!-- Acceptance Modal -->
+                                        <div class="modal" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title order-2" id="exampleModalLabel">قبول
+                                                            العرض</h5>
+                                                        <button type="button" class="btn-close order-2"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
+
+
+                                                    {{-- model for acceptence --}}
+                                                    <form action="{{ route('accept-offer') }}"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $item->provider_id }}"
+                                                            name="provider_id">
+                                                        <input type="hidden" value="{{ $item->offer_id }}"
+                                                            name="offer_id">
+                                                        <input type="hidden" value="{{ $post_id }}" name="post_id">
+                                                        <div class="modal-body ">
+                                                            <!-- credit card -->
+                                                            <div class=" row color-black px-3 modal-panel is-show supSection"
+                                                                id="tab-A">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <label>المبلغ المتفق عليه <em
+                                                                                class="text--danger text-danger">*</em></label>
+                                                                        <div class="input-group mt-1">
+                                                                            <input name="amount" class='form-control'
+                                                                                id="amount" type="text"
+                                                                                value="{{ old('cost') }}"
+                                                                                aria-label="Username"
+                                                                                aria-describedby="basic-addon1">
+                                                                            <span class="input-group-text"
+                                                                                id="basic-addon1">$</span>
+                                                                        </div>
+                                                                        @error('amount')
+                                                                            <p class="text-danger" role="alert">
+                                                                                {{ $message }}
+                                                                            </p>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <label>المده المتفق عليه <em
+                                                                                class="text--danger text-danger">*</em></label>
+                                                                        <div class="input-group mt-1">
+                                                                            <input name="duration" class='form-control'
+                                                                                id="duration" type="text"
+                                                                                value="{{ old('duration') }}"
+                                                                                aria-label="Username"
+                                                                                aria-describedby="basic-addon1">
+                                                                            <span class="input-group-text"
+                                                                                id="basic-addon1">$</span>
+                                                                        </div>
+                                                                        @error('duration')
+                                                                            <p class="text-danger" role="alert">
+                                                                                {{ $message }}
+                                                                            </p>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="row modal-footer  ">
+                                                                <input type="submit" class="btn wak_btn"
+                                                                    value="قبول العرض">
+                                                                <button type="button" class="btn wak_btn green_border"
+                                                                    data-bs-dismiss="modal">تراجع</button>
+                                                            </div>
+                                                    </form>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <!-- /Acceptance Modal -->
-                                        @endforeach
-                                    @else
-                                        <p>لايوجد عروض حاليا</p>
-                                    @endif
+                                        <!-- /Acceptance Modal -->
+                                    @endforeach
+                                @endif
 
-                                </div>
-
-
-                            </div>
                         </div>
                     </div>
+                    {{-- @else
+                            <p>لايوجد عروض حاليا</p>
+                        </div>
+                        @endif --}}
 
                 </div>
 
-                {{-- @if (count($errors) > 0)
+
+
+
+
+
+            </div>
+
+
+
+
+
+            {{-- @if (count($errors) > 0)
                     <script>
                         $( document ).ready(function() {
                             $('#exampleModal').modal('show');
@@ -637,9 +634,7 @@
 
 
 
-            </div>
         </div>
-
         {{-- more information --}}
         <div class="col-md-4 col-sm-12">
             <div class="card">
@@ -702,32 +697,36 @@
                 </div>
 
             </div>
-            <div class="card mt-3">
-                <h5 class="card-header">شارك المشروع</h5>
+            {{-- <div class="card mt-3">
+            <h5 class="card-header">شارك المشروع</h5>
 
-                <div class=" mt-3">
-                    <form class=" m-3">
-                        <input type="text">
-                    </form>
+            <div class=" mt-3">
+                <form class=" m-3">
+                    <input type="text">
+                </form>
 
-                    <!-- Facebook -->
-                    <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
+                <!-- Facebook -->
+                <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
 
-                    <!-- Twitter -->
-                    <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
-                            class="fab fa-twitter"></i></a>
+                <!-- Twitter -->
+                <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
+                        class="fab fa-twitter"></i></a>
 
 
-                    </a>
-                    <!-- Linkedin -->
-                    <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
-                            class="fab fa-linkedin-in"></i></a>
-                </div>
+                </a>
+                <!-- Linkedin -->
+                <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
+                        class="fab fa-linkedin-in"></i></a>
             </div>
+        </div> --}}
         </div>
+    </div>
+    </div>
 
 
+
+    </div>
     </div>
     <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
 @endsection
