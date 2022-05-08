@@ -322,11 +322,6 @@ Route::get('/testApi', function () {
         'metadata' => ' { "Customer name": "somename", "order id": 0}'
     ]);
 
-<<<<<<< HEAD
-    return $response->status();
-});
-=======
     // return response()->json($response->json());
     return redirect($response['next_url']);
 });
->>>>>>> 21188795f296ca0b43bba0399b6f451dcd8e1e54
