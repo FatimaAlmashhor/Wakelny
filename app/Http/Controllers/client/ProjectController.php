@@ -16,6 +16,7 @@ use App\Notifications\RejectProjectNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\Http;
 
 class ProjectController extends Controller
 {

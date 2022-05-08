@@ -108,17 +108,18 @@ class UserController extends Controller
     {
         $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
         $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
+
         $reports =  Report::select(
             'reports.id',
             // 'users.id',
             'reports.type_report',
             'reports.massege',
             'profiles.user_id',
-            'profiles.name'
+            'profiles.name as reporter'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
 
             ->where('post_id', $post_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id, 'provider_id' => $provider_id]);
+        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id, 'provider' => $provider]);
     }
     public function insert_user($provider_id)
     {
@@ -129,7 +130,7 @@ class UserController extends Controller
             'reports.type_report',
             'reports.massege',
             'profiles.user_id',
-            'profiles.name'
+            'profiles.name as reporter'
         )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
             ->join('users', 'users.id', '=', 'reports.user_id')
             ->where('provider_id', $provider_id)->get();
