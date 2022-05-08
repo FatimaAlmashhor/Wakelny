@@ -13,10 +13,16 @@ use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\CommentController;
 use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
+use App\Http\Controllers\admin\projectAdminController;
+use App\Http\Controllers\admin\projects;
+
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
 
 use App\Http\Controllers\admin\ReportController;
+
+
+
 
 
 use App\Http\Controllers\admin\settingUserController;
@@ -201,7 +207,7 @@ Route::group([
             Route::get('/reject-project/{project_id}/{seeker_id}', [ProjectController::class, 'rejectProject'])->name('rejectProject');
 
 
-            // the project that provider work on 
+            // the project that provider work on
             Route::get('/myWorkOnProject', [MyWorkOnProjectController::class, 'index'])->name('workonProject');
             Route::get('/myWorkOnProject/done', [MyWorkOnProjectController::class, 'doneWork'])->name('doneWork');
             Route::post('/mark_as_done', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
@@ -264,11 +270,16 @@ Route::group([
         Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
         Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
         Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
+///////////////----------------------ProjectAdmin----------------------------------------------------------//////
 
+        Route::get('/projects', [projectAdminController::class, 'showAll'])->name('projects');
+        // Route::get('/toggle_report/{report_id}', [projectAdminController::class, 'toggle'])->name('toggle_report');
+/////////////////---------------------------------------------------------------------------//////////////////////
         // start active & block users
         Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
         //end active & block users

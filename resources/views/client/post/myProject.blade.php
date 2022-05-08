@@ -55,7 +55,7 @@
                             <i class="fa fa-clock-o"></i> منذ
                             دقيقتين
                         </time>
-                    </li> --}}
+                         </li> --}}
 
                         <li class="text-muted font-sm color-gray-dark">
                             <i class="fa fa-fw fa-ticket"></i>
