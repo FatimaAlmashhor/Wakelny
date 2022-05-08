@@ -329,79 +329,80 @@
                 </div>
                 <!-- /Ratings -->
 
+                @if ($role == 'provider' || $role == 'both')
+                    <!-- works -->
 
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-C">
+                        <div class="row row col-12">
+                            <section class="card shadow-sm col-12 col-sm-12">
+                                <div class="my-ratings">
+                                    <div class="py-5">
+                                        <div class="row">
+
+                                            @foreach ($works as $item)
+                                                <div class="col-lg-6 mb-3 mb-lg-0 my-2">
+                                                    <a href="{{ route('detailsWork', $item->id) }}">
+                                                        <div class="hover hover-2 text-white rounded"><img
+                                                                src="/images/{{ $item->main_image }}" alt="">
+                                                            <div class="hover-overlay"></div>
+                                                            <div class="hover-2-content px-5 py-4">
+                                                                <h3
+                                                                    class="hover-2-title text-uppercase font-weight-bold mb-0">
+                                                                    <span class="font-weight-light">{{ $item->title }}
+                                                                    </span>
+                                                                </h3>
+                                                                <p class="hover-2-description text-uppercase mb-0">
+                                                                    {{ $item->details }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- /works -->
+                @endif
+                @if ($role == 'seeker' || $role == 'both')
+                    <!-- projects -->
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
+                        <div class="row  col-12">
+                            <section class=" col-12 col-sm-12">
+                                <div class="my-ratings">
+                                    <!-- /projects -->
+                                    <div class="row my-5">
+                                        @foreach ($post as $post)
+                                            <div class="col-md-12 col-sm-12 my-2">
+                                                <div class="card">
+                                                    <a href="{{ route('posts.details', $post->id) }}">
+                                                        <h5 class=""> {{ $post->title }}</h5>
+
+                                                    </a>
+
+                                                    <div class="line"></div>
+                                                    <div class="card-body">
+                                                        <p class="card-text"> {{ $post->description }}</p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                @endif
 
             </div>
 
 
-            @if ($role == 'provider' || $role == 'both')
-                <!-- works -->
 
-                <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-C">
-                    <div class="row">
-                        <section class="card shadow-sm col-12 col-sm-12">
-                            <div class="my-ratings">
-                                <div class="py-5">
-                                    <div class="row">
-
-                                        @foreach ($works as $item)
-                                            <div class="col-lg-6 mb-3 mb-lg-0 my-2">
-                                                <a href="{{ route('detailsWork', $item->id) }}">
-                                                    <div class="hover hover-2 text-white rounded"><img
-                                                            src="/images/{{ $item->main_image }}" alt="">
-                                                        <div class="hover-overlay"></div>
-                                                        <div class="hover-2-content px-5 py-4">
-                                                            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0">
-                                                                <span class="font-weight-light">{{ $item->title }}
-                                                                </span>
-                                                            </h3>
-                                                            <p class="hover-2-description text-uppercase mb-0">
-                                                                {{ $item->details }}</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <!-- /works -->
-            @endif
-            @if ($role == 'seeker' || $role == 'both')
-                <!-- projects -->
-                <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
-                    <div Dlass="row">
-                        <section class=" col-12 col-sm-12">
-                            <div class="my-ratings">
-                                <!-- /projects -->
-                                <div class="row my-5">
-                                    @foreach ($post as $post)
-                                        <div class="col-md-12 col-sm-12 my-2">
-                                            <div class="card">
-                                                <a href="{{ route('posts.details', $post->id) }}">
-                                                    <h5 class=""> {{ $post->title }}</h5>
-
-                                                </a>
-
-                                                <div class="line"></div>
-                                                <div class="card-body">
-                                                    <p class="card-text"> {{ $post->description }}</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            @endif
 
         </div>
     </main>
