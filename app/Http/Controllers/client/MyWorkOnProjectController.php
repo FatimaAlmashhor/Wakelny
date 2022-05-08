@@ -275,7 +275,7 @@ class MyWorkOnProjectController extends Controller
                 'project_title' => $post->title,
                 // @prarm project id -> for get the data from
                 'url' => url('myWorkOnProject?status=reject'),
-                'message' => 'لقد قام' . $profile->name . ' بقبول  مشروعك المسلم ' . $post->title,
+                'message' => 'لقد قام' . $profile->name . ' برفض  مشروعك المسلم ' . $post->title,
                 'userId' => Auth::id()
             ];
             $user->notify(new MarkAsRejectReceviceNotification($data));
