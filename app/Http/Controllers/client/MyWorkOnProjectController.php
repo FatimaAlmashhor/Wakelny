@@ -35,12 +35,13 @@ class MyWorkOnProjectController extends Controller
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
-                ->where('projects.provider_id', Auth::id())
-                ->where('projects.finshed', 0)
+
                 ->where('projects.status', 'at_work')
                 ->orWhere('projects.status', 'done')
                 ->orWhere('projects.status', 'nonrecevied')
                 ->where('posts.is_active', 1)
+                ->where('projects.provider_id', Auth::id())
+                ->where('projects.finshed', 0)
 
                 ->get();
             // return response()->json($data);
@@ -71,7 +72,7 @@ class MyWorkOnProjectController extends Controller
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
                 ->where('projects.provider_id', Auth::id())
                 ->where('projects.finshed', 1)
-                ->orWhere('projects.status', 'received')
+                ->Where('projects.status', 'received')
                 ->where('posts.is_active', 1)
 
                 ->get();
