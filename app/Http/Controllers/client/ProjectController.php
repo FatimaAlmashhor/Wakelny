@@ -172,7 +172,6 @@ class ProjectController extends Controller
                 'project_id' => $project_id,
                 'name' => $seekerNotify->name,
                 'project_title' => $project->title,
-                // 'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
                 'url' => url($response['next_url']),
                 'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
                 'userId' => Auth::id()
