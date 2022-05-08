@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Posts;
 use App\Models\Report;
 use App\Models\UserSkills;
+use App\Models\work;
 use App\Utilities\FreelancerFilter;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -98,7 +99,10 @@ class UserController extends Controller
             $userRole = 'provider';
         }
 
-        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole]);
+          $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
+           $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
+
+        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole, 'works'=>$works, 'post' => $posts ]);
     }
     public function insert_content($post_id, $provider_id)
     {
