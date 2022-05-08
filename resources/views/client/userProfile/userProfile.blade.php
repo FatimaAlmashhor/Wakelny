@@ -188,71 +188,12 @@
                         <section class="card shadow-sm col-12 col-sm-12">
                             <div class="my-ratings">
                                 <div class="section-title">
-                                    <h5>التقييمات</h5>
+                                    <h5>آراء العملاء</h5>
                                 </div>
                                 <div class="brief-content mt-3">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-check-double ms-1"></i> الجودة
-                                        </p>
-                                        <p class="">
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
-                                        </p>
-                                        <p class="">
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p class="fs-6 fw-normal">
-                                            <i class="fa-solid fa-award ms-1"></i> الخبرة
-                                        </p>
-                                        <p class="">
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p class="fs-6 fw-normal">
-                                            <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
-                                            <i class="fa-solid fa-handshake ms-1"></i> التعامل
-                                        </p>
-                                        <p class="">
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p class="fs-6 fw-normal">
-                                            <!-- <i class="fa-solid fa-tower-broadcast ms-1"></i> التجاوب والتواصل -->
-                                            <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
-                                        </p>
-                                        <p class="">
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            <i class="fa-solid fa-star color-orange-lighter"></i>
-                                        </p>
-                                    </div>
+                                    @foreach ($evaluates as $evaluate)
+                                        
+                                    @endforeach
                                 </div>
                             </div>
                         </section>
