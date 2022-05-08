@@ -310,5 +310,6 @@ Route::get('/testApi', function () {
         'metadata' => ' { "Customer name": "somename", "order id": 0}'
     ]);
 
-    return $response->status();
+    // return response()->json($response->json());
+    return redirect($response['next_url']);
 });
