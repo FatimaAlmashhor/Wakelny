@@ -262,7 +262,7 @@ class MyWorkOnProjectController extends Controller
                 ->first();
 
             $project->status = 'nonrecevied';
-            $project->finshed = 1;
+            // $project->finshed = 1;
             $project->save();
             $post = Posts::find($project->post_id);
             $profile = Profile::where('user_id', Auth::id())->first();
@@ -294,6 +294,8 @@ class MyWorkOnProjectController extends Controller
     {
         try {
             $currentProject = Project::find($project_id);
+            $currentProject->finshed = 1;
+
 
             $newProject = new Project();
             $newProject->provider_id = $currentProject->provider_id;
@@ -305,6 +307,8 @@ class MyWorkOnProjectController extends Controller
             $newProject->stated_at = $currentProject->stated_at;
             $newProject->status = 'at_work';
             $newProject->save();
+
+            $currentProject->save();
             return back()->with(['message' => '   تم استأناف العمل على المشروع ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
