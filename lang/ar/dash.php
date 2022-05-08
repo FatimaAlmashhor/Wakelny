@@ -43,6 +43,14 @@ return [
 
      "user_numb"=>" عدد المستخددمين ",
      "post_numb"=>" عدد المشاريع ",
+     "start_project"=>"   بداية المشروع ",
+     "end_project"=>"   نهاية المشروع ",
+     "duration"=>"  الفترة ",
+     "status"=>"  الحالة ",
+     "amount"=>"  الكمية ",
+     "projects"=>"  المشاريع ",
+     "title"=> "العنوان",
+     'all_project'=>'المشاريع'
 
 
 
