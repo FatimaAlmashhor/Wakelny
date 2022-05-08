@@ -23,13 +23,12 @@ class projectAdminController extends Controller
             'projects.status',
             'projects.amount',
             // 'projects.title',
-             'projects.name as seeker',
-             'projects.name as provider',
+            // 'seeker.name as reporter',
             // 'provider.name as reported',
             'posts.title'
         )
-         ->join('profiles as seeker', 'seeker.user_id', '=', 'projects.seeker_id')
-         ->join('profiles as provider', 'provider.user_id', '=', 'projects.id')
+        // ->join('profiles as seeker', 'seeker.user_id', '=', 'projects.seeker_id')
+        // ->join('profiles as provider', 'provider.user_id', '=', 'projects.id')
         ->join('posts', 'posts.id', '=', 'projects.post_id')
         ->where('posts.is_active', 1)->get();
         // return  response()->json($projects);
