@@ -302,6 +302,7 @@ Route::get('/testApi', function () {
         'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
         'Content-Type' => 'application/x-www-form-urlencoded'
     ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
+        'order_reference' => '123412',
         'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
         'total_amount' => '133',
         'currency' => 'YEN',
