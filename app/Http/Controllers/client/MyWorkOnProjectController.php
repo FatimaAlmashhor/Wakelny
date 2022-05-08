@@ -182,7 +182,8 @@ class MyWorkOnProjectController extends Controller
             //! notification of acceptence
 
             // return response()->json($profile);
-            return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
+            // return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
+            return redirect()->back()->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             //     //throw $th;
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
