@@ -26,7 +26,7 @@
             <div>لقد تم رفض أحد مشاريعك رجاء قم بالتأكد</div>
         @endif
         <div class="row d-flex flex-column justify-content-center">
-            <div class="mx-lg-5 col-lg-6">
+            <div class="mx-lg-5 col-lg-7">
                 <div class="container  card px-3 my-3 "
                     style='{{ $item->status == 'nonrecevied' ? 'border-right: 5px solid red' : 'border:none' }}'>
 
