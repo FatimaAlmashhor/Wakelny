@@ -302,7 +302,7 @@ class MyWorkOnProjectController extends Controller
             $newProject->amount = $currentProject->amount;
             $newProject->duration = $currentProject->duration;
             $newProject->stated_at = $currentProject->stated_at;
-            $newProject->status = 'pending';
+            $newProject->status = 'at_work';
             $newProject->save();
             return back()->with(['message' => '   تم استأناف العمل على المشروع ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
