@@ -192,7 +192,9 @@
                                 </div>
                                 <div class="brief-content mt-3">
                                     @foreach ($evaluates as $evaluate)
-                                        
+                                        <div class="col-12 border">
+                                            {{ $evaluate->massege }}
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>

@@ -16,6 +16,7 @@ class EvaluationController extends Controller
             $evaluate->user_id = $request->provider_id;
             $evaluate->value = $request->rating;
             $evaluate->message = $request->massege;
+            $evaluate->seeker_id = Auth::id();
 
             $report->save();
 
@@ -30,16 +31,20 @@ class EvaluationController extends Controller
             'evaluations.project_id',
             'evaluations.user_id',
             'evaluations.value',
-            'evaluations.massege',
+            'evaluations.message',
             'evaluations.seeker_id',
             'posts.title', 
             'evaluaters.name as evaluater',
             'evaluateds.name as evaluated',
         )->join('projects', 'projects.id', '=', 'evaluations.project_id')
         ->join('posts', 'posts.id', '=', 'projects.post_id')
-        ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.user_id')
-        ->where('user_id', Auth::id())->get();
+        ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.seeker_id')
+        ->join('profiles as evaluateds', 'evaluateds.user_id', '=', 'evaluations.user_id')
+        ->groupBy('user_id')
+        ->get();
 
-        return view('client.userProfile.userProfile')->with(['evaluates'=>$evaluates]); 
+        print_r($evaluates);
+
+        // return view('client.userProfile.userProfile')->with(['evaluates'=>$evaluates]); 
     }
 }

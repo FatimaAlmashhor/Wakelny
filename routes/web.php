@@ -1,31 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\client\PostController;
-use App\Http\Controllers\client\WorksController;
 
+use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\client\WorksController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\CommentController;
 use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
+
 use App\Http\Controllers\client\CommentsController;
+
+
 use App\Http\Controllers\admin\CategoriesController;
-
-use App\Http\Controllers\admin\ReportController;
-
-
 use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\client\EvaluationController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
-use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -314,3 +315,6 @@ Route::get('/testApi', function () {
     // return response()->json($response->json());
     return redirect($response['next_url']);
 });
+
+
+Route::get('/testrate', [EvaluationController::class, 'showAll']);

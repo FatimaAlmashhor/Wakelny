@@ -214,6 +214,12 @@
                                     @csrf
                                     <input hidden type='text' name="provider_id" value='{{ $project->provider_id }}' />
                                     <input hidden type='text' name="project_id" value='{{ $project->project_id }}' />
+
+                                    @if (Route::currentRouteName() == 'report_content')
+                                        <input type="hidden" value="{{ $post_id }}" name="post_id" />
+                                        <input type="hidden" value="{{ $provider_id }}" name="provider_id" />
+                                @else
+
                                     <div class="pt-3">
                                         <label class="my-2">قم بتقييم المشروع رجاء<em
                                                 class="text--danger">*</em>
