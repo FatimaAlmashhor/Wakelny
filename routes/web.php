@@ -267,7 +267,7 @@ Route::group([
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
-///////////////--------------------------------------------------------------------------------//////
+///////////////----------------------ProjectAdmin----------------------------------------------------------//////
 
         Route::get('/projects', [projectAdminController::class, 'showAll'])->name('projects');
         // Route::get('/toggle_report/{report_id}', [projectAdminController::class, 'toggle'])->name('toggle_report');
