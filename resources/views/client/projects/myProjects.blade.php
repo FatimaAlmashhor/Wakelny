@@ -3,7 +3,7 @@
     <div class=" container d-flex justify-content-between mt-5 mb-2">
         <h3 class=""> المشاريع اللتي اعمل عليها حاليه </h3>
         <div class="dropdown btn-group">
-            <a tabindex="-1" class="wak_btn" href="#">
+            <a tabindex="-1" class="wak_btn" href="{{ route('workonProject') }}">
                 <i class="fa-solid fa-filter font-sm mx-1"></i>
                 <span class="action-text"> اعمالي الحاليه </span>
             </a>
@@ -24,7 +24,7 @@
         {{-- one card --}}
 
         <div class="row d-flex flex-column justify-content-center">
-            <div class="mx-5 col-lg-6">
+            <div class="mx-lg-5 col-lg-6">
                 <div class="container  card px-3 my-3 ">
 
                     <div class="row ">
