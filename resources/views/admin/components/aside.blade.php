@@ -22,7 +22,7 @@
 
                 <li class=" sidebar-title"> <i class="fa-solid fa-minus"></i> {{ __('dash.pages') }}</li>
 
-                <li class="sidebar-item"> 
+                <li class="sidebar-item">
                     <a href="{{ route('showUsers') }}" class='sidebar-link'>
                     <i class="fa-solid fa-users"></i>
                         <span class="mx-4">{{ __('dash.users') }}</span>
@@ -51,7 +51,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub"> 
+                <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="fa-solid fa-briefcase"></i>
                         <span class="mx-4">{{ __('dash.specialization') }}</span>
@@ -73,7 +73,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub"> 
+                <li class="sidebar-item has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="fa-solid fa-tags"></i>
                         <span class="mx-4">{{ __('dash.Skills') }}</span>
@@ -95,10 +95,17 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item"> 
+                <li class="sidebar-item">
                     <a href="{{ route('reports') }}" class='sidebar-link'>
                         <i class="fa-solid fa-flag-checkered"></i>
                         <span class="mx-4">{{ __('dash.all_report') }}</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('projects') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-flag-checkered"></i>
+                        <span class="mx-4">{{ __('dash.projects') }}</span>
                     </a>
                 </li>
         </div>
