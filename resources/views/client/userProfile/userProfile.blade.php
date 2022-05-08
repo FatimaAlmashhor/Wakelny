@@ -334,6 +334,20 @@
                                 <div class="section-title">
                                     <h5>الاعمال</h5>
                                 </div>
+                                <div class="row">
+                                    @foreach ($works as $item)
+                                        <div class="col-sm-6">
+                                            <div class="card">
+                                                <img src="/images/{{ $item->main_image }}" class="card-img-top"
+                                                    alt="...">
+                                                <div class="card-body">
+                                                    <p class="card-text">{{ $item->title }}.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
 
                             </div>
                         </section>
@@ -352,12 +366,28 @@
                                 <div class="section-title">
                                     <h5>المشاريع</h5>
                                 </div>
+                                <!-- /projects -->
+                                <div class="row my-5">
+                                    @foreach ($post as $post)
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="card">
+                                                <a href="{{ route('posts.details', $post->id) }}">
+                                                <h5 class="card-header"> {{ $post->title }}</h5>
+                                                </a>
+
+                                                <div class="card-body">
+                                                    <p class="card-text"> {{ $post->description }}</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
 
                             </div>
                         </section>
                     </div>
                 </div>
-                <!-- /projects -->
             @endif
 
         </div>
