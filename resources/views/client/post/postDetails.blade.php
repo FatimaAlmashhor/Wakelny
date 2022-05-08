@@ -24,13 +24,7 @@
                                     <span class="action-text">تعديل المشروع</span>
                                 </a>
                             </li>
-                            <li class="text-end my-2 px-2">
-                                <a tabindex="-1"
-                                    href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                    <i class="fa fa-fw fa-flag"></i>
-                                    <span class="action-text">تبليغ عن محتوى</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 @endif
@@ -507,8 +501,8 @@
                                             </div>
                                             @if (Auth::check() && $post->user_id == Auth::id())
                                                 <div class="raw m-2">
-                                                    <button tabindex="-1" class="wak_btn orange mx-2 col-sm-6 " type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button tabindex="-1" class="wak_btn orange mx-2 col-sm-6 "
+                                                        type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="fa fa-check px-1"></i>
                                                         <span class="action-text"> قبول العرض </span>
                                                     </button>
@@ -604,12 +598,19 @@
                                     @endforeach
                                 @endif
 
+                            </div>
                         </div>
-                    </div>
-                    {{-- @else
+                        {{-- @else
                             <p>لايوجد عروض حاليا</p>
                         </div>
                         @endif --}}
+
+                    </div>
+
+
+
+
+
 
                 </div>
 
@@ -617,14 +618,7 @@
 
 
 
-
-            </div>
-
-
-
-
-
-            {{-- @if (count($errors) > 0)
+                {{-- @if (count($errors) > 0)
                     <script>
                         $( document ).ready(function() {
                             $('#exampleModal').modal('show');
@@ -634,70 +628,71 @@
 
 
 
-        </div>
-        {{-- more information --}}
-        <div class="col-md-4 col-sm-12">
-            <div class="card">
-                <h5 class="card-header">بطاقة المشروع</h5>
-
-                <div class="card-body">
-                    <div class="d-flex justify-content-between ">
-                        <div>
-                            <div class="my-3"> حالة المشروع</div>
-                            <div class="my-3"> تاريخ النشر</div>
-                            <div class="y-3"> الميزانية </div>
-                            <div class="my-3"> مدة التنفيذ</div>
-                            <div class="my-3"> عدد العروض</div>
-                        </div>
-                        <div>
-                            <div class="my-3"> <span class="px-1"
-                                    style="background-color: green ; color:white;">{{ $post->status }}</span></div>
-                            <div class="my-3"> {{ $post->created_at }}</div>
-                            <div class="my-3"> ${{ $post->cost }}</div>
-
-                            <div class="my-3"> {{ $post->duration }}</div>
-
-                            <div class="my-3"> {{ $post->offers }}</div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div>
-                    <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
-
-                </div>
-                <hr>
-                <div>
-                    <p>صاحب المشروع</p>
-                    <div class="image d-flex">
-
-
-
-                        <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                            src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
-
-
-
-                        <div class="info mx-4">
-                            <h4 class="font-md">
-                                <a
-                                    href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
-                            </h4>
-
-                            <div class="rate">
-                                <span class="px-1 font-sm color-gray-dark "></span>
-                                <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
-                                <span class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            {{-- <div class="card mt-3">
+            {{-- more information --}}
+            <div class="col-md-4 col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">بطاقة المشروع</h5>
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between ">
+                            <div>
+                                <div class="my-3"> حالة المشروع</div>
+                                <div class="my-3"> تاريخ النشر</div>
+                                <div class="y-3"> الميزانية </div>
+                                <div class="my-3"> مدة التنفيذ</div>
+                                <div class="my-3"> عدد العروض</div>
+                            </div>
+                            <div>
+                                <div class="my-3"> <span class="px-1"
+                                        style="background-color: green ; color:white;">{{ $post->status }}</span></div>
+                                <div class="my-3"> {{ $post->created_at }}</div>
+                                <div class="my-3"> ${{ $post->cost }}</div>
+
+                                <div class="my-3"> {{ $post->duration }}</div>
+
+                                <div class="my-3"> {{ $post->offers }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+
+                    </div>
+                    <hr>
+                    <div>
+                        <p>صاحب المشروع</p>
+                        <div class="image d-flex">
+
+
+
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
+
+
+
+                            <div class="info mx-4">
+                                <h4 class="font-md">
+                                    <a
+                                        href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
+                                </h4>
+
+                                <div class="rate">
+                                    <span class="px-1 font-sm color-gray-dark "></span>
+                                    <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
+                                    <span
+                                        class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {{-- <div class="card mt-3">
             <h5 class="card-header">شارك المشروع</h5>
 
             <div class=" mt-3">
@@ -720,8 +715,8 @@
                         class="fab fa-linkedin-in"></i></a>
             </div>
         </div> --}}
+            </div>
         </div>
-    </div>
     </div>
 
 

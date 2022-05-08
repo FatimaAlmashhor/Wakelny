@@ -99,15 +99,15 @@ class UserController extends Controller
             $userRole = 'provider';
         }
 
-          $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
-           $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
+        $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
+        $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
 
-        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole, 'works'=>$works, 'post' => $posts ]);
+        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole, 'works' => $works, 'post' => $posts]);
     }
     public function insert_content($post_id, $provider_id)
     {
-        $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
-        $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
+        $post = Posts::where('id', $post_id)->where('is_active', 1)->first();
+        $provider = User::where('id', $provider_id)->where('is_active', 1)->first();
 
         $reports =  Report::select(
             'reports.id',
