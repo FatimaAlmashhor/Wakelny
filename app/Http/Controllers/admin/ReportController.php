@@ -22,13 +22,15 @@ class ReportController extends Controller
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            'profiles.name as reporter'
-        )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
+            'reportesr.name as reporter',
+            'reporteds.name as reported',
+            'posts.title'
+        )->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
+        ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
+        ->join('posts', 'posts.id', '=', 'reports.post_id')
         ->where('reports.is_active', 1)->get();
 
-
         return view('admin.report.index')->with(['reports'=>$reports]);
-
     }
     ////////////////////add new report ///////////
 

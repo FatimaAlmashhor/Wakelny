@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Report;
+use Laravel\Sanctum\HasApiTokens;
+use App\Constants\GlobalConstants;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Notifications\Notifiable;
+use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
-use Laravel\Sanctum\HasApiTokens;
-use Laratrust\Traits\LaratrustUserTrait;
-use App\Constants\GlobalConstants;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Lang;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -31,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Profile::class, 'category_id');
     }
+
 
     /**
      * The attributes that are mass assignable.
@@ -80,6 +82,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function seeker()
+    {
+        return $this->hasMany(Role::class, 'id');
+    }
+
+    public function provider()
     {
         return $this->hasMany(Role::class, 'id');
     }
