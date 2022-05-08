@@ -43,14 +43,6 @@ class projectAdminController extends Controller
 
     }
     public function toggle($report_id){
-        // $report=report::find($report_id);
-        // $report->is_active*=-1;
-        // if($report->save())
-        //     if($report->is_active==-1)
-        //             return back()->with(['message' => 'تم تعطيل البلاغ بنجاح', 'type' => 'alert-success']);
-        //         else
-        //             return back()->with(['message' => 'تم تفعيل البلاغ بنجاح', 'type' => 'alert-success']);
-        // return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
 
     }
 }
