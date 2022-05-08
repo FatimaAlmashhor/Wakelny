@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
-    ////////////////////show Project in dashboard////////////////////////
+    ////////////////////show report in dashboard///////////
     public function showAll(){
         // $reported = User::where('is_active', 1)->get();
         $reports =  report::select(
@@ -32,7 +32,7 @@ class ReportController extends Controller
 
         return view('admin.report.index')->with(['reports'=>$reports]);
     }
-    ////////////////////add new Projects ///////////
+    ////////////////////add new reports ///////////
 
     public function store(Request $request)
     {

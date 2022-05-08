@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class projectAdminController extends Controller
 {
-    ////////////////////show report in dashboard///////////
+    ////////////////////show Projects in dashboard///////////
     public function showAll(){
         // $reported = User::where('is_active', 1)->get();
         $projects =  Project::select(
@@ -40,26 +40,7 @@ class projectAdminController extends Controller
     public function store(Request $request)
     {
 // try {
-//             $request->validate([
-//                 'type_report' => ['required'],
-
-
-//             ], [
-//                 'type_report.required' => 'يجب ان تقوم بأدخال  نوع البلاغ',
-
-
-//             ]);
-
-
-
-//             $report = new report();
-//             $report->user_id = Auth::id();
-//             $report->post_id = $request->post_id;
-//             $report->provider_id = $request->provider_id;
-//             $report->type_report = $request->type_report;
-//             $report->massege = $request->massege;
-
-
+//
 
 
 //             if ($report->save()) {
