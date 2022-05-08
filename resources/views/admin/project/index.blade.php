@@ -66,36 +66,6 @@
                                             <td class="text-bold-500">{{ $item->status }}</td>
                                             <td class="" style=" width: 1px;">{{ $item->amount }}</td>
 
-                                        </tr>    <tr>
-
-                                            <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td class="text-bold-500">{{ $item->stated_at }}</td>
-                                            <td class="text-bold-500">{{ $item->finshed }}</td>
-                                            <td class="text-bold-500">{{ $item->title }}</td>
-                                            <td class="text-bold-500">{{ $item->duration }}أيام</td>
-                                            <td class="text-bold-500">{{ $item->status }}</td>
-                                            <td class="" style=" width: 1px;">{{ $item->amount }}</td>
-
-                                        </tr>    <tr>
-
-                                            <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td class="text-bold-500">{{ $item->stated_at }}</td>
-                                            <td class="text-bold-500">{{ $item->finshed }}</td>
-                                            <td class="text-bold-500">{{ $item->title }}</td>
-                                            <td class="text-bold-500">{{ $item->duration }}أيام</td>
-                                            <td class="text-bold-500">{{ $item->status }}</td>
-                                            <td class="" style=" width: 1px;">{{ $item->amount }}</td>
-
-                                        </tr>    <tr>
-
-                                            <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td class="text-bold-500">{{ $item->stated_at }}</td>
-                                            <td class="text-bold-500">{{ $item->finshed }}</td>
-                                            <td class="text-bold-500">{{ $item->title }}</td>
-                                            <td class="text-bold-500">{{ $item->duration }}أيام</td>
-                                            <td class="text-bold-500">{{ $item->status }}</td>
-                                            <td class="" style=" width: 1px;">{{ $item->amount }}</td>
-
                                         </tr>
                                     @endforeach
 
