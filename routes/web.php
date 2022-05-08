@@ -25,6 +25,7 @@ use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
+use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -292,3 +293,22 @@ Route::get('/markAsRead/{notification}', function ($notification) {
 
     $mark->update(['read' => true]);
 })->name('markAsReadOne');
+
+
+// test API
+Route::get('/testApi', function () {
+    $response = Http::withHeaders([
+        'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+        'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+        'Content-Type' => 'application/x-www-form-urlencoded'
+    ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
+        'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
+        'total_amount' => '133',
+        'currency' => 'YEN',
+        'success_url' => '/',
+        'cancel_url' => '/logout',
+        'metadata' => ' { "Customer name": "somename", "order id": 0}'
+    ]);
+
+    return $response->status();
+});
