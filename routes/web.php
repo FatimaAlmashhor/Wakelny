@@ -208,6 +208,10 @@ Route::group([
             Route::get('/confirm-receive/{project_id}/{provider_id}', [MyWorkOnProjectController::class, 'markAsRecive'])->name('markAsRecive');
             Route::post('/accept-receive', [MyWorkOnProjectController::class, 'markAsAccept'])->name('markAsAccept');
             Route::post('/reject-receive', [MyWorkOnProjectController::class, 'markAsReject'])->name('markAsReject');
+
+
+            // !report fatima vertion
+            Route::get('/reporting', [ReportController::class, 'reporting'])->name('reporting');
         });
     });
 

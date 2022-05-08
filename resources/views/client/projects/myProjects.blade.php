@@ -22,13 +22,15 @@
     </div>
     @foreach ($data as $item)
         {{-- one card --}}
-
+        @if (request()->get('status') == 'reject')
+            <div>لقد تم رفض أحد مشاريعك رجاء قم بالتأكد</div>
+        @endif
         <div class="row d-flex flex-column justify-content-center">
             <div class="mx-lg-5 col-lg-6">
-                <div class="container  card px-3 my-3 ">
+                <div class="container  card px-3 my-3 "
+                    style='{{ $item->status == 'nonrecevied' ? 'border-right: 5px solid red' : 'border:none' }}'>
 
                     <div class="row ">
-
                         <div class="col-sm-6">
                             <a href="{{ route('confirm-project', [$item->project_id, $item->seeker_id]) }}"
                                 class="my-5">
@@ -55,6 +57,22 @@
                                             <span class="action-text"> انتظار الرد... </span>
 
                                         </button>
+                                    @endif
+                                    @if ($item->status == 'nonrecevied')
+                                        <div class="d-flex x-space-2">
+                                            <button tabindex="-1" class="wak_btn mr-1" aria-disabled="true">
+                                                <i class="fa-solid fa-spinner"></i>
+                                                <span class="action-text"> استأناف المشروع </span>
+
+                                            </button>
+                                            <a tabindex="-1" class="wak_btn mx-1"
+                                                href='{{ route('reporting', ['type=project']) }}'
+                                                style='background-color: red'>
+                                                <i class="fa-solid fa-spinner"></i>
+                                                <span class="action-text"> قدم شكوى </span>
+
+                                            </a>
+                                        </div>
                                     @endif
 
 

@@ -9,11 +9,13 @@ use App\Models\Posts;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ReportController extends Controller
 {
     ////////////////////show report in dashboard///////////
-    public function showAll(){
+    public function showAll()
+    {
         // $reported = User::where('is_active', 1)->get();
         $reports =  report::select(
             'reports.id',
@@ -26,17 +28,17 @@ class ReportController extends Controller
             'reporteds.name as reported',
             'posts.title'
         )->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
-        ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
-        ->join('posts', 'posts.id', '=', 'reports.post_id')
-        ->where('reports.is_active', 1)->get();
+            ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
+            ->join('posts', 'posts.id', '=', 'reports.post_id')
+            ->where('reports.is_active', 1)->get();
 
-        return view('admin.report.index')->with(['reports'=>$reports]);
+        return view('admin.report.index')->with(['reports' => $reports]);
     }
     ////////////////////add new report ///////////
 
     public function store(Request $request)
     {
-try {
+        try {
             $request->validate([
                 'type_report' => ['required'],
 
@@ -64,20 +66,44 @@ try {
                 return redirect()->route('freelancers')
                     ->with(['message' => 'تم اضافة بلاغ  بنجاح', 'type' => 'alert-success']);
             } else
-            return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-            } catch (Expectation   $th) {
-
-            }
+                return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (Expectation   $th) {
+        }
     }
-    public function toggle($report_id){
-        $report=report::find($report_id);
-        $report->is_active*=-1;
-        if($report->save())
-            if($report->is_active==-1)
-                    return back()->with(['message' => 'تم تعطيل البلاغ بنجاح', 'type' => 'alert-success']);
-                else
-                    return back()->with(['message' => 'تم تفعيل البلاغ بنجاح', 'type' => 'alert-success']);
+    public function toggle($report_id)
+    {
+        $report = report::find($report_id);
+        $report->is_active *= -1;
+        if ($report->save())
+            if ($report->is_active == -1)
+                return back()->with(['message' => 'تم تعطيل البلاغ بنجاح', 'type' => 'alert-success']);
+            else
+                return back()->with(['message' => 'تم تفعيل البلاغ بنجاح', 'type' => 'alert-success']);
         return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+    }
 
+
+    // !reporting fatima vision
+    function reporting(Request $request)
+    {
+        try {
+            $project_id = $request->project_id;
+            // create report
+            $report  = new Report();
+            $report->massege = $request->massege;
+            $report->user_id = Auth::id();
+
+
+
+            if ($request->get('type') == 'project') {
+                // create report
+                $report->project_id = $project_id;
+                $report->type_report = 'nonrecevied';
+            }
+
+            $report->save();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
