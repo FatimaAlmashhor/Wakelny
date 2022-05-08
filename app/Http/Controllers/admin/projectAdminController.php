@@ -39,19 +39,8 @@ class projectAdminController extends Controller
 
     public function store(Request $request)
     {
-// try {
-//
 
 
-//             if ($report->save()) {
-
-//                 return redirect()->route('freelancers')
-//                     ->with(['message' => 'تم اضافة بلاغ  بنجاح', 'type' => 'alert-success']);
-//             } else
-//             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-//             } catch (Expectation   $th) {
-
-//             }
     }
     public function toggle($report_id){
         // $report=report::find($report_id);
