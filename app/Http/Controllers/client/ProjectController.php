@@ -199,34 +199,34 @@ class ProjectController extends Controller
     // if the provider reject the project
     function rejectProject($project_id, $seeker_id)
     {
-        // try {
-        // notify the provider about the acceptence of the offer
-        $providerNotify = User::find($seeker_id);
+        try {
+            // notify the provider about the acceptence of the offer
+            $providerNotify = User::find($seeker_id);
 
-        $project = Project::select(
-            'posts.title'
-        )->join('posts', 'posts.id', 'projects.post_id')
-            ->where('projects.seeker_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->first();
-        $data = [
-            'project_id' => $project_id,
-            'name' => $providerNotify->name,
-            'project_title' => $project->title,
-            'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
-            'message' => 'لقد قام' . Auth::user()->name . 'برفض مشروعك ' . $project->title,
-            'userId' => Auth::id()
-        ];
+            $project = Project::select(
+                'posts.title'
+            )->join('posts', 'posts.id', 'projects.post_id')
+                ->where('projects.seeker_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->first();
+            $data = [
+                'project_id' => $project_id,
+                'name' => $providerNotify->name,
+                'project_title' => $project->title,
+                'url' => url('confirm-project/' . $project_id . '/' . $seeker_id),
+                'message' => 'لقد قام' . Auth::user()->name . 'برفض مشروعك ' . $project->title,
+                'userId' => Auth::id()
+            ];
 
-        $saveProj = Project::find($project_id);
-        $saveProj->status = 'rejected';
-        $saveProj->save();
-        // ]);
-        $providerNotify->notify(new RejectProjectNotification($data));
-        return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله الرفض الطرف الاخر', 'type' => 'alert-success']);
-        // } catch (\Throwable $th) {
-        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        // }
+            $saveProj = Project::find($project_id);
+            $saveProj->status = 'rejected';
+            $saveProj->save();
+            // ]);
+            $providerNotify->notify(new RejectProjectNotification($data));
+            return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله الرفض الطرف الاخر', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 
     function providerResponse(Request $request)
