@@ -31,7 +31,7 @@
                                         <th>{{ __('dash.duration') }}</th>
                                         <th>{{ __('dash.status') }}</th>
                                         <th >{{ __('dash.amount') }}</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
