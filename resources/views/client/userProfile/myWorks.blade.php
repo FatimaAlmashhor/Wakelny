@@ -22,7 +22,7 @@
 
         <div id="" class="mx-4 mt-2" style="position: absolute;
     left: .1rem;">
-            <a href="{{ route('userWork') }}" class="wak_btn green_border"  >  أضافة  </a>
+            <a href="{{ route('userWork') }}" class="wak_btn "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
         </div>
     </div>
     <div class=" d-flex my-5">
