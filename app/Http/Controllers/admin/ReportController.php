@@ -32,7 +32,7 @@ class ReportController extends Controller
 
         return view('admin.report.index')->with(['reports'=>$reports]);
     }
-    ////////////////////add new report ///////////
+    ////////////////////add new Projects ///////////
 
     public function store(Request $request)
     {
