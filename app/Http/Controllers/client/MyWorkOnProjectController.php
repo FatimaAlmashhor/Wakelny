@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MyWorkOnProjectController extends Controller
 {
+
+    // this function show the my cuurent work table
     function index()
     {
         try {
@@ -28,12 +30,49 @@ class MyWorkOnProjectController extends Controller
                 'projects.id as project_id',
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
+                'projects.status',
+                'projects.amount',
+            )
+                ->join('posts', 'posts.id', '=', 'projects.post_id')
+                ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
+
+                ->where('projects.status', 'at_work')
+                ->orWhere('projects.status', 'done')
+                ->orWhere('projects.status', 'nonrecevied')
+                ->where('posts.is_active', 1)
+                ->where('projects.provider_id', Auth::id())
+                ->where('projects.finshed', 0)
+
+                ->get();
+            // return response()->json($data);
+            if (empty($data)) {
+                return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+            } else
+                return view('client.projects.myProjects')->with('data', $data);
+        } catch (\Exception $th) {
+            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        }
+    }
+    // this function show the my cuurent work table
+    function doneWork()
+    {
+        try {
+            $data = Project::select(
+                'posts.id as post_id',
+                'posts.title',
+                'posts.description',
+                'projects.duration',
+                'projects.id as project_id',
+                'projects.seeker_id as seeker_id',
+                'projects.stated_at',
+                'projects.status',
                 'projects.amount',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
                 ->where('projects.provider_id', Auth::id())
-                ->where('projects.status', 'at_work')
+                ->where('projects.finshed', 1)
+                ->Where('projects.status', 'received')
                 ->where('posts.is_active', 1)
 
                 ->get();
@@ -48,17 +87,28 @@ class MyWorkOnProjectController extends Controller
     }
 
 
-    function markAsDone($project_id, $seeker_id)
+    // this table send the project to the owner
+    function markAsDone(Request $request)
     {
-
         try {
+            $project_id = $request->project_id;
+            $seeker_id = $request->seeker_id;
             // send notification 
-            $project = Project::where('id', $project_id)
-                ->where('provider_id', Auth::id())
-                ->where('seeker_id', $seeker_id)
-                ->where('status', 'at_work')
-                ->first();
+            $project = Project::find($project_id);
 
+
+            if ($request->other_option == 'on') {
+                $project->other_way_send_files = 1;
+            } else {
+                if (!empty($request->upload) || !empty($request->url)) {
+                    // !importemt to back here
+                    // $project->files =  $this->uploadFile($request->file('upload'));
+                    $project->url = $request->url;
+                } else
+                    return redirect()->back()->with(['message' => 'رجاء قم بارسال الملفات المطلوبه او اضغط على طريقه اخرى', 'type' => 'alert-danger']);
+            }
+
+            // return response()->json(empty($request->upload));
             $project->status = 'done';
             $project->save();
 
@@ -96,6 +146,9 @@ class MyWorkOnProjectController extends Controller
                 'projects.provider_id as provider_id',
                 'projects.stated_at',
                 'projects.amount',
+                'projects.other_way_send_files',
+                'projects.url',
+                'projects.files',
                 'comments.description as comment_description'
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
@@ -212,10 +265,11 @@ class MyWorkOnProjectController extends Controller
                 ->where('status', 'done')
                 ->first();
 
-            $project->satuse = 'nonrecevied';
+            $project->status = 'nonrecevied';
+            // $project->finshed = 1;
             $project->save();
             $post = Posts::find($project->post_id);
-            $profile = Profile::where('user_id', Auth::id());
+            $profile = Profile::where('user_id', Auth::id())->first();
 
             //notification of rejection
             $user = User::find($provider_id);
@@ -225,8 +279,8 @@ class MyWorkOnProjectController extends Controller
                 'name' => $profile->name,
                 'project_title' => $post->title,
                 // @prarm project id -> for get the data from
-                'url' => url('user-profile/' .  $provider_id),
-                'message' => 'لقد قام' . $profile->name . ' بقبول  مشروعك المسلم ' . $post->title,
+                'url' => url('myWorkOnProject?status=reject'),
+                'message' => 'لقد قام' . $profile->name . ' برفض  مشروعك المسلم ' . $post->title,
                 'userId' => Auth::id()
             ];
             $user->notify(new MarkAsRejectReceviceNotification($data));
@@ -237,5 +291,42 @@ class MyWorkOnProjectController extends Controller
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
+    }
+
+    // this function work when press into the continue project after rejection
+    function markAsContinue($project_id)
+    {
+        try {
+            $currentProject = Project::find($project_id);
+            $currentProject->finshed = 1;
+
+
+            $newProject = new Project();
+            $newProject->provider_id = $currentProject->provider_id;
+            $newProject->seeker_id = $currentProject->seeker_id;
+            $newProject->post_id = $currentProject->post_id;
+            $newProject->offer_id = $currentProject->offer_id;
+            $newProject->amount = $currentProject->amount;
+            $newProject->duration = $currentProject->duration;
+            $newProject->stated_at = $currentProject->stated_at;
+            $newProject->status = 'at_work';
+            $newProject->save();
+
+            $currentProject->save();
+            return back()->with(['message' => '   تم استأناف العمل على المشروع ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        }
+    }
+
+    // upload files
+    public function uploadFile($file)
+    {
+        $dest = public_path() . "/images/";
+
+        //$file = $request->file('image');
+        $filename = time() . "_" . $file->getClientOriginalName();
+        $file->move($dest, $filename);
+        return $filename;
     }
 }

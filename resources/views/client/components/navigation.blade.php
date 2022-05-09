@@ -82,11 +82,11 @@
                     </div>
 
                     <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5" aria-labelledby="dropdownMenuButton1"
-                        style="overflow: auto;">
+                        style="overflow: auto; width:340px ; hieght 70vh">
 
                         @foreach (auth()->user()->unreadNotifications as $notification)
                             <li class=""
-                                style="color: gray ; width:340px ; overflow-wrap: break-word; height: fit-content ;   ">
+                                style="color: gray ; overflow-wrap: break-word; height: fit-content ;   ">
                                 <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
                                     style=' color: gray ; border-right: 4px solid {{ $notification->read_at == null ? 'red' : 'gray' }}  ; padding-right: 2px ; width:inherit; height: fit-content; '>
                                     @if ($notification->data['type'] == 'comment')

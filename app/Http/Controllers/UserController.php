@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\GlobalConstants;
 use App\Models\category;
+use App\Models\Evaluation;
 use App\Models\Profile;
 use App\Models\Skill;
 use App\Models\User;
@@ -99,15 +100,35 @@ class UserController extends Controller
             $userRole = 'provider';
         }
 
-          $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
-           $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
+        $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
+        $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
 
-        return view('client.userProfile.userProfile')->with(['data' => $user_info, 'cate' => $cates, 'skills' => $myskills, 'role' => $userRole, 'works'=>$works, 'post' => $posts ]);
+        $selects = array(
+            '*',
+            'COUNT(*) AS countEvalution',
+            'SUM(value) AS sum'
+        );
+        $evalutions = Evaluation::selectRaw(implode(',', $selects))
+            ->where('user_id', Auth::id())
+            ->groupBy(['id', 'project_id', 'value', 'user_id', 'message', 'created_at', 'updated_at'])
+            ->get();
+        // $count = $evalutions->countEvalution;
+        // $totalStrts = intval($evalutions->sum / $count);
+        // return response()->json($evalutions);
+        return view('client.userProfile.userProfile')->with([
+            'data' => $user_info,
+            'cate' => $cates,
+            'skills' => $myskills,
+            'role' => $userRole,
+            'works' => $works,
+            'post' => $posts
+            // 'rating' => $evalutions
+        ]);
     }
     public function insert_content($post_id, $provider_id)
     {
-        $post = Posts::where('id', $post_id)->where('is_active', 1)->get();
-        $provider = User::where('id', $provider_id)->where('is_active', 1)->get();
+        $post = Posts::where('id', $post_id)->where('is_active', 1)->first();
+        $provider = User::where('id', $provider_id)->where('is_active', 1)->first();
 
         $reports =  Report::select(
             'reports.id',

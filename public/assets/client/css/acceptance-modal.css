@@ -15,12 +15,12 @@
 
 /* ============ Panel of Tabs contents ========================= */
 
-.modal-panel{
-    display:none;
+.modal-panel {
+    display: none;
 }
 
-.modal-panel.is-show{
-    display:block;
+.modal-panel.is-show {
+    display: block;
 }
 
 /* ============ /Panel of Tabs contents ========================= */
@@ -30,7 +30,7 @@
     max-width: 60% !important;
 }
 
-
+/* 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
@@ -48,21 +48,4 @@ input[type=number]::-webkit-input-placeholder {
 input::-moz-placeholder {
  text-align: left;
 }
-
-textarea:hover, 
-input:hover, 
-textarea:active, 
-input:active, 
-textarea:focus, 
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
-{
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
-}
+ */

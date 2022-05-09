@@ -51,11 +51,15 @@
             {{-- user report --}}
             <div class="card--actions hidden-xs float-start col-2">
                 <div class="dropdown btn-group">
+                    @if (Auth::check())
+                        @role('seeker')
+                            <a tabindex="-1" class="wak_btn" href="{{ route('post') }}">
+                                <i class="fa fa-fw fa-send"></i>
 
-                    <a tabindex="-1" class="wak_btn" href="#">
-                        <i class="fa fa-fw fa-send"></i>
-                        <span class="action-text">كلفني </span>
-                    </a>
+                                <span class="action-text">أضف مشروع </span>
+                        @endif
+                        </a>
+                    @endrole
 
 
 
@@ -117,152 +121,70 @@
     </div>
 
     <main class="main-section container mt-3">
-      
 
-            {{-- here the main --}}
-            <div class="d-flex justify-content-between ">
-                <div class="row " id="">
 
-                    <!-- About -->
-                    <div class="col-sm-12 col-lg-8  about-section px-3  is-show subPage" id="tab-A">
-                        <div class="row">   
+        {{-- here the main --}}
+        <div class="d-flex justify-content-between ">
+            <div class="row col-12" id="">
+
+                <!-- About -->
+                <div class=" about-section px-3  is-show subPage flex-sm-column flex-lg-row" id="tab-A">
+                    <div class="row col-sm-12 col-lg-7">
                         <!-- My Brief -->
-                            <div class="row">
-                                <section class="card shadow-sm col-12 col-sm-12 p-3">
-                                    <div class="about-me">
-                                        <div class="section-title">
-                                            <h5>نبذة عني</h5>
-                                        </div>
-                                        <div class="brief-content mt-3">
-                                            <p class="">
-                                                <i class="fas fa-briefcase ms-1"></i>
-                                                <span class="fs-6 fw-bold">التخصص:</span>
-                                                @if (!empty($cate->title))
-                                                    <span class="me-1">{{ $cate->title }}</span>
-                                                @endif
-                                            </p>
-                                            <p class="">
-                                                <i class="fa-solid fa-location-dot ms-1"></i>
-                                                <span class="fs-6 fw-bold">البلد:</span>
-                                                <span class="me-1">{{ $data->country }}</span>
-                                            </p>
-                                            <p class="">
-                                                <i class="fa-solid fa-circle-info ms-1"></i>
-                                                <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
-                                                <span class="me-1">
-                                                    {{ $data->bio }}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                            <!-- /My Brief -->
-
-                            <!-- My Skills -->
-                            <div class="row">
-                                <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
-                                    <div class="my-skills">
-                                        <div class="section-title">
-                                            <h5>مهاراتي</h5>
-                                        </div>
-                                        <div class="skills mt-3">
-                                            @foreach ($skills as $item)
-                                                <a class="btn-tag color-gray-lighter" href="#" role="button">
-                                                    <i class="fa-solid fa-tags"></i>
-                                                    <span class="me-1">{{ $item->name }}</span>
-                                                </a>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                            <!-- /My Skills -->
-                        </div>
-                     
-                    </div>
-                    <!-- /About -->
-
-                    <!-- Ratings -->
-                    <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
-                        <!-- My Brief -->
-                        <div class="row">
-                            <section class="card shadow-sm col-12 col-sm-12 p-3">
+                        <div class="row ">
+                            <section class="card shadow-sm  col-sm-12 col-lg-4  p-3 ">
                                 <div class="about-me">
                                     <div class="section-title">
-                                        <h5>التقيمات</h5>
+                                        <h5>نبذة عني</h5>
                                     </div>
-                                    <div class="brief-content mt-3 me-1">
-                                    <div class="row">
-                                        <div class="d-flex justify-content-between">
-                                                <p class="fs-6 fw-normal ">
-                                                    <i class="fa-solid fa-check-double ms-1 " style="margin:0 0 0 8rem;"></i>      الجودة
-                                                </p>
-                                                <p class="">
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                                <p class="fs-6 fw-normal">
-                                                    <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
-                                                </p>
-                                                <p class="">
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                                <p class="fs-6 fw-normal">
-                                                    <i class="fa-solid fa-award ms-1"></i> الخبرة
-                                                </p>
-                                                <p class="">
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                                <p class="fs-6 fw-normal">
-                                                    <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
-                                                    <i class="fa-solid fa-handshake ms-1"></i> التعامل
-                                                </p>
-                                                <p class="">
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                                <p class="fs-6 fw-normal">
-                                                    <!-- <i class="fa-solid fa-tower-broadcast ms-1"></i> التجاوب والتواصل -->
-                                                    <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
-                                                </p>
-                                                <p class="">
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                    <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                </p>
-                                        </div>
+                                    <div class="brief-content mt-3">
+                                        <p class="">
+                                            <i class="fas fa-briefcase ms-1"></i>
+                                            <span class="fs-6 fw-bold">التخصص:</span>
+                                            @if (!empty($cate->title))
+                                                <span class="me-1">{{ $cate->title }}</span>
+                                            @endif
+                                        </p>
+                                        <p class="">
+                                            <i class="fa-solid fa-location-dot ms-1"></i>
+                                            <span class="fs-6 fw-bold">البلد:</span>
+                                            <span class="me-1">{{ $data->country }}</span>
+                                        </p>
+                                        <p class="">
+                                            <i class="fa-solid fa-circle-info ms-1"></i>
+                                            <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
+                                            <span class="me-1">
+                                                {{ $data->bio }}</span>
+                                        </p>
                                     </div>
+                                </div>
+                            </section>
+
+                        </div>
+                        <!-- /My Brief -->
+
+                        <!-- My Skills -->
+                        <div class="row ">
+                            <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
+                                <div class="my-skills">
+                                    <div class="section-title">
+                                        <h5>مهاراتي</h5>
+                                    </div>
+                                    <div class="skills mt-3">
+                                        @foreach ($skills as $item)
+                                            <a class="btn-tag color-gray-lighter" href="#" role="button">
+                                                <i class="fa-solid fa-tags"></i>
+                                                <span class="me-1">{{ $item->name }}</span>
+                                            </a>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </section>
                         </div>
-                       
+                        <!-- /My Skills -->
                     </div>
+
                     <!-- /Ratings -->
 
                 <!-- Ratings -->
@@ -280,10 +202,11 @@
                                         </div>
                                     @endforeach
 
+
                     <!-- Statistics -->
-                    <div class="col-sm-12 col-lg-4  px-3 statistics-card " id='aside_subsection'>
+                    <div class="col-sm-12 col-lg-5  px-3 statistics-card   " id='aside_subsection'>
                         <div class="row">
-                            <section class="card shadow-sm col-12 col-sm-12 p-3">
+                            <section class="card shadow-sm p-3">
                                 <div class="statistics">
                                     <div class="section-title">
                                         <h5>إحصائيات</h5>
@@ -308,9 +231,11 @@
                                             <i class="fa-solid fa-star ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">التقييمات:</span>
                                             <span class="me-1">
+                                                {{-- {{ $rating->countEvalution }} --}}
                                                 @for ($i = 0; $i < 5; $i++)
                                                     @if ((int) $data->rating > $i)
-                                                        <i class="fa fa-star clr-amber rating-star" style="color: orange;"></i>
+                                                        <i class="fa fa-star clr-amber rating-star"
+                                                            style="color: orange;"></i>
                                                     @else
                                                         <i class="fa fa-star clr-amber rating-star"
                                                             style="color: gainsboro;"></i>
@@ -340,45 +265,135 @@
                         </div>
                     </div>
                     <!-- /Statistics -->
-                </div>
 
+                </div>
+                <!-- /About -->
+
+                <!-- Ratings -->
+                <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
+                    <!-- My Brief -->
+                    <div class="row">
+                        <section class="card shadow-sm col-12 col-sm-12 p-3">
+                            <div class="about-me">
+                                <div class="section-title">
+                                    <h5>التقيمات</h5>
+                                </div>
+                                <div class="brief-content mt-3 me-1">
+                                    <div class="row">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-6 fw-normal ">
+                                                <i class="fa-solid fa-check-double ms-1 " style="margin:0 0 0 8rem;"></i>
+                                                الجودة
+                                            </p>
+                                            <p class="">
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-6 fw-normal">
+                                                <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
+                                            </p>
+                                            <p class="">
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-6 fw-normal">
+                                                <i class="fa-solid fa-award ms-1"></i> الخبرة
+                                            </p>
+                                            <p class="">
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-6 fw-normal">
+                                                <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
+                                                <i class="fa-solid fa-handshake ms-1"></i> التعامل
+                                            </p>
+                                            <p class="">
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="fs-6 fw-normal">
+                                                <!-- <i class="fa-solid fa-tower-broadcast ms-1"></i> التجاوب والتواصل -->
+                                                <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
+                                            </p>
+                                            <p class="">
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                                <i class="fa-solid fa-star color-orange-lighter"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+                <!-- /Ratings -->
 
                 @if ($role == 'provider' || $role == 'both')
                     <!-- works -->
-                <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-C">
-                        <div class="row">
+
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-C">
+                        <div class="row row col-12">
                             <section class="card shadow-sm col-12 col-sm-12">
                                 <div class="my-ratings">
                                     <div class="py-5">
                                         <div class="row">
-                                        @foreach ($works as $item)
-                                    
-                                        <div class="col-lg-6 mb-3 mb-lg-0 my-2">
-                                        <a href="{{ route('detailsWork', $item->id) }}" >
-                                            <div class="hover hover-2 text-white rounded"><img src="/images/{{ $item->main_image }}" alt="">
-                                            <div class="hover-overlay"></div>
-                                            <div class="hover-2-content px-5 py-4">
-                                                <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">{{ $item->title }} </span></h3>
-                                                <p class="hover-2-description text-uppercase mb-0">{{ $item->details }}</p>
-                                            </div>
-                                            </div>
-                                            </a>
-                                        </div>
-                                        
-                                        @endforeach
+
+                                            @foreach ($works as $item)
+                                                <div class="col-lg-6 mb-3 mb-lg-0 my-2">
+                                                    <a href="{{ route('detailsWork', $item->id) }}">
+                                                        <div class="hover hover-2 text-white rounded"><img
+                                                                src="/images/{{ $item->main_image }}" alt="">
+                                                            <div class="hover-overlay"></div>
+                                                            <div class="hover-2-content px-5 py-4">
+                                                                <h3
+                                                                    class="hover-2-title text-uppercase font-weight-bold mb-0">
+                                                                    <span class="font-weight-light">{{ $item->title }}
+                                                                    </span>
+                                                                </h3>
+                                                                <p class="hover-2-description text-uppercase mb-0">
+                                                                    {{ $item->details }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
 
                                 </div>
                             </section>
                         </div>
-                </div>
+                    </div>
                     <!-- /works -->
                 @endif
                 @if ($role == 'seeker' || $role == 'both')
                     <!-- projects -->
-                <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
-                        <div Dlass="row">
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
+                        <div class="row  col-12">
                             <section class=" col-12 col-sm-12">
                                 <div class="my-ratings">
                                     <!-- /projects -->
@@ -387,10 +402,10 @@
                                             <div class="col-md-12 col-sm-12 my-2">
                                                 <div class="card">
                                                     <a href="{{ route('posts.details', $post->id) }}">
-                                                    <h5 class=""> {{ $post->title }}</h5>
-                                                    
+                                                        <h5 class=""> {{ $post->title }}</h5>
+
                                                     </a>
-                                                    
+
                                                     <div class="line"></div>
                                                     <div class="card-body">
                                                         <p class="card-text"> {{ $post->description }}</p>
@@ -404,10 +419,15 @@
                                 </div>
                             </section>
                         </div>
-                </div>
+                    </div>
                 @endif
 
-     </div>
+            </div>
+
+
+
+
+        </div>
     </main>
 
     <script src="/assets/client/js/profile_tabNavigation.js"></script>
