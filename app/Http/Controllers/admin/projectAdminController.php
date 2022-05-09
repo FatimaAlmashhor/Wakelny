@@ -22,11 +22,15 @@ class projectAdminController extends Controller
             'projects.duration',
             'projects.status',
             'projects.amount',
+            'reportesr.name as reporter',
+            'reporteds.name as reported',
             // 'projects.title',
             //  'projects.seeker_id ',
             //  'projects.user_id ',
             'posts.title'
         )
+        ->join('profiles as reportesr', 'reportesr.user_id', '=', 'projects.seeker_id')
+        ->join('profiles as reporteds', 'reporteds.user_id', '=', 'projects.provider_id')
         // ->join('profiles ', 'profiles.user_id', '=', 'projects.seeker_id')
         // ->join('profiles as provider', 'provider.user_id', '=', 'projects.id')
         ->join('posts', 'posts.id', '=', 'projects.post_id')
