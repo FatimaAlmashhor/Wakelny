@@ -146,6 +146,9 @@ class MyWorkOnProjectController extends Controller
                 'projects.provider_id as provider_id',
                 'projects.stated_at',
                 'projects.amount',
+                'projects.other_way_send_files',
+                'projects.url',
+                'projects.files',
                 'comments.description as comment_description'
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')

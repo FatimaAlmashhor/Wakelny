@@ -51,11 +51,15 @@
             {{-- user report --}}
             <div class="card--actions hidden-xs float-start col-2">
                 <div class="dropdown btn-group">
+                    @if (Auth::check())
+                        @role('seeker')
+                            <a tabindex="-1" class="wak_btn" href="{{ route('post') }}">
+                                <i class="fa fa-fw fa-send"></i>
 
-                    <a tabindex="-1" class="wak_btn" href="#">
-                        <i class="fa fa-fw fa-send"></i>
-                        <span class="action-text">كلفني </span>
-                    </a>
+                                <span class="action-text">أضف مشروع </span>
+                        @endif
+                        </a>
+                    @endrole
 
 
 
@@ -209,6 +213,7 @@
                                             <i class="fa-solid fa-star ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">التقييمات:</span>
                                             <span class="me-1">
+                                                {{-- {{ $rating->countEvalution }} --}}
                                                 @for ($i = 0; $i < 5; $i++)
                                                     @if ((int) $data->rating > $i)
                                                         <i class="fa fa-star clr-amber rating-star"
