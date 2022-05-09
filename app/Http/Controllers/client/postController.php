@@ -34,7 +34,7 @@ class PostController extends Controller
             'posts.description',
             'profiles.name',
             'profiles.user_id as provider_id'
-        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->get();
+        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('status', 'open')->orderBy('id', 'DESC')->get();
 
         // return response()->json($projects);
         return view('client.user.projectlancer')->with('posts', $projects);

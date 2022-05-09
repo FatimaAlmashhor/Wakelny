@@ -130,11 +130,11 @@ class ProjectController extends Controller
                 ->first();
 
             // print_r($projects);
-            if ($projects->status == 'pending')
-                return view('client.post.providerConfirmation')->with(['project' => $projects, 'amount' => $projects->amount]);
-            else {
-                return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-            }
+            // if ($projects->status == 'pending')
+            return view('client.post.providerConfirmation')->with(['project' => $projects, 'amount' => $projects->amount]);
+            // else {
+            //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+            // }
         } catch (\Exception $th) {
             //throw $th;
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
@@ -205,7 +205,7 @@ class ProjectController extends Controller
 
             $project = Project::select(
                 'posts.title'
-            )->join('posts', 'posts.post_id', 'projects.post_id')
+            )->join('posts', 'posts.id', 'projects.post_id')
                 ->where('projects.seeker_id', $seeker_id)
                 ->where('projects.id', $project_id)
                 ->first();
@@ -218,9 +218,10 @@ class ProjectController extends Controller
                 'userId' => Auth::id()
             ];
 
-            Project::where('id', $project_id)->update([
-                'status' => 'rejected',
-            ]);
+            $saveProj = Project::find($project_id);
+            $saveProj->status = 'rejected';
+            $saveProj->save();
+            // ]);
             $providerNotify->notify(new RejectProjectNotification($data));
             return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله الرفض الطرف الاخر', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
