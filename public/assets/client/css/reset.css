@@ -16,8 +16,8 @@
 
 :root {
   --bg-main-color: #f2f2f2;
-  --main-green-color: rgba(77, 212, 172, 1);
-  --main-darker-green-color: rgba(37, 186, 142, 1);
+  --main-green-color: rgb(66, 160, 132);
+  --main-darker-green-color: rgb(58, 126, 105);
   --second-green-color: rgba(95, 227, 188, 0.53);
   --main-orange-color: rgba(240, 157, 96, 1);
   --main-lighter-orange-color: rgba(234, 170, 123, 1);

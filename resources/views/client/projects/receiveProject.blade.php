@@ -134,12 +134,32 @@
                 <div class="card shadow-sm ">
                     <h4>التسليم</h4>
                     <a href="{{ $project->file }}">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
                         ملفات المشروع قيم بتحميلها
                     </a>
 
-                    <a href="{{ $project->url }}">
-                        {{ $project->url }}
-                    </a>
+                    <div class=" col-12 col-xs-12 pt-3">
+                        <label> الرباط التشغبي <em class="text--danger">*</em>
+                        </label>
+                        <div class="input-group mb-3">
+
+                            <input name="duration" class='form-control' id="phone" type="number"
+                                value=" {{ $project->url }}" aria-label="Username" aria-describedby="basic-addon1"
+                                readonly>
+                            <span class="input-group-text" id="basic-addon1">Url</span>
+                        </div>
+                    </div>
+                    <div class=" col-12 col-xs-12 pt-3">
+                        <label> الرباط التشغبي <em class="text--danger">*</em>
+                        </label>
+                        <div class=" mb-3">
+
+                            <input name="duration" class=' checkbox' id="checkbox" type="checkbox"
+                                checked={{ $project->other_way_send_files }} aria-label="Username"
+                                aria-describedby="basic-addon1" readonly onclick="return false;">
+                            <span class="" id="basic-addon1">تم ارسالها بطريقه أخرى</span>
+                        </div>
+                    </div>
 
                     <div class="mt-4">
                         <a class="wak_btn" type="submit" name="reject" data-bs-toggle="modal"

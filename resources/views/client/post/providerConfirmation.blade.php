@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row my-5">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-lg-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
                         <form id="confirm-data" action="{{ route('provider-confirm', $project->id) }}" method="POST"
