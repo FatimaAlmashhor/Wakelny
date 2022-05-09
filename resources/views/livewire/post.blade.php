@@ -19,50 +19,47 @@
                                             </div>
                                         </article>
 
-                                          {{-- categories --}}
-                                    <article class="filter-group">
+                                        <article class="filter-group">
 
-                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.majers') }} </h6>
-
-
-                                        {{-- <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input value='-1' name='cates[]' type="checkbox" class="cates"
-                                                        id="-1" }>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> All</p>
-                                            </div>
-                                        </div> --}}
-                                        @foreach ($cates as $item)
+                                            <h6 class="title font-sm color-gray-dark">{{ __('filter.category') }} </h6>
                                             <div style="">
                                                 <div class="card-body d-flex align-items-center ">
                                                     <label class="wak_checkbox">
-                                                        <input value={{ $item->id }} name='cates[]' type="checkbox"
-                                                            class="cates" id="{{ $item->id }}">
-                                                        <span class=" checkmark"></span>
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
                                                     </label>
-                                                    <p class="my-auto px-2"> {{ $item->title }}</p>
+                                                    <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
                                                 </div>
                                             </div>
-                                        @endforeach
-
-
-                                    </article>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2">
+                                                        برمجة، تطوير المواقع والتطبيقات </p>
+                                                </div>
+                                            </div>
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2"> هندسة، عمارة وتصميم داخلي </p>
+                                                </div>
+                                            </div>
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2"> تصميم، فيديو وصوتيات </p>
+                                                </div>
+                                            </div>
+                                        </article>
 
                                         <article class="filter-group">
 

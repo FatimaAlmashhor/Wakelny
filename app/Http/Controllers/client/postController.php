@@ -36,9 +36,10 @@ class PostController extends Controller
             'profiles.user_id as provider_id'
         )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->get();
 
-        $cates = category::where('is_active', 1)->get();
-        // return response()->json($projects);
-        return view('client.user.projectlancer')->with([ 'cates' => $cates, 'posts' => $projects]);
+
+        $categories = category::where('is_active', 1)->get();
+        return view('client.user.projectlancer')->with(['posts' => $projects, 'categories' => $categories]);
+
       
     }
 
