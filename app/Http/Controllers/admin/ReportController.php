@@ -25,7 +25,8 @@ class ReportController extends Controller
             'reportesr.name as reporter',
             'reporteds.name as reported',
             'posts.title'
-        )->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
+        )
+        ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
         ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
         ->join('posts', 'posts.id', '=', 'reports.post_id')
         ->where('reports.is_active', 1)->get();

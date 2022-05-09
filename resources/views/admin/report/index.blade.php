@@ -16,7 +16,7 @@
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
- 
+
                     <div class="card-content">
                         <!-- table head dark -->
                         <div class="table" style="overflow: none ; padding: 10px 20px;">
@@ -38,31 +38,31 @@
                                         <tr>
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                            <td class="text-bold-500">{{ $item->type_report }}</td> 
-                                            <td class="text-bold-500">{{ $item->reporter }}</td> 
-                                            <td class="text-bold-500">{{ $item->reported }}</td> 
-                                            <td class="text-bold-500">{{ $item->title }}</td>                                
+                                            <td class="text-bold-500">{{ $item->type_report }}</td>
+                                            <td class="text-bold-500">{{ $item->reporter }}</td>
+                                            <td class="text-bold-500">{{ $item->reported }}</td>
+                                            <td class="text-bold-500">{{ $item->title }}</td>
                                             <td class="" style=" width: 1px;">{{ $item->massege }}</td>
                                             <td>
-                                              @if($item->is_active == 1) 
+                                              @if($item->is_active == 1)
                                               <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                               @else
                                               <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;"> معطل</span>
                                               @endif
                                             </td>
-                                             
+
                                             <td>
-                                             
+
                                                 <a  href="{{ route('toggle_report', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
-                                                    
-                                                        @if($item->is_active == 1) 
-                                                            <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+
+                                                        @if($item->is_active == 1)
+                                                            <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
                                                             @else
-                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
                                                         @endif
-                                             
+
                                                 </a>
-                                          
+
                                             </td>
                                         </tr>
                                     @endforeach
