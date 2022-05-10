@@ -24,7 +24,7 @@
     <div class="container">
         <h3 class="my-5"> إضافة مشروع جديد</h3>
         <div class="row my-5">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-lg-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
                         <form id="contactForm" class="row g-3" action='{{ route('savePost') }}' method="post"

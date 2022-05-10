@@ -13,10 +13,16 @@ use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\client\CommentController;
 use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
+use App\Http\Controllers\admin\projectAdminController;
+use App\Http\Controllers\admin\projects;
+
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
 
 use App\Http\Controllers\admin\ReportController;
+
+
+
 
 
 use App\Http\Controllers\admin\settingUserController;
@@ -199,12 +205,20 @@ Route::group([
             Route::get('/reject-project/{project_id}/{seeker_id}', [ProjectController::class, 'rejectProject'])->name('rejectProject');
 
 
-            // the project that provider work on 
+            // the project that provider work on
             Route::get('/myWorkOnProject', [MyWorkOnProjectController::class, 'index'])->name('workonProject');
-            Route::post('/mark_as_done/{project_id}/{seeker_id}', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
+            Route::get('/myWorkOnProject/done', [MyWorkOnProjectController::class, 'doneWork'])->name('doneWork');
+            Route::post('/mark_as_done', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
             Route::get('/confirm-receive/{project_id}/{provider_id}', [MyWorkOnProjectController::class, 'markAsRecive'])->name('markAsRecive');
             Route::post('/accept-receive', [MyWorkOnProjectController::class, 'markAsAccept'])->name('markAsAccept');
             Route::post('/reject-receive', [MyWorkOnProjectController::class, 'markAsReject'])->name('markAsReject');
+
+
+            // !report fatima vertion
+            Route::post('/reporting', [ReportController::class, 'reporting'])->name('reporting');
+
+            // continue the project after rejection
+            Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
         });
     });
 
@@ -254,11 +268,16 @@ Route::group([
         Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
         Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
         Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
+///////////////----------------------ProjectAdmin----------------------------------------------------------//////
 
+        Route::get('/projects', [projectAdminController::class, 'showAll'])->name('projects');
+        // Route::get('/toggle_report/{report_id}', [projectAdminController::class, 'toggle'])->name('toggle_report');
+/////////////////---------------------------------------------------------------------------//////////////////////
         // start active & block users
         Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
         //end active & block users
@@ -300,6 +319,7 @@ Route::get('/testApi', function () {
         'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
         'Content-Type' => 'application/x-www-form-urlencoded'
     ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
+        'order_reference' => '123412',
         'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
         'total_amount' => '133',
         'currency' => 'YEN',
@@ -308,5 +328,6 @@ Route::get('/testApi', function () {
         'metadata' => ' { "Customer name": "somename", "order id": 0}'
     ]);
 
-    return $response->status();
+    // return response()->json($response->json());
+    return redirect($response['next_url']);
 });

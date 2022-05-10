@@ -24,13 +24,7 @@
                                     <span class="action-text">تعديل المشروع</span>
                                 </a>
                             </li>
-                            <li class="text-end my-2 px-2">
-                                <a tabindex="-1"
-                                    href="https://mostaql.com/register?t=SO0TO7smnWJanTpKDpZ2jcSQnLT4WEeSPn3gAUNK">
-                                    <i class="fa fa-fw fa-flag"></i>
-                                    <span class="action-text">تبليغ عن محتوى</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 @endif
@@ -49,8 +43,9 @@
                                 هل تريد حذف {{ $post->title }}
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('toggle_post', $post_id) }}" class="btn btn-danger">تاكيد الحذف</a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                <a href="{{ route('toggle_post', $post_id) }}" class="btn wak_btn">تاكيد الحذف</a>
+                                <button type="button" class="btn wak_btn green_border"
+                                    data-bs-dismiss="modal">الغاء</button>
                                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 
                             </div>
@@ -208,25 +203,13 @@
                                                 <button class="wak_btn w-full" type="submit">انشر الان
                                                 </button>
                                             </div>
-                                            <!-- Form submit button -->
-                                            {{-- <div class="row">
-                            <div class="col-md-8">
-                                <button class="wak_btn " type="submit">انشر الان
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="wak_btn " type="submit"> حفظ كمسوده
-                                </button>
-                            </div>
-                        </div> --}}
+
                                         </form>
                                     </div>
-
                                 </div>
                             @endif
                         </div>
                         {{-- all comments --}}
-
                     </div>
                 @endif
 
@@ -247,26 +230,26 @@
                             </button>
                         </h2>
 
-
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
 
                                 {{-- accordion body / collabes --}}
-                                <div class="">
 
-                                    @if (!empty($comments))
-                                        @foreach ($comments as $item)
+
+                                @if (!empty($comments))
+                                    @foreach ($comments as $item)
+                                        <div>
                                             <div class="card p-4 container my-3" style="direction: rtl;">
                                                 <div class="row">
                                                     <div class="col-6 image d-flex">
                                                         <a href="{{ route('userProfile', $item->user_id) }}">
 
                                                             {{-- @if ($item->avatar !== 'http://localhost:8000/images/')
-                                                            <img class="rounded-circle mr-4 border"
-                                                                style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
-                                                                alt="">
-                                                        @else --}}
+                                                                <img class="rounded-circle mr-4 border"
+                                                                    style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
+                                                                    alt="">
+                                                            @else --}}
                                                             <img class="rounded-circle mr-4 border"
                                                                 style="width:60px ; height:60px ; object-fit: cover"
                                                                 src="{{ asset('assets/client/images/user-profile-2.png') }}"
@@ -303,49 +286,50 @@
 
                                                     </div>
                                                     {{-- تعديل الكومنتات --}}
-                                                    <div class="row col-6">
-                                                        <div class="col-6 ">
-                                                            @if (Auth::check() && $item->user_id == auth()->user()->id)
-                                                                <button class="wak_btn w-full" data-bs-toggle="collapse"
-                                                                    data-bs-target="#demo"
-                                                                    style="width:100% ; padding: .6rem">
-                                                                    <i class="fa fa-fw fa-edit"></i>
-                                                                    <span class="action-text">تعديل العرض </span>
-                                                                </button>
-                                                            @endif
-                                                        </div>
-                                                        <div class="card--actions hidden-xs col-6">
-                                                            <div class="dropdown btn-group">
-
-                                                                <a tabindex="-1" class="wak_btn green_border" href="#"
-                                                                    style="width:100% ; padding: .6rem">
-                                                                    <i class="fa-solid fa-gear px-1"></i>
-                                                                    <span class="action-text">خيارات </span>
-                                                                </a>
-
-                                                                <button class="dropdown-toggle wak_btn "
-                                                                    style="border-radius: 0px" data-bs-toggle="dropdown"
-                                                                    aria-expanded="false">
-                                                                    {{-- <i class="fa fa-caret-down"></i> --}}
-                                                                </button>
-                                                                <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 "
-                                                                    role="menu" aria-labelledby="خيارات">
-
-                                                                    <li class="text-end my-2 px-2">
-                                                                        <a tabindex="-1"
-                                                                            href="{{ route('report_provider', $item->user_id) }}">
-
-                                                                            <i class="fa fa-fw fa-flag"></i>
-                                                                            <span class="action-text">تبليغ عن
-                                                                                محتوى</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="row ">
+                                                            <div class="col-6  ">
+                                                                @if (Auth::check() && $item->user_id == auth()->user()->id)
+                                                                    <button class="wak_btn w-full" data-bs-toggle="collapse"
+                                                                        data-bs-target="#demo"
+                                                                        style="width:100% ; padding: .6rem">
+                                                                        <i class="fa fa-fw fa-edit"></i>
+                                                                        <span class="action-text">تعديل العرض </span>
+                                                                    </button>
+                                                                @endif
                                                             </div>
+                                                            <div class="card--actions hidden-xs col-6 ">
+                                                                <div class="dropdown btn-group">
 
+                                                                    <a tabindex="-1" class="wak_btn green_border" href="#"
+                                                                        style="width:100% ; padding: .6rem">
+                                                                        <i class="fa-solid fa-gear px-1"></i>
+                                                                        <span class="action-text">خيارات </span>
+                                                                    </a>
+
+                                                                    <button class="dropdown-toggle wak_btn "
+                                                                        style="border-radius: 0px" data-bs-toggle="dropdown"
+                                                                        aria-expanded="false">
+                                                                        {{-- <i class="fa fa-caret-down"></i> --}}
+                                                                    </button>
+                                                                    <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 "
+                                                                        role="menu" aria-labelledby="خيارات">
+
+                                                                        <li class="text-end my-2 px-2">
+                                                                            <a tabindex="-1"
+                                                                                href="{{ route('report_provider', $item->user_id) }}">
+
+                                                                                <i class="fa fa-fw fa-flag"></i>
+                                                                                <span class="action-text">تبليغ عن
+                                                                                    محتوى</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                     {{-- more info --}}
                                                     <div>
                                                         <div class="d-flex justify-content-around m-3 bg-lighter-gray p-3">
@@ -357,14 +341,14 @@
                                                                 <div>مدة التنفيذ</div>
                                                                 <div>{{ $item->duration }} أيام</div>
                                                             </div>
-                                                            <div>
-                                                                <div>معرض الأعمال</div>
-                                                                <div>{{ $post->workcount }} أعمال</div>
-                                                            </div>
-                                                            <div>
-                                                                <div>تقييم العرض</div>
-                                                                <div><i class="fa-thin fa-circle"></i></div>
-                                                            </div>
+                                                            {{-- <div>
+                                                                    <div>معرض الأعمال</div>
+                                                                    <div>{{ $post->workcount }} أعمال</div>
+                                                                </div> --}}
+                                                            {{-- <div>
+                                                                    <div>تقييم العرض</div>
+                                                                    <div><i class="fa-thin fa-circle"></i></div>
+                                                                </div> --}}
                                                         </div>
                                                     </div>
                                                     <p class=" col-12 font-sm mt-3">{{ $item->description }}</p>
@@ -470,7 +454,8 @@
                                                                         <!-- Message input -->
                                                                         <div>
                                                                             <label class="form-label"
-                                                                                for="message">تفاصيل العرض</label>
+                                                                                for="message">تفاصيل
+                                                                                العرض</label>
                                                                             <textarea class="form-control" name='message' id="message" type="text" style="height: 10rem;"
                                                                                 data-sb-validations="required"
                                                                                 required>{{ $item->description ?? old('description') }}</textarea>
@@ -492,7 +477,8 @@
 
                                                                         <div class="mb-1">
                                                                             <label class="form-label"
-                                                                                for="message">ملفات توضيحية</label>
+                                                                                for="message">ملفات
+                                                                                توضيحية</label>
                                                                             <input class="form-control" id="dropzone"
                                                                                 multiple name='files' type="file"
                                                                                 value="{{ $item->files ?? old('files') }}"
@@ -502,14 +488,15 @@
                                                                         </div>
                                                                         <div>
                                                                             <button class="wak_btn w-full"
-                                                                                type="submit">حفظ التعديلات
+                                                                                type="submit">حفظ
+                                                                                التعديلات
                                                                             </button>
                                                                         </div>
                                                                         {{-- <button class="wak_btn" data-bs-toggle="collapse"
-                                                                            data-bs-target="#demo">
-                                                                            <i class="fa fa-fw fa-edit"></i>
-                                                                            <span class="action-text">تعديل العرض </span>
-                                                                        </button> --}}
+                                                                                data-bs-target="#demo">
+                                                                                <i class="fa fa-fw fa-edit"></i>
+                                                                                <span class="action-text">تعديل العرض </span>
+                                                                            </button> --}}
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -517,13 +504,14 @@
                                                     @endif
                                                 </div>
                                                 @if (Auth::check() && $post->user_id == Auth::id())
-                                                    <div class="m-2">
-                                                        <button tabindex="-1" class="wak_btn orange mx-2" type="button"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <div class="raw m-2">
+                                                        <button tabindex="-1" class="wak_btn orange mx-2 col-sm-6 "
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal">
                                                             <i class="fa fa-check px-1"></i>
                                                             <span class="action-text"> قبول العرض </span>
                                                         </button>
-                                                        <a tabindex="-1" class="wak_btn green_border" href="#">
+                                                        <a tabindex="-1" class="wak_btn green_border col-sm-6 " href="#">
                                                             <i class="fa fa-send px-1"></i>
                                                             <span class="action-text"> تواصل مع المستقل </span>
                                                         </a>
@@ -613,121 +601,107 @@
                                             </div>
 
                                             <!-- /Acceptance Modal -->
-                                        @endforeach
-                                    @else
-                                        <p>لايوجد عروض حاليا</p>
-                                    @endif
+                                        </div>
+                                    @endforeach
+                                @endif
 
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            {{-- more information --}}
+            <div class="col-md-4 col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">بطاقة المشروع</h5>
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between ">
+                            <div>
+                                <div class="my-3"> حالة المشروع</div>
+                                <div class="my-3"> تاريخ النشر</div>
+                                <div class="y-3"> الميزانية </div>
+                                <div class="my-3"> مدة التنفيذ</div>
+                                <div class="my-3"> عدد العروض</div>
+                            </div>
+                            <div>
+                                <div class="my-3"> <span class="px-1"
+                                        style="background-color: green ; color:white;">{{ $post->status }}</span></div>
+                                <div class="my-3"> {{ $post->created_at }}</div>
+                                <div class="my-3"> ${{ $post->cost }}</div>
+
+                                <div class="my-3"> {{ $post->duration }}</div>
+
+                                <div class="my-3"> {{ $post->offers }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+
+                    </div>
+                    <hr>
+                    <div>
+                        <p>صاحب المشروع</p>
+                        <div class="image d-flex">
+
+
+
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
+
+
+
+                            <div class="info mx-4">
+                                <h4 class="font-md">
+                                    <a
+                                        href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
+                                </h4>
+
+                                <div class="rate">
+                                    <span class="px-1 font-sm color-gray-dark "></span>
+                                    <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
+                                    <span
+                                        class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                {{-- @if (count($errors) > 0)
-                    <script>
-                        $( document ).ready(function() {
-                            $('#exampleModal').modal('show');
-                        });
-                    </script>
-                @endif --}}
-
-
-
             </div>
         </div>
 
-        {{-- more information --}}
-        <div class="col-md-4 col-sm-12">
-            <div class="card">
-                <h5 class="card-header">بطاقة المشروع</h5>
+        <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
+    @endsection
+    {{-- <div class="card mt-3">
+            <h5 class="card-header">شارك المشروع</h5>
 
-                <div class="card-body">
-                    <div class="d-flex justify-content-between ">
-                        <div>
-                            <div class="my-3"> حالة المشروع</div>
-                            <div class="my-3"> تاريخ النشر</div>
-                            <div class="y-3"> الميزانية </div>
-                            <div class="my-3"> مدة التنفيذ</div>
-                            <div class="my-3"> عدد العروض</div>
-                        </div>
-                        <div>
-                            <div class="my-3"> <span class="px-1"
-                                    style="background-color: green ; color:white;">{{ $post->status }}</span></div>
-                            <div class="my-3"> {{ $post->created_at }}</div>
-                            <div class="my-3"> ${{ $post->cost }}</div>
+            <div class=" mt-3">
+                <form class=" m-3">
+                    <input type="text">
+                </form>
 
-                            <div class="my-3"> {{ $post->duration }}</div>
+                <!-- Facebook -->
+                <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
 
-                            <div class="my-3"> {{ $post->offers }}</div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div>
-                    <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
-
-                </div>
-                <hr>
-                <div>
-                    <p>صاحب المشروع</p>
-                    <div class="image d-flex">
+                <!-- Twitter -->
+                <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
+                        class="fab fa-twitter"></i></a>
 
 
-
-                        <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                            src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
-
-
-
-                        <div class="info mx-4">
-                            <h4 class="font-md">
-                                <a
-                                    href="{{ route('userProfile', $post->post_user_id) }}">{{ $post->post_user_name }}</a>
-                            </h4>
-
-                            <div class="rate">
-                                <span class="px-1 font-sm color-gray-dark "></span>
-                                <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
-                                <span class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+                </a>
+                <!-- Linkedin -->
+                <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
+                        class="fab fa-linkedin-in"></i></a>
             </div>
-            <div class="card mt-3">
-                <h5 class="card-header">شارك المشروع</h5>
-
-                <div class=" mt-3">
-                    <form class=" m-3">
-                        <input type="text">
-                    </form>
-
-                    <!-- Facebook -->
-                    <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-
-                    <!-- Twitter -->
-                    <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"><i
-                            class="fab fa-twitter"></i></a>
-
-
-                    </a>
-                    <!-- Linkedin -->
-                    <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"><i
-                            class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
-@endsection
+        </div> --}}
