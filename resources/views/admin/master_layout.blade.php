@@ -110,7 +110,7 @@
 
                                         <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md">
-                                                <img src="/images/im2.png">
+                                                <img src="/assets/admin//images/faces/1.jpg">
                                             </div>
                                         </div>
 
@@ -119,7 +119,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                                     style="">
                                     <li>
-                                        <h6 class="dropdown-header">اهلا, أفنان</h6>
+                                        <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
                                     </li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
                                             ملفي الشخصي
