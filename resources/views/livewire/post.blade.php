@@ -129,4 +129,4 @@
         @include('client.components.posts_data')
     </div>
 </div>
-</div>
+
