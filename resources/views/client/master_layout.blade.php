@@ -12,8 +12,8 @@
 
 
     {{-- css links --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -53,7 +53,7 @@
 <body>
     <!-- ====== START NAVIGATION ====== -->
     <!-- ====== START NAVIGATION ====== -->
-    @include('client.components.navigation')
+
     <!-- ====== END NAVIGATION ====== -->
 
     {{-- alerts --}}
@@ -64,9 +64,11 @@
             {{ session()->get('message') }}
         </div>
     @endif
-
-    @yield('content')
-    @include('client.components.footer')
+    <div class="m-5">
+        @include('client.components.navigation')
+        @yield('content')
+        @include('client.components.footer')
+    </div>
 
     {{-- scripts - --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
