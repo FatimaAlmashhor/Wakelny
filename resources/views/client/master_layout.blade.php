@@ -12,8 +12,8 @@
 
 
     {{-- css links --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -26,14 +26,16 @@
     <link rel="stylesheet" href="/assets/client/css/main.css">
 
 
+    <link href="/assets/client/css/about.css" rel="stylesheet">
+    <link href="/assets/client/css/post.css" rel="stylesheet">
+
     {{-- <link rel="stylesheet" href="./dist/css/tailwind.css"> --}}
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script> --}}
 
 
-    <link href="/assets/client/css/about.css" rel="stylesheet">
-    <link href="/assets/client/css/post.css" rel="stylesheet">
+
 
     <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script>
     {{--  --}}
@@ -53,7 +55,7 @@
 <body>
     <!-- ====== START NAVIGATION ====== -->
     <!-- ====== START NAVIGATION ====== -->
-    @include('client.components.navigation')
+
     <!-- ====== END NAVIGATION ====== -->
 
     {{-- alerts --}}
@@ -64,9 +66,11 @@
             {{ session()->get('message') }}
         </div>
     @endif
-
-    @yield('content')
-    @include('client.components.footer')
+    <div class="m-5">
+        @include('client.components.navigation')
+        @yield('content')
+        @include('client.components.footer')
+    </div>
 
     {{-- scripts - --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
