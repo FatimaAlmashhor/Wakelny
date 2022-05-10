@@ -41,8 +41,8 @@ return [
      "user-stat"=>" حالة المستخدم",
      "user_Statistics"=>" الاحصائيات  ",
 
-     "user_numb"=>" عدد المستخددمين ",
-     "post_numb"=>" عدد المشاريع ",
+     "user_numb"=>"  المستخدمين ",
+     "post_numb"=>"  المشاريع ",
      "start_project"=>"   بداية المشروع ",
      "end_project"=>"   نهاية المشروع ",
      "duration"=>"  الفترة ",

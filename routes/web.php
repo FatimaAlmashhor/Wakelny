@@ -48,7 +48,6 @@ use App\Http\Controllers\ChartJSController;
 |
 */
 
-Route::get('chart', [ChartJSController::class, 'index']);
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');

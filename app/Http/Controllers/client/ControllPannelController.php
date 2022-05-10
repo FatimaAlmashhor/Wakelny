@@ -86,11 +86,23 @@ class ControllPannelController extends Controller
     function admin()
     {
          // Show account Users && Posts && Rports
-
          $post= DB::table('posts')->count();
          $reports= DB::table('reports')->count();
-         $users = DB::table('users')->count();
-         return view('admin.index',compact('users','reports','post'));
+         $cates= DB::table('categories')->count();
+         $user = DB::table('users')->count();
+
+         $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+
+         ->whereYear('created_at', date('Y'))
+
+         ->groupBy(DB::raw("MONTHNAME(created_at)"))
+
+         ->pluck('count', 'month_name');
+
+        $labels = $users->keys();
+        $data = $users->values();  
+
+         return view('admin.index',compact('labels', 'data','user','reports','cates','post'));
 
     }
 
