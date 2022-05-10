@@ -38,9 +38,8 @@
 
                         @if (Route::currentRouteName() == 'report_content')
                             <input type="hidden" value="{{ $post_id }}" name="post_id" />
-                            <input type="hidden" value="{{ $provider->id }}" name="provider_id" />
                         @else
-                            <input type="hidden" value="{{ $provider->id }}" name="provider_id" />
+                            <input type="hidden" value="{{ $provider_id }}" name="provider_id" />
                         @endif
 
 
