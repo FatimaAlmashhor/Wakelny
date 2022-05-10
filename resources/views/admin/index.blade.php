@@ -55,8 +55,8 @@
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="stats-icon green">
-                                            <i class="iconly-boldShow"></i>
+                                        <div class="stats-icon red">
+      <i class="fa-solid fa-flag-checkered"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -73,8 +73,8 @@
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="stats-icon red">
-                                            <i class="fa-solid fa-flag-checkered"></i>                                        </div>
+                                        <div class="stats-icon green">
+                                           <i class="iconly-boldShow"></i>                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">البلاغات</h6>
@@ -107,8 +107,8 @@
                                 <img src="/assets/admin//images/faces/1.jpg" alt="Face 1">
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">John Duck</h5>
-                                <h6 class="text-muted mb-0">@johnducky</h6>
+                                <h5 class="font-bold"> {{ auth()->user()->name }}</h5>
+                                <h6 class="text-muted mb-0">@.{{ auth()->user()->name }}</h6>
                             </div>
                         </div>
                     </div>

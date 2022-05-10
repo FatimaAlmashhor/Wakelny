@@ -2,30 +2,37 @@
 @section('content')
     {{--  --}}
     <div class="container">
-        <div class="d-flex justify-content-between flex-wrap">
-            <h3 class="my-5"> {{ $post->title }}</h3>
+        <div class="d-flex justify-content-between flex-wrap my-5">
+            <h3 class="my-5 font-4xl"> {{ $post->title }}</h3>
             <div class="card--actions hidden-xs my-5">
 
                 @if (Auth::check() && Auth::id() == $post->user_id)
                     {{-- edition btn --}}
                     <div class="dropdown btn-group">
-                        <a tabindex="-1" class="wak_btn" data-bs-toggle="modal" data-bs-target="#deleteModel">
-                            <i class="fa fa-xmark px-1"></i>
-                            <span class="action-text">اغلاق المشروع </span>
-                        </a>
-                        <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{-- <i class="fa fa-caret-down"></i> --}}
-                        </button>
-                        <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
-                            <li class="text-end my-2 px-2">
-                                <a tabindex="-1" href="{{ route('editPosts', $post_id) }}">
-                                    <i class="fa fa-fw fa-gear"></i>
-                                    <span class="action-text">تعديل المشروع</span>
-                                </a>
-                            </li>
 
-                        </ul>
+                        <div class="dropdown inline-block relative min-w-fit">
+                            <button tabindex="-1" data-bs-toggle="modal" data-bs-target="#deleteModel"
+                                class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                                <span class="mr-1">اغلاق المشروع</span>
+                                <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        style="color:white ; stroke: white;
+                                                                                                                                fill: white;"
+                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </button>
+                            <ul
+                                class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
+                                <li class="border-b border-primary-light-pink"><a
+                                        class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                        href="{{ route('editPosts', $post_id) }}">تعديل المشروع</a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
                     </div>
                 @endif
 
@@ -43,9 +50,8 @@
                                 هل تريد حذف {{ $post->title }}
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('toggle_post', $post_id) }}" class="btn wak_btn">تاكيد الحذف</a>
-                                <button type="button" class="btn wak_btn green_border"
-                                    data-bs-dismiss="modal">الغاء</button>
+                                <a href="{{ route('toggle_post', $post_id) }}" class="btn mo-btn">تاكيد الحذف</a>
+                                <button type="button" class="btn mo-btn green_border" data-bs-dismiss="modal">الغاء</button>
                                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 
                             </div>
@@ -150,7 +156,8 @@
                                             </div>
                                             {{-- duration --}}
                                             <div class="col-sm-4 col-xs-12 pt-3">
-                                                <label>المدة المتوقعة للتسليم <em class="text--danger">*</em>
+                                                <label class="rtext">المدة المتوقعة للتسليم <em
+                                                        class="text--danger">*</em>
                                                 </label>
                                                 <div class="input-group mb-3">
 
@@ -200,7 +207,7 @@
 
                                             </div>
                                             <div>
-                                                <button class="wak_btn w-full" type="submit">انشر الان
+                                                <button class="mo-btn w-full" type="submit">انشر الان
                                                 </button>
                                             </div>
 
@@ -290,7 +297,7 @@
                                                         <div class="row ">
                                                             <div class="col-6  ">
                                                                 @if (Auth::check() && $item->user_id == auth()->user()->id)
-                                                                    <button class="wak_btn w-full" data-bs-toggle="collapse"
+                                                                    <button class="mo-btn w-full" data-bs-toggle="collapse"
                                                                         data-bs-target="#demo"
                                                                         style="width:100% ; padding: .6rem">
                                                                         <i class="fa fa-fw fa-edit"></i>
@@ -301,30 +308,32 @@
                                                             <div class="card--actions hidden-xs col-6 ">
                                                                 <div class="dropdown btn-group">
 
-                                                                    <a tabindex="-1" class="wak_btn green_border" href="#"
-                                                                        style="width:100% ; padding: .6rem">
-                                                                        <i class="fa-solid fa-gear px-1"></i>
-                                                                        <span class="action-text">خيارات </span>
-                                                                    </a>
+                                                                    {{-- option dropdown --}}
+                                                                    <div class="dropdown inline-block relative min-w-fit">
+                                                                        <button
+                                                                            class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                                                                            <span class="mr-1">خيارات</span>
+                                                                            <svg class="fill-current h-4 w-8"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 20 20">
+                                                                                <path
+                                                                                    style="color:white ; stroke: white;
+                                                                                                                                                                            fill: white;"
+                                                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                        <ul
+                                                                            class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
+                                                                            <li class="border-b border-primary-light-pink">
+                                                                                <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                                                                    href="{{ route('report_provider', $item->user_id) }}">
+                                                                                    التبليغ عن محتوى</a>
+                                                                            </li>
 
-                                                                    <button class="dropdown-toggle wak_btn "
-                                                                        style="border-radius: 0px" data-bs-toggle="dropdown"
-                                                                        aria-expanded="false">
-                                                                        {{-- <i class="fa fa-caret-down"></i> --}}
-                                                                    </button>
-                                                                    <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 "
-                                                                        role="menu" aria-labelledby="خيارات">
 
-                                                                        <li class="text-end my-2 px-2">
-                                                                            <a tabindex="-1"
-                                                                                href="{{ route('report_provider', $item->user_id) }}">
-
-                                                                                <i class="fa fa-fw fa-flag"></i>
-                                                                                <span class="action-text">تبليغ عن
-                                                                                    محتوى</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
+                                                                        </ul>
+                                                                    </div>
+                                                                    {{-- end dropdown --}}
                                                                 </div>
 
                                                             </div>
@@ -410,7 +419,8 @@
                                                                                     id="basic-addon1">$</span>
                                                                             </div>
 
-                                                                            <span class="text-muted font-xs">بعد خصم عمولة
+                                                                            <span class="text-muted font-xs">بعد خصم
+                                                                                عمولة
                                                                                 موقع مستقل</span>
                                                                             @error('cost_after_taxs')
                                                                                 <div id='alert '
@@ -459,7 +469,8 @@
                                                                             <textarea class="form-control" name='message' id="message" type="text" style="height: 10rem;"
                                                                                 data-sb-validations="required"
                                                                                 required>{{ $item->description ?? old('description') }}</textarea>
-                                                                            <p class="text-muted font-xs">أدخل وصفاً مفصلاً
+                                                                            <p class="text-muted font-xs">أدخل وصفاً
+                                                                                مفصلاً
                                                                                 لمشروعك وأرفق أمثلة
                                                                                 لما تريد ان
                                                                                 أمكن.
@@ -487,12 +498,12 @@
 
                                                                         </div>
                                                                         <div>
-                                                                            <button class="wak_btn w-full"
+                                                                            <button class="mo-btn w-full"
                                                                                 type="submit">حفظ
                                                                                 التعديلات
                                                                             </button>
                                                                         </div>
-                                                                        {{-- <button class="wak_btn" data-bs-toggle="collapse"
+                                                                        {{-- <button class="mo-btn" data-bs-toggle="collapse"
                                                                                 data-bs-target="#demo">
                                                                                 <i class="fa fa-fw fa-edit"></i>
                                                                                 <span class="action-text">تعديل العرض </span>
@@ -504,14 +515,13 @@
                                                     @endif
                                                 </div>
                                                 @if (Auth::check() && $post->user_id == Auth::id())
-                                                    <div class="raw m-2">
-                                                        <button tabindex="-1" class="wak_btn orange mx-2 col-sm-6 "
-                                                            type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal">
+                                                    <div class=" m-2 flex justify-start items-start">
+                                                        <button tabindex="-1" class="mo-btn  mx-1  " type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                             <i class="fa fa-check px-1"></i>
-                                                            <span class="action-text"> قبول العرض </span>
+                                                            <span class=""> قبول العرض </span>
                                                         </button>
-                                                        <a tabindex="-1" class="wak_btn green_border col-sm-6 " href="#">
+                                                        <a tabindex="-1" class="mo-btn btn-blue-rounderd" href="#">
                                                             <i class="fa fa-send px-1"></i>
                                                             <span class="action-text"> تواصل مع المستقل </span>
                                                         </a>
@@ -589,10 +599,10 @@
 
 
                                                                 </div>
-                                                                <div class="row modal-footer  ">
-                                                                    <input type="submit" class="btn wak_btn"
+                                                                <div class=" modal-footer flex ">
+                                                                    <input type="submit" class=" mo-btn"
                                                                         value="قبول العرض">
-                                                                    <button type="button" class="btn wak_btn green_border"
+                                                                    <button type="button" class=" mo-btn btn-blue-rounderd"
                                                                         data-bs-dismiss="modal">تراجع</button>
                                                                 </div>
                                                         </form>
