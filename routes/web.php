@@ -103,8 +103,6 @@ Route::group([
 
 
 
-
-
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 
     Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
@@ -160,7 +158,7 @@ Route::group([
 
             // this route for save new post
             Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
-
+        
             // --------end post routing
 
             // this is the page of the my_works
