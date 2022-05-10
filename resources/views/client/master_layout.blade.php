@@ -25,6 +25,13 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/client/css/main.css">
 
+
+    {{-- <link rel="stylesheet" href="./dist/css/tailwind.css"> --}}
+    <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
+    <link rel="stylesheet" href="/assets/client/dist/css/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+
+
     <link href="/assets/client/css/about.css" rel="stylesheet">
     <link href="/assets/client/css/post.css" rel="stylesheet">
 
