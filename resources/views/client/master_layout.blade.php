@@ -29,7 +29,7 @@
     {{-- <link rel="stylesheet" href="./dist/css/tailwind.css"> --}}
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script> --}}
 
 
     <link href="/assets/client/css/about.css" rel="stylesheet">
@@ -68,7 +68,7 @@
     @yield('content')
     @include('client.components.footer')
 
-    {{-- scripts ---}}
+    {{-- scripts - --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -101,17 +101,17 @@
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $(".showForm").click(function(){
+    <script>
+        $(document).ready(function() {
+            $(".showForm").click(function() {
 
- $(".editForm").toggleClass("show");
+                $(".editForm").toggleClass("show");
 
 
 
-  });
-});
-</script>
+            });
+        });
+    </script>
 
 </body>
 
