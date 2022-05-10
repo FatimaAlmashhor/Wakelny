@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-@livewireStyles
+    @livewireStyles
     <div class="d-flex justify-content-between align-item-center">
         <h3 class="mt-5 mb-2 font-lg px-4"> المشاريع المتاحه </h3>
 
@@ -9,9 +9,9 @@
         </div>
     </div>
     <div class=" d-flex my-5">
-   
-                @livewire('post')
-           
+
+        @livewire('post')
+
     </div>
 @endsection
 <script>
@@ -39,11 +39,10 @@
     x.addListener(Media) // Attach listener function on state changes
 </script>
 
-    @livewireScripts
+@livewireScripts
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.combobox').combobox()
     });
 </script>
-
