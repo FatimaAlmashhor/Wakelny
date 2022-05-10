@@ -55,8 +55,8 @@
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="stats-icon green">
-                                            <i class="iconly-boldShow"></i>
+                                        <div class="stats-icon red">
+      <i class="fa-solid fa-flag-checkered"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -73,8 +73,8 @@
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="stats-icon red">
-                                            <i class="fa-solid fa-flag-checkered"></i>                                        </div>
+                                        <div class="stats-icon green">
+                                           <i class="iconly-boldShow"></i>                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Saved Post</h6>
