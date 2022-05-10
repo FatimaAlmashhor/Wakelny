@@ -28,6 +28,8 @@
                                         <th>{{ __('dash.start_project') }}</th>
                                         <th>{{ __('dash.end_project') }}</th>
                                         <th>{{ __('dash.title') }}</th>
+                                        <th>{{ __('dash.seeker_id') }}</th>
+                                        <th>{{ __('dash.provider_id') }}</th>
                                         <th>{{ __('dash.duration') }}</th>
                                         <th>{{ __('dash.status') }}</th>
                                         <th >{{ __('dash.amount') }}</th>
@@ -40,11 +42,16 @@
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                             <td class="text-bold-500">{{ $item->stated_at }}</td>
+
                                             <td class="text-bold-500">{{ $item->finshed }}</td>
                                             <td class="text-bold-500">{{ $item->title }}</td>
+
+                                            <td class="text-bold-500">{{ $item->reporter }}</td>
+                                            <td class="text-bold-500">{{ $item->reported }}</td>
+
                                             <td class="text-bold-500">{{ $item->duration }}أيام</td>
                                             <td class="text-bold-500">{{ $item->status }}</td>
-                                            <td class="" style=" width: 1px;">{{ $item->amount }}</td>
+                                            <td class="" style=" width: 1px;">${{ $item->amount }}</td>
 
                                         </tr>
 

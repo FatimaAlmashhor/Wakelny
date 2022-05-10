@@ -103,8 +103,6 @@ Route::group([
 
 
 
-
-
     Route::get('/users', [AuthController::class, 'listAll'])->name('users');
 
     Route::get('/createUser', [AuthController::class, 'create'])->name('create_user');
@@ -160,7 +158,7 @@ Route::group([
 
             // this route for save new post
             Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
-
+        
             // --------end post routing
 
             // this is the page of the my_works
@@ -209,10 +207,18 @@ Route::group([
 
             // the project that provider work on
             Route::get('/myWorkOnProject', [MyWorkOnProjectController::class, 'index'])->name('workonProject');
-            Route::post('/mark_as_done/{project_id}/{seeker_id}', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
+            Route::get('/myWorkOnProject/done', [MyWorkOnProjectController::class, 'doneWork'])->name('doneWork');
+            Route::post('/mark_as_done', [MyWorkOnProjectController::class, 'markAsDone'])->name('markAsDone');
             Route::get('/confirm-receive/{project_id}/{provider_id}', [MyWorkOnProjectController::class, 'markAsRecive'])->name('markAsRecive');
             Route::post('/accept-receive', [MyWorkOnProjectController::class, 'markAsAccept'])->name('markAsAccept');
             Route::post('/reject-receive', [MyWorkOnProjectController::class, 'markAsReject'])->name('markAsReject');
+
+
+            // !report fatima vertion
+            Route::post('/reporting', [ReportController::class, 'reporting'])->name('reporting');
+
+            // continue the project after rejection
+            Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
         });
     });
 

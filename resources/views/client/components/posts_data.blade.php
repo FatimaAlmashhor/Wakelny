@@ -1,3 +1,4 @@
+
 @foreach ($posts as $item)
     {{-- one card --}}
     <div class="card px-3 container my-4" style="direction: rtl;">

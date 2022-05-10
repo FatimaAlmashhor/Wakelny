@@ -47,10 +47,12 @@ return [
      "end_project"=>"   نهاية المشروع ",
      "duration"=>"  الفترة ",
      "status"=>"  الحالة ",
-     "amount"=>"  الكمية ",
+     "amount"=>"  السعر  ",
      "projects"=>"  المشاريع ",
      "title"=> "العنوان",
-     'all_project'=>'المشاريع'
+     'all_project'=>'المشاريع',
+     'seeker_id'=>'طالب الخدمة',
+     'provider_id'=>'مقدم الخدمة',
 
 
 
