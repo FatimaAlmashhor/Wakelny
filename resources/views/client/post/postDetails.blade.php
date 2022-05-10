@@ -150,7 +150,7 @@
                                             </div>
                                             {{-- duration --}}
                                             <div class="col-sm-4 col-xs-12 pt-3">
-                                                <label>المدة المتوقعة للتسليم <em class="text--danger">*</em>
+                                                <label class="rtext">المدة المتوقعة للتسليم <em class="text--danger">*</em>
                                                 </label>
                                                 <div class="input-group mb-3">
 
