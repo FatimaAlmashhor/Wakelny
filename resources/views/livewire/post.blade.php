@@ -1,7 +1,7 @@
 
-        <div class="border-start d-flex justify-content-lg-between">
+        <div class="border-start d-flex ">
         
-            <div class="">
+            <div class="mx-4 border-start">
                 <form class="filter" id='filter' method="GET">
                     {{ csrf_field() }}
                     <input name="_token" type="hidden" />
@@ -131,7 +131,7 @@
                     </div>
                 </form>
             </div>
-            <div  id='freelancers' class="col-md-8 ">
+            <div  id='freelancers' class="col-md-8 mx-2 ">
             @include('client.components.posts_data')
             </div>
            
