@@ -27,46 +27,24 @@
                                         </div>
                                     </article>
 
+                                                 {{-- categories --}}
                                     <article class="filter-group">
 
-                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.category') }} </h6>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> أعمال وخدمات استشارية </p>
+                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.majers') }} </h6>
+                                        @foreach ($categories as $item)
+                                            <div style="">
+                                                <div class="card-body d-flex align-items-center ">
+                                                    <label class="wak_checkbox">
+                                                        <input value="{{ $item->id }}" name='categories[]' type="checkbox"
+                                                            class="categories" id="{{ $item->id }}">
+                                                        <span class=" checkmark"></span>
+                                                    </label>
+                                                    <p class="my-auto px-2"> {{ $item->title }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2">
-                                                    برمجة، تطوير المواقع والتطبيقات </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> هندسة، عمارة وتصميم داخلي </p>
-                                            </div>
-                                        </div>
-                                        <div style="">
-                                            <div class="card-body d-flex align-items-center ">
-                                                <label class="wak_checkbox">
-                                                    <input type="checkbox" checked="checked">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <p class="my-auto px-2"> تصميم، فيديو وصوتيات </p>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
+
                                     </article>
 
                                     <article class="filter-group">
