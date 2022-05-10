@@ -52,6 +52,7 @@
 
 <body>
     <!-- ====== START NAVIGATION ====== -->
+    <!-- ====== START NAVIGATION ====== -->
     @include('client.components.navigation')
     <!-- ====== END NAVIGATION ====== -->
 
