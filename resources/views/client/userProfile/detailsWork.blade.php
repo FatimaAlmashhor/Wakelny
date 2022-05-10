@@ -20,7 +20,7 @@
 
     </style>
     @foreach ($works as $item)
-        <div class="row mx-1  mt-2 ">
+        <!-- <div class="row mx-1  mt-2 ">
             <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                 <ol class="breadcrumb ms-3">
                     <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>&nbsp&nbsp/&nbsp
@@ -31,41 +31,23 @@
                 </ol>
             </nav>
 
-        </div>
-        <div class="container">
+        </div> -->
+        <div class="container my-4">
             <div class="row my-2">
                 <div style="float:right;">
                 {{-- edition btn --}}
-                <div class="dropdown btn-group float-start">
-                    <a tabindex="-1" class="wak_btn" data-bs-toggle="modal" data-bs-target="#deleteModel">
-                        <i class="fa fa-xmark px-1"></i>
-                        <span class="action-text">حذف العمل</span>
-                    </a>
-                    <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{-- <i class="fa fa-caret-down"></i> --}}
-                    </button>
-                    <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
-                        <li class="text-end my-2 px-2">
-                            <a tabindex="-1" href="{{ route('edit_work', $item->id) }}">
-                                <i class="fa fa-fw fa-gear"></i>
-                                <span class="action-text">تعديل العمل</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
+                <div class=" float-start">
+                <a tabindex="-1" href="{{ route('edit_work', $item->id) }}"> 
+                     <button class="mo-btn btn-blue-bg">تعديل</button> </a>
+            
+                <a tabindex="-1"  data-bs-toggle="modal" data-bs-target="#deleteModel">
+                   
+                <button class="mo-btn btn-pink-bg pink">حذف</button>
+                </a>
+               
+                  
                 </div>
-                {{-- <a  href="{{ route('edit_work' , $item->id) }}" class="btn btn-icon btn-outline-dribbble">
-                                              <i class="fas fa-edit bx bx-edit-alt me-1"></i>
-                                         </a>
-                                         <a  href="{{ route('toggle_work' , $item->id) }}" class="btn btn-icon btn-outline-dribbble">
-                                                 @if ($item->is_active == 1)
-                                                     <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
-                                                     @else
-                                                     <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
-                                                 @endif
-                                         </a> --}}
+              
             </div>
                 <div class="col-md-8 col-sm-12 my-2">
                     <div class="card shadow-sm ">
@@ -150,10 +132,11 @@
                                 هل تريد حذف {{ $item->title }}
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('toggle_work' , $item->id) }}" class="btn btn-danger">تاكيد الحذف</a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: auto">الغاء</button>
-                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-
+                             
+                                <a href="{{ route('toggle_work' , $item->id) }}" class="mo-btn btn-pink-bg pink">تاكيد الحذف</a>
+                             
+                                <button type="button" class="mo-btn btn-blue-bg" data-bs-dismiss="modal" style="width: auto">الغاء</button>
+                       
                             </div>
                         </div>
                     </div>

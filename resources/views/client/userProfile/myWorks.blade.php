@@ -1,7 +1,7 @@
 @extends('client.master_layout')
 @section('content')
 
-<div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
+<!-- <div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                     <ol class="breadcrumb ms-3">
                         <li class=" fs-6 fw-bold"><a href="{{ route('home') }}">الرئيسية </a></li>
@@ -10,10 +10,10 @@
                     </ol>
 
                 </nav>
-</div>
+</div> -->
 
 <div class=" d-flex flex-column" >
-<h2 class=" px-4">الأعمال الخاصة بي</h2>
+<h2 class="my-5 fs-3 fw-bold px-4">الأعمال الخاصة بي</h2>
     <div class=" d-flex flex-row justify-content-between ">
 
         <div id="filter_toggle" class="mx-4">
@@ -21,8 +21,8 @@
         </div>
 
         <div id="" class="mx-4 mt-2" style="position: absolute;
-    left: .1rem;">
-            <a href="{{ route('userWork') }}" class="wak_btn "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
+    left: .1rem;"> 
+            <a href="{{ route('userWork') }}" class="mo-btn btn-blue-bg "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
         </div>
     </div>
     <div class=" d-flex my-5">
