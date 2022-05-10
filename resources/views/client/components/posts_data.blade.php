@@ -1,30 +1,34 @@
 @foreach ($posts as $item)
     {{-- one card --}}
+    {{ $item->id }}
     <div class="card px-3 container my-4" style="direction: rtl;">
         <div class="box d-flex justify-content-between">
-            <a href="{{ route('posts.details', $item->id) }}" class="image d-flex">
+            <a href="{{ route('posts.details', $item->post_id) }}" class="image d-flex">
                 <p style="font-size: 18px;"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
                 @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
                     <div class="dropdown btn-group">
-                        <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->id) }}">
+                        <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->post_id) }}">
                             {{-- <i class="fa fa-fw fa-send"></i> --}}
                             <span class="action-text"> أضف عرضك </span>
                         </a>
                         <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{-- <i class="fa fa-caret-down"></i> --}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                                aria-labelledby="خيارات">
+                            aria-expanded="false">
+                            {{-- <i class="fa fa-caret-down"></i> --}}
+                        </button>
+                        <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
+                            aria-labelledby="خيارات">
+                            @if (Auth::check())
                                 <li class="my-2 border-bottom text-end ">
                                     <a tabindex="-1"
-                                        href="{{ route('report_content',  ['post_id' => $item->id, 'provider_id' => $item->provider_id])}}">
+                                        href="{{ route('report_content', ['post_id' => $item->post_id, 'provider_id' => Auth::id()]) }}">
                                         <i class="fa fa-fw fa-bookmark"></i>
                                         <span class="action-text">تبليغ عن محتوى</span>
                                     </a>
                                 </li>
+                            @endif
+
                     </div>
                 @endif
             </div>

@@ -36,9 +36,17 @@ class PostController extends Controller
             'profiles.user_id as provider_id'
         )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('status', 'open')->orderBy('id', 'DESC')->get();
 
+<<<<<<< HEAD
         $cates = category::where('is_active', 1)->get();
 
         return view('client.user.projectlancer')->with(['posts' => $projects, 'categories'=> $cates]);
+=======
+
+        $cates = category::where('is_active', 1)->get();
+
+        // return response()->json($cates);
+        return view('client.user.projectlancer')->with(['posts' => $projects, 'categories' => $cates]);
+>>>>>>> 236f76087ff14534b3a4528e040396bd69cf8593
     }
 
 
@@ -51,12 +59,12 @@ class PostController extends Controller
                 'profiles.name as post_user_name',
                 'profiles.user_id as post_user_id',
                 'profiles.specialization as post_user_specialization',
-            )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', $post_id)->where('is_active', 1)->first();
+            )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', (int)$post_id)->where('is_active', 1)->first();
 
 
             $skills = PostSkills::select('skills.name')
                 ->join('skills', 'skills.id', '=', 'post_skills.skill_id')
-                ->where('post_id', $post_id)
+                ->where('post_id', (int)$post_id)
                 ->where('is_active', 1)
                 ->get();
 
@@ -75,7 +83,7 @@ class PostController extends Controller
             )
                 ->join('profiles', 'profiles.user_id', '=', 'comments.user_id')
                 // ->join('works', 'works.user_id', '=', 'comments.user_id')
-                ->where('post_id', $post_id)
+                ->where('post_id', (int)$post_id)
                 ->groupBy([
                     'comments.id',
                     'profiles.name',
@@ -90,9 +98,9 @@ class PostController extends Controller
                 ->get();
 
             // print_r($comments);
-            $hasComment = Comments::where('post_id', $post_id)->where('user_id', Auth::id())->count();
+            $hasComment = Comments::where('post_id', (int)$post_id)->where('user_id', Auth::id())->count();
 
-            // return response()->json($comments);
+            // return response()->json($post);
             return view('client.post.postDetails')->with([
                 'post' => $post,
                 'comments' => $comments,
@@ -101,7 +109,7 @@ class PostController extends Controller
                 'hasComment' => $hasComment > 0 ? true : false
             ]);
         } catch (\Throwable $th) {
-            return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+            return back()->with(['message' => ' هنالك مشكله ما رجاء قم بعاده المحوله', 'type' => 'alert-danger']);
         }
     }
     // page for show the form of create new post
