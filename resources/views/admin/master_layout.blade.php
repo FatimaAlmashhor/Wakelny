@@ -56,11 +56,11 @@
         }
 
         .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
-            background-color: rgba(77, 212, 172, 1);
+            background-color: #373483;
         }
 
         .logo {
-            color: rgba(77, 212, 172, 1);
+            color: #373483;
         }
 
         .wak_btn {
@@ -68,7 +68,7 @@
             width: 60px;
             border: none;
             border-radius: 5px;
-            background-color: rgba(77, 212, 172, 1);
+            background-color:#373483;
             color: white;
         }
 
@@ -98,7 +98,7 @@
         @include('admin.components.aside')
         <div id="main">
             <div>
-                <nav class="navbar navbar-expand navbar-light " dir="ltr">
+                <nav class=" navbar-expand navbar-light " dir="ltr">
                     <div class="container-fluid">
 
 
@@ -143,11 +143,46 @@
                             </div>
                             <ul class="navbar-nav  mb-2 mb-lg-0">
 
-                                <li class="nav-item dropdown me-3">
-                                    <a class="nav-link active dropdown-toggle text-gray-600" href="#"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                <li class="nav-item ms-2 user-items">
+                                    <div class="nav-link active dropdown-toggle text-gray-600" aria-expanded="false" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" style="position: relative">
                                         <i class="bi bi-bell bi-sub fs-4"></i>
-                                    </a>
+                                        @if (auth()->user()->unreadNotifications->count() > 0)
+                                            <span
+                                                style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
+                                                {{-- {{ auth()->user()->unreadNotifications->count() }} --}}
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5" aria-labelledby="dropdownMenuButton1"
+                                        style="overflow: auto; width:340px ; hieght 70vh">
+
+                                        @foreach (auth()->user()->unreadNotifications as $notification)
+                                            <li class=""
+                                                style="color: gray ; overflow-wrap: break-word; height: fit-content ;   ">
+                                                <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
+                                                    style=' color: gray ; border-right: 4px solid {{ $notification->read_at == null ? 'red' : 'gray' }}  ; padding-right: 2px ; width:inherit; height: fit-content; '>
+                                                    @if ($notification->data['type'] == 'comment')
+                                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                                        <span> قام بأضافه
+                                                            {{ $notification->data['name'] }}
+                                                            عرض جديد على مشروعك</span>
+                                                        {{-- </a> --}}
+                                                    @else
+                                                        {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}
+                                                        <span>
+                                                            {{ $notification->data['message'] }}
+                                                        </span>
+                                                        {{-- </a> --}}
+                                                    @endif
+
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+
+
 
                                 </li>
                             </ul>

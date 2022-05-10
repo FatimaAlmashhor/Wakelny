@@ -33,7 +33,7 @@ use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\ChartJSController;
+
 
 
 
