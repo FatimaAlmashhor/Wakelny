@@ -15,7 +15,7 @@
 
             <h1 class="font-bold text-4xl text-purple-900 w-4/6 text-center">
 
-            OOps!
+            OOps!!
 
             </h1>
 
@@ -30,12 +30,12 @@
 
 
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                <lottie-player src="https://assets5.lottiefiles.com/private_files/lf30_GjhcdO.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_78nlkhud.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
             <button
               class="bg-purple-900 text-white rounded-md  font-semibold px-4 py-3 w-full"
             >
 
-         دعنا ننتقل الى الصفحة التالية
+       انتقل الى الصفحة السابقة
             </button>
           </div>
         </div>
