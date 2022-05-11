@@ -13,16 +13,17 @@
 </div> -->
 
 <div class=" d-flex flex-column" >
-<h2 class="my-5 fs-3 fw-bold px-4">الأعمال الخاصة بي</h2>
+<h5 class="my-5 font-4xl">الأعمال الخاصة بي</h5>
     <div class=" d-flex flex-row justify-content-between ">
 
         <div id="filter_toggle" class="mx-4">
-            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ تصنيف</button>
+            <button class="wak_btn green_border font-md" id='filter_toggle' onclick="openNav()">☰ تصنيف</button>
         </div>
 
         <div id="" class="mx-4 mt-2" style="position: absolute;
-    left: .1rem;">
-            <a href="{{ route('userWork') }}" class="mo-btn btn-blue-bg "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
+    left: .1rem;"> 
+            <a href="{{ route('userWork') }}" class="mo-btn btn-blue-bg font-md ml-4 "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
+
         </div>
     </div>
     <div class=" d-flex my-5">
@@ -41,7 +42,7 @@
                                 <div class="">
                                     <article class="filter-group">
 
-                                        <h6 class="title">{{ __('filter.search_keys') }} </h6>
+                                        <h6 class="title font-md">{{ __('filter.search_keys') }} </h6>
                                         <div>
                                             <div class="card-body"  >
                                                 <input type="text" id='search_by_name' name='search_by_keys'
@@ -52,7 +53,7 @@
 
                                     <article class="filter-group ">
 
-                                            <h6 class="title my-4">{{ __('filter.skills') }} </h6>
+                                            <h6 class="title my-4 font-md">{{ __('filter.skills') }} </h6>
                                             <div class="my-2  "style="margin:4px 14px;" >
 
                                                 <select class="selectpicker "  value="بالاختيار" name="skills[]" multiple aria-label="size 3 select example"
@@ -67,7 +68,7 @@
                                     </article>
                                     <article class="filter-group">
 
-                                        <h6 class="title my-4">الأعمال المضافة خلال آخر </h6>
+                                        <h6 class="title my-4 font-md">الأعمال المضافة خلال آخر </h6>
                                         <div class="mt-2  "style="margin:0px 14px;" >
 
                                             <select class="selectpicker "  value="" name="year"  data-actions-box="true" style="transform: translate3d(-4px, 212px, 0px);">
@@ -81,7 +82,7 @@
                                         </div>
                                     </article>
 
-
+<br><br><br><br><br><br><br><br>
 
 
                                 </div>

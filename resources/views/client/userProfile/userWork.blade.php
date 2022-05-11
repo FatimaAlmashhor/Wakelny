@@ -29,7 +29,7 @@
 </div> -->
     <div class="container">
     @if (Route::currentRouteName() == 'edit_work')
-        <h2 class="my-5 fs-3 fw-bold" > تعديل عمل </h2>
+        <h2 class="my-5 font-4xl " > تعديل عمل </h2>
         <div class="row my-5">
             <div class="col-md-8 col-sm-12">
             <div class="card shadow-sm ">
@@ -43,7 +43,7 @@
                             enctype="multipart/form-data">
 
                                 @else
-                                <h2 class="my-5 fs-3 fw-bold" > إضافة عمل </h2>
+                                <h2 class="my-5 font-4xl" > إضافة عمل </h2>
         <div class="row my-5">
                 <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
@@ -63,7 +63,7 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-6 col-form-label">
+                                    <label for="" class="col-md-6 col-form-label font-md">
                                                      عنوان العمل</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="" value="{{$data->title ??  old('title') }}" name="title"
@@ -77,7 +77,7 @@
                                 @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-6 col-form-label">
+                                    <label for="" class="col-md-6 col-form-label font-md">
                                               تاريخ الإنجاز</label>
                                     <div class="col-sm-10">
                                         <input type="date" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="" value="{{ $data->comple_date ?? old('comple_date') }}" name="comple_date"
@@ -96,7 +96,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-6 col-form-label">
+                                    <label for="" class="col-md-6 col-form-label font-md">
                                                  صورة مصغرة</label>
                                     <div class="col-sm-10">
                                         <input type="file"  class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="" value="{{ $data->main_image ?? old('main_image') }}" name="main_image"
@@ -110,7 +110,7 @@
                                 @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="" class="col-md-6 col-form-label">
+                                    <label for="" class="col-md-6 col-form-label font-md">
                                     رابط العمل</label>
                                     <div class="col-sm-10">
                                         <input type="url" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="" value="{{ $data->link ?? old('link') }}" name="link"
@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-md-11" style="margin-right:1px;">
 
-                                <label for="" class="col-md-6 col-form-label"> تفاصيل العمل</label>
+                                <label for="" class="col-md-6 col-form-label font-md"> تفاصيل العمل</label>
                                 <textarea class=" appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" placeholder=" تفاصيل العمل" id="" name="details">{{ $data->details ?? old('details') }}</textarea>
                                     @error('details')
                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
@@ -162,7 +162,7 @@
                             </div>  -->
                             <div class="row ">
                                 <div class="col-md-6 my-2">
-                                    <label for="" class="col-md-6 col-form-label"  style="" >
+                                    <label for="" class="col-md-6 col-form-label font-md"  style="" >
                                     {{ __('filter.skills') }}</label>
                                         <select class="selectpicker col-md-6 " value="بالاختيار" name="skills[]" multiple aria-label="size 2 select example"
                                                     data-actions-box="true">
@@ -176,11 +176,7 @@
                                 </div>
                             </div>
 
-                            <div class="row my-4">
-
-                                <button class="mo-btn btn-blue-bg" type="submit">أحفظ</button>
-
-                            </div>
+                         <button class="mo-btn btn-blue-bg float-left font-md"type="submit">أحفظ</button>
 
                     {{ csrf_field() }}
                     </form>
