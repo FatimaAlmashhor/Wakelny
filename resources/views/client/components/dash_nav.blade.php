@@ -49,8 +49,8 @@
 
             <p style="cursor: pointer" id="note"
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
-                <i class="fa fa-book pe-2"></i>
-                <span class="fs-6 fw-bold mx-4">{{ __('profile.notifacation') }}</span>
+                <i class="fa  fa-wallet pe-2"></i>
+                <span class="fs-6 fw-bold mx-4">{{ __('profile.wallet') }}</span>
             </p>
 
 
@@ -94,7 +94,7 @@
 
 
 
-<section class="col-lg-8 col-md-8 col-12" id="Edu">
+{{-- <section class="col-lg-8 col-md-8 col-12" id="Edu">
     <div class="card p-3">
 
 
@@ -200,4 +200,35 @@
             <button class="wak_btn " type="submit">Save</button>
 
         </div>
+</section> --}}
+
+<section class="col-lg-8 col-md-8 col-12" id="Edu">
+
+    <table class="table">
+        <thead >
+            <tr>
+                <td>الرقم</td>
+                <td>المسلم </td>
+                <td>المستلم</td>
+                <td>المبلغ </td>
+                <td>التاريخ</td>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            <tr>
+                <td>1</td>
+                <td>رقيه </td>
+                <td>رقيه</td>
+                <td>5000 </td>
+                <td>5/10/2022</td>
+            </tr>
+              <tr>
+                <td>1</td>
+                <td>رقيه </td>
+                <td>رقيه</td>
+                <td>5000 </td>
+                <td>5/10/2022</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
