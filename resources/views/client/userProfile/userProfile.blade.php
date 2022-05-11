@@ -49,75 +49,67 @@
             </div>
 
             {{-- user report --}}
-            <div class="card--actions hidden-xs float-start col-2">
+            <div class="card--actions hidden-xs float-start col-3">
                 <div class="dropdown btn-group">
                     @if (Auth::check())
                         @role('seeker')
-                            <a tabindex="-1" class="wak_btn" href="{{ route('post') }}">
-                                <i class="fa fa-fw fa-send"></i>
-
-                                <span class="action-text">أضف مشروع </span>
+                            <div class="dropdown inline-block relative min-w-fit">
+                                <a tabindex="-1"
+                                    class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                    href="{{ route('post') }}">
+                                    <i class="fa fa-fw fa-send"></i>
+                                    <span class="mr-1"> أضف مشروع </span>
+                                    <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path style="color:white ; stroke: white;
+                                                fill: white;"
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
                         @endif
                         </a>
                     @endrole
-
-
-
-                    <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{-- <i class="fa fa-caret-down"></i> --}}
-                    </button>
-                    <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
-                        <li class="my-2 border-bottom text-end ">
-                            <a tabindex="-1" href="">
-                                <i class="fa fa-fw fa-bookmark"></i>
-                                <span class="action-text">أضف إلى المفضلة</span>
-                            </a>
-                        </li>
-
-
-
-
-                        <li class="text-end my-2 px-2">
-                            <a tabindex="-1" href="{{ route('report_provider', $data->user_id) }}">
-                                <i class="fa fa-fw fa-flag"></i>
-                                <span class="action-text">تبليغ عن مستخدم</span>
+                    <ul class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 "
+                        role="menu" aria-labelledby="خيارات">
+                        <li class="border-b border-primary-light-pink">
+                            <a lass="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                href="{{ route('report_provider', $data->user_id) }}">
+                                تبليغ عن محتوى
                             </a>
                         </li>
 
                     </ul>
                 </div>
-
             </div>
-            {{-- user report --}}
 
         </div>
+        {{-- user report --}}
+
+    </div>
 
 
 
-        <!-- /User Identety Brief-->
+    <!-- /User Identety Brief-->
 
-        <!-- Profile Taps -->
-        <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
-            <nav class="nav fw-bold col-auto">
-                <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">حول</p>
-                <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
-                @if ($role == 'provider' || $role == 'both')
-                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">الأعمال</p>
-                @endif
-                @if ($role == 'seeker' || $role == 'both')
-                    <p class="nav-link color-black tab tab-C" id="works" data-current="tab-D">المشاريع</p>
-                @endif
-            </nav>
+    <!-- Profile Taps -->
+    <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
+        <nav class="nav fw-bold col-auto">
+            <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">حول</p>
+            <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
+            @if ($role == 'provider' || $role == 'both')
+                <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">الأعمال</p>
+            @endif
+            @if ($role == 'seeker' || $role == 'both')
+                <p class="nav-link color-black tab tab-C" id="works" data-current="tab-D">المشاريع</p>
+            @endif
+        </nav>
 
-            {{-- <div class="kalefny-btn-div">
+        {{-- <div class="kalefny-btn-div">
                 <button type="button" class="btn-kalefny color-gray-lighter fw-bold">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>كلفني</span>
                 </button>
             </div> --}}
-        </div>
-        <!-- /Profile Taps -->
+    </div>
+    <!-- /Profile Taps -->
     </div>
 
     <main class="main-section container mt-3">

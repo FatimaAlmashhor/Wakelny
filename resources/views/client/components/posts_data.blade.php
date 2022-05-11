@@ -9,29 +9,38 @@
             <div class="card--actions hidden-xs">
                 @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
                     <div class="dropdown btn-group">
-                        <a tabindex="-1" class="wak_btn" href="{{ route('posts.details', $item->post_id) }}">
-                            {{-- <i class="fa fa-fw fa-send"></i> --}}
-                            <span class="action-text"> أضف عرضك </span>
-                        </a>
-                        <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                        <div class="dropdown inline-block relative min-w-fit">
+                            <a tabindex="-1"
+                                class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                href="{{ route('posts.details', $item->post_id) }}">
+                                {{-- <i class="fa fa-fw fa-send"></i> --}}
+                                <span class="mr-1"> أضف عرضك </span>
+                                <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path style="color:white ; stroke: white;
+                                        fill: white;"
+                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </a>
+                            {{-- <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             {{-- <i class="fa fa-caret-down"></i> --}}
-                        </button>
-                        <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                            aria-labelledby="خيارات">
-                            @if (Auth::check())
-                                <li class="my-2 border-bottom text-end ">
-                                    <a tabindex="-1"
-                                        href="{{ route('report_content', ['post_id' => $item->post_id, 'provider_id' => Auth::id()]) }}">
-                                        <i class="fa fa-fw fa-bookmark"></i>
-                                        <span class="action-text">تبليغ عن محتوى</span>
-                                    </a>
-                                </li>
-                            @endif
-
+                            {{-- </button> --}}
+                            <ul class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 "
+                                role="menu" aria-labelledby="خيارات">
+                                @if (Auth::check())
+                                    <li class="border-b border-primary-light-pink">
+                                        <a lass="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                            href="{{ route('report_content', ['post_id' => $item->post_id, 'provider_id' => Auth::id()]) }}">
+                                            تبليغ عن محتوى
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
                 @endif
             </div>
+
         </div>
         <div class="info mx-0">
             <div class="rate">
