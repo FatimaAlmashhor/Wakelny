@@ -33,7 +33,7 @@ use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\ChartJSController;
+use App\Http\Controllers\client\ChatController;
 
 
 
@@ -48,6 +48,7 @@ use App\Http\Controllers\ChartJSController;
 |
 */
 
+Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
