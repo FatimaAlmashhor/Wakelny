@@ -144,56 +144,65 @@ class ProjectController extends Controller
     // if ther use accept the project
     function acceptProject($project_id, $seeker_id)
     {
-        try {
-            // notify the provider about the acceptence of the offer
-            $seekerNotify = User::find($seeker_id);
+        // try {
+        // notify the provider about the acceptence of the offer
+        $seekerNotify = User::find($seeker_id);
 
-            $project = Project::select(
-                'posts.title'
-            )->join('posts', 'posts.id', 'projects.post_id')
-                ->where('projects.seeker_id', $seeker_id)
-                ->where('projects.id', $project_id)
-                ->first();
+        $project = Project::select(
+            'posts.title'
+        )->join('posts', 'posts.id', 'projects.post_id')
+            ->where('projects.seeker_id', $seeker_id)
+            ->where('projects.id', $project_id)
+            ->first();
 
-            $response = Http::withHeaders([
-                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-                'Content-Type' => 'application/x-www-form-urlencoded'
-            ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
-                'order_reference' => '123412',
-                'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
-                'total_amount' => '133',
-                'currency' => 'YEN',
-                'success_url' => '/',
-                'cancel_url' => '/logout',
-                'metadata' => ' { "Customer name": "somename", "order id": 0}'
-            ]);
 
-            $data = [
-                'project_id' => $project_id,
-                'name' => $seekerNotify->name,
-                'project_title' => $project->title,
-                'url' => url($response['next_url']),
-                'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
-                'userId' => Auth::id()
-            ];
+        $dataPayment = [
+            "id" => 1,
+            "product_name" => "sumsung s5",
+            "quantity" => 1,
+            "unit_amount" => 100
+        ];
 
-            Project::where('id', $project_id)->update([
-                'status' => 'at_work',
-                'stated_at' => date("Y/m/d"),
-            ]);
+        $response = Http::withHeaders([
+            'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+            'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+            'Content-Type' => 'application/x-www-form-url'
+        ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
+            'order_reference' => '123412',
+            'products' =>  [$dataPayment],
+            'total_amount' => '133',
+            'currency' => 'YER',
+            'success_url' => '/',
+            'cancel_url' => '/logout',
+            'metadata' => ' { "Customer name": "somename", "order id": 0}'
+        ]);
 
-            Profile::where('user_id', Auth::id())
-                ->where('limit', '<=', 4)
-                ->where('limit', '>=', 0)
-                ->decrement('limit');
+        return $response->json($key = null);
+        // $data = [
+        //     'project_id' => $project_id,
+        //     'name' => $seekerNotify->name,
+        //     'project_title' => $project->title,
+        //     'url' => url($response['next_url']),
+        //     'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
+        //     'userId' => Auth::id()
+        // ];
 
-            $seekerNotify->notify(new AcceptProjectNotification($data));
-            // return response()->json($seekerNotify);
-            return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        }
+        //     Project::where('id', $project_id)->update([
+        //         'status' => 'at_work',
+        //         'stated_at' => date("Y/m/d"),
+        //     ]);
+
+        //     Profile::where('user_id', Auth::id())
+        //         ->where('limit', '<=', 4)
+        //         ->where('limit', '>=', 0)
+        //         ->decrement('limit');
+
+        //     $seekerNotify->notify(new AcceptProjectNotification($data));
+        //     // return response()->json($seekerNotify);
+        //     return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        // }
     }
 
     // if the provider reject the project
