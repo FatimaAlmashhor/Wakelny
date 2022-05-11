@@ -25,7 +25,7 @@
 
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold ">{{ __('dash.user_numb') }} </h6>
-                                        <h6 class="font-extrabold mb-0">{{ $users }}</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $user }}</h6>
 
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">البلاغات</h6>
-                                        <h6 class="font-extrabold mb-0">{{ $reports }}</h6>
+                                        <h6 class="text-muted font-semibold"> الاقسام </h6>
+                                        <h6 class="font-extrabold mb-0">{{ $cates }}</h6>
 
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
                                            <i class="iconly-boldShow"></i>                                        </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
+                                        <h6 class="text-muted font-semibold">البلاغات</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $reports }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -89,10 +89,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Profile Visit</h4>
+                                <h4> {{ __('dash.user_numb') }} </h4>
+
                             </div>
                             <div class="card-body">
-                                <div id="chart-profile-visit"></div>
+                               <canvas id="myChart" height="100px"></canvas>
                             </div>
                         </div>
                     </div>
@@ -165,54 +166,15 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Latest Comments</h4>
+
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-lg">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Comment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="/assets/admin//images/faces/5.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Congratulations on your graduation!
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="/assets/admin//images/faces/2.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Wow amazing design! Can you make
-                                                        another
-                                                        tutorial for
-                                                        this design?</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                               <canvas id="myChart" height="100px"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
+               
             </div>
             <div class="col-12 col-lg-3">
                 <div class="card">
@@ -228,44 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Recent Messages</h4>
-                    </div>
-                    <div class="card-content pb-4">
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="/assets/admin//images/faces/4.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">Hank Schrader</h5>
-                                <h6 class="text-muted mb-0">@johnducky</h6>
-                            </div>
-                        </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="/assets/admin//images/faces/5.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">Dean Winchester</h5>
-                                <h6 class="text-muted mb-0">@imdean</h6>
-                            </div>
-                        </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="/assets/admin//images/faces/1.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">John Dodol</h5>
-                                <h6 class="text-muted mb-0">@dodoljohn</h6>
-                            </div>
-                        </div>
-                        <div class="px-4">
-                            <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                Conversation</button>
-                        </div>
-                    </div>
-                </div>
+            
                 <div class="card">
                     <div class="card-header">
                         <h4>Visitors Profile</h4>
@@ -278,27 +203,65 @@
         </section>
     </div>
 
-    <footer>
-        <div class="footer clearfix mb-0 text-muted">
-            <div class="float-start">
-                <p>2021 &copy; Mazer</p>
-            </div>
-            <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                        href="http://ahmadsaugi.com">A. Saugi</a></p>
-            </div>
-        </div>
-    </footer>
 
-    <footer>
-        <div class="footer clearfix mb-0 text-muted">
-            <div class="float-start">
-                <p>2021 &copy; Mazer</p>
-            </div>
-            <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                        href="http://ahmadsaugi.com">A. Saugi</a></p>
-            </div>
-        </div>
-    </footer>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+
+<script type="text/javascript">
+
+  
+
+      var labels =  {{ Js::from($labels) }};
+
+      var users =  {{ Js::from($data) }};
+
+  
+
+      const data = {
+
+        labels: labels,
+
+        datasets: [{
+
+          label: 'المخطط الزمني للمستخدمين',
+
+          backgroundColor: 'rgb(255, 99, 132)',
+
+          borderColor: 'rgb(255, 99, 132)',
+
+          data: users,
+
+        }]
+
+      };
+
+  
+
+      const config = {
+
+        type: 'line',
+
+        data: data,
+
+        options: {}
+
+      };
+
+  
+
+      const myChart = new Chart(
+
+        document.getElementById('myChart'),
+
+        config
+
+      );
+
+  
+
+</script>
 @endsection
