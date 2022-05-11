@@ -21,7 +21,7 @@
         </div>
 
         <div id="" class="mx-4 mt-2" style="position: absolute;
-    left: .1rem;"> 
+    left: .1rem;">
             <a href="{{ route('userWork') }}" class="mo-btn btn-blue-bg "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
         </div>
     </div>
@@ -96,7 +96,7 @@
   </header>
 
 
- 
+
 <div class="py-5">
 
     <div class="row ">
