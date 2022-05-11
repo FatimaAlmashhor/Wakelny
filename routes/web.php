@@ -33,8 +33,9 @@ use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\ChartJSController;
-use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\client\ChatController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,7 @@ use App\Http\Controllers\ChatsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 
 //start email verify
@@ -332,6 +334,6 @@ Route::get('/testApi', function () {
 });
 
 
-Route::get('/messages/chat', [ChatsController::class, 'index']);
-Route::get('messages',  [ChartJSController::class, 'fetchMessages']);
-Route::post('messages', [ChartJSController::class, 'sendMessage']);
+Route::get('/chats', [ChatController::class, 'index'])->name('chat');
+Route::get('messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
+Route::post('messages', [ChatController::class, 'sendMessage'])->name('chat.send');

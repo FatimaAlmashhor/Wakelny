@@ -1,6 +1,6 @@
 
         <div class="border-start d-flex ">
-        
+
             <div class="mx-4 border-start">
                 <form class="filter" id='filter' method="GET">
                     {{ csrf_field() }}
@@ -14,7 +14,7 @@
                                         <div class="">
                                             <article class="filter-group">
 
-                                                <h6 class="title font-sm color-gray-dark">{{ __('filter.search_keys') }} </h6>
+                                                <h6 class="title font-md color-gray-dark">{{ __('filter.search_keys') }} </h6>
                                                 <div style="">
                                                     <div class="card-body">
                                                         <input type="text" wire:model="searchTerm" name='search_by_keys'
@@ -26,7 +26,7 @@
                                             {{-- categories --}}
                                             <article class="filter-group">
 
-                                                <h6 class="title font-sm color-gray-dark">{{ __('filter.majers') }} </h6>
+                                                <h6 class="title font-md color-gray-dark">{{ __('filter.majers') }} </h6>
                                                 @foreach ($categories as $type)
                                                     <div style="">
                                                         <div class="card-body d-flex align-items-center ">
@@ -41,10 +41,10 @@
 
 
                                             </article>
-                    
+
                                             <article class="filter-group">
 
-                                                <h6 class="title font-sm color-gray-dark">{{ __('filter.skill') }} </h6>
+                                                <h6 class="title font-md color-gray-dark">{{ __('filter.skill') }} </h6>
                                                 <div style="mt-2">
                                                     <select class="combobox wak_input" name="normal">
                                                         <option value="" selected="selected">اختر المهارة </option>
@@ -62,7 +62,7 @@
 
                                             <article class="filter-group">
 
-                                                <h6 class="title font-sm color-gray-dark">{{ __('filter.time') }} </h6>
+                                                <h6 class="title font-md color-gray-dark">{{ __('filter.time') }} </h6>
                                                 <div style="">
                                                     <div class="card-body d-flex align-items-center ">
                                                         <label class="wak_checkbox">
@@ -105,7 +105,7 @@
 
                                             <article class="filter-group">
 
-                                                <h6 class="title font-sm color-gray-dark">{{ __('filter.balance') }} </h6>
+                                                <h6 class="title font-md color-gray-dark">{{ __('filter.balance') }} </h6>
                                                 <div style="">
                                                     <div class="card-body d-flex align-items-center ">
                                                         <label class="wak_checkbox">
@@ -134,7 +134,7 @@
             <div  id='freelancers' class="col-md-8 mx-2 ">
             @include('client.components.posts_data')
             </div>
-           
+
         </div>
     </div>
 
