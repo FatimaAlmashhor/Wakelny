@@ -14,35 +14,38 @@
                 <div class="col-sm-6">
                     <div class="card--actions hidden-xs  flex-wrap float-start">
                         <div class="dropdown btn-group">
-<div class="dropdown inline-block relative min-w-fit">
-                            <a tabindex="-1" class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa fa-xmark px-1"></i>
-                                <span class="mr-1">اغلاق المشروع </span>
-                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg"
+                            <div class="dropdown inline-block relative min-w-fit">
+                                <a tabindex="-1"
+                                    class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa fa-xmark px-1"></i>
+                                    <span class="mr-1">اغلاق المشروع </span>
+                                    <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
                                         <path style="color:white ; stroke: white;
-                                                                  fill: white;"
+                                                                      fill: white;"
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
 
-                            </a>
+                                </a>
 
-                            {{-- <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
+                                {{-- <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{-- <i class="fa fa-caret-down"></i> --}}
-                            {{-- </button> --}}
-                           <ul
+                                {{-- </button> --}}
+                                <ul
                                     class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
 
                                     <li class="border-b border-primary-light-pink">
-                                     <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2 block whitespace-no-wrap" href="{{ route('editPosts', $item->id) }}">
-                                        <i class="fa fa-fw fa-gear"></i>
-                                        <span class="action-text">تعديل المشروع</span>
-                                    </a>
-                                </li>
+                                        <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2 block whitespace-no-wrap"
+                                            href="{{ route('editPosts', $item->id) }}">
+                                            <i class="fa fa-fw fa-gear"></i>
+                                            <span class="action-text">تعديل المشروع</span>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
