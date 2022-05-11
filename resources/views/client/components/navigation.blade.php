@@ -35,7 +35,7 @@
                       </li>
                       <li class="nav_item font-sm cursor-pointer">
                           <a href="{{ route('projectlancer') }}">
-                              طالبي الخدمات
+                            المشاريع المتاحه
                           </a>
                       </li>
                       <li class="nav_item font-sm cursor-pointer">
@@ -69,14 +69,16 @@
                           x-transition:leave="transition ease-in duration-75"
                           x-transition:leave-start="transform opacity-100 scale-100"
                           x-transition:leave-end="transform opacity-0 scale-95"
-                          class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                          class="absolute left-0 w-full mt-2 origin-top-right  rounded-md shadow-lg z-50 md:w-80">
                           <div class="px-2 py-2 bg-white rounded-md shadow">
-                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                  href="#">Notifikasi 1</a>
-                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                  href="#">Notifikasi #2</a>
-                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                  href="#">Notifikasi #3</a>
+                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                  href="#">تم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنان </a>
+                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                  href="#">تم رفض العرض من قبل احمد</a>
+                                  <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                  href="#">تم اضافة عرض من قبل أفنان</a>
+                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                  href="#">تم رفض العرض من قبل احمد</a>
                           </div>
                       </div>
                   </div>
