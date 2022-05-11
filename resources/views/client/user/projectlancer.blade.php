@@ -5,7 +5,7 @@
         <h3 class="mt-5 mb-2 font-lg px-4"> المشاريع المتاحه </h3>
 
         <div id="filter_toggle" class="mx-4 mt-5">
-            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+            <button class="mo-btn btn-blue-rounderd " id='filter_toggle' onclick="openNav()">☰ Filter</button>
         </div>
     </div>
     <div class=" d-flex my-5">
