@@ -168,7 +168,7 @@
 
                             </div>
                             <div>
-                                <button class="wak_btn w-full" type="submit">حفظ التعديلات
+                            <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ التعديلات
                                 </button>
                             </div>
                             <!-- Form submit button -->
