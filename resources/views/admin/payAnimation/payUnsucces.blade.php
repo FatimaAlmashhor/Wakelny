@@ -9,7 +9,6 @@
 
 <body class="">
 
-
     <div class="flex items-center justify-center h-screen bg-gray-200">
         <div class="bg-white rounded-2xl border shadow-x1 p-10 w-4/12">
           <div class="flex flex-col items-center space-y-4">
