@@ -15,6 +15,9 @@ use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
+use App\Http\Controllers\admin\settingUserController;
+
+
 
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
@@ -25,7 +28,7 @@ use App\Http\Controllers\admin\ReportController;
 
 
 
-use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\SpecializationController;
@@ -158,7 +161,7 @@ Route::group([
 
             // this route for save new post
             Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
-        
+
             // --------end post routing
 
             // this is the page of the my_works
@@ -289,6 +292,10 @@ Route::group([
 
     });
 });
+
+Route::get('/paySuccess', [settingPaymentController::class, 'payPage']);
+
+
 
 // ------------------------------------------------------------------------
 // Admin Block UnBlock- Users
