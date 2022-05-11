@@ -1,5 +1,5 @@
 <!-- footer -->
-<footer class=" w-full bg-primary-blue h-64 shadow-lg border-md text-white overflow-hidden">
+<footer class=" w-full bg-primary-blue h-64 shadow-lg border-md text-white overflow-hidden mt-20">
     <!-- header content -->
     <div class="flex flex-col md:flex-row md:justify-between h-full w-full">
 
