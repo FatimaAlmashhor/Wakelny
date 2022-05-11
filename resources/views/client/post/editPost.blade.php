@@ -169,7 +169,9 @@
 
                             </div>
                             <div>
-                               <button class="mo-btn btn-blue-bg float-left font-md"type="submit">حفظ التعديلات</button>
+                            <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ التعديلات
+                                </button>
+
                             </div>
                             <!-- Form submit button -->
                             {{-- <div class="row">
