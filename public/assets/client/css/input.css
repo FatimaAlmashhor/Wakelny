@@ -8,7 +8,7 @@
 }
 
 .wak_input:focus {
-    border: 1px solid var(--second-orange-color);
+    border: 1px solid #CD657C;
     box-shadow: none;
 }
 
@@ -53,7 +53,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .wak_checkbox input:checked~.checkmark {
-    background-color: var(--second-orange-color);
+    background-color: #373483;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
