@@ -2,8 +2,6 @@
 
         {{-- freelancers --}}
         @foreach ($data as $item)
-
-
             <div class="card p-4 container my-3" style="direction: rtl;">
                 <div class="box d-flex justify-content-between">
                     <div class="image d-flex">
@@ -44,42 +42,33 @@
                     </div>
                     <div class="card--actions hidden-xs">
                         <div class="dropdown btn-group">
+                            <div class="dropdown inline-block relative min-w-fit">
+                                <a tabindex="-1"
+                                    class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                    href="#">
+                                    <i class="fa fa-fw fa-send"></i>
+                                    <span class="mr-1">انا متاح </span>
+                                    <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path style="color:white ; stroke: white;
+                                                                  fill: white;"
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </a>
+                                <ul
+                                    class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
 
-                            <a tabindex="-1" class="wak_btn" href="#">
-                                <i class="fa fa-fw fa-send"></i>
-                                <span class="action-text">كلفني </span>
-                            </a>
+                                    <li class="border-b border-primary-light-pink">
+                                        <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2 block whitespace-no-wrap"
+                                            href="{{ route('report_provider', $item->user_id) }}">
+                                            {{-- <i class="fa fa-fw fa-flag"></i> --}}
+                                            التبليغ عن مستخدم</a>
 
+                                    </li>
 
-
-                            <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{-- <i class="fa fa-caret-down"></i> --}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu"
-                                aria-labelledby="خيارات">
-                                <li class="my-2 border-bottom text-end ">
-                                    <a tabindex="-1"
-                                        href="">
-                                        <i class="fa fa-fw fa-bookmark"></i>
-                                        <span class="action-text">أضف إلى المفضلة</span>
-                                    </a>
-                                </li>
-
-                                
-
-
-                                    <li class="text-end my-2 px-2">
-                                    <a tabindex="-1"
-                                        href="{{ route('report_provider',  $item->user_id)}}">
-                                        <i class="fa fa-fw fa-flag"></i>
-                                        <span class="action-text">تبليغ عن مستخدم</span>
-                                    </a>
-                                </li>
-
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-
                     </div>
 
                 </div>

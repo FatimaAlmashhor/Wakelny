@@ -23,6 +23,7 @@
         <div id="" class="mx-4 mt-2" style="position: absolute;
     left: .1rem;"> 
             <a href="{{ route('userWork') }}" class="mo-btn btn-blue-bg font-md ml-4 "  > <i class="fas fa-plus"></i> &nbsp; أضافة  </a>
+
         </div>
     </div>
     <div class=" d-flex my-5">
@@ -96,7 +97,7 @@
   </header>
 
 
- 
+
 <div class="py-5">
 
     <div class="row ">
