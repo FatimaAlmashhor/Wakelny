@@ -293,7 +293,8 @@ Route::group([
     });
 });
 
-Route::get('/paySuccess', [settingPaymentController::class, 'payPage']);
+Route::get('/paySuccess', [settingPaymentController::class, 'payPagesucces']);
+Route::get('/payUnsuccess', [settingPaymentController::class, 'payPageUnsucces']);
 
 
 

@@ -8,10 +8,16 @@ use App\Models\Payment;
 
 class settingPaymentController extends Controller
 {
-    public function payPage(){
+    public function payPagesucces(){
 
     return view('admin.payAnimation.paySucces');
     }
+
+    public function payPageUnsucces(){
+
+        return view('admin.payAnimation.payUnsucces');
+        }
+
 
 
 }
