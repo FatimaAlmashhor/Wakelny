@@ -6,7 +6,7 @@
             <div class="container-fluid border-bottom px-5 pt-5">
                 <!-- User Identety Brief-->
                 <div class="profile-identity row">
-                    <h4> المعلومات الشخصية</h4>
+                    <h4 class="m-5 font-4xl"> المعلومات الشخصية</h4>
 
                     <div class="col-md-12  d-flex justify-content-center align-items-center">
                         <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">
@@ -73,9 +73,9 @@
 
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
-                                        <label>الاسم <em class="text--danger">*</em>
+                                        <label class="font-md">الاسم
                                         </label>
-                                        <input class="form-control" placeholder="أكتب اسمك باللغة العربية" type="text"
+                                        <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" placeholder="أكتب اسمك باللغة العربية" type="text"
                                             name=" name" value="{{ $d->name }}">
                                         @error('name')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -98,9 +98,9 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
-                                        <label> الجنس <em class="text--danger">*</em>
+                                        <label class="font-md"> الجنس
                                         </label>
-                                        <select class="form-select" aria-label="Default select example" name="gender"
+                                        <select class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" aria-label="Default select example" name="gender"
                                             required="required">
                                             {{-- <option selected>الجنس</option> --}}
                                             <option @if ($d->gender == 1) selected @endif value="1">ذكر</option>
@@ -116,15 +116,15 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-12 pt-3">
                                     <div class="form-group  ">
-                                        <label>الدولة <em class="text--danger">*</em>
+                                        <label class="font-md">الدولة
                                         </label>
-                                        <select class="form-select" aria-label="Default select example" name="country"
+                                        <select class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" aria-label="Default select example" name="country"
                                             required="required">
-                                            <option @if ($d->country == 'Yemen') selected @endif value="yem">اليمن
+                                            <option @if ($d->country == 'Yemen') selected @endif value="Yemen">اليمن
                                             </option>
                                             <option @if ($d->country == 'ksa') selected @endif value="ksa">السعودية
                                             </option>
-                                            <option @if ($d->country == 'Egypt') selected @endif value="egy">مصر
+                                            <option @if ($d->country == 'Egypt') selected @endif value="Egypt">مصر
                                             </option>
                                             <option @if ($d->country == 'UAE') selected @endif value="UAE">الامارات
                                             </option>
@@ -142,9 +142,8 @@
 
                                 <div class="col-sm-6 col-xs-12 pt-3">
 
-                                    <label>رقم الهاتف <em class="text--danger">*</em>
-                                    </label>
-                                    <input name="mobile" class='form-control' id="phone" type="tel"
+                                    <label class="font-md">رقم الهاتف </label>
+                                    <input name="mobile" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="phone" type="tel"
                                         value="{{ $d->mobile }}">
                                     @error('mobile')
                                         <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
@@ -155,11 +154,10 @@
                                 </div>
 
 
-                                <div class=" mx-auto pt-3">
-                                    <button class="wak_btn w-full" type="submit">حفظ
-                                        الاعدادت</button>
-
-                                </div>
+                               <div>
+                            <button class="mo-btn btn-blue-bg float-left font-md mt-3" type="submit">حفظ الاعدادات
+                            </button>
+                        </div>
                             </div>
                         </div>
                     </div>
