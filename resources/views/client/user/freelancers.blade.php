@@ -1,10 +1,10 @@
 @extends('client.master_layout')
 @section('content')
     <div class="d-flex justify-content-between align-item-center">
-        <h3 class="mt-5 mb-2 font-lg px-4">أبحث عن مستقلين</h3>
+        <h3 class="mt-5 mb-2 font-4xl px-4">ابحث عن مستقلين</h3>
 
         <div id="filter_toggle" class="mx-4 mt-5">
-            <button class="wak_btn green_border" id='filter_toggle' onclick="openNav()">☰ Filter</button>
+            <button class="mo-btn btn-blue-rounderd" id='filter_toggle' onclick="openNav()">☰ Filter</button>
         </div>
     </div>
     <div class=" d-flex my-5">
@@ -23,7 +23,7 @@
                                 <div class="">
                                     <article class="filter-group">
 
-                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.search_keys') }} </h6>
+                                        <h6 class="title font-md color-gray-dark">{{ __('filter.search_keys') }} </h6>
                                         <div style="">
                                             <div class="card-body">
                                                 <input type="text" id='search_by_name' name='search_by_keys'
@@ -35,7 +35,7 @@
                                     {{-- categories --}}
                                     <article class="filter-group">
 
-                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.majers') }} </h6>
+                                        <h6 class="title font-md color-gray-dark">{{ __('filter.majers') }} </h6>
 
 
                                         {{-- <div style="">
@@ -95,7 +95,7 @@
 
                                     <article class="filter-group">
 
-                                        <h6 class="title font-sm color-gray-dark">{{ __('filter.rating') }} </h6>
+                                        <h6 class="title font-md color-gray-dark">{{ __('filter.rating') }} </h6>
                                         <div class="stars">
                                             <form action=""> <input class="star star-5" id="star-5" type="radio"
                                                     value="1" name="star" />

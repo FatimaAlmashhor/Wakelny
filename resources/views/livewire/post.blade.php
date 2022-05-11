@@ -1,5 +1,5 @@
 
-        <div class="border-start d-flex ">
+        <div class=" d-flex ">
 
             <div class="mx-4 border-start">
                 <form class="filter" id='filter' method="GET">
