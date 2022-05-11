@@ -8,7 +8,7 @@
                     <div class="illstration_warrper w-full h-full">
                         <div class="motaah_illstration"
                             style="top: -44px;
-                                                                                                                                    left: 210%;">
+                                                                                                                                        left: 210%;">
                             <div class="motaah-circle__gray green white xl"></div>
                             <div class="motaah-circle__gray blue white lg"></div>
                             <div class="motaah-circle__gray white md"></div>
@@ -78,7 +78,7 @@
                     </div>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                        type="password" name="password">
+                        type="password" name="user_pass">
                 </div>
                 @error('user_pass')
                     <span class="text-sacondary-red font-sm">{{ $message }}</span>

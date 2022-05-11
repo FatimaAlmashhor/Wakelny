@@ -1,6 +1,5 @@
   <!-- header -->
-  <header
-      class="w-full bg-primary-blue h-fit flex justify-center items-center shadow-lg border-md p-2 px-3 text-white overflow-hidden">
+  <header class="w-full bg-primary-blue h-fit flex justify-center items-center shadow-lg border-md p-2 px-3 text-white ">
 
       <!-- navigation -->
       <nav x-data="{ isOpen: false }" @keydown.escape="isOpen = false" id='nav'
@@ -55,7 +54,36 @@
                       <a href="{{ route('create_user') }}" class="mo-btn btn-light-pink-rounderd">
                           حساب جديد
                       </a>
+
                   </div>
+              @endif
+              @if (Auth::check() && !Auth::user()->hasRole('admin'))
+                  <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                      <button @click="open = !open"
+                          class="flex flex-row items-center w-full px-3 py-1 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:mt-0 md:ml-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                          <span class="text-lg text-primary"><i class="fas fa-bell text-white"></i></span>
+                      </button>
+                      <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                          x-transition:enter-start="transform opacity-0 scale-95"
+                          x-transition:enter-end="transform opacity-100 scale-100"
+                          x-transition:leave="transition ease-in duration-75"
+                          x-transition:leave-start="transform opacity-100 scale-100"
+                          x-transition:leave-end="transform opacity-0 scale-95"
+                          class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                          <div class="px-2 py-2 bg-white rounded-md shadow">
+                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                  href="#">Notifikasi 1</a>
+                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                  href="#">Notifikasi #2</a>
+                              <a class="block px-4 py-2 mt-2  bg-transparent rounded-lg  text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                  href="#">Notifikasi #3</a>
+                          </div>
+                      </div>
+                  </div>
+                  <a class="flex items-center px-3 py-1 mt-2 text-lg font-semibold text-primary rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                      href="#">
+                      <i class="fas fa-envelope text-white"></i>
+                  </a>
               @endif
           </div>
       </nav>

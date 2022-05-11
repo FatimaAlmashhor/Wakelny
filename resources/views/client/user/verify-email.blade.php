@@ -19,9 +19,10 @@
                                     <h3>لم يتبقى الكثير </h3>
                                     <p>رجاء قم بتأكيد البريد الاكتروني اولا لتتمكن من البدأ</p>
 
-                                    <form action="{{ route('verification.request') }}" method="post">
+                                    <form action="{{ route('verification.request') }}" method="post"
+                                        class="my-4">
                                         @csrf
-                                        <button class='wak_btn' type="submit">اضفط هنا لاعاده الارسال</button>
+                                        <button class='mo-btn' type="submit">اضفط هنا لاعاده الارسال</button>
                                     </form>
                                 </div>
                             </div>
