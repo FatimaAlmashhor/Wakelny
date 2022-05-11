@@ -125,17 +125,17 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModel">حذف العمل</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: auto"></button>
+                                <h5 class="modal-title font-lg" id="deleteModel">حذف العمل</h5>
+                                <a class="fa fa-xmark font-md" data-bs-dismiss="modal" aria-label="Close" style="width: auto"></a>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body font-md">
                                 هل تريد حذف {{ $item->title }}
                             </div>
                             <div class="modal-footer">
                              
-                                <a href="{{ route('toggle_work' , $item->id) }}" class="mo-btn btn-pink-bg pink">تاكيد الحذف</a>
+                                <a href="{{ route('toggle_work' , $item->id) }}" class="mo-btn btn-pink-bg pink font-md">تاكيد الحذف</a>
                              
-                                <button type="button" class="mo-btn btn-blue-bg" data-bs-dismiss="modal" style="width: auto">الغاء</button>
+                                <button type="button" class="mo-btn btn-blue-bg font-md" data-bs-dismiss="modal" style="width: auto">الغاء</button>
                        
                             </div>
                         </div>
