@@ -90,7 +90,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Role::class, 'id');
     }
-
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 
     public static function getProviders($search_keyword, $cates, $rateing)
     {

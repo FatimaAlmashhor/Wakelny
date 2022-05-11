@@ -3,11 +3,12 @@ This file is used to contain all abstracts imports.
 Files inside this folder can contain abstract settings, helpers or functions. They have no direct output.
 */
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@800&family=Tajawal&display=swap");
+
 * {
   margin: 0px;
   padding: 0px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
@@ -15,7 +16,8 @@ Files inside this folder can contain abstract settings, helpers or functions. Th
   --mode: 'white';
 }
 
-body, html {
+body,
+html {
   scroll-behavior: smooth;
   font-family: "Tajawal", sans-serif;
   direction: rtl;
@@ -91,7 +93,7 @@ ul {
 
 .shadow-lg {
   -webkit-box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.25);
 }
 
 .mo-btn {
@@ -196,7 +198,8 @@ ul {
   transition: all 0.3s;
 }
 
-.nav_item:hover::after, .active_link::after {
+.nav_item:hover::after,
+.active_link::after {
   width: 100%;
 }
 
@@ -223,14 +226,14 @@ ul {
   transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1);
   transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.15s cubic-bezier(0, 0, 0.2, 1);
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
   -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.toggle-checkbox:checked + .toggle-label:before {
+.toggle-checkbox:checked+.toggle-label:before {
   -webkit-transform: translateX(1.5rem);
-          transform: translateX(1.5rem);
+  transform: translateX(1.5rem);
   background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23a0aec0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>');
 }
 
@@ -239,16 +242,16 @@ ul {
   left: 0;
 }
 
-.toggle.slim .toggle-checkbox:checked + .toggle-label:before {
+.toggle.slim .toggle-checkbox:checked+.toggle-label:before {
   -webkit-transform: translateX(1.75rem);
-          transform: translateX(1.75rem);
+  transform: translateX(1.75rem);
 }
 
 .toggle.colour .toggle-label {
   background-color: #feb2b2;
 }
 
-.toggle.colour .toggle-checkbox:checked + .toggle-label {
+.toggle.colour .toggle-checkbox:checked+.toggle-label {
   background-color: #9ae6b4;
 }
 
@@ -257,7 +260,7 @@ ul {
   top: 40%;
   right: 0%;
   -webkit-transform: translate(20%, -70%);
-          transform: translate(20%, -70%);
+  transform: translate(20%, -70%);
   z-index: 1;
 }
 
@@ -272,23 +275,26 @@ ul {
   top: 50px;
   left: 30%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   width: var(--parant-size);
   height: var(--parant-size);
+  z-index: 1;
 }
 
-.motaah-circle__gray, .motaah-core {
+.motaah-circle__gray,
+.motaah-core {
   position: absolute;
   width: var(--parant-size);
   height: var(--parant-size);
   border: 3px solid white;
   border-radius: 50%;
   background-color: transparent;
+  z-index: 1;
 }
 
 .motaah-circle__gray {
   -webkit-animation: 2.2s spreed infinite;
-          animation: 2.2s spreed infinite;
+  animation: 2.2s spreed infinite;
   width: 120%;
   height: 120%;
 }
@@ -315,43 +321,44 @@ ul {
 
 .motaah-circle__gray.sm {
   -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .motaah-circle__gray.md {
   -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 .motaah-circle__gray.lg {
   -webkit-animation-delay: 1.3s;
-          animation-delay: 1.3s;
+  animation-delay: 1.3s;
 }
 
 .motaah-circle__gray.xl {
   -webkit-animation-delay: 2s;
-          animation-delay: 2s;
+  animation-delay: 2s;
 }
 
 .motaah-core {
-  width: calc( var(--parant-size ) / 3);
-  height: calc( var(--parant-size ) / 3);
+  width: calc(var(--parant-size) / 3);
+  height: calc(var(--parant-size) / 3);
   background-color: #00C89B;
   top: 50%;
   right: 50%;
   -webkit-transform: translate(20%, -20%);
-          transform: translate(20%, -20%);
+  transform: translate(20%, -20%);
 }
 
 @-webkit-keyframes spreed {
   from {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 1;
   }
+
   to {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 0;
   }
 }
@@ -359,13 +366,15 @@ ul {
 @keyframes spreed {
   from {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 1;
   }
+
   to {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 0;
   }
 }
+
 /*# sourceMappingURL=main.css.map */

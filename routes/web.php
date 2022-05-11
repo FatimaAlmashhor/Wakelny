@@ -34,8 +34,7 @@ use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\ChartJSController;
-
-
+use App\Http\Controllers\ChatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,7 +157,7 @@ Route::group([
 
             // this route for save new post
             Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
-        
+
             // --------end post routing
 
             // this is the page of the my_works
@@ -268,16 +267,16 @@ Route::group([
         Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
         Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
         Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
-/////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
-///////////////----------------------ProjectAdmin----------------------------------------------------------//////
+        ///////////////----------------------ProjectAdmin----------------------------------------------------------//////
 
         Route::get('/projects', [projectAdminController::class, 'showAll'])->name('projects');
         // Route::get('/toggle_report/{report_id}', [projectAdminController::class, 'toggle'])->name('toggle_report');
-/////////////////---------------------------------------------------------------------------//////////////////////
+        /////////////////---------------------------------------------------------------------------//////////////////////
         // start active & block users
         Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
         //end active & block users
@@ -331,3 +330,8 @@ Route::get('/testApi', function () {
     // return response()->json($response->json());
     return redirect($response['next_url']);
 });
+
+
+Route::get('/messages/chat', [ChatsController::class, 'index']);
+Route::get('messages',  [ChartJSController::class, 'fetchMessages']);
+Route::post('messages', [ChartJSController::class, 'sendMessage']);
