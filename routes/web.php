@@ -15,6 +15,9 @@ use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
+use App\Http\Controllers\admin\settingUserController;
+
+
 
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
@@ -25,7 +28,7 @@ use App\Http\Controllers\admin\ReportController;
 
 
 
-use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\SpecializationController;
@@ -34,8 +37,9 @@ use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\client\ChatController;
-
-
+use App\Http\Controllers\payment\PaymentController;
+use App\Models\Project;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +93,7 @@ Route::group([
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
+    Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
@@ -159,7 +164,7 @@ Route::group([
 
             // this route for save new post
             Route::post('/post/save', [PostController::class, 'save'])->name('savePost');
-        
+
             // --------end post routing
 
             // this is the page of the my_works
@@ -269,16 +274,16 @@ Route::group([
         Route::get('/edit_specialization/{cat_id}', [SpecializationController::class, 'edit'])->name('edit_specialization');
         Route::post('/edit_specialization/{cat_id}', [SpecializationController::class, 'update'])->name('update_specialization');
         Route::get('/toggle_specialization/{cat_id}', [SpecializationController::class, 'toggle'])->name('toggle_specialization');
-/////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
-///////////////----------------------ProjectAdmin----------------------------------------------------------//////
+        ///////////////----------------------ProjectAdmin----------------------------------------------------------//////
 
         Route::get('/projects', [projectAdminController::class, 'showAll'])->name('projects');
         // Route::get('/toggle_report/{report_id}', [projectAdminController::class, 'toggle'])->name('toggle_report');
-/////////////////---------------------------------------------------------------------------//////////////////////
+        /////////////////---------------------------------------------------------------------------//////////////////////
         // start active & block users
         Route::get('/showUsers', [settingUserController::class, 'show'])->name("showUsers");
         //end active & block users
@@ -290,6 +295,9 @@ Route::group([
 
     });
 });
+
+
+Route::view('/test-suc', 'client.payAnimation.paySucces');
 
 // ------------------------------------------------------------------------
 // Admin Block UnBlock- Users
@@ -315,20 +323,46 @@ Route::get('/markAsRead/{notification}', function ($notification) {
 
 // test API
 Route::get('/testApi', function () {
+
+    $data = [
+        "id" => 1,
+        "product_name" => "sumsung s5",
+        "quantity" => 1,
+        "unit_amount" => 100
+    ];
+
     $response = Http::withHeaders([
         'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
         'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-        'Content-Type' => 'application/x-www-form-urlencoded'
-    ])->asForm()->post('https://waslpayment.com/api/test/merchant/payment_order', [
+        'Content-Type' => 'application/x-www-form-url'
+    ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
         'order_reference' => '123412',
-        'products' => '[{ "id":1, "product_name": "sumsung s5", "quantity": 1, "unit_amount": 100 } ]',
+        'products' =>  [$data],
         'total_amount' => '133',
-        'currency' => 'YEN',
+        'currency' => 'YER',
         'success_url' => '/',
         'cancel_url' => '/logout',
         'metadata' => ' { "Customer name": "somename", "order id": 0}'
     ]);
 
-    // return response()->json($response->json());
-    return redirect($response['next_url']);
+    return response()->json($response->status());
+    // <!-- return redirect($response['next_url']); -->
 });
+
+
+Route::get('/testWallet', function () {
+    $admin = User::find(1);
+    $user = User::find(10);
+    $project = Project::find(1);
+    $admin->deposit(5000, [
+        'provider' => $user,
+        'project ' => $project
+    ]);
+    // $user->deposit(10);
+
+    return $admin->balance; // 10
+});
+
+Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');

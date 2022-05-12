@@ -162,12 +162,12 @@
                     </div>
 
                     <div class="mt-4">
-                        <a class="wak_btn" type="submit" name="reject" data-bs-toggle="modal"
+                        <a class="mo-btn" type="submit" name="reject" data-bs-toggle="modal"
                             data-bs-target="#evaluationModel"> تأكيد التسليم</a>
-                        <a class="wak_btn orange" type="submit" name="reject" data-bs-toggle="modal"
+                        <a class="mo-btn btn-blue-rounderd  " type="submit" name="reject" data-bs-toggle="modal"
                             data-bs-target="#deleteModel"> رفض التسليم </a>
 
-                        {{-- <a tabindex="-1" class="wak_btn" data-bs-toggle="modal" data-bs-target="#deleteModel">
+                        {{-- <a tabindex="-1" class="mo-btn" data-bs-toggle="modal" data-bs-target="#deleteModel">
                             <i class="fa fa-xmark px-1"></i>
                             <span class="action-text">اغلاق المشروع </span>
                         </a> --}}
