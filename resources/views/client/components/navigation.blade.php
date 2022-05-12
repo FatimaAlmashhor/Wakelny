@@ -35,7 +35,7 @@
                       </li>
                       <li class="nav_item font-sm cursor-pointer">
                           <a href="{{ route('projectlancer') }}">
-                            المشاريع المتاحه
+                              المشاريع المتاحه
                           </a>
                       </li>
                       <li class="nav_item font-sm cursor-pointer">
@@ -71,14 +71,17 @@
                           x-transition:leave-end="transform opacity-0 scale-95"
                           class="absolute left-0 w-full mt-2 origin-top-right  rounded-md shadow-lg z-50 md:w-80">
                           <div class="px-2 py-2 bg-white rounded-md shadow">
-                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
-                                  href="#">تم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنانتم اضافة عرض من قبل أفنان </a>
-                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
-                                  href="#">تم رفض العرض من قبل احمد</a>
-                                  <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
-                                  href="#">تم اضافة عرض من قبل أفنان</a>
-                              <a class="rounded text-black bg-gray-200 hover:bg-primary-light-pink hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
-                                  href="#">تم رفض العرض من قبل احمد</a>
+                              @foreach (auth()->user()->unreadNotifications as $notification)
+                                  <a class="rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray py-2 px-4 block whitespace-no-wrap"
+                                      href="{{ $notification->data['url'] }}">
+                                      @if ($notification->data['type'] == 'comment')
+                                          {{ $notification->data['name'] }}
+                                          عرض جديد على مشروعك</span>
+                                      @else
+                                          {{ $notification->data['message'] }}
+                                      @endif
+                                  </a>
+                              @endforeach
                           </div>
                       </div>
                   </div>
