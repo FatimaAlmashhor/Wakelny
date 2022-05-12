@@ -4,7 +4,7 @@
     <div class="card px-3 container my-4" style="direction: rtl;">
         <div class="box d-flex justify-content-between">
             <a href="{{ route('posts.details', $item->post_id) }}" class="image d-flex">
-                <p class="font-lg"> {{ $item->title }}</p>
+                <p class="font-md"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
                 @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
@@ -78,7 +78,7 @@
 
         </div>
 
-        <p class="font-md mt-0">
+        <p class="font-sm mt-0">
             {{ $item->description }}
         </p>
 

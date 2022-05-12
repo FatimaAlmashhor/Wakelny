@@ -909,32 +909,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2rem;
 }
 
-.w-4\/12 {
-  width: 33.333333%;
-}
-
 .w-4\/6 {
   width: 66.666667%;
-}
-
-.w-64 {
-  width: 16rem;
 }
 
 .w-11 {
   width: 2.75rem;
 }
 
-.w-80 {
-  width: 20rem;
-}
-
-.w-9 {
-  width: 2.25rem;
-}
-
-.w-96 {
-  width: 24rem;
+.w-4\/12 {
+  width: 33.333333%;
 }
 
 .min-w-fit {
@@ -1747,6 +1731,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:items-start {
     align-items: flex-start;
+  }
+
+  .sm\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   .sm\:text-center {

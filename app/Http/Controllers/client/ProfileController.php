@@ -103,4 +103,12 @@ class ProfileController extends Controller
     {
         //
     }
+
+//  mywallete view
+      function showMyWallet()
+    {
+        $profile = Profile::where('user_id', Auth::id())->first();
+
+        return view('client.userProfile.myWallet')->with('item' , $profile);
+    }
 }

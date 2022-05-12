@@ -75,7 +75,7 @@
                             <div class="wak_skill px-2">
                                 <a href='{{ route('deleteSkill', $item->skill_id) }}'
                                     class="wak_skill__delete badge badge-light"><i class="fa-solid fa-xmark"></i></a>
-                                <div class="wak_btn lighter_orange">
+                                <div class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                                     {{ $item->name }}
                                 </div>
                             </div>
