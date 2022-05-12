@@ -140,7 +140,7 @@
                                                         مشاريعي</a>
                                                 @endrole
                                             @endif
-                                            <a href="#"
+                                            <a href='{{ route('logout') }}'
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                                 تسجيل الخروج
                                             </a>
