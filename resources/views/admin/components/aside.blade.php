@@ -21,7 +21,13 @@
                 </li>
 
                 <li class=" sidebar-title"> <i class="fa-solid fa-minus"></i> {{ __('dash.pages') }}</li>
-
+                
+                <li class="sidebar-item">
+                    <a href="{{ route('wallet') }}" class='sidebar-link'>
+                    <i class="fas fa-wallet"></i>
+                    <span class="mx-4">{{ __('dash.wallet') }}</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="{{ route('showUsers') }}" class='sidebar-link'>
                     <i class="fa-solid fa-users"></i>
