@@ -54,6 +54,6 @@ return [
      'seeker_id'=>'طالب الخدمة',
      'provider_id'=>'مقدم الخدمة',
 
-
+     "wallet"=>"  محفظة ",
 
 ];
