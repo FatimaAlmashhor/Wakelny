@@ -6,22 +6,22 @@
           <div class="flex flex-col items-center space-y-4">
             <h1 class="font-bold text-4xl text-primary-blue w-4/6 text-center">
 
-            404
+                !! Opps
 
             </h1>
             </h1>
 
             <h1 class="font-bold text-2xl  text-primary-blue  text-green-500 w-5/6 text-center">
 
-                خطأ الصفحة غير متوفرة
+               الصفحة غير متوفرة
             </p>
 
                 </h1>
 
 
-
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_avwze6mc.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_yABbl9.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+
             <button
               class="bg-primary-blue text-white rounded-md  font-semibold px-4 py-3 w-full"
             >

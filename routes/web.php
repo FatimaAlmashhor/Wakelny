@@ -290,6 +290,9 @@ Route::group([
 Route::get('/paySuccess', [settingPaymentController::class, 'payPagesucces']);
 Route::get('/payUnsuccess', [settingPaymentController::class, 'payPageUnsucces']);
 Route::get('/Not_found', [settingPaymentController::class, 'Notfound']);
+Route::get('/invalidPage', [settingPaymentController::class, 'invalidPage']);
+
+
 
 
 

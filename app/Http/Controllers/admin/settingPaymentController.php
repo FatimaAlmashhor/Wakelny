@@ -23,5 +23,10 @@ class settingPaymentController extends Controller
             return view('client.payAnimation.not404Found');
             }
 
+            public function invalidPage(){
+
+                return view('client.payAnimation.invalidPage');
+                }
+
 
 }
