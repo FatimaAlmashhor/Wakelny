@@ -91,7 +91,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
-    
+
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     // this is the subsection of howen the freelncers
@@ -357,6 +357,6 @@ Route::get('/testWallet', function () {
     return $admin->balance; // 10
 });
 
-Route::get('/success-payment', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
 Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
 Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');

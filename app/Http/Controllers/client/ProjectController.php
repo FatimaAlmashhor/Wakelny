@@ -182,10 +182,11 @@ class ProjectController extends Controller
         ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
             'order_reference' =>  $project_id,
             'products' =>  [$dataPayment],
-            'total_amount' => $project->totalAmount,
+            // 'total_amount' => $project->totalAmount,
+            'total_amount' => 199,
             'currency' => 'YER',
-            'success_url' => '/success-payment',
-            'cancel_url' => '/cancel-payment',
+            'success_url' => 'http://localhost:8000/success-payment',
+            'cancel_url' => 'http://localhost:8000//cancel-payment',
             'metadata' => (object)$dataMeta
         ]);
 

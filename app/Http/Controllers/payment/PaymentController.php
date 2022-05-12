@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    public static function successPayment()
+    public static function successPayment($response)
     {
         try {
 
@@ -39,6 +39,8 @@ class PaymentController extends Controller
                 'back_to_owner' => false,
                 'admin_resevied' => true
             ]);
+
+            return response()->json($response);
             // send notification for the seeker that the money is already خصمت 
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
             // open the frontend page 
