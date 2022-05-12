@@ -673,6 +673,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 11rem;
 }
 
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -759,6 +764,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-4 {
   margin-left: 1rem;
+}
+
+.mt-24 {
+  margin-top: 6rem;
 }
 
 .block {
@@ -909,32 +918,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2rem;
 }
 
-.w-4\/12 {
-  width: 33.333333%;
-}
-
 .w-4\/6 {
   width: 66.666667%;
-}
-
-.w-64 {
-  width: 16rem;
 }
 
 .w-11 {
   width: 2.75rem;
 }
 
-.w-80 {
-  width: 20rem;
-}
-
-.w-9 {
-  width: 2.25rem;
-}
-
-.w-96 {
-  width: 24rem;
+.w-4\/12 {
+  width: 33.333333%;
 }
 
 .min-w-fit {
