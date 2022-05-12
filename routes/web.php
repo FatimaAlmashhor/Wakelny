@@ -36,7 +36,7 @@ use App\Http\Controllers\client\ControllPannelController;
 use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\ChartJSController;
+use App\Http\Controllers\client\ChatController;
 
 
 
@@ -51,6 +51,7 @@ use App\Http\Controllers\ChartJSController;
 |
 */
 
+Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -91,7 +92,8 @@ Route::group([
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
-
+    Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
+    
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     // this is the subsection of howen the freelncers

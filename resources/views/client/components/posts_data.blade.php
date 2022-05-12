@@ -4,7 +4,7 @@
     <div class="card px-3 container my-4" style="direction: rtl;">
         <div class="box d-flex justify-content-between">
             <a href="{{ route('posts.details', $item->post_id) }}" class="image d-flex">
-                <p style="font-size: 18px;"> {{ $item->title }}</p>
+                <p class="font-lg"> {{ $item->title }}</p>
             </a>
             <div class="card--actions hidden-xs">
                 @if (Auth::check() && Auth::user()->hasRole('provider') && Auth::id() != $item->user_id)
@@ -17,7 +17,7 @@
                                 <span class="mr-1"> أضف عرضك </span>
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path style="color:white ; stroke: white;
-                                        fill: white;"
+                                                                  fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </a>
@@ -25,14 +25,13 @@
                             aria-expanded="false">
                             {{-- <i class="fa fa-caret-down"></i> --}}
                             {{-- </button> --}}
-                            <ul class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 "
-                                role="menu" aria-labelledby="خيارات">
+                            <ul
+                                class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
                                 @if (Auth::check())
                                     <li class="border-b border-primary-light-pink">
-                                        <a lass="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                        <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
                                             href="{{ route('report_content', ['post_id' => $item->post_id, 'provider_id' => Auth::id()]) }}">
-                                            تبليغ عن محتوى
-                                        </a>
+                                         التبليغ عن محتوى</a>
                                     </li>
                                 @endif
                             </ul>
@@ -79,7 +78,7 @@
 
         </div>
 
-        <p class="font-sm mt-0">
+        <p class="font-md mt-0">
             {{ $item->description }}
         </p>
 

@@ -19,7 +19,7 @@
             <div class="user-info color-black mt-5 py-0 col-md-6">
                 <div class="username color-black">
 
-                    <h5>{{ $data->name }}</h5>
+                    <h5 class="font-xl">{{ $data->name }}</h5>
 
                 </div>
 
@@ -67,13 +67,12 @@
                         @endif
                         </a>
                     @endrole
-                    <ul class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 "
-                        role="menu" aria-labelledby="خيارات">
+                   <ul
+                                class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
                         <li class="border-b border-primary-light-pink">
-                            <a lass="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                            <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
                                 href="{{ route('report_provider', $data->user_id) }}">
-                                تبليغ عن محتوى
-                            </a>
+                             التبليغ عن محتوى</a>
                         </li>
 
                     </ul>
@@ -127,22 +126,22 @@
                             <section class="card shadow-sm  col-sm-12 col-lg-4  p-3 ">
                                 <div class="about-me">
                                     <div class="section-title">
-                                        <h5>نبذة عني</h5>
+                                        <h5 class="font-lg">نبذة عني</h5>
                                     </div>
                                     <div class="brief-content mt-3">
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fas fa-briefcase ms-1"></i>
                                             <span class="fs-6 fw-bold">التخصص:</span>
                                             @if (!empty($cate->title))
                                                 <span class="me-1">{{ $cate->title }}</span>
                                             @endif
                                         </p>
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-location-dot ms-1"></i>
                                             <span class="fs-6 fw-bold">البلد:</span>
                                             <span class="me-1">{{ $data->country }}</span>
                                         </p>
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-circle-info ms-1"></i>
                                             <span class="fs-6 fw-bold">تفاصيل أكثر:</span>
                                             <span class="me-1">
@@ -156,11 +155,11 @@
                         <!-- /My Brief -->
 
                         <!-- My Skills -->
-                        <div class="row ">
+                        <div class="row mb-3">
                             <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                                 <div class="my-skills">
                                     <div class="section-title">
-                                        <h5>مهاراتي</h5>
+                                        <h5 class="font-lg">مهاراتي</h5>
                                     </div>
                                     <div class="skills mt-3">
                                         @foreach ($skills as $item)
@@ -183,25 +182,25 @@
                             <section class="card shadow-sm p-3">
                                 <div class="statistics">
                                     <div class="section-title">
-                                        <h5>إحصائيات</h5>
+                                        <h5 class="font-lg">إحصائيات</h5>
                                     </div>
                                     <div class="statistic-content mt-3">
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fas fa-briefcase ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
                                             <span class="me-1">66%</span>
                                         </p>
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-clipboard-check ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
                                             <span class="me-1">{{ $data->reseved }}</span>
                                         </p>
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-spinner ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
                                             <span class="me-1">{{ 4 - $data->limit }}</span>
                                         </p>
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-star ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">التقييمات:</span>
                                             <span class="me-1">
@@ -224,10 +223,10 @@
 
                                 <div class="histories">
                                     <div class="section-title">
-                                        <h5>تواريخ</h5>
+                                        <h5 class="font-lg">تواريخ</h5>
                                     </div>
                                     <div class="histories-content mt-3">
-                                        <p class="">
+                                        <p class="p-1">
                                             <i class="fa-solid fa-calendar-days ms-1"></i>
                                             <span class="fs-6 fw-bold d-inll">تاريخ الانضمام:</span>
                                             <span class="me-1">{{ $data->created_at }}</span>
@@ -246,20 +245,20 @@
                 <!-- Ratings -->
                 <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
                     <!-- My Brief -->
-                    <div class="row">
+                    <div class="row mb-3">
                         <section class="card shadow-sm col-12 col-sm-12 p-3">
                             <div class="about-me">
                                 <div class="section-title">
-                                    <h5>التقيمات</h5>
+                                    <h5 class="font-lg">التقيمات</h5>
                                 </div>
                                 <div class="brief-content mt-3 me-1">
                                     <div class="row">
                                         <div class="d-flex justify-content-between">
                                             <p class="fs-6 fw-normal ">
-                                                <i class="fa-solid fa-check-double ms-1 " style="margin:0 0 0 8rem;"></i>
+                                                <i class="fa-solid fa-check-double ms-1 "></i>
                                                 الجودة
                                             </p>
-                                            <p class="">
+                                            <p class="p-1">
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -271,7 +270,7 @@
                                             <p class="fs-6 fw-normal">
                                                 <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
                                             </p>
-                                            <p class="">
+                                            <p class="p-1">
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -283,7 +282,7 @@
                                             <p class="fs-6 fw-normal">
                                                 <i class="fa-solid fa-award ms-1"></i> الخبرة
                                             </p>
-                                            <p class="">
+                                            <p class="p-1">
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -296,7 +295,7 @@
                                                 <!-- <i class="fa-solid fa-handshake-simple ms-1"></i> التعامل -->
                                                 <i class="fa-solid fa-handshake ms-1"></i> التعامل
                                             </p>
-                                            <p class="">
+                                            <p class="p-1">
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
                                                 <i class="fa-solid fa-star color-orange-lighter"></i>
@@ -329,7 +328,7 @@
                 @if ($role == 'provider' || $role == 'both')
                     <!-- works -->
 
-                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-C">
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage mb-3" id="tab-C">
                         <div class="row row col-12">
                             <section class="card shadow-sm col-12 col-sm-12">
                                 <div class="my-ratings">
@@ -376,7 +375,7 @@
                                             <div class="col-md-12 col-sm-12 my-2">
                                                 <div class="card">
                                                     <a href="{{ route('posts.details', $post->id) }}">
-                                                        <h5 class=""> {{ $post->title }}</h5>
+                                                        <h5 class="font-md"> {{ $post->title }}</h5>
 
                                                     </a>
 

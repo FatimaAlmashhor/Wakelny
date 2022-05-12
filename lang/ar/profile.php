@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Personal_Info' => 'ملفي الشخصي',
+    'Personal_Info' => ' تعديل ملفي الشخصي',
     'skills' => 'مهاراتي',
     'notifacation' => 'تنبيهاتي',
 'wallet' => 'محفظتي',
