@@ -56,7 +56,7 @@
 
     {{-- alerts --}}
     @if (session()->has('message'))
-        <div id='alert' x-data="{ isShow: false }">
+        <div id='alert' x-data="{ isShow: true }">
             <div x-show="isShow" class="absolute top-12 right-0 m-3 w-2/3 md:w-1/3"
                 x-transition:enter="transition transform ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
