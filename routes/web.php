@@ -15,6 +15,9 @@ use App\Http\Controllers\client\ProfileController;
 use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
+use App\Http\Controllers\admin\settingUserController;
+
+
 
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
@@ -25,7 +28,7 @@ use App\Http\Controllers\admin\ReportController;
 
 
 
-use App\Http\Controllers\admin\settingUserController;
+use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
 use App\Http\Controllers\admin\SpecializationController;
@@ -91,7 +94,7 @@ Route::group([
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
     Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
-    
+
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     // this is the subsection of howen the freelncers
@@ -293,6 +296,9 @@ Route::group([
     });
 });
 
+
+Route::view('/test-suc', 'client.payAnimation.paySucces');
+
 // ------------------------------------------------------------------------
 // Admin Block UnBlock- Users
 // ------------------------------------------------------------------------
@@ -357,6 +363,6 @@ Route::get('/testWallet', function () {
     return $admin->balance; // 10
 });
 
-Route::get('/success-payment', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
 Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
 Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    public static function successPayment()
+    public static function successPayment($response)
     {
         try {
 
@@ -39,6 +39,9 @@ class PaymentController extends Controller
                 'back_to_owner' => false,
                 'admin_resevied' => true
             ]);
+            $filterdRes = base64_decode($response);
+            return response()->json(json_decode($filterdRes, true));
+            // return view('client.payAnimation.paySucces');
             // send notification for the seeker that the money is already خصمت 
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
             // open the frontend page 
@@ -50,8 +53,10 @@ class PaymentController extends Controller
 
     // if the payment is cancled 
     function cancelPayment()
+
     {
         return redirect()->route('profile')->with(['message' => 'لقد قمت بألغاء عمليه الدفع رجاء تأكد من دفع المبلغ المحدد ', 'type' => 'alert-danger']);
+        // return view('client.payAnimation.payUnsucces');
     }
 
 

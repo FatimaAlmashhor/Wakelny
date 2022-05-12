@@ -69,9 +69,9 @@
                             </div>
                             <div class="mt-4">
                                 <a href='{{ route('AcceptProject', [$project->project_id, $project->seeker_id]) }}'
-                                    class="wak_btn" type="submit" name="confirm"> تأكيد الموافقة</a>
+                                    class="mo-btn" type="submit" name="confirm"> تأكيد الموافقة</a>
                                 <a href='{{ route('rejectProject', [$project->project_id, $project->seeker_id]) }}'
-                                    class="wak_btn" type="submit" name="reject"> رفض</a>
+                                    class="mo-btn btn-blue-rounderd " type="submit" name="reject"> رفض</a>
                             </div>
                         </form>
                     </div>
