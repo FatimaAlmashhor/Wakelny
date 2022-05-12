@@ -85,8 +85,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
+//  mywallet view
 
+Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
 
+//
     // ------------------------------------------------------------------------
     // Static pages section
     // ------------------------------------------------------------------------
@@ -153,6 +156,7 @@ Route::group([
                 Route::post('/edit', [ProfileController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ProfileController::class, 'deleteSkill'])->name('deleteSkill');
             });
+
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
