@@ -10,14 +10,18 @@ class settingPaymentController extends Controller
 {
     public function payPagesucces(){
 
-    return view('admin.payAnimation.paySucces');
+    return view('client.payAnimation.paySucces');
     }
 
     public function payPageUnsucces(){
 
-        return view('admin.payAnimation.payUnsucces');
+        return view('client.payAnimation.payUnsucces');
         }
 
+        public function Notfound(){
+
+            return view('client.payAnimation.not404Found');
+            }
 
 
 }

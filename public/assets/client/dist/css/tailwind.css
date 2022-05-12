@@ -1221,6 +1221,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: ;
 }
 
+.bg-sacondary-red {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 81 81 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-0 {
   --tw-bg-opacity: 0;
 }

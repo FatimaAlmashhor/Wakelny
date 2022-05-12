@@ -228,14 +228,6 @@ Route::group([
     });
 
 
-
-
-
-
-
-
-
-
     // ------------------------------------------------------------------------
     // Admin section
     // ------------------------------------------------------------------------
@@ -297,6 +289,7 @@ Route::group([
 
 Route::get('/paySuccess', [settingPaymentController::class, 'payPagesucces']);
 Route::get('/payUnsuccess', [settingPaymentController::class, 'payPageUnsucces']);
+Route::get('/Not_found', [settingPaymentController::class, 'Notfound']);
 
 
 
