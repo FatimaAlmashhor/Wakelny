@@ -18,11 +18,11 @@
         }
 
     </style>
-    <main class="container">
+    <main class="container pt-20">
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
             <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
-                <h3 class="m-5 font-4xl"> لوحة التحكم</h3>
+                <h3 class="m-5 font-xl font-bold"> لوحة التحكم</h3>
 
             </nav>
             <div class="col-6 mt-8">
