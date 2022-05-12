@@ -296,10 +296,8 @@ Route::group([
     });
 });
 
-Route::get('/paySuccess', [settingPaymentController::class, 'payPagesucces']);
-Route::get('/payUnsuccess', [settingPaymentController::class, 'payPageUnsucces']);
 
-
+Route::view('/test-suc', 'client.payAnimation.paySucces');
 
 // ------------------------------------------------------------------------
 // Admin Block UnBlock- Users
