@@ -34,6 +34,7 @@ use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\client\ChatController;
+use App\Http\Controllers\payment\PaymentController;
 use App\Models\Project;
 use App\Models\User;
 
@@ -354,3 +355,7 @@ Route::get('/testWallet', function () {
 
     return $admin->balance; // 10
 });
+
+Route::get('/success-payment', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');

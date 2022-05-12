@@ -8,6 +8,7 @@ use App\Models\Comments;
 use Mockery\Expectation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\payment\PaymentController;
 use App\Models\Profile;
 use App\Models\User;
 use App\Notifications\AcceptOfferNotification;
@@ -42,6 +43,9 @@ class ProjectController extends Controller
         $project->offer_id = $request->offer_id;
         $project->status = 'pending';
         $project->amount = $amount;
+
+        // after the patform discount
+        $project->totalAmount =  $project->amount * 0.05;
         $project->duration = $duration;
         $project->post_id = $request->post_id;
 
@@ -149,7 +153,11 @@ class ProjectController extends Controller
         $seekerNotify = User::find($seeker_id);
 
         $project = Project::select(
-            'posts.title'
+            'posts.title',
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.seeker_id',
+            'projects.provider_id',
         )->join('posts', 'posts.id', 'projects.post_id')
             ->where('projects.seeker_id', $seeker_id)
             ->where('projects.id', $project_id)
@@ -157,49 +165,55 @@ class ProjectController extends Controller
 
 
         $dataPayment = [
-            "id" => 1,
-            "product_name" => "sumsung s5",
+            "id" => $project_id,
+            "product_name" => $project->title,
             "quantity" => 1,
-            "unit_amount" => 100
+            "unit_amount" => $project->amount
         ];
 
+        $dataMeta = [
+            "provider_id" => $project->provider_id,
+            "seeker_id" => $seeker_id
+        ];
         $response = Http::withHeaders([
             'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
             'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
             'Content-Type' => 'application/x-www-form-url'
         ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
-            'order_reference' => '123412',
+            'order_reference' =>  $project_id,
             'products' =>  [$dataPayment],
-            'total_amount' => '133',
+            'total_amount' => $project->totalAmount,
             'currency' => 'YER',
-            'success_url' => '/',
-            'cancel_url' => '/logout',
-            'metadata' => ' { "Customer name": "somename", "order id": 0}'
+            'success_url' => '/success-payment',
+            'cancel_url' => '/cancel-payment',
+            'metadata' => (object)$dataMeta
         ]);
 
         return $response->json($key = null);
-        // $data = [
-        //     'project_id' => $project_id,
-        //     'name' => $seekerNotify->name,
-        //     'project_title' => $project->title,
-        //     'url' => url($response['next_url']),
-        //     'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
-        //     'userId' => Auth::id()
-        // ];
+        // PaymentController::successPayment($response);
+        $data = [
+            'project_id' => $project_id,
+            'name' => $seekerNotify->name,
+            'project_title' => $project->title,
+            'url' => url($response['next_url']),
+            'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
+            'userId' => Auth::id()
+        ];
 
-        //     Project::where('id', $project_id)->update([
-        //         'status' => 'at_work',
-        //         'stated_at' => date("Y/m/d"),
-        //     ]);
+        Project::where('id', $project_id)->update([
+            'status' => 'at_work',
+            'stated_at' => date("Y/m/d"),
+        ]);
 
-        //     Profile::where('user_id', Auth::id())
-        //         ->where('limit', '<=', 4)
-        //         ->where('limit', '>=', 0)
-        //         ->decrement('limit');
+        Profile::where('user_id', Auth::id())
+            ->where('limit', '<=', 4)
+            ->where('limit', '>=', 0)
+            ->decrement('limit');
 
-        //     $seekerNotify->notify(new AcceptProjectNotification($data));
-        //     // return response()->json($seekerNotify);
-        //     return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
+        $seekerNotify->notify(new AcceptProjectNotification($data));
+
+        // return response()->json($seekerNotify);
+        return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
         // } catch (\Throwable $th) {
         //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         // }
@@ -237,6 +251,16 @@ class ProjectController extends Controller
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
     }
+
+
+
+
+
+
+
+
+
+
 
     function providerResponse(Request $request)
     {
