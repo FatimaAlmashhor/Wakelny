@@ -296,10 +296,8 @@ Route::group([
     });
 });
 
-Route::get('/paySuccess', [settingPaymentController::class, 'payPagesucces']);
-Route::get('/payUnsuccess', [settingPaymentController::class, 'payPageUnsucces']);
 
-
+Route::view('/test-suc', 'client.payAnimation.paySucces');
 
 // ------------------------------------------------------------------------
 // Admin Block UnBlock- Users
@@ -365,6 +363,6 @@ Route::get('/testWallet', function () {
     return $admin->balance; // 10
 });
 
-Route::get('/success-payment', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
 Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
 Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');
