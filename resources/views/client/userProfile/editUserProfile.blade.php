@@ -2,11 +2,13 @@
 @section('content')
     @foreach ($data as $d)
         <!-- My Brief -->
+
         <form action="{{ route('account_save') }}" method="POST" class="login-form" enctype="multipart/form-data">
-            <div class="container-fluid border-bottom px-5 pt-20">
+            <div class="container-fluid border-bottom  pt-20">
+                   <h4 class=" font-xl font-bold"> المعلومات الشخصية</h4>
+
                 <!-- User Identety Brief-->
                 <div class="profile-identity row">
-                    <h4 class="m-5 font-xl font-bold"> المعلومات الشخصية</h4>
 
                     <div class="col-md-12  d-flex justify-content-center align-items-center">
                         <div class="col-12  d-flex justify-content-center align-items-center p-4 position-relative">

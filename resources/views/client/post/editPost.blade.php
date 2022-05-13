@@ -22,10 +22,10 @@
 
     </style>
 
-    <div class="container">
-        <h3 class="my-5 font-4xl">تعديل مشروع</h3>
+    <div class="container pt-20">
+        <h3 class="my-5 font-xl font-bold">تعديل مشروع</h3>
         {{-- @foreach ($data as $item) --}}
-        <div class="row my-5">
+        <div class="row my-5 grid place-items-center">
             <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
