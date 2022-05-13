@@ -60,8 +60,7 @@
     </div>
     <!-- dashboard nav -->
     {{-- <div class="card  p-3 pt-0 bg-opacity-0"> --}}
-{{--
-        <nav class="card px-3 py-4 mt-3 d-flex gap-3">
+    {{-- <nav class="card px-3 py-4 mt-3 d-flex gap-3">
             <h5 class="border-bottom my-2 pb-2" style="color:rgba(77, 212, 172, 1);">خطوات إكمال الحساب</h5>
             <div class="mx-2 px-2">
                 <a href="#">
@@ -203,9 +202,15 @@
 </section> --}}
 
 <section class="col-lg-8 col-md-8 col-12" id="Edu">
-
+    <div
+        class=" w-12/12 md:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
+        <span class="font-2xl font-bold text-primary-green px-2">
+            ماتملكه :
+        </span>
+        ${{ $wallet->balance }}
+    </div>
     <table class="table">
-        <thead >
+        <thead>
             <tr>
                 <td class="font-lg">الرقم</td>
                 <td class="font-lg">المسلم </td>
@@ -215,20 +220,18 @@
             </tr>
         </thead>
         <tbody class="table-light">
-            <tr>
-                <td class="font-md">1</td>
-                <td class="font-md">رقيه </td>
-                <td class="font-md">رقيه</td>
-                <td class="font-md">5000 </td>
-                <td class="font-md">5/10/2022</td>
-            </tr>
-              <tr>
-               <td class="font-md">1</td>
-                <td class="font-md">رقيه </td>
-                <td class="font-md">رقيه</td>
-                <td class="font-md">5000 </td>
-                <td class="font-md">5/10/2022</td>
-            </tr>
+            @foreach ($transactions as $item)
+                <tr>
+                    <td class="font-md">{{ $item->uuid }}</td>
+                    <td class="font-md">{{ $item->type }}</td>
+                    <td class="font-md">{{ $item->amount }}</td>
+                    <td class="font-md">{{ $item->created_at }}</td>
+                    {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
+                    {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
+                </tr>
+            @endforeach
+
+
         </tbody>
     </table>
 </section>

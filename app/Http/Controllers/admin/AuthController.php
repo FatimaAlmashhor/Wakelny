@@ -128,7 +128,13 @@ class AuthController extends Controller
                 $profile->save();
             }
 
+            $wallet =  $u->createWallet([
+                'name' => 'Default Wallet',
+                'slug' => 'default',
+            ]);
 
+            if ($u->hasRole('seeker'))
+                $wallet->deposit(10000);
 
 
             return redirect()->route('login')

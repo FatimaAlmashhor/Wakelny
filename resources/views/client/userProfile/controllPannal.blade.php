@@ -9,15 +9,15 @@
 
                 </nav>
                 <div class="col-6 mt-8">
-                    <a href="{{ route('userProfile', Auth::user()->id) }}" class="mo-btn btn-blue-bg float-start font-md"><i
-                            class="fa fa-user p-1"></i> ملفي الشخصي </a>
+                    <a href="{{ route('userProfile', Auth::user()->id) }}"
+                        class="mo-btn btn-blue-bg float-start font-md"><i class="fa fa-user p-1"></i> ملفي الشخصي </a>
                 </div>
             </div>
             <!-- top nav end -->
 
             <!-- side sec -->
             <div class="row">
-
+               
 
                 <!-- Dashboard Nav Section -->
 
@@ -129,7 +129,7 @@
 
                                 <div>
                                     <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ
-                                       </button>
+                                    </button>
                                 </div>
 
                                 {{ csrf_field() }}

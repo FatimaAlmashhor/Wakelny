@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->text('message');
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->string('invoice')->nullable();
+            $table->string('payment_status')->nullable()->default('unpaid');
         });
     }
 
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::table('projects', function (Blueprint $table) {
+            //
+        });
     }
 };
