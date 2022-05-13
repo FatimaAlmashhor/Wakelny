@@ -531,8 +531,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: sticky;
 }
 
-.top-12 {
-  top: 3rem;
+.top-32 {
+  top: 8rem;
 }
 
 .right-0 {
@@ -551,10 +551,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.top-32 {
-  top: 8rem;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -565,10 +561,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .col-auto {
   grid-column: auto;
-}
-
-.float-right {
-  float: right;
 }
 
 .float-left {
@@ -681,11 +673,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 11rem;
 }
 
-.mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
@@ -772,10 +759,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-4 {
   margin-left: 1rem;
-}
-
-.ml-40 {
-  margin-left: 10rem;
 }
 
 .block {
@@ -940,6 +923,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-4\/12 {
   width: 33.333333%;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .min-w-fit {
@@ -1380,11 +1367,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0px;
 }
 
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-
 .pt-3 {
   padding-top: 0.75rem;
 }
@@ -1433,6 +1415,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.5rem;
 }
 
+.pt-20 {
+  padding-top: 5rem;
+}
+
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -1455,10 +1441,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-1 {
   padding-top: 0.25rem;
-}
-
-.pt-20 {
-  padding-top: 5rem;
 }
 
 .text-left {
@@ -1688,6 +1670,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(223 223 223 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(180 180 180 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-light-gray:hover {
+  background-color: ;
+}
+
 .hover\:text-primary-pink:hover {
   --tw-text-opacity: 1;
   color: rgb(205 101 124 / var(--tw-text-opacity));
@@ -1779,11 +1770,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
-  }
-
-  .sm\:px-1 {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
   }
 
   .sm\:text-center {

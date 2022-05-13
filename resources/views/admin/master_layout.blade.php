@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="/assets/admin/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/admin/css/app.css">
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
+    <link rel="stylesheet" href="/assets/client/dist/css/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <title>متاح</title>
+
     <style>
         #sidebar.active .sidebar-wrapper {
 
@@ -68,16 +75,16 @@
             width: 60px;
             border: none;
             border-radius: 5px;
-            background-color:#373483;
+            background-color: #373483;
             color: white;
         }
 
-       .dropdown-menu-end.show {
-    right: auto;
-    text-align: right;
-    direction: rtl;
-    padding: 0px 15px;
-}
+        .dropdown-menu-end.show {
+            right: auto;
+            text-align: right;
+            direction: rtl;
+            padding: 0px 15px;
+        }
 
     </style>
 </head>
@@ -144,8 +151,9 @@
                             <ul class="navbar-nav  mb-2 mb-lg-0">
 
                                 <li class="nav-item ms-2 user-items">
-                                    <div class="nav-link active dropdown-toggle text-gray-600" aria-expanded="false" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" style="position: relative">
+                                    <div class="nav-link active dropdown-toggle text-gray-600" aria-expanded="false"
+                                        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        style="position: relative">
                                         <i class="bi bi-bell bi-sub fs-4"></i>
                                         @if (auth()->user()->unreadNotifications->count() > 0)
                                             <span
@@ -155,13 +163,15 @@
                                         @endif
                                     </div>
 
-                                    <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5" aria-labelledby="dropdownMenuButton1"
+                                    <ul class="dropdown-menu dropdown-menu-right mt-1 mx-5"
+                                        aria-labelledby="dropdownMenuButton1"
                                         style="overflow: auto; width:340px ; hieght 70vh">
 
                                         @foreach (auth()->user()->unreadNotifications as $notification)
                                             <li class=""
                                                 style="color: gray ; overflow-wrap: break-word; height: fit-content ;   ">
-                                                <a class="dropdown-item color-black my-2 p-3" href="{{ $notification->data['url'] }}"
+                                                <a class="dropdown-item color-black my-2 p-3"
+                                                    href="{{ $notification->data['url'] }}"
                                                     style=' color: gray ; border-right: 4px solid {{ $notification->read_at == null ? 'red' : 'gray' }}  ; padding-right: 2px ; width:inherit; height: fit-content; '>
                                                     @if ($notification->data['type'] == 'comment')
                                                         {{-- <a href="{{ route('markAsReadOne', $notification->id) }}"> --}}

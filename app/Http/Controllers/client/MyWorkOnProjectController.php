@@ -201,7 +201,7 @@ class MyWorkOnProjectController extends Controller
             $project->finshed_at =  date("Y/m/d");
             $project->save();
 
-            PaymentController::sendTheMoneyToProvider($project_id);
+            PaymentController::sendTheMoneyBack($request->put(['who' => 'provider']), $project_id);
             // add the evaluation and reting
             $rating = new Evaluation();
             $rating->value = $request->rating;
