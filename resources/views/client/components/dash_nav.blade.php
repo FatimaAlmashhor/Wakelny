@@ -235,4 +235,3 @@
         </tbody>
     </table>
 </section>
-
