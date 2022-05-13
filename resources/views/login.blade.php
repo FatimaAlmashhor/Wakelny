@@ -7,7 +7,7 @@
                 <div class=" relative  w-6/12 hidden md:flex  ">
                     <div class="illstration_warrper w-full h-full">
                         <div class="motaah_illstration" style="top: -44px;
-                                                                                            left: 210%;">
+                                                                                                left: 210%;">
                             <div class="motaah-circle__gray green white xl"></div>
                             <div class="motaah-circle__gray blue white lg"></div>
                             <div class="motaah-circle__gray white md"></div>

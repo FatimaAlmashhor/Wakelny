@@ -40,33 +40,37 @@
 
             @include('client.components.dash_nav')
             <!-- wallet section -->
-            <section class="col-lg-8 col-md-8 col-12" >
-
-                <table class="table border">
-                    <thead >
+            <section class="col-lg-8 col-md-8 col-12" id="Edu">
+                <div
+                    class=" w-12/12 md:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
+                    <span class="font-2xl font-bold text-primary-green px-2">
+                        ماتملكه :
+                    </span>
+                    ${{ $wallet->balance }}
+                </div>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <th class="font-md">الرقم</th>
-                            <th class="font-md">المسلم </th>
-                            <th class="font-md">المستلم</th>
-                            <th class="font-md">المبلغ </th>
-                            <th class="font-md">التاريخ</th>
+                            <td class="font-lg">الرقم</td>
+                            <td class="font-lg">المسلم </td>
+                            <td class="font-lg">المستلم</td>
+                            <td class="font-lg">المبلغ </td>
+                            <td class="font-lg">التاريخ</td>
                         </tr>
                     </thead>
                     <tbody class="table-light">
-                        <tr>
-                            <td class="font-md">1</td>
-                            <td class="font-md">رقيه </td>
-                            <td class="font-md">رقيه</td>
-                            <td class="font-md">5000 </td>
-                            <td class="font-md">5/10/2022</td>
-                        </tr>
-                        <tr>
-                            <td class="font-md">1</td>
-                            <td class="font-md">رقيه </td>
-                            <td class="font-md">رقيه</td>
-                            <td class="font-md">5000 </td>
-                            <td class="font-md">5/10/2022</td>
-                        </tr>
+                        @foreach ($transactions as $tran)
+                            <tr>
+                                <td class="font-md">{{ $tran->uuid }}</td>
+                                <td class="font-md">{{ $tran->type }}</td>
+                                <td class="font-md">{{ $tran->amount }}</td>
+                                <td class="font-md">{{ $tran->created_at }}</td>
+                                {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
+                                {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
+                            </tr>
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </section>

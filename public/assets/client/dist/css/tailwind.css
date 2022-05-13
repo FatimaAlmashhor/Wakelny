@@ -551,6 +551,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
+.top-32 {
+  top: 8rem;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -856,6 +860,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.75rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .w-6\/12 {
   width: 50%;
 }
@@ -988,6 +996,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-wait {
+  cursor: wait;
 }
 
 .appearance-none {
@@ -1567,6 +1579,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(55 52 131 / var(--tw-text-opacity));
 }
 
+.text-primary-green {
+  --tw-text-opacity: 1;
+  color: rgb(0 200 155 / var(--tw-text-opacity));
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1832,6 +1849,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-8\/12 {
     width: 66.666667%;
+  }
+
+  .md\:w-5\/12 {
+    width: 41.666667%;
   }
 
   .md\:grid-cols-2 {

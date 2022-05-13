@@ -62,6 +62,14 @@ class GoogleController extends Controller
                 $profile->name = $user->getName();
                 $profile->user_id = $saveUser->id;
                 $profile->save();
+
+                $wallet =  $saveUser->createWallet([
+                    'name' => 'Default Wallet',
+                    'slug' => 'default',
+                ]);
+
+                if ($saveUser->hasRole('seeker'))
+                    $wallet->deposit(10000);
             } else {
                 $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),

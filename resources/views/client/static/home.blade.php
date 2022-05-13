@@ -112,25 +112,29 @@
         </header>
 
 
-        <!-- fixed nav -->
+        <!-- client fixed nav -->
         @if (Auth::check() && !Auth::user()->hasRole('admin'))
             <div class="flex justify-center items-center w-full h-fit bg-primary-blue">
                 <nav
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
-                        <div class="">
+                        <a href="{{ route('profile') }}" class="">
                             <ion-icon name="person-outline" class="font-md cursor-pointer hover:text-primary-pink">
                             </ion-icon>
-                        </div>
-                        <div class="  ">
+                        </a>
+                        <a href="{{ route('post') }}" class="  ">
                             <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
                             </ion-icon>
-                        </div>
-                        <div>
-                            <ion-icon name="briefcase-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
-                        </div>
-
+                        </a>
+                        @if (Auth::check())
+                            @role('provider')
+                                <a href="{{ route('userWork') }}">
+                                    <ion-icon name="briefcase-outline"
+                                        class="font-md cursor-pointer hover:text-primary-pink">
+                                    </ion-icon>
+                                </a>
+                            @endrole
+                        @endif
                         <!-- start drop up -->
                         <div class="flex items-center">
                             <div @click.away="open = false" class="relative" x-data="{ open: false }">
@@ -143,14 +147,29 @@
                                         x-transition:leave-end="transform opacity-0 scale-95"
                                         class="bottom-0 origin-top-right absolute left-0 mt-2 -mr-1 w-48 rounded-md shadow-lg">
                                         <div class="py-1 rounded-md bg-white shadow-xs relative">
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">Your
-                                                Profile</a>
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">Settings</a>
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">Sign
-                                                out</a>
+
+                                            @if (Auth::check())
+                                                @role('provider')
+                                                    <a href="{{ route('workonProject') }}"
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+                                                        اعمل على</a>
+                                                    <a href="{{ route('myWorks') }}"
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+                                                        اعمالي</a>
+                                                @endrole
+                                            @endif
+
+                                            @if (Auth::check())
+                                                @role('seeker')
+                                                    <a href="{{ route('myProject') }}"
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+                                                        مشاريعي</a>
+                                                @endrole
+                                            @endif
+                                            <a href='{{ route('logout') }}'
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+                                                تسجيل الخروج
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -168,9 +187,32 @@
                         <!-- end drop up -->
 
                         <!-- <div
-            class="rounded-full mr-1 w-fit h-12 bg-primary-green  border-2 border-white text-white font-sm flex justify-center items-center p-3 ">
-            اضف عمل
-          </div> -->
+                 class="rounded-full mr-1 w-fit h-12 bg-primary-green  border-2 border-white text-white font-sm flex justify-center items-center p-3 ">
+                 اضف عمل
+               </div> -->
+
+                    </div>
+                </nav>
+            </div>
+        @endif
+        <!-- admin fixed nav -->
+        @if (Auth::check() && Auth::user()->hasRole('admin'))
+            <div class="flex justify-center items-center w-full h-fit bg-primary-blue">
+                <nav
+                    class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
+                    <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
+                        <div class="">
+                            <ion-icon name="person-outline" class="font-md cursor-pointer hover:text-primary-pink">
+                            </ion-icon>
+                        </div>
+                        <div class=" mx-3 ">
+                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
+                            </ion-icon>
+                        </div>
+                        <a href='{{ route('logout') }}' class=" mx-3 ">
+                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
+                            </ion-icon>
+                        </a>
 
                     </div>
                 </nav>
