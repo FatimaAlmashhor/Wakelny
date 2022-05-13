@@ -21,9 +21,9 @@
         }
 
     </style>
-    <div class="container">
-        <h3 class="my-5 font-4xl"> إضافة مشروع جديد</h3>
-        <div class="row my-5">
+    <div class="container mt-20">
+        <h3 class="my-5  font-xl font-bold "> إضافة مشروع جديد</h3>
+        <div class="row my-5 grid place-items-center">
             <div class="col-lg-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
@@ -47,7 +47,7 @@
                             {{-- category --}}
                             <div class=" pt-2 col-md-6">
                                 <div class="form-group  ">
-                                    <label class="font-md"> القسم 
+                                    <label class="font-md"> القسم
                                     </label>
                                     <select class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" aria-label="Default select example" name="category"
                                         value="{{ old('category') }}" required="required">
@@ -130,7 +130,7 @@
 
                             {{-- duration --}}
                             <div class="col-sm-6 col-xs-12 pt-3 font-md">
-                                <label class="font-md">المدة المتوقعة للتسليم 
+                                <label class="font-md">المدة المتوقعة للتسليم
                                 </label>
                                 <div class="input-group ">
 
