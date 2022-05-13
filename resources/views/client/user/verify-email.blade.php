@@ -22,7 +22,9 @@
                                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_xumyfzqp.json"  background="transparent"  speed=".5"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
                                     <form action="{{ route('verification.request') }}" method="post"
-                                        class="my-4">
+                                    class="my-4">
+                                    class="my-4">
+                                    class="my-4">
                                         @csrf
                                         <button class='mo-btn' type="submit">اضفط هنا لاعاده الارسال</button>
                                     </form>
