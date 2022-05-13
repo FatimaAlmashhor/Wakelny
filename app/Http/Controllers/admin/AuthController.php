@@ -124,6 +124,7 @@ class AuthController extends Controller
                 // setup the profile
                 $profile = new Profile();
                 $profile->name = $name;
+                
                 $profile->user_id = $u->id;
                 $profile->save();
             }
