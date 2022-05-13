@@ -2,8 +2,8 @@
 @section('content')
     {{--  --}}
     <div class="container">
-        <div class="d-flex justify-content-between flex-wrap my-5">
-            <h3 class="my-5 font-4xl"> {{ $post->title }}</h3>
+        <div class="d-flex justify-content-between flex-wrap mt-20">
+            <h3 class="my-5  font-xl font-bold "> {{ $post->title }}</h3>
             <div class="card--actions hidden-xs my-5">
 
                 @if (Auth::check() && Auth::id() == $post->user_id)
@@ -62,24 +62,24 @@
             <div class="row my-5">
                 <div class="col-md-8 col-sm-12">
                     <div class="card">
-                        <h5 class="card-header font-lg">تفاصيل المشروع</h5>
+                        <h5 class="card-header font-md">تفاصيل المشروع</h5>
 
                         <div class="card-body">
-                            <p class="card-text font-md"> {{ $post->description }}</p>
+                            <p class="card-text font-sm"> {{ $post->description }}</p>
                         </div>
 
                     </div>
                     <div class="card mt-3">
-                        <h5 class="card-header font-lg">المهارات المطلوبة</h5>
+                        <h5 class="card-header font-md">المهارات المطلوبة</h5>
 
-                        <div class="skills mt-3 font-md">
+                        <div class="skills mt-3 font-sm">
                             @if (count($skills) == 0)
                                 <p>لاتوجد مهارات مطلوبه </p>
                             @endif
                             @foreach ($skills as $item)
-                                <a class="btn-tag color-gray-lighter" href="#" role="button">
+                                <a class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center" href="#" role="button">
                                     <i class="fa-solid fa-tags"></i>
-                                    <span class="me-1 font-md">{{ $item->name }}</span>
+                                    <span class="me-1 font-sm">{{ $item->name }}</span>
                                 </a>
                             @endforeach
 
@@ -96,7 +96,7 @@
                             <div class="">
                                 {{-- comment post condition --}}
                                 @if (!$hasComment)
-                                    <h3 class="my-5 font-lg" > اضف عرض </h3>
+                                    <h3 class="my-5 font-md" > اضف عرض </h3>
                                     <div class="card shadow-sm ">
                                         <div class="card-body">
 
@@ -107,7 +107,7 @@
 
                                                 {{-- estamte cost --}}
                                                 <div class="col-sm-4 col-xs-12 pt-3">
-                                                    <label class="font-md">قيمة العرض
+                                                    <label class="font-sm">قيمة العرض
                                                     </label>
                                                     <div class="input-group">
 
@@ -131,7 +131,7 @@
 
                                                 {{-- estamte cost --}}
                                                 <div class="col-sm-4 col-xs-12 pt-3">
-                                                    <label class="font-md">مستحقاتك 
+                                                    <label class="font-sm">مستحقاتك
                                                     </label>
                                                     <div class="input-group">
 
@@ -153,8 +153,8 @@
                                                 </div>
                                                 {{-- duration --}}
                                                 <div class="col-sm-4 col-xs-12 pt-3">
-                                                    <label class="font-md">المدة المتوقعة للتسليم 
-                                                    
+                                                    <label class="font-sm">المدة المتوقعة للتسليم
+
                                                     </label>
                                                     <div class="input-group">
 
@@ -177,7 +177,7 @@
 
                                                 <!-- Message input -->
                                                 <div>
-                                                    <label class="font-md" for="message">تفاصيل العرض</label>
+                                                    <label class="font-sm" for="message">تفاصيل العرض</label>
                                                     <textarea class="شppearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" name='message' value="{{ old('message') }}" id="message" type="text"
                                                         style="height: 10rem;" data-sb-validations="required"
                                                         required></textarea>
@@ -196,7 +196,7 @@
 
 
                                                 <div class="mb-1">
-                                                    <label class="font-md" for="message">ملفات توضيحية</label>
+                                                    <label class="font-sm" for="message">ملفات توضيحية</label>
                                                     <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="dropzone" multiple name='files'
                                                         type="file" value="{{ old('files') }}"
                                                         data-sb-validations="required">
@@ -227,7 +227,7 @@
                     <div class="accordion mt-3" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button font-lg" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button font-md" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                     aria-controls="panelsStayOpen-collapseOne">
                                     العروض المقدمة
@@ -322,7 +322,7 @@
                                                                             <ul
                                                                                 class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
                                                                                 <li class="border-b border-primary-light-pink">
-                                                                                    <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                                                                    <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2  block whitespace-no-wrap"
                                                                                         href="{{ route('report_provider', $item->user_id) }}">
                                                                                         التبليغ عن مستخدم</a>
                                                                                 </li>
@@ -622,26 +622,26 @@
                 {{-- more information --}}
                 <div class="col-md-4 col-sm-12">
                     <div class="card">
-                        <h5 class="card-header font-lg">بطاقة المشروع</h5>
+                        <h5 class="card-header font-md">بطاقة المشروع</h5>
 
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
                                 <div>
-                                    <div class="my-3 font-md"> حالة المشروع</div>
-                                    <div class="my-3 font-md"> تاريخ النشر</div>
-                                    <div class="y-3 font-md"> الميزانية </div>
-                                    <div class="my-3 font-md"> مدة التنفيذ</div>
-                                    <div class="my-3 font-md"> عدد العروض</div>
+                                    <div class="my-3 font-sm"> حالة المشروع</div>
+                                    <div class="my-3 font-sm"> تاريخ النشر</div>
+                                    <div class="y-3 font-sm"> الميزانية </div>
+                                    <div class="my-3 font-sm"> مدة التنفيذ</div>
+                                    <div class="my-3 font-sm"> عدد العروض</div>
                                 </div>
                                 <div>
-                                    <div class="my-3 font-md"> <span class="px-1"
+                                    <div class="my-3 font-sm"> <span class="px-1"
                                             style="background-color: green ; color:white;">{{ $post->status }}</span></div>
-                                    <div class="my-3 font-md"> {{ $post->created_at }}</div>
-                                    <div class="my-3 font-md"> ${{ $post->cost }}</div>
+                                    <div class="my-3 font-sm"> {{ $post->created_at }}</div>
+                                    <div class="my-3 font-sm"> ${{ $post->cost }}</div>
 
-                                    <div class="my-3 font-md"> {{ $post->duration }}</div>
+                                    <div class="my-3 font-sm"> {{ $post->duration }}</div>
 
-                                    <div class="my-3 font-md"> {{ $post->offers }}</div>
+                                    <div class="my-3 font-sm"> {{ $post->offers }}</div>
                                 </div>
                             </div>
                         </div>
@@ -654,7 +654,7 @@
                         </div> -->
                         <hr>
                         <div>
-                            <p class="font-lg my-4">صاحب المشروع</p>
+                            <p class="font-md my-4">صاحب المشروع</p>
                             <div class="image d-flex">
 
 
@@ -684,7 +684,7 @@
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
         <script src="/assets/client/js/acceptance-modalNavigation.js"></script>
