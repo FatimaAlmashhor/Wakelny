@@ -1746,6 +1746,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     align-items: flex-start;
   }
 
+  .sm\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   .sm\:text-center {
     text-align: center;
   }

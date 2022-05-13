@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\payment\PaymentController;
 use App\Models\Evaluation;
 use App\Models\Posts;
 use App\Models\Profile;
@@ -199,6 +200,7 @@ class MyWorkOnProjectController extends Controller
             $project->finshed_at =  date("Y/m/d");
             $project->save();
 
+            PaymentController::sendTheMoneyToProvider($project_id);
             // add the evaluation and reting
             $rating = new Evaluation();
             $rating->value = $request->rating;

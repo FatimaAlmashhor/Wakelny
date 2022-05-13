@@ -72,20 +72,7 @@ class PaymentController extends Controller
             )->join('posts', 'posts.id', 'projects.post_id')
                 ->where('projects.id', $project_id)
                 ->first();
-            // $payment = [
-            //     'invoice_referance' => 2,
-            //     'total_amount' => 1500,
-            //     'products' => [
-            //         [
-            //             'id' => 1
-            //         ],
 
-            //     ],
-            //     'meta_data' => [
-            //         'provider_id' => 11,
-            //         'seeker_id' => 10
-            //     ]
-            // ];
             // add the moeny into the admin wallet
             // set the information into the meta 
 
@@ -134,28 +121,40 @@ class PaymentController extends Controller
     }
 
 
-    function sendTheMoneyToProvider($provider_id, $project_id/*$invoice_referance*/)
+    static function sendTheMoneyToProvider($project_id/*$invoice_referance*/)
     {
 
+        try {
+            // find the row of the wallet 
+            $project = Project::where('id', $project_id)->first();
+            if ($project->payment_status == 'paid') {
+                $userTheOneNeedMoney = User::find($project->provider_id);
+                $admin = User::find(1);
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
 
-        // find the row of the wallet 
-        $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
-            ->whereJsonContains('meta', ['back_to_owner' => false])
-            ->first();
-        // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+                $project->payment_status = 'received';
+                $project->save();
+            } else {
+                return redirect()->route('profile')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+            }
+            // ? here when we use the transaction 
+            // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
+            //     ->whereJsonContains('meta', ['back_to_owner' => false])
+            //     ->first();
+            // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
 
-        // get the user id 
-        // withdraw the money from the provider to admin
-        // send the money to the provider 
-        $userTheOneNeedMoney = User::find($transaction->meta['provider_id']);
-        $admin = User::find(1);
-        $admin->transfer($userTheOneNeedMoney, 45);
-        // send the message back to the brovider
+            // get the user id 
+            // withdraw the money from the provider to admin
+            // send the money to the provider 
 
-        return response()->json($transaction->meta['provider_id']);
+            // send the message back to the brovider
+
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 
     function sendTheMoneyToSeeker($seeker_id, $project_id/*$invoice_referance*/)

@@ -47,11 +47,11 @@
                 <span class="fs-6 font-md fw-bold mx-4">{{ __('profile.skills') }}</span>
             </a>
 
-            <p style="cursor: pointer" id="note"
+            <a style="cursor: pointer" id="note" href='{{ route('mywallet') }}'
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa  fa-wallet pe-2"></i>
                 <span class="fs-6 font-md fw-bold mx-4">{{ __('profile.wallet') }}</span>
-            </p>
+            </a>
 
 
         </nav>
@@ -235,3 +235,4 @@
         </tbody>
     </table>
 </section>
+

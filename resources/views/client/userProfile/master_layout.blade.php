@@ -39,8 +39,9 @@
             {{ session()->get('message') }}
         </div>
     @endif
-
+<div class="sm:px-16 lg:px-18">
     @yield('content')
+</div>
     @include('client.components.footer')
 
     {{-- scripts --}}

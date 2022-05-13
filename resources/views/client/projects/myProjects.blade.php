@@ -75,9 +75,7 @@
 
                                             </a>
                                             <a tabindex="-1" class="mo-btn btn-pink-bg mx-1" data-bs-toggle="modal"
-                                                data-bs-target="#reject_{{ $item->project_id }}"
-                                                 {{-- style='background-color: red' --}}
-                                                 >
+                                                data-bs-target="#reject_{{ $item->project_id }}" {{-- style='background-color: red' --}}>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> قدم شكوى </span>
 
