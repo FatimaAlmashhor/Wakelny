@@ -721,6 +721,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mt-20 {
   margin-top: 5rem;
 }
@@ -735,10 +739,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-10 {
   margin-top: 2.5rem;
-}
-
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .mt-0 {
@@ -831,6 +831,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-64 {
   height: 16rem;
 }
@@ -841,14 +845,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-11 {
   height: 2.75rem;
-}
-
-.h-44 {
-  height: 11rem;
-}
-
-.h-24 {
-  height: 6rem;
 }
 
 .w-6\/12 {
@@ -929,14 +925,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 33.333333%;
 }
 
-.w-64 {
-  width: 16rem;
-}
-
-.w-5\/12 {
-  width: 41.666667%;
-}
-
 .min-w-fit {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
@@ -991,6 +979,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-wait {
+  cursor: wait;
 }
 
 .appearance-none {
@@ -1542,6 +1534,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(217 81 81 / var(--tw-text-opacity));
 }
 
+.text-primary-green {
+  --tw-text-opacity: 1;
+  color: rgb(0 200 155 / var(--tw-text-opacity));
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -1555,11 +1552,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-primary-blue {
   --tw-text-opacity: 1;
   color: rgb(55 52 131 / var(--tw-text-opacity));
-}
-
-.text-primary-green {
-  --tw-text-opacity: 1;
-  color: rgb(0 200 155 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -1797,6 +1789,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 33.333333%;
   }
 
+  .md\:w-5\/12 {
+    width: 41.666667%;
+  }
+
   .md\:w-6\/12 {
     width: 50%;
   }
@@ -1817,10 +1813,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-8\/12 {
     width: 66.666667%;
-  }
-
-  .md\:w-5\/12 {
-    width: 41.666667%;
   }
 
   .md\:grid-cols-2 {

@@ -32,6 +32,7 @@ class MyWorkOnProjectController extends Controller
                 'projects.stated_at',
                 'projects.status',
                 'projects.amount',
+                'projects.payment_status',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
@@ -149,6 +150,8 @@ class MyWorkOnProjectController extends Controller
                 'projects.other_way_send_files',
                 'projects.url',
                 'projects.files',
+                'projects.payment_status',
+                'projects.invoice',
                 'comments.description as comment_description'
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
@@ -162,6 +165,10 @@ class MyWorkOnProjectController extends Controller
 
                 ->first();
 
+            if ($project->payment_status == 'paid') {
+                // ! need unpaid page 
+                return back()->with(['message' => 'لم تقم بتسديد المبلغ المتفق عليه بعد  ', 'type' => 'alert-danger']);
+            }
             if (empty($project)) {
                 return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
             } else
@@ -186,7 +193,7 @@ class MyWorkOnProjectController extends Controller
                 ->where('status', 'done')
                 ->first();
 
-            print_r($request->rating);
+
             $project->status = 'received';
             $project->finshed = 1;
             $project->finshed_at =  date("Y/m/d");
