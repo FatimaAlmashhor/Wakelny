@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\payment\PaymentController;
 use App\Models\Evaluation;
 use App\Models\Posts;
 use App\Models\Profile;
@@ -32,6 +33,7 @@ class MyWorkOnProjectController extends Controller
                 'projects.stated_at',
                 'projects.status',
                 'projects.amount',
+                'projects.payment_status',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
@@ -133,6 +135,7 @@ class MyWorkOnProjectController extends Controller
         }
     }
 
+    // this function for the seeker to see the received files
     function markAsRecive($project_id, $provider_id)
     {
         try {
@@ -149,6 +152,8 @@ class MyWorkOnProjectController extends Controller
                 'projects.other_way_send_files',
                 'projects.url',
                 'projects.files',
+                'projects.payment_status',
+                'projects.invoice',
                 'comments.description as comment_description'
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
@@ -162,6 +167,10 @@ class MyWorkOnProjectController extends Controller
 
                 ->first();
 
+            if ($project->payment_status == 'unpaid') {
+                // ! need unpaid page 
+                return back()->with(['message' => 'لم تقم بتسديد المبلغ المتفق عليه بعد  ', 'type' => 'alert-danger']);
+            }
             if (empty($project)) {
                 return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
             } else
@@ -186,12 +195,13 @@ class MyWorkOnProjectController extends Controller
                 ->where('status', 'done')
                 ->first();
 
-            print_r($request->rating);
+
             $project->status = 'received';
             $project->finshed = 1;
             $project->finshed_at =  date("Y/m/d");
             $project->save();
 
+            PaymentController::sendTheMoneyToProvider($project_id);
             // add the evaluation and reting
             $rating = new Evaluation();
             $rating->value = $request->rating;

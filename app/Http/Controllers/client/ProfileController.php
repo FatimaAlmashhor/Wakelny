@@ -8,8 +8,11 @@ use App\Models\category;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\UserSkills;
+use Bavix\Wallet\Models\Transaction;
+use Bavix\Wallet\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -81,34 +84,17 @@ class ProfileController extends Controller
         return redirect()->back()->with(['message' => 'لقد تم حذف المهارة بنجاح', 'type' => 'alert-danger']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Profile $profile)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
-    {
-        //
-    }
-
-//  mywallete view
-      function showMyWallet()
+    //  mywallete view
+    function showMyWallet()
     {
         $profile = Profile::where('user_id', Auth::id())->first();
-
-        return view('client.userProfile.myWallet')->with('item' , $profile);
+        $wallet = Wallet::where('holder_id', Auth::id())->first();
+        $transactions = Transaction::select('*', DB::raw('JSON_EXTRACT(`meta`, "$.project_id")'))->where('payable_id', Auth::id())->get();
+        return view('client.userProfile.myWallet')->with([
+            'item' => $profile,
+            'wallet' => $wallet,
+            'transactions' => $transactions,
+        ]);
     }
 }

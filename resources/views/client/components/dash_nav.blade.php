@@ -60,8 +60,7 @@
     </div>
     <!-- dashboard nav -->
     {{-- <div class="card  p-3 pt-0 bg-opacity-0"> --}}
-{{--
-        <nav class="card px-3 py-4 mt-3 d-flex gap-3">
+    {{-- <nav class="card px-3 py-4 mt-3 d-flex gap-3">
             <h5 class="border-bottom my-2 pb-2" style="color:rgba(77, 212, 172, 1);">خطوات إكمال الحساب</h5>
             <div class="mx-2 px-2">
                 <a href="#">
@@ -201,5 +200,3 @@
 
         </div>
 </section> --}}
-
-

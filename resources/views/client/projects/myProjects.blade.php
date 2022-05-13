@@ -42,8 +42,8 @@
                                 <div class="dropdown btn-group">
 
 
-                                    @if ($item->status == 'at_work')
-                                        <a tabindex="-1" class="wak_btn border-green" data-bs-toggle="modal"
+                                    @if ($item->status == 'at_work' && $item->payment_status == 'paid')
+                                        <a tabindex="-1" class="mo-btn btn-green-bg cursor-pointer" data-bs-toggle="modal"
                                             data-bs-target="#model_{{ $item->project_id }}">
                                             <i class="fa-regular fa-paper-plane"></i>
 
@@ -51,8 +51,16 @@
 
                                         </a>
                                     @endif
+                                    @if ($item->status == 'at_work' && $item->payment_status == 'unpaid')
+                                        <a class="mo-btn btn-pink-bg cursor-wait" aria-readonly="true" readOnly>
+                                            {{-- <i class="fa-regular fa-paper-plane"></i> --}}
+
+                                            <span class="action-text"> لم يتم الدفع بعد... </span>
+
+                                        </a>
+                                    @endif
                                     @if ($item->status == 'done')
-                                        <button tabindex="-1" class="wak_btn orange" aria-disabled="true">
+                                        <button tabindex="-1" class="mo-btn " aria-disabled="true">
                                             <i class="fa-solid fa-spinner"></i>
                                             <span class="action-text"> انتظار الرد... </span>
 
@@ -60,15 +68,14 @@
                                     @endif
                                     @if ($item->status == 'nonrecevied')
                                         <div class="d-flex x-space-2">
-                                            <a tabindex="-1" class="wak_btn mr-1"
+                                            <a tabindex="-1" class="mo-btn btn-green-bg mr-1"
                                                 href='{{ route('continueProject', [$item->project_id]) }}'>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> استأناف المشروع </span>
 
                                             </a>
-                                            <a tabindex="-1" class="wak_btn mx-1" data-bs-toggle="modal"
-                                                data-bs-target="#reject_{{ $item->project_id }}"
-                                                style='background-color: red'>
+                                            <a tabindex="-1" class="mo-btn btn-pink-bg mx-1" data-bs-toggle="modal"
+                                                data-bs-target="#reject_{{ $item->project_id }}" {{-- style='background-color: red' --}}>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> قدم شكوى </span>
 

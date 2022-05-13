@@ -52,7 +52,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -367,6 +367,12 @@ Route::get('/testWallet', function () {
     return $admin->balance; // 10
 });
 
-Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
-Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+
+Route::get('/chats', [ChatController::class, 'index'])->name('chat');
+Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
+Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
+
+Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
 Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');
