@@ -162,7 +162,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <a class="mo-btn" type="submit" name="reject" data-bs-toggle="modal"
+                        <a class="mo-btn btn-blue-bg" type="submit" name="reject" data-bs-toggle="modal"
                             data-bs-target="#evaluationModel"> تأكيد التسليم</a>
                         <a class="mo-btn btn-blue-rounderd  " type="submit" name="reject" data-bs-toggle="modal"
                             data-bs-target="#deleteModel"> رفض التسليم </a>
@@ -271,8 +271,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-success">تاكيد التسليم</button>
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="submit" class="mo-btn btn-blue-bg">تاكيد التسليم</button>
+                                        <button type="button" class="mo-btn btn-blue-rounderd"
                                             data-bs-dismiss="modal">الغاء</button>
                                         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 

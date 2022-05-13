@@ -200,38 +200,3 @@
 
         </div>
 </section> --}}
-
-<section class="col-lg-8 col-md-8 col-12" id="Edu">
-    <div
-        class=" w-12/12 md:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
-        <span class="font-2xl font-bold text-primary-green px-2">
-            ماتملكه :
-        </span>
-        ${{ $wallet->balance }}
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <td class="font-lg">الرقم</td>
-                <td class="font-lg">المسلم </td>
-                <td class="font-lg">المستلم</td>
-                <td class="font-lg">المبلغ </td>
-                <td class="font-lg">التاريخ</td>
-            </tr>
-        </thead>
-        <tbody class="table-light">
-            @foreach ($transactions as $item)
-                <tr>
-                    <td class="font-md">{{ $item->uuid }}</td>
-                    <td class="font-md">{{ $item->type }}</td>
-                    <td class="font-md">{{ $item->amount }}</td>
-                    <td class="font-md">{{ $item->created_at }}</td>
-                    {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
-                    {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
-                </tr>
-            @endforeach
-
-
-        </tbody>
-    </table>
-</section>

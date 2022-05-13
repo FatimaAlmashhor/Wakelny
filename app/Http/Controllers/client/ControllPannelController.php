@@ -37,15 +37,13 @@ class ControllPannelController extends Controller
         } else if ($user->hasRole('provider')) {
             $userRole = 'provider';
         }
-        $wallet = ModelsWallet::where('holder_id', Auth::id())->first();
-        $transactions = Transaction::select('*', DB::raw('JSON_EXTRACT(`meta`, "$.project_id")'))->where('payable_id', Auth::id())->get();
+       
         // return response()->json($transactions);
         return view('client.userProfile.controllPannal')->with([
             'data' => $profile,
             'categories' =>  $categories,
             'role' => $userRole,
-            'wallet' => $wallet,
-            'transactions' => $transactions,
+           
         ]);
         // return view('client.userProfile.controllPannal')->with();
     }

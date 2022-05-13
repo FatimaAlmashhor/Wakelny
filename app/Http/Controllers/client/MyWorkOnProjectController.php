@@ -135,6 +135,7 @@ class MyWorkOnProjectController extends Controller
         }
     }
 
+    // this function for the seeker to see the received files
     function markAsRecive($project_id, $provider_id)
     {
         try {
@@ -166,7 +167,7 @@ class MyWorkOnProjectController extends Controller
 
                 ->first();
 
-            if ($project->payment_status == 'paid') {
+            if ($project->payment_status == 'unpaid') {
                 // ! need unpaid page 
                 return back()->with(['message' => 'لم تقم بتسديد المبلغ المتفق عليه بعد  ', 'type' => 'alert-danger']);
             }
