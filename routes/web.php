@@ -303,10 +303,10 @@ Route::group([
         Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
 
         // payment
-        Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
-        Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
-        Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
-        Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
+        // Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+        // Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+        // Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+        // Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
         // Route::get('/back-payment-to-seeker/{project_id}', [PaymentController::class, 'sendTheMoneyToSeeker'])->name('payment.sendToSeeker');
     });
 });
@@ -378,3 +378,9 @@ Route::get('/testWallet', function () {
 
     return $admin->balance; // 10
 });
+
+Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+Route::get('/get-money-back/{who}/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
+// Route::get('/back-payment-to-seeker/{project_id}', [PaymentController::class, 'sendTheMoneyToSeeker'])->name('payment.sendToSeeker');

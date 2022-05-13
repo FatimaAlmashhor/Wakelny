@@ -121,16 +121,16 @@ class PaymentController extends Controller
     }
 
 
-    static function sendTheMoneyBack(Request $request, $project_id/*$invoice_referance*/)
+    static function sendTheMoneyBack($who = 'provider', $project_id/*$invoice_referance*/)
     {
 
         try {
             // find the row of the wallet 
             $project = Project::where('id', $project_id)->first();
             if ($project->payment_status == 'paid') {
-                if ($request->get('who') == 'provider') {
+                if ($who == 'provider') {
                     $userTheOneNeedMoney = User::find($project->provider_id);
-                } else if ($request->get('who') == 'seeker') {
+                } else if ($who == 'seeker') {
                     $userTheOneNeedMoney = User::find($project->seeker_id);
                 }
 

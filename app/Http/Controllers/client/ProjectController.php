@@ -191,8 +191,8 @@ class ProjectController extends Controller
             // 'total_amount' => $project->totalAmount,
             'total_amount' => $project->totalAmount,
             'currency' => 'YER',
-            'success_url' => 'http://localhost:8000/success-payment/' . $project_id,
-            'cancel_url' => 'http://localhost:8000/cancel-payment/' .  $project_id,
+            'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
+            'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
             'metadata' => (object)$dataMeta
         ]);
         // session()->put([(string)$project->seeker_id, $response->json($key = null)]);
