@@ -18,23 +18,25 @@ class ReportController extends Controller
     {
         // $reported = User::where('is_active', 1)->get();
         $reports =  report::select(
-            'reports.id',
+            'reports.id as report_id',
             'reports.user_id',
             'reports.post_id',
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            // 'reportesr.name as reporter',
+            'reportesr.name as reporter',
             // 'reporteds.name as reported',
-            'posts.title'
+            // 'posts.title'
         )
-        //  ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.seeker_id')
-        //  ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
-        ->join('posts', 'posts.id', '=', 'reports.post_id')
-        ->where('reports.is_active', 1)->get();
+            ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
+            //  ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
+            // ->join('posts', 'posts.id', '=', 'reports.post_id')
+            ->join('projects', 'projects.id', '=', 'reports.project_id')
+            ->where('reports.is_active', 1)
+            ->get();
 
-            return response()->json($reports);
-        // return view('admin.report.index')->with(['reports' => $reports]);
+        // return response()->json($reports);
+        return view('admin.report.index')->with(['reports' => $reports]);
     }
     ////////////////////add new reports ///////////
 
@@ -109,5 +111,13 @@ class ReportController extends Controller
             //throw $th;
             return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
+    }
+
+
+    function reportDetails($report_id)
+    {
+        $report = Report::find($report_id);
+
+        return view('admin.report.reportDetails')->with(['report' => $report]);
     }
 }

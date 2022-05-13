@@ -149,85 +149,85 @@ class ProjectController extends Controller
     // if ther use accept the project
     function acceptProject($project_id, $seeker_id)
     {
-        try {
-            // notify the provider about the acceptence of the offer
-            $seekerNotify = User::find($seeker_id);
+        // try {
+        // notify the provider about the acceptence of the offer
+        $seekerNotify = User::find($seeker_id);
 
-            $project = Project::select(
-                'posts.title',
-                'projects.amount',
-                'projects.totalAmount',
-                'projects.seeker_id',
-                'projects.provider_id',
-                'projects.status',
-                'projects.payment_status',
-            )->join('posts', 'posts.id', 'projects.post_id')
-                ->where('projects.seeker_id', $seeker_id)
-                ->where('projects.id', $project_id)
-                ->where('projects.payment_status', 'unpaid')
-                ->where('projects.status', 'pending')
-                ->first();
-
-
-            $dataPayment = [
-                "id" => $project_id,
-                "product_name" => $project->title,
-                "quantity" => 1,
-                "unit_amount" => $project->amount
-            ];
-
-            $dataMeta = [
-                "provider_id" => $project->provider_id,
-                "seeker_id" => $seeker_id
-            ];
-
-            $response = Http::withHeaders([
-                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-                'Content-Type' => 'application/x-www-form-url'
-            ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
-                'order_reference' =>  $project_id,
-                'products' =>  [$dataPayment],
-                // 'total_amount' => $project->totalAmount,
-                'total_amount' => $project->totalAmount,
-                'currency' => 'YER',
-                'success_url' => 'http://localhost:8000/success-payment/' . $project->id,
-                'cancel_url' => 'http://localhost:8000/cancel-payment/' . $project->id,
-                'metadata' => (object)$dataMeta
-            ]);
-            // session()->put([(string)$project->seeker_id, $response->json($key = null)]);
-            // return $response->json($key = null);
-            // return response()->json($request->session()->get($project->seeker_id));
-            // return response()->json($response['invoice']['invoice_referance']);
+        $project = Project::select(
+            'posts.title',
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.seeker_id',
+            'projects.provider_id',
+            'projects.status',
+            'projects.payment_status',
+        )->join('posts', 'posts.id', 'projects.post_id')
+            ->where('projects.seeker_id', $seeker_id)
+            ->where('projects.id', $project_id)
+            ->where('projects.payment_status', 'unpaid')
+            ->where('projects.status', 'pending')
+            ->first();
 
 
-            $data = [
-                'project_id' => $project_id,
-                'name' => $seekerNotify->name,
-                'project_title' => $project->title,
-                'url' => url($response['invoice']['next_url']),
-                'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
-                'userId' => Auth::id()
-            ];
+        $dataPayment = [
+            "id" => $project_id,
+            "product_name" => $project->title,
+            "quantity" => 1,
+            "unit_amount" => $project->amount
+        ];
 
-            Project::where('id', $project_id)->update([
-                'status' => 'at_work',
-                'stated_at' => date("Y/m/d"),
-                'invoice' => $response['invoice']['invoice_referance']
-            ]);
+        $dataMeta = [
+            "provider_id" => $project->provider_id,
+            "seeker_id" => $seeker_id
+        ];
 
-            Profile::where('user_id', Auth::id())
-                ->where('limit', '<=', 4)
-                ->where('limit', '>=', 0)
-                ->decrement('limit');
+        $response = Http::withHeaders([
+            'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+            'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+            'Content-Type' => 'application/x-www-form-url'
+        ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
+            'order_reference' =>  $project_id,
+            'products' =>  [$dataPayment],
+            // 'total_amount' => $project->totalAmount,
+            'total_amount' => $project->totalAmount,
+            'currency' => 'YER',
+            'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
+            'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
+            'metadata' => (object)$dataMeta
+        ]);
+        // session()->put([(string)$project->seeker_id, $response->json($key = null)]);
+        // return $response->json($key = null);
+        // return response()->json($request->session()->get($project->seeker_id));
+        // return response()->json($response['invoice']['invoice_referance']);
 
-            $seekerNotify->notify(new AcceptProjectNotification($data));
 
-            // return response()->json($seekerNotify);
-            return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        }
+        $data = [
+            'project_id' => $project_id,
+            'name' => $seekerNotify->name,
+            'project_title' => $project->title,
+            'url' => url($response['invoice']['next_url']),
+            'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
+            'userId' => Auth::id()
+        ];
+
+        Project::where('id', $project_id)->update([
+            'status' => 'at_work',
+            'stated_at' => date("Y/m/d"),
+            'invoice' => $response['invoice']['invoice_referance']
+        ]);
+
+        Profile::where('user_id', Auth::id())
+            ->where('limit', '<=', 4)
+            ->where('limit', '>=', 0)
+            ->decrement('limit');
+
+        $seekerNotify->notify(new AcceptProjectNotification($data));
+
+        // return response()->json($seekerNotify);
+        return redirect()->route('profile')->with(['message' => 'لقد تم ارسال رساله القبول الطرف الاخر', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        // }
     }
 
     // if the provider reject the project

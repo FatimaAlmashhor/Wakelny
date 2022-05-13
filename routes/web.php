@@ -85,11 +85,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
-//  mywallet view
+    //  mywallet view
 
-Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
+    Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
 
-//
+    //
     // ------------------------------------------------------------------------
     // Static pages section
     // ------------------------------------------------------------------------
@@ -281,6 +281,7 @@ Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywal
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
+        Route::get('/reports/details/{report_id}', [ReportController::class, 'reportDetails'])->name('report.details');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
         ///////////////----------------------ProjectAdmin----------------------------------------------------------//////
@@ -297,6 +298,16 @@ Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywal
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
 
+        Route::get('/chats', [ChatController::class, 'index'])->name('chat');
+        Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
+        Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
+
+        // payment
+        // Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+        // Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+        // Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+        // Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
+        // Route::get('/back-payment-to-seeker/{project_id}', [PaymentController::class, 'sendTheMoneyToSeeker'])->name('payment.sendToSeeker');
     });
 });
 
@@ -309,6 +320,7 @@ Route::view('/test-suc', 'client.payAnimation.paySucces');
 
 
 
+// !!| here just for test
 // make the notification as red
 Route::get('/markAsRead', function () {
 
@@ -367,12 +379,8 @@ Route::get('/testWallet', function () {
     return $admin->balance; // 10
 });
 
-
-Route::get('/chats', [ChatController::class, 'index'])->name('chat');
-Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
-Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
-
 Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
 Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
 Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
-Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');
+Route::get('/get-money-back/{who}/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
+// Route::get('/back-payment-to-seeker/{project_id}', [PaymentController::class, 'sendTheMoneyToSeeker'])->name('payment.sendToSeeker');
