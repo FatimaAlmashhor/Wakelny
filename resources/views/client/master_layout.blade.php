@@ -84,7 +84,9 @@
     @endif
     <div class="m-5">
         @include('client.components.navigation')
+        <div class="sm:px-16 lg:px:18">
         @yield('content')
+        </div>
         @include('client.components.footer')
 
         <!-- client fixed nav -->
