@@ -52,7 +52,6 @@ use App\Models\User;
 |
 */
 
-Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -225,10 +224,15 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
+   
         });
     });
 
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
+        Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
+    });
+    
 
 
 
