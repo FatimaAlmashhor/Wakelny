@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <div class="container-fluid border-bottom px-5 pt-5">
+    <div class="container-fluid border-bottom px-5 pt-20">
         <!-- User Identety Brief-->
         <div class="profile-identity row align-items-center">
             <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
@@ -16,7 +16,7 @@
                 <div class="inactive-dot rounded-circle"></div>
             </div>
 
-            <div class="user-info color-black mt-5 py-0 col-md-6">
+            <div class="user-info color-black mt-5 py-0 col-md-5">
                 <div class="username color-black">
 
                     <h5 class="font-xl">{{ $data->name }}</h5>
@@ -49,7 +49,7 @@
             </div>
 
             {{-- user report --}}
-            <div class="card--actions hidden-xs float-start col-3">
+            <div class="card--actions hidden-xs float-start col-4">
                 <div class="dropdown btn-group">
                     @if (Auth::check())
                         @role('seeker')
@@ -61,18 +61,18 @@
                                     <span class="mr-1"> أضف مشروع </span>
                                     <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path style="color:white ; stroke: white;
-                                                fill: white;"
+                                                        fill: white;"
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
                         @endif
                         </a>
                     @endrole
-                   <ul
-                                class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
+                    <ul
+                        class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
                         <li class="border-b border-primary-light-pink">
                             <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
                                 href="{{ route('report_provider', $data->user_id) }}">
-                             التبليغ عن محتوى</a>
+                                التبليغ عن محتوى</a>
                         </li>
 
                     </ul>
@@ -109,9 +109,9 @@
             </div> --}}
     </div>
     <!-- /Profile Taps -->
-    </div>
 
-    <main class="main-section container mt-3">
+
+    <main class="main-section  mt-3 align-items-center">
 
 
         {{-- here the main --}}
@@ -126,7 +126,7 @@
                             <section class="card shadow-sm  col-sm-12 col-lg-4  p-3 ">
                                 <div class="about-me">
                                     <div class="section-title">
-                                        <h5 class="font-lg">نبذة عني</h5>
+                                        <h5 class="font-md">نبذة عني</h5>
                                     </div>
                                     <div class="brief-content mt-3">
                                         <p class="p-1">
@@ -159,7 +159,7 @@
                             <section class="card shadow-sm col-12 col-sm-12 mt-3 p-3">
                                 <div class="my-skills">
                                     <div class="section-title">
-                                        <h5 class="font-lg">مهاراتي</h5>
+                                        <h5 class="font-md">مهاراتي</h5>
                                     </div>
                                     <div class="skills mt-3">
                                         @foreach ($skills as $item)
@@ -182,7 +182,7 @@
                             <section class="card shadow-sm p-3">
                                 <div class="statistics">
                                     <div class="section-title">
-                                        <h5 class="font-lg">إحصائيات</h5>
+                                        <h5 class="font-md">إحصائيات</h5>
                                     </div>
                                     <div class="statistic-content mt-3">
                                         <p class="p-1">
@@ -223,7 +223,7 @@
 
                                 <div class="histories">
                                     <div class="section-title">
-                                        <h5 class="font-lg">تواريخ</h5>
+                                        <h5 class="font-md">تواريخ</h5>
                                     </div>
                                     <div class="histories-content mt-3">
                                         <p class="p-1">
@@ -249,7 +249,7 @@
                         <section class="card shadow-sm col-12 col-sm-12 p-3">
                             <div class="about-me">
                                 <div class="section-title">
-                                    <h5 class="font-lg">التقيمات</h5>
+                                    <h5 class="font-md">التقيمات</h5>
                                 </div>
                                 <div class="brief-content mt-3 me-1">
                                     <div class="row">

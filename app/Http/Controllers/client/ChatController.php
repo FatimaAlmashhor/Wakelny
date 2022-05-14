@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\client;
 
+use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 use App\Models\Messages;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -50,5 +52,35 @@ class ChatController extends Controller
             'messages' => $messages,
             'sender' => $sender,
         ]);
+    }
+
+    /**
+     * Fetch all messages
+     *
+     * @return Message
+     */
+    public function fetchMessages()
+    {
+        return Message::with('user')->get();
+    }
+
+    /**
+     * Persist message to database
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+
+        $message = $user->messages()->create([
+            // 'message' => $request->input('message')
+            'message' => 'test'
+        ]);
+
+        broadcast(new MessageSent($user, $message))->toOthers();
+
+        return ['status' => 'Message Sent!'];
     }
 }

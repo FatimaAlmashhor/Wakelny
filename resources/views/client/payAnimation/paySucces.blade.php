@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Tailwind CSS Modal</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-
-
-</head>
-
-<body class="">
-
-
+@extends('client.master_layout')
+@section('content')
     <div class="flex items-center justify-center h-screen bg-gray-200">
         <div class="bg-white rounded-2xl border shadow-x1 p-10 " style='width:33rem'>
             <div class="flex flex-col items-center space-y-4">
@@ -34,13 +23,11 @@
                 <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_ul4trcgf.json"
                     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay>
                 </lottie-player>
-                <button class="bg-purple-900 text-white rounded-md  font-semibold px-4 py-3 w-full">
+                <a href='{{ route('profile') }}' class="bg-purple-900 text-white rounded-md  font-semibold px-4 py-3 w-full">
 
                     دعنا ننتقل الى الصفحة التالية
-                </button>
+                </a>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+@endsection

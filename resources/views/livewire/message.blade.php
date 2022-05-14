@@ -43,15 +43,16 @@
         </div>
         @endif
 
-             <div class="chat-area flex-1 flex flex-col">
+             <div class="chat-area flex-1 flex flex-col my-16">
             <div class="card">
-                <div class="flex-3">
+                <div class="flex-3 ">
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
 
                     @elseif(auth()->user()->is_active == true)
-                        Select a user to see the chat
+                       أختر مستخدم لبدا التحدث معه
+                       <br>  <br>  <br>  <br>  <br><br>  <br>  <br>  <br>  <br>
                     @elseif($admin->is_online)
-                        <i class="fa fa-circle text-success"></i> We are online
+                        <i class="fa fa-circle text-success"></i> نحن متصلون
                     @else
                         Messages
                     @endif
@@ -108,7 +109,8 @@
                             @endif 
                         @endif 
                 </div>
-                <div class="flex-2 pt-4 pb-10" >
+           {{--
+            <div class="flex-2 pt-4 pb-10" >
                                     <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
                                         <div wire:loading wire:target='SendMessage'>
                                             Sending message . . . 
@@ -133,7 +135,7 @@
                                                 <textarea name="message"  wire:model="message"  class="w-full block outline-none py-4 px-4 bg-transparent" rows="1" placeholder="Type a message..." autofocus @if(!$file) required @endif></textarea>
                                             </div>
                                             <div class="flex-2 w-32 p-2 flex content-center items-center">
-                                            @if(empty($file))
+                                            <!-- @if(empty($file))
                                                 <div class="flex-1 text-center">
                                           
                                                     <label class="w-4 flex flex-col items-center px-4 py-6  rounded-md  tracking-wide  cursor-pointer  ease-linear transition-all ">
@@ -144,7 +146,7 @@
                                                 </div>
 
 
-                                                @endif
+                                                @endif -->
                                                 <div class="flex-1">
                                                     <button class="bg-blue-400 w-10 h-10 rounded-full inline-block">
                                                         <span class="inline-block align-text-bottom">
@@ -158,6 +160,7 @@
                                         </div>
                                     </form>
                 </div>
+           --}}    
         </div>
    
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\payment\PaymentController;
 use App\Models\Evaluation;
 use App\Models\Posts;
 use App\Models\Profile;
@@ -31,7 +32,8 @@ class MyWorkOnProjectController extends Controller
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
                 'projects.status',
-                'projects.amount',
+                'projects.totalAmount as amount',
+                'projects.payment_status',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
@@ -66,7 +68,7 @@ class MyWorkOnProjectController extends Controller
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
                 'projects.status',
-                'projects.amount',
+                'projects.totalAmount as amount',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
@@ -133,113 +135,121 @@ class MyWorkOnProjectController extends Controller
         }
     }
 
+    // this function for the seeker to see the received files
     function markAsRecive($project_id, $provider_id)
     {
-        try {
-            $project = Project::select(
-                'posts.id as post_id',
-                'posts.title',
-                'posts.description as post_description',
-                'projects.duration',
-                'projects.id as project_id',
-                'projects.seeker_id as seeker_id',
-                'projects.provider_id as provider_id',
-                'projects.stated_at',
-                'projects.amount',
-                'projects.other_way_send_files',
-                'projects.url',
-                'projects.files',
-                'comments.description as comment_description'
-            )
-                ->join('posts', 'posts.id', '=', 'projects.post_id')
-                ->join('comments', 'comments.id', '=', 'projects.offer_id')
-                ->join('profiles', 'profiles.user_id', '=', 'projects.provider_id')
-                ->where('projects.seeker_id', Auth::id())
-                ->where('projects.id', $project_id)
-                ->where('projects.status', 'done')
-                ->where('profiles.user_id', $provider_id)
-                ->where('posts.is_active', 1)
+        // try {
+        $project = Project::select(
+            'posts.id as post_id',
+            'posts.title',
+            'posts.description as post_description',
+            'projects.duration',
+            'projects.id as project_id',
+            'projects.seeker_id as seeker_id',
+            'projects.provider_id as provider_id',
+            'projects.stated_at',
+            'projects.amount',
+            'projects.other_way_send_files',
+            'projects.url',
+            'projects.files',
+            'projects.payment_status',
+            'projects.invoice',
+            'comments.description as comment_description'
+        )
+            ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->join('comments', 'comments.id', '=', 'projects.offer_id')
+            ->join('profiles', 'profiles.user_id', '=', 'projects.provider_id')
+            ->where('projects.seeker_id', Auth::id())
+            ->where('projects.id', $project_id)
+            // ->where('projects.status', 'done')
+            ->where('profiles.user_id', $provider_id)
+            ->where('posts.is_active', 1)
 
-                ->first();
+            ->first();
 
-            if (empty($project)) {
-                return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
-            } else
-                // return response()->json($project);
-                return view('client.projects.receiveProject')->with('project', $project);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        if ($project->payment_status == 'unpaid') {
+            // ! need unpaid page 
+            return back()->with(['message' => 'لم تقم بتسديد المبلغ المتفق عليه بعد  ', 'type' => 'alert-danger']);
         }
+        if (empty($project)) {
+            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        } else
+            // return response()->json($project);
+            return view('client.projects.receiveProject')->with('project', $project);
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        // }
     }
 
 
     // where the seeker accept the received file
     function markAsAccept(Request $request)
     {
-        try {
-            $project_id = $request->project_id;
-            $provider_id = $request->provider_id;
-            $project = Project::where('id', $project_id)
-                ->where('seeker_id', Auth::id())
-                ->where('provider_id', $provider_id)
-                ->where('status', 'done')
-                ->first();
+        // try {
+        $project_id = $request->project_id;
+        $provider_id = $request->provider_id;
+        $project = Project::where('id', $project_id)
+            ->where('seeker_id', Auth::id())
+            ->where('provider_id', $provider_id)
+            // ->where('status', 'done')
+            ->first();
 
-            print_r($request->rating);
-            $project->status = 'received';
-            $project->finshed = 1;
-            $project->finshed_at =  date("Y/m/d");
-            $project->save();
+        PaymentController::sendTheMoneyBack('provider', $project_id);
 
-            // add the evaluation and reting
-            $rating = new Evaluation();
-            $rating->value = $request->rating;
-            $rating->message = $request->massege;
-            $rating->user_id = $provider_id;
-            $rating->project_id = $project_id;
-            $rating->save();
+        $project->status = 'received';
+        $project->finshed = 1;
+        $project->finshed_at =  date("Y/m/d");
+        $project->save();
 
-            // edit user profile
-            $profile = Profile::where('user_id', $provider_id)->first();
-            $limitValue = $profile->limit;
-            if ($limitValue <= 4 && $limitValue > 0) {
-                $profile->limit =  $limitValue - 1;
-            } else {
-                $profile->limit = 4;
-            }
-            $profile->reseved =  $profile->reseved + 1;
-            $profile->save();
+        // add the evaluation and reting
+        $rating = new Evaluation();
+        $rating->value = $request->rating;
+        $rating->message = $request->massege;
+        $rating->user_id = $provider_id;
+        $rating->project_id = $project_id;
+        $rating->save();
 
-
-            // notification
-            $providerNotify = User::find($provider_id);
-            $post = Posts::find($project->post_id);
-            $post->status = 'closed';
-            $post->save();
-
-            $data = [
-                'project_id' => $project_id,
-                'name' => $profile->name,
-                'project_title' => $post->title,
-                // @prarm project id -> for get the data from
-                'url' => url('user-profile/' .  $provider_id),
-                'message' => 'لقد قام' . $profile->name . ' بقبول  مشروعك المسلم ' . $post->title,
-                'userId' => Auth::id()
-            ];
-
-            $providerNotify->notify(new MarkAsAcceptReceviceNotification($data));
-            //! user profile limit - 1 
-            //! user project done + 1 
-            //! evaluate the user  
-            //! notification of acceptence
-
-            // return response()->json($profile);
-            return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            //     //throw $th;
-            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        // edit user profile
+        $profile = Profile::where('user_id', $provider_id)->first();
+        $limitValue = $profile->limit;
+        if ($limitValue <= 4 && $limitValue > 0) {
+            $profile->limit =  $limitValue - 1;
+        } else {
+            $profile->limit = 4;
         }
+        $profile->reseved =  $profile->reseved + 1;
+        $profile->save();
+
+
+        // notification
+        $providerNotify = User::find($provider_id);
+        $post = Posts::find($project->post_id);
+        $post->status = 'closed';
+        $post->save();
+
+        $data = [
+            'project_id' => $project_id,
+            'name' => $profile->name,
+            'project_title' => $post->title,
+            // @prarm project id -> for get the data from
+            'url' => url('user-profile/' .  $provider_id),
+            'message' => 'لقد قام' . $profile->name . ' بقبول  مشروعك المسلم ' . $post->title,
+            'userId' => Auth::id()
+        ];
+
+        $providerNotify->notify(new MarkAsAcceptReceviceNotification($data));
+        //! user profile limit - 1 
+        //! user project done + 1 
+        //! evaluate the user  
+        //! notification of acceptence
+
+        // return response()->json($profile);
+        return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     //     //throw $th;
+        //     return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        // }
     }
 
     // where the seeker reject the received file
