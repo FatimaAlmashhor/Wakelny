@@ -27,10 +27,10 @@
 
                 </nav>
 </div> -->
-    <div class="container">
+    <div class="container pt-20">
     @if (Route::currentRouteName() == 'edit_work')
-        <h2 class="my-5 font-4xl " > تعديل عمل </h2>
-        <div class="row my-5">
+        <h2 class="my-5 font-xl font-bold " > تعديل عمل </h2>
+        <div class="row my-5 grid place-items-center ">
             <div class="col-md-8 col-sm-12">
             <div class="card shadow-sm ">
 
@@ -43,8 +43,8 @@
                             enctype="multipart/form-data">
 
                                 @else
-                                <h2 class="my-5 font-4xl" > إضافة عمل </h2>
-        <div class="row my-5">
+                                <h2 class="my-5 font-xl font-bold" > إضافة عمل </h2>
+        <div class="row my-5 grid place-items-center">
                 <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
 
