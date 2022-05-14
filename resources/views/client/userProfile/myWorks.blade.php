@@ -1,5 +1,6 @@
 @extends('client.master_layout')
 @section('content')
+
     <!-- <div class="row mx-1  mt-2 col-12 d-flex justify-content-lg-between ">
                     <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
                         <ol class="breadcrumb ms-3">
@@ -25,7 +26,7 @@
                     &nbsp; أضافة </a>
 
             </div>
-        </div>
+
         <div class=" d-flex my-5">
 
             {{-- filter --}}
