@@ -23,7 +23,7 @@
                 <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_ul4trcgf.json"
                     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay>
                 </lottie-player>
-                <a href='{{ route('profile') }}' class="bg-purple-900 text-white rounded-md  font-semibold px-4 py-3 w-full">
+                <a href='{{ route('profile') }}' class="mo-btn btn-blue-bg  font-semibold px-4 py-3 w-full">
 
                     دعنا ننتقل الى الصفحة التالية
                 </a>

@@ -203,8 +203,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger">تاكيد الرفض</button>
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="submit" class="mo-btn btn-pink-bg pink">تاكيد الرفض</button>
+                                        <button type="button" class="mo-btn btn-blue-bg"
                                             data-bs-dismiss="modal">الغاء</button>
                                         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 
@@ -225,7 +225,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="evaluationModel">لماذا تريد رفض قبول المشروع</h5>
+                                <h5 class="modal-title" id="evaluationModel">تاكيد تسليم المشروع</h5>
                                 {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                             </div>
 
@@ -271,7 +271,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="mo-btn btn-blue-bg">تاكيد التسليم</button>
+                                        <button type="submit" class="mo-btn btn-pink-bg pink">تاكيد التسليم</button>
                                         <button type="button" class="mo-btn btn-blue-rounderd"
                                             data-bs-dismiss="modal">الغاء</button>
                                         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
