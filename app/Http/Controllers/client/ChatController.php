@@ -4,7 +4,6 @@ namespace App\Http\Controllers\client;
 
 use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
@@ -65,7 +64,7 @@ class ChatController extends Controller
     }
 
     /**
-     * Persist message to database
+
      *
      * @param  Request $request
      * @return Response
