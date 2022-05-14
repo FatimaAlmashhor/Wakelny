@@ -1,14 +1,14 @@
 @extends('client.master_layout')
 @section('content')
     {{-- @foreach ($projects as $project) --}}
-    <div class="container">
+    <div class="container pt-20">
         <div class="d-flex justify-content-between flex-wrap">
-            <h3 class="my-5">{{ $project->title }}</h3>
+            <h3 class="my-5 font-xl font-bold">{{ $project->title }}</h3>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row my-5">
+    <div class="container ">
+        <div class="row my-5 grid place-items-center">
             <div class="col-lg-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
@@ -67,9 +67,9 @@
                                     data-sb-validations="required"
                                     readonly>{{ $project->comment_description }}</textarea>
                             </div>
-                            <div class="mt-4">
+                            <div class="mt-4 float-left">
                                 <a href='{{ route('AcceptProject', [$project->project_id, $project->seeker_id]) }}'
-                                    class="mo-btn" type="submit" name="confirm"> تأكيد الموافقة</a>
+                                    class="mo-btn " type="submit" name="confirm"> تأكيد الموافقة</a>
                                 <a href='{{ route('rejectProject', [$project->project_id, $project->seeker_id]) }}'
                                     class="mo-btn btn-blue-rounderd " type="submit" name="reject"> رفض</a>
                             </div>

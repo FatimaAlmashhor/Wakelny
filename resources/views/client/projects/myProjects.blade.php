@@ -1,24 +1,36 @@
 @extends('client.master_layout')
 @section('content')
-    <div class=" container d-flex justify-content-between mt-5 mb-2">
-        <h3 class=""> المشاريع اللتي اعمل عليها حاليه </h3>
-        <div class="dropdown btn-group">
-            <a tabindex="-1" class="wak_btn" href="{{ route('workonProject') }}">
-                <i class="fa-solid fa-filter font-sm mx-1"></i>
-                <span class="action-text"> اعمالي الحاليه </span>
-            </a>
-            <button class="dropdown-toggle wak_btn" style="border-radius: 0px" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                {{-- <i class="fa fa-caret-down"></i> --}}
-            </button>
-            <ul class="dropdown-menu dropdown-left dropdown-menu-left p-1 " role="menu" aria-labelledby="خيارات">
-                <li class="my-2  text-end ">
-                    <a tabindex="-1" href="{{ route('doneWork') }}">
-                        <i class="fa-solid fa-check font-sm px-3"></i>
-                        <span class="action-text"> اعمالي المنجزه </span>
+    <div class=" container d-flex justify-content-between mt-20">
+        <h3 class="font-xl font-bold"> المشاريع اللتي اعمل عليها حاليه </h3>
+        <div class="card--actions hidden-xs">
+            <div class="dropdown btn-group">
+                <div class="dropdown inline-block relative min-w-fit">
+                    <a tabindex="-1"
+                        class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                        href="{{ route('workonProject') }}">
+                        <i class="fa-solid fa-filter font-sm mx-1"></i>
+                        <span class="mr-1"> اعمالي الحاليه </span>
+                        <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path style="color:white ; stroke: white;
+                                                                              fill: white;"
+                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
                     </a>
-                </li>
+
+                    <ul class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
+                        <li class="border-b border-primary-light-pink">
+                            <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray py-2 px-4 block whitespace-no-wrap"
+                                href="{{ route('doneWork') }}">
+                                <i class="fa-solid fa-check font-sm px-3"></i>
+                                <span class="mr-1"> اعمالي المنجزه </span>
+                            </a>
+                        </li>
+                </div>
+            </div>
         </div>
+
+
+
     </div>
     @foreach ($data as $item)
         {{-- one card --}}
@@ -42,8 +54,8 @@
                                 <div class="dropdown btn-group">
 
 
-                                    @if ($item->status == 'at_work')
-                                        <a tabindex="-1" class="wak_btn border-green" data-bs-toggle="modal"
+                                    @if ($item->status == 'at_work' && $item->payment_status == 'paid')
+                                        <a tabindex="-1" class="mo-btn btn-green-bg cursor-pointer" data-bs-toggle="modal"
                                             data-bs-target="#model_{{ $item->project_id }}">
                                             <i class="fa-regular fa-paper-plane"></i>
 
@@ -51,8 +63,16 @@
 
                                         </a>
                                     @endif
+                                    @if ($item->status == 'at_work' && $item->payment_status == 'unpaid')
+                                        <a class="mo-btn btn-pink-bg cursor-wait" aria-readonly="true" readOnly>
+                                            {{-- <i class="fa-regular fa-paper-plane"></i> --}}
+
+                                            <span class="action-text"> لم يتم الدفع بعد... </span>
+
+                                        </a>
+                                    @endif
                                     @if ($item->status == 'done')
-                                        <button tabindex="-1" class="wak_btn orange" aria-disabled="true">
+                                        <button tabindex="-1" class="mo-btn " aria-disabled="true">
                                             <i class="fa-solid fa-spinner"></i>
                                             <span class="action-text"> انتظار الرد... </span>
 
@@ -60,15 +80,14 @@
                                     @endif
                                     @if ($item->status == 'nonrecevied')
                                         <div class="d-flex x-space-2">
-                                            <a tabindex="-1" class="wak_btn mr-1"
+                                            <a tabindex="-1" class="mo-btn btn-green-bg mr-1"
                                                 href='{{ route('continueProject', [$item->project_id]) }}'>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> استأناف المشروع </span>
 
                                             </a>
-                                            <a tabindex="-1" class="wak_btn mx-1" data-bs-toggle="modal"
-                                                data-bs-target="#reject_{{ $item->project_id }}"
-                                                style='background-color: red'>
+                                            <a tabindex="-1" class="mo-btn btn-pink-bg mx-1" data-bs-toggle="modal"
+                                                data-bs-target="#reject_{{ $item->project_id }}" {{-- style='background-color: red' --}}>
                                                 <i class="fa-solid fa-spinner"></i>
                                                 <span class="action-text"> قدم شكوى </span>
 

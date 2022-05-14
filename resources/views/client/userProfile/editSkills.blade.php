@@ -18,11 +18,11 @@
         }
 
     </style>
-    <main class="container">
+    <main class="container pt-20">
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
             <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
-                <h3 class="m-5 font-4xl"> لوحة التحكم</h3>
+                <h3 class="m-5 font-xl font-bold"> لوحة التحكم</h3>
 
             </nav>
             <div class="col-6 mt-8">
@@ -75,7 +75,7 @@
                             <div class="wak_skill px-2">
                                 <a href='{{ route('deleteSkill', $item->skill_id) }}'
                                     class="wak_skill__delete badge badge-light"><i class="fa-solid fa-xmark"></i></a>
-                                <div class="wak_btn lighter_orange">
+                                <div class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                                     {{ $item->name }}
                                 </div>
                             </div>
