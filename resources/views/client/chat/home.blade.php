@@ -1,7 +1,7 @@
 @extends('client.master_layout')
                     
 @section('content')
-<div class="w-full mb-32 h-screen">
+    <div class="w-full mb-32 h-screen">
         <div class="flex  h-full ">
             
             <div class="flex-1 bg-white rounded my-16 mx-32 w-full h-full " >

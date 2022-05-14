@@ -228,6 +228,7 @@ Route::group([
         });
     });
 
+    ////////////////////////////inbox //////////////////
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
         Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');

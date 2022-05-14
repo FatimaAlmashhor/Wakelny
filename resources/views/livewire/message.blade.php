@@ -9,7 +9,7 @@
                                 <div class="flex-1 h-full my-8 overflow-auto px-2" wire:poll="render">
                                     @foreach($users as $user)
                                     @php
-                                        $not_seen = \App\Models\Message::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
+                                        $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
                                     @endphp
                                     <a href="{{ route('inbox.show', $user->id) }}" > 
                                         <div class="entry  cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md"  wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
@@ -42,7 +42,8 @@
                                 </div>
         </div>
         @endif
-        <div class="chat-area flex-1 flex flex-col">
+
+             <div class="chat-area flex-1 flex flex-col">
             <div class="card">
                 <div class="flex-3">
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
@@ -105,6 +106,7 @@
                             @else
                                         لا يوجد رسائل لعرضها -_-
                             @endif 
+                        @endif 
                 </div>
                 <div class="flex-2 pt-4 pb-10" >
                                     <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
@@ -118,9 +120,9 @@
                                                 <div class="mb-2">
                                                 You have an uploaded file <button type="button" wire:click="resetFile" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Remove {{ $file->getClientOriginalName() }}</button>
                                                 </div>
-                                            @else
-                                                No file is uploaded.
+                                 
                                         @endif -->
+
                                         <div class="write bg-white shadow flex rounded-lg">
                                             <div class="flex-3 flex content-center items-center text-center p-4 pr-0">
                                                 <span class="block text-center text-gray-400 hover:text-gray-800">
@@ -134,26 +136,30 @@
                                             @if(empty($file))
                                                 <div class="flex-1 text-center">
                                           
-                                                    <span class="text-gray-400 hover:text-gray-800">
-                                                        <span class="inline-block align-text-bottom">
-                                                             <input type="file" wire:model="file" >  <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
-                                                        </span>
-                                                    </span>  
+                                                    <label class="w-4 flex flex-col items-center px-4 py-6  rounded-md  tracking-wide  cursor-pointer  ease-linear transition-all ">
+                                                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                                    <input type='file' class="hidden"  type="file" wire:model="file"/>
+                                                    </label> 
                                               
                                                 </div>
+
+
+                                                @endif
                                                 <div class="flex-1">
                                                     <button class="bg-blue-400 w-10 h-10 rounded-full inline-block">
                                                         <span class="inline-block align-text-bottom">
-                                                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 text-white"><path d="M5 13l4 4L19 7"></path></svg>
+                                                           <i class="fas fa-paper-plane"></i>
                                                         </span>
                                                     </button>
                                                 </div>
-                                            @endif
+                                         
+                                         
                                             </div>
                                         </div>
                                     </form>
                 </div>
         </div>
+   
 </div>
 
                             
