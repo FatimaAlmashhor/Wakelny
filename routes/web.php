@@ -229,10 +229,16 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
+   
         });
     });
 
-
+    ////////////////////////////inbox //////////////////
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
+        Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
+    });
+    
 
 
 
@@ -298,7 +304,7 @@ Route::group([
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
 
-        Route::get('/chats', [ChatController::class, 'index'])->name('chat');
+        
         Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
         Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
 

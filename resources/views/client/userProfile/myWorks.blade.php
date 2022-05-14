@@ -13,7 +13,7 @@
 </div> -->
 
 <div class=" d-flex flex-column" >
-<h5 class="my-5 font-4xl">الأعمال الخاصة بي</h5>
+<h3 class="my-16 mb-2 font-2xl font-bold px-4">الأعمال الخاصة بي</h3>
     <div class=" d-flex flex-row justify-content-between ">
 
         <div id="filter_toggle" class="mx-4">
