@@ -37,7 +37,7 @@
 
 
                     <div class="card-body">
- 
+
                     <form action="{{ route('update_work', $data->id) }}" method="POST" class="login-form"
 
                             enctype="multipart/form-data">
@@ -183,7 +183,7 @@
                     </div>
                     </div>
             </div>
-      
+
 
         </div>
     </div>
