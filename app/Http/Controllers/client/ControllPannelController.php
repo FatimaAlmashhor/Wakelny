@@ -12,6 +12,9 @@ use App\Models\Report;
 use App\Models\Posts;
 use App\Models\Profile;
 use App\Models\UserSkills;
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Models\Transaction;
+use Bavix\Wallet\Models\Wallet as ModelsWallet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,8 +37,14 @@ class ControllPannelController extends Controller
         } else if ($user->hasRole('provider')) {
             $userRole = 'provider';
         }
-
-        return view('client.userProfile.controllPannal')->with(['data' => $profile, 'categories' =>  $categories, 'role' => $userRole]);
+       
+        // return response()->json($transactions);
+        return view('client.userProfile.controllPannal')->with([
+            'data' => $profile,
+            'categories' =>  $categories,
+            'role' => $userRole,
+           
+        ]);
         // return view('client.userProfile.controllPannal')->with();
     }
 
@@ -85,25 +94,24 @@ class ControllPannelController extends Controller
 
     function admin()
     {
-         // Show account Users && Posts && Rports
-         $post= DB::table('posts')->count();
-         $reports= DB::table('reports')->count();
-         $cates= DB::table('categories')->count();
-         $user = DB::table('users')->count();
+        // Show account Users && Posts && Rports
+        $post = DB::table('posts')->count();
+        $reports = DB::table('reports')->count();
+        $cates = DB::table('categories')->count();
+        $user = DB::table('users')->count();
 
-         $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+        $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
 
-         ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', date('Y'))
 
-         ->groupBy(DB::raw("MONTHNAME(created_at)"))
+            ->groupBy(DB::raw("MONTHNAME(created_at)"))
 
-         ->pluck('count', 'month_name');
+            ->pluck('count', 'month_name');
 
         $labels = $users->keys();
-        $data = $users->values();  
+        $data = $users->values();
 
-         return view('admin.index',compact('labels', 'data','user','reports','cates','post'));
-
+        return view('admin.index', compact('labels', 'data', 'user', 'reports', 'cates', 'post'));
     }
 
     public function edit_pro()

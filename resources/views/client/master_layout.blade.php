@@ -47,8 +47,9 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <title>متاح</title>
-
+    @livewireStyles
 </head>
 
 <body>
@@ -56,8 +57,8 @@
 
     {{-- alerts --}}
     @if (session()->has('message'))
-        <div id='alert' x-data="{ isShow: true }">
-            <div x-show="isShow" class="absolute top-12 right-0 m-3 w-2/3 md:w-1/3"
+        <div id='alert' x-data="{ isShow: true }" class="z-50  " style="z-index: 9999999 !importent">
+            <div x-show="isShow" class="fixed top-32 right-0 m-3 w-2/3 md:w-1/3"
                 x-transition:enter="transition transform ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
                 x-transition:leave="transition transform ease-in duration-300"
@@ -84,7 +85,9 @@
     @endif
     <div class="m-5">
         @include('client.components.navigation')
+        <div class="sm:px-16 lg:px-18">
         @yield('content')
+        </div>
         @include('client.components.footer')
 
         <!-- client fixed nav -->
@@ -124,15 +127,16 @@
                                         <div class="py-1 rounded-md bg-white shadow-xs relative">
 
                                             @if (Auth::check())
-                                                @role('seeker')
+                                                @role('provider')
                                                     <a href="{{ route('workonProject') }}"
                                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                                         اعمل على</a>
+                                                    <a href="{{ route('myWorks') }}"
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+                                                        اعمالي</a>
                                                 @endrole
                                             @endif
-                                            <a href="{{ route('myWorks') }}"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
-                                                اعمالي</a>
+
                                             @if (Auth::check())
                                                 @role('seeker')
                                                     <a href="{{ route('myProject') }}"
@@ -238,7 +242,7 @@
             });
         });
     </script>
-
+  @livewireScripts
 </body>
 
 </html>

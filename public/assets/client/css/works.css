@@ -32,7 +32,7 @@
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: rgba(77, 212, 172, 1);
+  background-color: #CD657C;
 }
 
 .bootstrap-select .bs-ok-default:after {
@@ -48,7 +48,7 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  color: rgba(77, 212, 172, 1);
+  color: #CD657C;
 }
 
 .hover {
@@ -63,7 +63,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 90;
+  z-index: 40;
   transition: all 0.4s;
 }
 

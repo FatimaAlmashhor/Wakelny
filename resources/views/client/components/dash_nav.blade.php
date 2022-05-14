@@ -47,11 +47,11 @@
                 <span class="fs-6 font-md fw-bold mx-4">{{ __('profile.skills') }}</span>
             </a>
 
-            <p style="cursor: pointer" id="note"
+            <a style="cursor: pointer" id="note" href='{{ route('mywallet') }}'
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa  fa-wallet pe-2"></i>
                 <span class="fs-6 font-md fw-bold mx-4">{{ __('profile.wallet') }}</span>
-            </p>
+            </a>
 
 
         </nav>
@@ -60,8 +60,7 @@
     </div>
     <!-- dashboard nav -->
     {{-- <div class="card  p-3 pt-0 bg-opacity-0"> --}}
-{{--
-        <nav class="card px-3 py-4 mt-3 d-flex gap-3">
+    {{-- <nav class="card px-3 py-4 mt-3 d-flex gap-3">
             <h5 class="border-bottom my-2 pb-2" style="color:rgba(77, 212, 172, 1);">خطوات إكمال الحساب</h5>
             <div class="mx-2 px-2">
                 <a href="#">
@@ -201,34 +200,3 @@
 
         </div>
 </section> --}}
-
-<section class="col-lg-8 col-md-8 col-12" id="Edu">
-
-    <table class="table">
-        <thead >
-            <tr>
-                <td class="font-lg">الرقم</td>
-                <td class="font-lg">المسلم </td>
-                <td class="font-lg">المستلم</td>
-                <td class="font-lg">المبلغ </td>
-                <td class="font-lg">التاريخ</td>
-            </tr>
-        </thead>
-        <tbody class="table-light">
-            <tr>
-                <td class="font-md">1</td>
-                <td class="font-md">رقيه </td>
-                <td class="font-md">رقيه</td>
-                <td class="font-md">5000 </td>
-                <td class="font-md">5/10/2022</td>
-            </tr>
-              <tr>
-               <td class="font-md">1</td>
-                <td class="font-md">رقيه </td>
-                <td class="font-md">رقيه</td>
-                <td class="font-md">5000 </td>
-                <td class="font-md">5/10/2022</td>
-            </tr>
-        </tbody>
-    </table>
-</section>

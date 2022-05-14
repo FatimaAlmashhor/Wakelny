@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <h3 class="m-5 font-4xl"> المشاريع الخاصة بي</h3>
+    <h3 class="m-5 font-xl font-bold pt-20"> المشاريع الخاصة بي</h3>
     @foreach ($posts as $item)
         {{-- one card --}}
         <div class="container card px-3 my-3 ">

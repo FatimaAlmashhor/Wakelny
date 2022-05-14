@@ -36,7 +36,6 @@ class StatusLiked implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new PrivateChannel('channel-name');
-        return ['status-liked'];
+        return new PrivateChannel('channel-name');
     }
 }

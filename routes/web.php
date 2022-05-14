@@ -52,7 +52,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+
 
 //start email verify
 Route::get('/verify_email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
@@ -85,8 +85,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
+    //  mywallet view
 
+    Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
 
+    //
     // ------------------------------------------------------------------------
     // Static pages section
     // ------------------------------------------------------------------------
@@ -153,6 +156,7 @@ Route::group([
                 Route::post('/edit', [ProfileController::class, 'saveSkills'])->name('editSkills');
                 Route::get('/delete/{skill_id}', [ProfileController::class, 'deleteSkill'])->name('deleteSkill');
             });
+
 
             Route::get('/user-account', [ControllPannelController::class, 'edit_pro'])->name('account');
             Route::post('/account-update', [ControllPannelController::class, 'account_save'])->name('account_save');
@@ -225,10 +229,16 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
+   
         });
     });
 
-
+    ////////////////////////////inbox //////////////////
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
+        Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
+    });
+    
 
 
 
@@ -277,6 +287,7 @@ Route::group([
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
         Route::get('/reports', [ReportController::class, 'showAll'])->name('reports');
+        Route::get('/reports/details/{report_id}', [ReportController::class, 'reportDetails'])->name('report.details');
         Route::get('/toggle_report/{report_id}', [ReportController::class, 'toggle'])->name('toggle_report');
 
         ///////////////----------------------ProjectAdmin----------------------------------------------------------//////
@@ -293,7 +304,18 @@ Route::group([
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
 
+        
+        Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
+        Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
+
+        // payment
     });
+    Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+    Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
+    Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+    Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
+    Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBackTo'])->name('payment.sendMoenyBackTo');
+    // Route::get('/back-payment-to-seeker/{project_id}', [PaymentController::class, 'sendTheMoneyToSeeker'])->name('payment.sendToSeeker');
 });
 
 
@@ -305,6 +327,7 @@ Route::view('/test-suc', 'client.payAnimation.paySucces');
 
 
 
+// !!| here just for test
 // make the notification as red
 Route::get('/markAsRead', function () {
 
@@ -362,7 +385,3 @@ Route::get('/testWallet', function () {
 
     return $admin->balance; // 10
 });
-
-Route::get('/success-payment/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
-Route::get('/cancel-payment', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
-Route::get('/back-payment-to-provider/{provider_id}/{project_id}', [PaymentController::class, 'sendTheMoneyToProvider'])->name('payment.sendToProvider');

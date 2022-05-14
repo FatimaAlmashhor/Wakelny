@@ -3,45 +3,106 @@
 namespace App\Http\Controllers\payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\User;
 use Bavix\Wallet\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
-    public static function successPayment($response)
+
+
+    function doPayment($project_id, $seeker_id)
+    {
+        $project = Project::select(
+            'posts.title',
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.seeker_id',
+            'projects.provider_id',
+        )->join('posts', 'posts.id', 'projects.post_id')
+            ->where('projects.seeker_id', $seeker_id)
+            ->where('projects.id', $project_id)
+            ->first();
+
+
+        $dataPayment = [
+            "id" => $project_id,
+            "product_name" => $project->title,
+            "quantity" => 1,
+            "unit_amount" => $project->amount
+        ];
+
+        $dataMeta = [
+            "provider_id" => $project->provider_id,
+            "seeker_id" => $seeker_id
+        ];
+
+        $response = Http::withHeaders([
+            'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+            'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+            'Content-Type' => 'application/x-www-form-url'
+        ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
+            'order_reference' =>  $project_id,
+            'products' =>  [$dataPayment],
+            // 'total_amount' => $project->totalAmount,
+            'total_amount' => 199,
+            'currency' => 'YER',
+            'success_url' => 'http://localhost:8000/success-payment',
+            'cancel_url' => 'http://localhost:8000//cancel-payment',
+            'metadata' => (object)$dataMeta
+        ]);
+
+        return $response->json($key = null);
+    }
+    public static function successPayment($project_id,  $response)
     {
         try {
+            $project = Project::select(
+                'posts.title',
+                'projects.amount',
+                'projects.totalAmount',
+                'projects.seeker_id',
+                'projects.provider_id',
+                'projects.invoice',
+                'projects.payment_status',
+            )->join('posts', 'posts.id', 'projects.post_id')
+                ->where('projects.id', $project_id)
+                ->first();
 
-            $payment = [
-                'invoice_referance' => 2,
-                'total_amount' => 1500,
-                'products' => [
-                    [
-                        'id' => 1
-                    ],
-
-                ],
-                'meta_data' => [
-                    'provider_id' => 11,
-                    'seeker_id' => 10
-                ]
-            ];
             // add the moeny into the admin wallet
             // set the information into the meta 
-            $admin = User::find(1);
-            $admin->deposit($payment['total_amount'], [
-                'provider_id' => $payment['meta_data']['provider_id'],
-                'seeker_id' => $payment['meta_data']['seeker_id'],
-                'project_id' => $payment['products'][0]['id'],
-                'invoice_referance' => $payment['invoice_referance'],
-                'back_to_owner' => false,
-                'admin_resevied' => true
-            ]);
+
+
+            if ($project->payment_status == 'unpaid') {
+                $admin = User::find(1);
+                $seeker = User::find(Auth::id());
+                $seeker->transfer($admin, $project->amount, [
+                    // 'provider_id' => $project->provider_id,
+                    // 'seeker_id' => $payment['meta_data']['seeker_id'],
+                    'project_id' => $project_id,
+                    'invoice_referance' => $project->invoice,
+                    // 'back_to_owner' => false,
+                    // 'admin_resevied' => true
+                ]);
+
+
+                Project::where('id', $project_id)->update([
+                    'payment_status' => 'paid'
+                ]);
+                return view('client.payAnimation.paySucces');
+            } else {
+
+                // ! here should show the 413 error
+                return view('client.payAnimation.payUnsucces');
+            }
+
             $filterdRes = base64_decode($response);
             return response()->json(json_decode($filterdRes, true));
-            // return view('client.payAnimation.paySucces');
+
             // send notification for the seeker that the money is already خصمت 
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
             // open the frontend page 
@@ -55,57 +116,106 @@ class PaymentController extends Controller
     function cancelPayment()
 
     {
-        return redirect()->route('profile')->with(['message' => 'لقد قمت بألغاء عمليه الدفع رجاء تأكد من دفع المبلغ المحدد ', 'type' => 'alert-danger']);
-        // return view('client.payAnimation.payUnsucces');
+        // return redirect()->route('profile')->with(['message' => 'لقد قمت بألغاء عمليه الدفع رجاء تأكد من دفع المبلغ المحدد ', 'type' => 'alert-danger']);
+        return view('client.payAnimation.payUnsucces');
     }
 
 
-    function sendTheMoneyToProvider($provider_id, $project_id/*$invoice_referance*/)
+    static function sendTheMoneyBack($who = 'provider', $project_id/*$invoice_referance*/)
     {
 
+        try {
+            // find the row of the wallet 
+            $project = Project::where('id', $project_id)->first();
+            if ($project->payment_status == 'paid') {
+                if ($who == 'provider') {
+                    $userTheOneNeedMoney = User::find($project->provider_id);
+                } else if ($who == 'seeker') {
+                    $userTheOneNeedMoney = User::find($project->seeker_id);
+                }
 
-        // find the row of the wallet 
-        $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
-            ->whereJsonContains('meta', ['back_to_owner' => false])
-            ->first();
-        // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+                // ! in case of the project not done it just admin dession we need to create new project 
+                if ($project->finshed == 0) {
+                    $project->status = 'nonrecevied';
+                    $project->save();
+                }
 
-        // get the user id 
-        // withdraw the money from the provider to admin
-        // send the money to the provider 
-        $userTheOneNeedMoney = User::find($transaction->meta['provider_id']);
-        $admin = User::find(1);
-        $admin->transfer($userTheOneNeedMoney, 45);
-        // send the message back to the brovider
+                $admin = User::find(1);
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
 
-        return response()->json($transaction->meta['provider_id']);
+                $project->payment_status = 'received';
+                $project->save();
+                return view('client.payAnimation.paySucces');
+            } else {
+                return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+            }
+
+            // ? here when we use the transaction 
+            // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
+            //     ->whereJsonContains('meta', ['back_to_owner' => false])
+            //     ->first();
+            // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+
+            // get the user id 
+            // withdraw the money from the provider to admin
+            // send the money to the provider 
+
+            // send the message back to the brovider
+
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
-
-    function sendTheMoneyToSeeker($seeker_id, $project_id/*$invoice_referance*/)
+    static function sendTheMoneyBackTo(Request $request,  $project_id/*$invoice_referance*/)
     {
 
+        try {
+            // find the row of the wallet 
 
-        // find the row of the wallet 
-        $transaction = Transaction::whereJsonContains('meta', ['seeker_id' => (int)$seeker_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            ->whereJsonContains('meta', ['project_id' => (int)$project_id])
-            // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
-            ->whereJsonContains('meta', ['back_to_owner' => false])
-            ->first();
-        // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+            $project = Project::where('id', (int)$project_id)->first();
+            if ($project->payment_status == 'paid') {
+                if ($request->get('who') == 'provider') {
+                    $userTheOneNeedMoney = User::find($project->provider_id);
+                } else if ($request->get('who') == 'seeker') {
+                    $userTheOneNeedMoney = User::find($project->seeker_id);
+                }
 
-        // get the user id 
-        // withdraw the money from the provider to admin
-        // send the money to the provider 
-        $userTheOneNeedMoney = User::find($transaction->meta['seeker_id']);
-        $admin = User::find(1);
-        // back to all total 
-        $admin->transfer($userTheOneNeedMoney, 45);
-        // send the message back to the brovider
+                // ! in case of the project not done it just admin dession we need to create new project 
+                if ($project->finshed == 0) {
+                    $project->status = 'nonrecevied';
+                    $project->save();
+                }
 
-        return response()->json($transaction->meta['seeker_id']);
+                $admin = User::find(1);
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
+
+                $project->payment_status = 'received';
+                $project->save();
+                return view('client.payAnimation.paySucces');
+            } else {
+                return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+            }
+
+            // ? here when we use the transaction 
+            // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
+            //     ->whereJsonContains('meta', ['back_to_owner' => false])
+            //     ->first();
+            // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+
+            // get the user id 
+            // withdraw the money from the provider to admin
+            // send the money to the provider 
+
+            // send the message back to the brovider
+
+        } catch (\Throwable $th) {
+            return redirect()->route('admin')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 }

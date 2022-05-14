@@ -1,23 +1,23 @@
 @extends('client.master_layout')
 @section('content')
     @foreach ($data as $item)
-        <main class="container">
+        <main class="container pt-20">
             <!-- top nav start -->
             <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
                 <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
-                    <h3 class="m-5 font-4xl"> لوحة التحكم</h3>
+                    <h3 class="m-5 font-xl font-bold"> لوحة التحكم</h3>
 
                 </nav>
                 <div class="col-6 mt-8">
-                    <a href="{{ route('userProfile', Auth::user()->id) }}" class="mo-btn btn-blue-bg float-start font-md"><i
-                            class="fa fa-user p-1"></i> ملفي الشخصي </a>
+                    <a href="{{ route('userProfile', Auth::user()->id) }}"
+                        class="mo-btn btn-blue-bg float-start font-md"><i class="fa fa-user p-1"></i> ملفي الشخصي </a>
                 </div>
             </div>
             <!-- top nav end -->
 
             <!-- side sec -->
             <div class="row">
-
+               
 
                 <!-- Dashboard Nav Section -->
 
@@ -129,7 +129,7 @@
 
                                 <div>
                                     <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ
-                                       </button>
+                                    </button>
                                 </div>
 
                                 {{ csrf_field() }}
