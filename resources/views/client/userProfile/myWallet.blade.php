@@ -29,7 +29,7 @@
                     <span class="font-2xl font-bold text-primary-green px-2">
                         ماتملكه :
                     </span>
-                    {{-- ${{ $wallet->balance }} --}}
+                    ${{ $wallet->balance }}
                 </div>
                 <table class="table border">
                     <thead>

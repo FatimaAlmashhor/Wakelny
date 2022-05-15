@@ -103,26 +103,45 @@ class UserController extends Controller
         $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
         $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
 
-        $selects = array(
-            '*',
-            'COUNT(*) AS countEvalution',
-            'SUM(value) AS sum'
-        );
-        $evalutions = Evaluation::selectRaw(implode(',', $selects))
-            ->where('user_id', Auth::id())
-            ->groupBy(['id', 'project_id', 'value', 'user_id', 'message', 'created_at', 'updated_at'])
-            ->get();
+        // $selects = array(
+        //     '*',
+        //     'COUNT(*) AS countEvalution',
+        //     'SUM(value) AS sum'
+        // );
+        // $evalutions = Evaluation::selectRaw(implode(',', $selects))
+        //     ->where('user_id', Auth::id())
+        //     ->groupBy(['id', 'project_id', 'value', 'user_id', 'message', 'created_at', 'updated_at'])
+        //     ->get();
         // $count = $evalutions->countEvalution;
         // $totalStrts = intval($evalutions->sum / $count);
         // return response()->json($evalutions);
+
+        $rating_count = Evaluation::select(
+            'value',
+        )->where('user_id', $user_id)->count('value');
+
+        $rating_sum = Evaluation::select(
+            'value',
+        )->where('user_id', $user_id)->sum('value');
+
+        if($rating_count != 0){
+            $rating_avg = intval($rating_sum/$rating_count);
+        } else {
+            $rating_avg = 0;
+        }
+
+        $evaluations = Evaluation::where('user_id', $user_id)->get();
+
         return view('client.userProfile.userProfile')->with([
             'data' => $user_info,
             'cate' => $cates,
             'skills' => $myskills,
             'role' => $userRole,
             'works' => $works,
-            'post' => $posts
-            // 'rating' => $evalutions
+            'post' => $posts,
+            'rating' => $rating_avg,
+            'rating_count' => $rating_count,
+            'evaluations' => $evaluations
         ]);
     }
     public function insert_content($post_id, $provider_id)
