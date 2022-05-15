@@ -55,7 +55,7 @@
 
 
                                     @if ($item->status == 'at_work' && $item->payment_status == 'paid')
-                                        <a tabindex="-1" class="mo-btn btn-green-bg cursor-pointer" data-bs-toggle="modal"
+                                        <a tabindex="-1" class="mo-btn btn-blue-bg cursor-pointer" data-bs-toggle="modal"
                                             data-bs-target="#model_{{ $item->project_id }}">
                                             <i class="fa-regular fa-paper-plane"></i>
 
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="col-12 p-2 my-2">
                                         <label for="url">رابط المشروع :</label>
-                                        <input type="url" name="url" id="url" value="" />
+                                        <input class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' type="url" name="url" id="url" value="" />
                                     </div>
                                     <div>
                                         <input type="checkbox" name="other_option" id="other_option" aria-checked="false" />
@@ -164,8 +164,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">سلم الان</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                    <button type="submit" class="mo-btn btn-pink-bg pink font-md">سلم الان</button>
+                                    <button type="button" class="mo-btn btn-blue-bg font-md" data-bs-dismiss="modal">الغاء</button>
 
                                 </div>
                             </form>
