@@ -51,7 +51,7 @@
             {{-- user report --}}
             <div class="card--actions hidden-xs float-start col-4">
                 <div class="dropdown btn-group">
-                    @if (Auth::check())
+                    @if (Auth::check() && $data->user_id == Auth::id())
                         @role('seeker')
                             <div class="dropdown inline-block relative min-w-fit">
                                 <a tabindex="-1"
@@ -61,7 +61,7 @@
                                     <span class="mr-1"> أضف مشروع </span>
                                     <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path style="color:white ; stroke: white;
-                                                        fill: white;"
+                                                                fill: white;"
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
                         @endif
@@ -163,7 +163,8 @@
                                     </div>
                                     <div class="skills mt-3">
                                         @foreach ($skills as $item)
-                                            <a class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center" href="#" role="button">
+                                            <a class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                                href="#" role="button">
                                                 <i class="fa-solid fa-tags"></i>
                                                 <span class="me-1">{{ $item->name }}</span>
                                             </a>

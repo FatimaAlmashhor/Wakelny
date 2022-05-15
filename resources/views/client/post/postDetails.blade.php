@@ -157,7 +157,7 @@
 
                                             </div> --}}
                                             {{-- duration --}}
-                                            <div class="col-sm-4 col-md-8 col-xs-12 pt-3">
+                                            <div class="col-sm-4 col-xs-12 pt-3">
                                                 <label class="font-sm">المدة المتوقعة للتسليم
 
                                                 </label>
@@ -382,7 +382,7 @@
                                                                         {{-- <input type="hidden" value="{{ $post_id }}" name="post_id" /> --}}
 
                                                                         {{-- estamte cost --}}
-                                                                        <div class="col-sm-4 col-md-8
+                                                                        <div class="col-sm-4
                                                                          col-xs-12 pt-3">
                                                                             <label>قيمة العرض
                                                                                 <em class="text--danger">*</em>
@@ -572,12 +572,12 @@
                                                                         <label class="font-md">المبلغ المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="amount" class='form-control'
+                                                                            <input name="amount" class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
                                                                                 id="amount" type="text"
                                                                                 value="{{ old('cost') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
-                                                                            <span class="input-group-text"
+                                                                            <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
                                                                                 id="basic-addon1">$</span>
                                                                         </div>
                                                                         @error('amount')
@@ -590,13 +590,13 @@
                                                                         <label class="font-md">المده المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="duration" class='form-control'
+                                                                            <input name="duration" class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
                                                                                 id="duration" type="text"
                                                                                 value="{{ old('duration') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
-                                                                            <span class="input-group-text"
-                                                                                id="basic-addon1">$</span>
+                                                                            <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                                id="basic-addon1">ايام</span>
                                                                         </div>
                                                                         @error('duration')
                                                                             <p class="text-danger" role="alert">

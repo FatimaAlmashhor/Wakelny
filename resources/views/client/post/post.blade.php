@@ -33,7 +33,9 @@
                             <!-- Name input -->
                             <div class="col-md-6">
                                 <label class="form-label font-md" for="name">عنوان المشروع</label>
-                                <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" name='title' id="name" value="{{ old('title') }}" type="text"
+                                <input
+                                    class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    name='title' id="name" value="{{ old('title') }}" type="text"
                                     data-sb-validations="required" required />
                                 <p class="text-muted font-xs">أدرج عنوانا موجزا يصف مشروعك بشكل دقيق.</p>
                                 @error('title')
@@ -49,8 +51,10 @@
                                 <div class="form-group  ">
                                     <label class="font-md"> القسم
                                     </label>
-                                    <select class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" aria-label="Default select example" name="category"
-                                        value="{{ old('category') }}" required="required">
+                                    <select
+                                        class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                        aria-label="Default select example" name="category" value="{{ old('category') }}"
+                                        required="required">
                                         @foreach ($categories as $cate)
                                             <option value="{{ $cate->id }}">{{ $cate->title }}</option>
                                         @endforeach
@@ -86,7 +90,8 @@
                             <!-- Message input -->
                             <div>
                                 <label class="form-label font-md" for="message">تفاصيل المشروع</label>
-                                <textarea class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" name='message' id="message" type="text" style="height: 10rem;"
+                                <textarea class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    name='message' id="message" type="text" style="height: 10rem;"
                                     data-sb-validations="required" required>{{ old('message') }}</textarea>
                                 <p class="text-muted font-xs">أدخل وصفاً مفصلاً لمشروعك وأرفق أمثلة لما تريد ان
                                     أمكن.
@@ -102,10 +107,12 @@
                             {{-- the cost --}}
                             <div class="col-sm-6 col-xs-12 pt-3">
                                 <div class="form-group  ">
-                                    <label class="font-md" >الميزانية المتوقعة
+                                    <label class="font-md">الميزانية المتوقعة
                                     </label>
-                                    <select class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" aria-label="Default select example" name="cost"
-                                        value="{{ old('cost') }}" required="required">
+                                    <select
+                                        class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                        aria-label="Default select example" name="cost" value="{{ old('cost') }}"
+                                        required="required">
                                         <option value="0-25"> 0 -15 دولار</option>
                                         <option value="50-25">50-25 دولار </option>
                                         <option value="100-50">50-100 دولار </option>
@@ -139,30 +146,38 @@
                                         aria-describedby="basic-addon1">
                                     {{-- <span class="input-group-text" style="height: 46px;" id="basic-addon1">ايام</span> --}}
                                     {{-- <div class="w-8 flex items-center justify-center bg-blue-lighter border-t border-l border-b border-blue-lighter rounded-l text-blue-dark">$</div>
-                                </div>  --}}
-<div class="flex">
-  <input type="text" name="duration" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' id="phone" type="number" value="{{ old('duration') }}" aria-label="Username" />
-    <div class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">$</div>
+                                    </div> --}}
+                                    <div class="flex">
+                                        <input type="text" name="duration"
+                                            class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink'
+                                            id="phone" type="number" value="{{ old('duration') }}"
+                                            aria-label="Username" />
+                                        <div
+                                            class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">
+                                            ايام</div>
 
-</div>
-                                <span class="text-muted font-xs">متى تحتاج استلام مشروعك</span>
-                                @error('duration')
-                                    <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
-                                        style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
-                                        {{ $message }}
                                     </div>
-                                @enderror
+                                    <span class="text-muted font-xs">متى تحتاج استلام مشروعك</span>
+                                    @error('duration')
+                                        <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
+                                            style="width: fit-content; position: fixed; top: 20% ; right: 0px ; z-index: 9999999">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
+                                </div>
                             </div>
                             <div class="mb-1">
                                 <label class="font-md " for="message">ملفات توضيحية</label>
-                                <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink" id="dropzone" multiple name='files' type="file"
-                                    value="{{ old('files') }}" data-sb-validations="required">
+                                <input
+                                    class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    id="dropzone" multiple name='files' type="file" value="{{ old('files') }}"
+                                    data-sb-validations="required">
 
 
                             </div>
                             <div>
-                            <button class="mo-btn btn-blue-bg float-left font-md"type="submit">أحفظ</button>
+                                <button class="mo-btn btn-blue-bg float-left font-md" type="submit">أحفظ</button>
                             </div>
                             <!-- Form submit button -->
                             {{-- <div class="row">
