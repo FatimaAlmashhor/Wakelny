@@ -1,6 +1,7 @@
 
 <div class="flex-1 flex flex-row-reverse h-full" wire:poll="mountComponent()">
-    @if(auth()->user()->is_active == true)
+
+         @if(auth()->user()->is_active == true )
         <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6"  wire:init>
                                 <div class="search flex-2 pb-6 px-2" >
                                     <input type="text" class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200" placeholder="Search">
