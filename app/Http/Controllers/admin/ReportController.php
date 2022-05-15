@@ -24,7 +24,7 @@ class ReportController extends Controller
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            'reportesr.name as reporter',
+            // 'reportesr.name as reporter',
             // 'reporteds.name as reported',
             // 'posts.title'
         )
@@ -32,6 +32,7 @@ class ReportController extends Controller
             //  ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
             // ->join('posts', 'posts.id', '=', 'reports.post_id')
             ->join('projects', 'projects.id', '=', 'reports.project_id')
+            ->where('project_id' , '!=' , null)
             ->where('reports.is_active', 1)
             ->get();
 
