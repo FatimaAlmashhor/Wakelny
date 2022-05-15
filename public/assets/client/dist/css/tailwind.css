@@ -1309,6 +1309,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-light-gray {
   background-color: ;
+  background-color: #fefefe;
 }
 
 .bg-opacity-0 {
