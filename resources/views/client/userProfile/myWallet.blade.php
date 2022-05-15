@@ -1,23 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <style>
-        .bootstrap-select>.dropdown-toggle.bs-placeholder,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
-        [type=button]:not(:disabled),
-        [type=reset]:not(:disabled),
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled),
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:not(:disabled) {
-            color: black;
-            width: 300px;
-            height: 40px;
-            font-size: 15px;
-            padding: 5px;
-            background-color: white;
-        }
-
-    </style>
+   
     <main class="container pt-20">
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
@@ -46,7 +29,7 @@
                     <span class="font-2xl font-bold text-primary-green px-2">
                         ماتملكه :
                     </span>
-                    ${{ $wallet->balance }}
+                    {{-- ${{ $wallet->balance }} --}}
                 </div>
                 <table class="table border">
                     <thead>

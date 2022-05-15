@@ -32,7 +32,7 @@ class MyWorkOnProjectController extends Controller
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
                 'projects.status',
-                'projects.amount',
+                'projects.totalAmount as amount',
                 'projects.payment_status',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
@@ -68,7 +68,7 @@ class MyWorkOnProjectController extends Controller
                 'projects.seeker_id as seeker_id',
                 'projects.stated_at',
                 'projects.status',
-                'projects.amount',
+                'projects.totalAmount as amount',
             )
                 ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->join('profiles', 'profiles.user_id', '=', 'projects.seeker_id')
@@ -195,7 +195,7 @@ class MyWorkOnProjectController extends Controller
             // ->where('status', 'done')
             ->first();
 
-        // PaymentController::sendTheMoneyBack('provider', $project_id);
+        PaymentController::sendTheMoneyBack('provider', $project_id);
 
         $project->status = 'received';
         $project->finshed = 1;

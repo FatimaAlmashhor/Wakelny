@@ -169,4 +169,53 @@ class PaymentController extends Controller
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
     }
+    static function sendTheMoneyBackTo(Request $request,  $project_id/*$invoice_referance*/)
+    {
+
+        try {
+            // find the row of the wallet 
+
+            $project = Project::where('id', (int)$project_id)->first();
+            if ($project->payment_status == 'paid') {
+                if ($request->get('who') == 'provider') {
+                    $userTheOneNeedMoney = User::find($project->provider_id);
+                } else if ($request->get('who') == 'seeker') {
+                    $userTheOneNeedMoney = User::find($project->seeker_id);
+                }
+
+                // ! in case of the project not done it just admin dession we need to create new project 
+                if ($project->finshed == 0) {
+                    $project->status = 'nonrecevied';
+                    $project->save();
+                }
+
+                $admin = User::find(1);
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
+
+                $project->payment_status = 'received';
+                $project->save();
+                return view('client.payAnimation.paySucces');
+            } else {
+                return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+            }
+
+            // ? here when we use the transaction 
+            // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
+            //     // ->whereJsonContains('meta', ['invoice_referance' => (int)$invoice_referance])
+            //     ->whereJsonContains('meta', ['back_to_owner' => false])
+            //     ->first();
+            // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
+
+            // get the user id 
+            // withdraw the money from the provider to admin
+            // send the money to the provider 
+
+            // send the message back to the brovider
+
+        } catch (\Throwable $th) {
+            return redirect()->route('admin')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
+    }
 }
