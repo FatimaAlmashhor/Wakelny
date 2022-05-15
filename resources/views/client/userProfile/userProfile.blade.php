@@ -205,8 +205,8 @@
                                             <span class="fs-6 fw-bold d-inll">التقييمات:</span>
                                             <span class="me-1">
                                                 {{-- {{ $rating->countEvalution }} --}}
-                                                @for ($i = 0; $i < 5; $i++)
-                                                    @if ((int) $data->rating > $i)
+                                                @for ($i = 1; $i < 5; $i++)
+                                                    @if ($data->rating >= $i)
                                                         <i class="fa fa-star clr-amber rating-star"
                                                             style="color: orange;"></i>
                                                     @else

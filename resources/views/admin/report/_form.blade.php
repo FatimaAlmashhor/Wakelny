@@ -29,8 +29,8 @@
 
         </nav>
     </div> -->
-    <div class="container">
-        <div class="row my-5">
+    <div class="container pt-20">
+        <div class="row my-5 grid place-items-center">
             <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <form action="{{ route('saveReport') }}" method="POST" class="login-form"
@@ -44,34 +44,34 @@
 
 
                         @csrf
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-md-12 my-2">
 
-                                <label for="" class="col-md-6 font-lg my-2">
+                                <label for="" class="col-md-6 font-md my-2">
                                     نوع الشكوى</label>
                                 <div class=" form-group mx-4">
                                     @if (Route::currentRouteName() == 'report_content')
                                         <div class="radio">
-                                            <label class="font-md"><input value=" هذا المحتوى لم  يعجبني" type="radio" name="type_report">
+                                            <label class="font-sm"><input value=" هذا المحتوى لم  يعجبني" type="radio" name="type_report">
                                                 هذا المحتوى لم يعجبني</label>
                                         </div>
                                         <div class="radio">
-                                            <label  class="font-md"><input value="هذا المحتوى مزعج , متكرر" type="radio" name="type_report">
+                                            <label  class="font-sm"><input value="هذا المحتوى مزعج , متكرر" type="radio" name="type_report">
                                                 هذا المحتوى مزعج , متكرر</label>
                                         </div>
 
                                         <div class="radio">
-                                            <label><input value=" هذا المحتوى يخالف شروط استخدام الموقع" type="radio"
+                                            <label class="font-sm"><input value=" هذا المحتوى يخالف شروط استخدام الموقع" type="radio"
                                                     name="type_report"> هذا المحتوى يخالف شروط استخدام الموقع</label>
                                         </div>
                                     @else
                                         <div class="radio">
-                                            <label><input value="هذا المسخدم   يزعجني" type="radio" name="type_report"> هذا
+                                            <label class="font-sm"><input value="هذا المسخدم   يزعجني" type="radio" name="type_report"> هذا
                                                 المسخدم يزعجني</label>
                                         </div>
 
                                         <div class="radio ">
-                                            <label><input value="هذا المسخدم يخالف شروط استخدام الموقع" type="radio"
+                                            <label class="font-sm"><input value="هذا المسخدم يخالف شروط استخدام الموقع" type="radio"
                                                     name="type_report"> هذا المسخدم يخالف شروط استخدام الموقع</label>
                                         </div>
                                 </div>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="row col-md-12">
 
-                            <label for="" class="col-md-4 col-form-label font-lg my-2"> الشكوى</label>
+                            <label for="" class="col-md-4 col-form-label font-md my-2"> الشكوى</label>
                             <textarea class="form-control mx-4" placeholder="  الشكوى" id="" value="" name="massege"></textarea>
                             @error('massege')
                                 <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
@@ -97,11 +97,11 @@
 
                         </div>
 
-                       
+<div>
 
                         <button class="mo-btn btn-blue-bg float-left font-md my-4" type="submit">أرسال</button>
 
-                     
+</div>
 
                         {{ csrf_field() }}
                     </form>

@@ -87,8 +87,11 @@ Route::group([
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
-    Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
-    Route::view('/report_of', 'admin.report.report_of')->name('report_of');
+    Route::view('"dependencies": {
+        "laravel-echo": "^1.11.7",
+        "pusher-js": "^7.1.0-beta"
+    }et', 'admin.wallet.wallet')->name('wallet');
+
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
     // this is the subsection of howen the freelncers

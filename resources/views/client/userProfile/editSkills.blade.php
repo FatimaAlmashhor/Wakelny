@@ -1,7 +1,7 @@
 @extends('client.master_layout')
 @section('content')
     <style>
-        .bootstrap-select>.dropdown-toggle.bs-placeholder,
+        /* .bootstrap-select>.dropdown-toggle.bs-placeholder,
         .bootstrap-select>.dropdown-toggle.bs-placeholder:active,
         .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
         .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
@@ -15,7 +15,7 @@
             font-size: 15px;
             padding: 5px;
             background-color: white;
-        }
+        } */
 
     </style>
     <main class="container pt-20">
