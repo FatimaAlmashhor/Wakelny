@@ -171,4 +171,7 @@ class User extends Authenticatable implements MustVerifyEmail,  Wallet
             ->action(Lang::get('تأكيد البريد الاكتروني'), $url)
             ->line(Lang::get('اذا واجهتك مشاكل في الضغط على الزرار يمكنك الضغط على الرابط ادناه'));
     }
+    public function message() {
+        return $this->hasMany("App\Models\Messages");
+    }
 }

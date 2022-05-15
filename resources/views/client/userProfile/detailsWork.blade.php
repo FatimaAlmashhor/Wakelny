@@ -32,22 +32,22 @@
             </nav>
 
         </div> -->
-        <div class="container my-4">
+        <div class="container my-4 pt-20">
             <div class="row my-2">
                 <div style="float:right;">
                 {{-- edition btn --}}
                 <div class=" float-start">
-                <a tabindex="-1" href="{{ route('edit_work', $item->id) }}"> 
+                <a tabindex="-1" href="{{ route('edit_work', $item->id) }}">
                      <button class="mo-btn btn-blue-bg font-md">تعديل</button> </a>
-            
+
                 <a tabindex="-1"  data-bs-toggle="modal" data-bs-target="#deleteModel">
-                   
+
                 <button class="mo-btn btn-pink-bg pink font-md">حذف</button>
                 </a>
-               
-                  
+
+
                 </div>
-              
+
             </div>
                 <div class="col-md-8 col-sm-12 my-2">
                     <div class="card shadow-sm ">
@@ -56,7 +56,7 @@
                             <div class="row my-4  pt-2 pb-2 " >
                                 <img src="/images/{{ $item->main_image }}"  alt="">
                             </div>
-                          
+
                             <div class="row my-4   ">
                                 <label for="" class="col-md-6 col-form-label font-lg" style="color:#373483;">
                                     تفاصيل العمل</label>
@@ -70,22 +70,22 @@
                 <div class="col-md-4 col-sm-12 my-2">
                     <div class="card shadow-sm pr-4 py-1 ">
                         <div class="pt-3 pb-2 " style="border-bottom: 1px solid var(--bg-main-bg)">
-                            <h5 class="font-lg mx-4" style="color:#373483;"> بطاقة العمل </h5>
+                            <h5 class="font-md mx-4" style="color:#373483;"> بطاقة العمل </h5>
                         </div>
                         <div class="row p-3">
                             <div class="row" style="padding:4px 5px">
-                                <div class="col-6 col-md-7 col-lg-6 col-xl-5  text-right font-md p-1"
+                                <div class="col-6 col-md-7 col-lg-6 col-xl-5  text-right font-sm p-1"
                                 >
                                     تاريخ الانجاز
                                 </div>
-                                <div class="col-6 col-md-5 col-lg-6 col-xl-7 px-0 font-md  text-right p-1 font-1">
+                                <div class="col-6 col-md-5 col-lg-6 col-xl-7 px-0 font-sm  text-right p-1 font-1">
                                     {{ $item->comple_date }}
                                 </div>
                             </div>
-                        
+
                             <div class="p-0 my-3" style="height:1px;background: var(--bg-main-bg);"></div>
                             <div class="px-2">
-                                <span class="px-1 font-md " >المستقل</span>
+                                <span class="px-1 font-md " >المتاح</span>
                             </div>
                             <div class="px-2 row d-flex align-items-center justify-content-between text-truncate"
                                 style="flex-wrap: nowrap;">
@@ -124,11 +124,11 @@
                                 هل تريد حذف {{ $item->title }}
                             </div>
                             <div class="modal-footer">
-                             
+
                                 <a href="{{ route('toggle_work' , $item->id) }}" class="mo-btn btn-pink-bg pink font-md">تاكيد الحذف</a>
-                             
+
                                 <button type="button" class="mo-btn btn-blue-bg font-md" data-bs-dismiss="modal" style="width: auto">الغاء</button>
-                       
+
                             </div>
                         </div>
                     </div>

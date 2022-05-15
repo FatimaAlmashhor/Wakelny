@@ -153,8 +153,8 @@ class PostController extends Controller
             if ($post->save()) {
 
 
-                // ! send notification to all the users in the same category in the database except the owner 
-                // !still not working 
+                // ! send notification to all the users in the same category in the database except the owner
+                // !still not working
                 // $users = Profile::select('profiles.user_id')->join('categories', 'profiles.category_id', '=', 'categories.id')->where('categories.id', $request->category)->get();
                 $users = User::select(
                     'users.id',
@@ -172,7 +172,8 @@ class PostController extends Controller
                     'url' => url('posts/derails/' .  $post->id)
                 ];
                 // FacadesNotification::send($users, new PostNotification($data));
-                print_r($users);
+                // print_r($users);
+
 
 
 
