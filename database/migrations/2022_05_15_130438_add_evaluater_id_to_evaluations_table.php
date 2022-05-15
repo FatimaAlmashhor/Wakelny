@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->text('message');
-            $table->timestamps();
+        Schema::table('evaluations', function (Blueprint $table) {
+            //
+            $table->unsignedBigInteger('evaluater_id')->after('user_id');
+            $table->foreign('evaluater_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::table('evaluations', function (Blueprint $table) {
+            //
+        });
     }
 };
