@@ -86,7 +86,7 @@
                       </div>
                   </div>
                   <a class="flex items-center px-3 py-1 mt-2 text-lg font-semibold text-primary rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                      href="#">
+                      href="{{ route('inbox.index') }}">
                       <i class="fas fa-envelope text-white"></i>
                   </a>
               @endif

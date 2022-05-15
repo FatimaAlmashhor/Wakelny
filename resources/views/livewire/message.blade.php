@@ -6,7 +6,7 @@
                                     <input type="text" class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200" placeholder="Search">
                                 </div>
 
-                                <div class="flex-1 h-full my-8 overflow-auto px-2" wire:poll="render">
+                                <div class="flex-1 h-full my-8 overflow-auto px-2 scrollbar" id="style-7" wire:poll="render">
                                     @foreach($users as $user)
                                     @php
                                         $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
@@ -43,14 +43,17 @@
         </div>
         @endif
 
-             <div class="chat-area flex-1 flex flex-col my-16">
+             <div class="chat-area flex-1 flex flex-col my-8">
             <div class="card">
-                <div class="flex-3 ">
+                <div class="flex-3 text-center">
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
 
                     @elseif(auth()->user()->is_active == true)
-                       أختر مستخدم لبدا التحدث معه
-                       <br>  <br>  <br>  <br>  <br><br>  <br>  <br>  <br>  <br>
+                    <br>  <br>
+                    <img class="img-fluid rounded mx-auto " style="height: 300px" src="/images/chat.png">
+                    <br> 
+                    قم باختيار مستخدم لبدا التحدث معه 
+                       <br>   <br>  <br><br>  <br>  <br>  <br>
                     @elseif($admin->is_online)
                         <i class="fa fa-circle text-success"></i> نحن متصلون
                     @else
