@@ -28,17 +28,17 @@
               class="hidden md:flex flex-col md:flex-row mt-10 md:mt-0 w-full h-full md:items-center justify-between">
               <div class="mx-6 flex-1 mb-10 md:mb-0 ">
                   <ul class="flex flex-col md:flex-row gap-x-4 ">
-                      <li class="nav_item font-sm cursor-pointer active_link">
+                      <li class="nav_item font-sm cursor-pointer  {{ (request()->is('ar/')) ? 'active_link' : '' }}">
                           <a href="{{ route('home') }}">
                               الرئسية
                           </a>
                       </li>
-                      <li class="nav_item font-sm cursor-pointer">
+                      <li class="nav_item font-sm cursor-pointer {{ (request()->is('ar/posts')) ? 'active_link' : '' }}">
                           <a href="{{ route('projectlancer') }}">
                               المشاريع المتاحه
                           </a>
                       </li>
-                      <li class="nav_item font-sm cursor-pointer">
+                      <li class="nav_item font-sm cursor-pointer {{ (request()->is('ar/freelancers')) ? 'active_link' : '' }}">
                           <a href="{{ route('freelancers') }}">
                               مقدمي الخدمات
                           </a>
@@ -94,3 +94,5 @@
       </nav>
 
   </header>
+ 
+
