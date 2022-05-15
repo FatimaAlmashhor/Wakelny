@@ -38,7 +38,7 @@
             <div>لقد تم رفض أحد مشاريعك رجاء قم بالتأكد</div>
         @endif
         <div class="row d-flex flex-column justify-content-center">
-            <div class="mx-lg-5 col-lg-7">
+            <div class="mx-lg-5 col-lg-9">
                 <div class="container  card px-3 my-3 "
                     style='{{ $item->status == 'nonrecevied' ? 'border-right: 5px solid red' : 'border:none' }}'>
 
@@ -79,17 +79,18 @@
                                         </button>
                                     @endif
                                     @if ($item->status == 'nonrecevied')
-                                        <div class="d-flex x-space-2">
-                                            <a tabindex="-1" class="mo-btn btn-green-bg mr-1"
+
+                                        <div class="col-12 mt-3">
+                                            <a  class="mo-btn btn-pink-bg pink col-md-6"
                                                 href='{{ route('continueProject', [$item->project_id]) }}'>
                                                 <i class="fa-solid fa-spinner"></i>
-                                                <span class="action-text"> استأناف المشروع </span>
+                                                <span class="font-sm"> استئناف المشروع </span>
 
                                             </a>
-                                            <a tabindex="-1" class="mo-btn btn-pink-bg mx-1" data-bs-toggle="modal"
+                                            <a  class="mo-btn btn-blue-bg col-md-6" data-bs-toggle="modal"
                                                 data-bs-target="#reject_{{ $item->project_id }}" {{-- style='background-color: red' --}}>
-                                                <i class="fa-solid fa-spinner"></i>
-                                                <span class="action-text"> قدم شكوى </span>
+                                                <i class="fa-solid fa-flag-checkered"></i>
+                                                <span class="font-sm"> قدم شكوى </span>
 
                                             </a>
                                         </div>
@@ -180,7 +181,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
+                                    <h5 class="modal-title" id="deleteModel">تقديم شكوى</h5>
                                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                                 </div>
 
@@ -190,7 +191,7 @@
                                         <input hidden type='text' name="seeker_id" value='{{ $item->seeker_id }}' />
                                         <input hidden type='text' name="project_id" value='{{ $item->project_id }}' />
                                         <div class="pt-3">
-                                            <label class="my-2">اكتب السبب الذي يمنعك من قبول المشروع <em
+                                            <label class="my-2">تفاصيل الشكوى <em
                                                     class="text--danger">*</em>
                                             </label>
                                             <div class="input-group mb-3">
@@ -201,8 +202,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-danger">تاكيد الرفض</button>
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="submit" class="mo-btn btn-pink-bg pink font-md">ارسال الشكوى</button>
+                                            <button type="button" class="mo-btn btn-blue-bg font-md"
                                                 data-bs-dismiss="modal">الغاء</button>
                                             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 

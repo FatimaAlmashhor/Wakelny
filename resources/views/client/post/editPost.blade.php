@@ -146,10 +146,10 @@
                                 </label>
                                 <div class="input-group mb-3">
 
-                                    <input name="duration" class='form-control' id="phone" type="number"
+                                    <input name="duration"  class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' id="phone" type="number"
                                         value="{{ $data->duration ?? old('duration') }}" aria-label="Username"
                                         aria-describedby="basic-addon1">
-                                    <span class="input-group-text" id="basic-addon1">ايام</span>
+                                    <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink" style="height: 46px;" id="basic-addon1">ايام</span>
                                 </div>
 
                                 <span class="text-muted font-xs">متى تحتاج استلام مشروعك</span>
