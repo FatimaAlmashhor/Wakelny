@@ -134,12 +134,17 @@
                                 </label>
                                 <div class="input-group ">
 
-                                    <input name="duration" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' id="phone" type="number"
+                                    {{-- <input name="duration" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' id="phone" type="number"
                                         value="{{ old('duration') }}" aria-label="Username"
                                         aria-describedby="basic-addon1">
-                                    <span class="input-group-text" style="height: 46px;" id="basic-addon1">ايام</span>
-                                </div>
+                                    {{-- <span class="input-group-text" style="height: 46px;" id="basic-addon1">ايام</span> --}}
+                                    {{-- <div class="w-8 flex items-center justify-center bg-blue-lighter border-t border-l border-b border-blue-lighter rounded-l text-blue-dark">$</div>
+                                </div>  --}}
+<div class="flex">
+  <input type="text" name="duration" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink' id="phone" type="number" value="{{ old('duration') }}" aria-label="Username" />
+    <div class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">$</div>
 
+</div>
                                 <span class="text-muted font-xs">متى تحتاج استلام مشروعك</span>
                                 @error('duration')
                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"

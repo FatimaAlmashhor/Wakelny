@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="skills mt-3">
                                         @foreach ($skills as $item)
-                                            <a class="btn-tag color-gray-lighter" href="#" role="button">
+                                            <a class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center" href="#" role="button">
                                                 <i class="fa-solid fa-tags"></i>
                                                 <span class="me-1">{{ $item->name }}</span>
                                             </a>
