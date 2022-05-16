@@ -60,7 +60,7 @@ class PaymentController extends Controller
     }
     public static function successPayment($project_id,  $response)
     {
-        try {
+        // try {
             $project = Project::select(
                 'posts.title',
                 'projects.amount',
@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 ->first();
 
             // add the moeny into the admin wallet
-            // set the information into the meta 
+            // set the information into the meta
 
 
             if ($project->payment_status == 'unpaid') {
@@ -103,16 +103,16 @@ class PaymentController extends Controller
             $filterdRes = base64_decode($response);
             return response()->json(json_decode($filterdRes, true));
 
-            // send notification for the seeker that the money is already خصمت 
+            // send notification for the seeker that the money is already خصمت
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
-            // open the frontend page 
-        } catch (\Throwable $th) {
-            //throw $th;
-            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        }
+            // open the frontend page
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        // }
     }
 
-    // if the payment is cancled 
+    // if the payment is cancled
     function cancelPayment()
 
     {
@@ -125,7 +125,7 @@ class PaymentController extends Controller
     {
 
         try {
-            // find the row of the wallet 
+            // find the row of the wallet
             $project = Project::where('id', $project_id)->first();
             if ($project->payment_status == 'paid') {
                 if ($who == 'provider') {
@@ -134,14 +134,14 @@ class PaymentController extends Controller
                     $userTheOneNeedMoney = User::find($project->seeker_id);
                 }
 
-                // ! in case of the project not done it just admin dession we need to create new project 
+                // ! in case of the project not done it just admin dession we need to create new project
                 if ($project->finshed == 0) {
                     $project->status = 'nonrecevied';
                     $project->save();
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
 
                 $project->payment_status = 'received';
                 $project->save();
@@ -150,7 +150,7 @@ class PaymentController extends Controller
                 return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
             }
 
-            // ? here when we use the transaction 
+            // ? here when we use the transaction
             // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
             //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
             //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
@@ -159,9 +159,9 @@ class PaymentController extends Controller
             //     ->first();
             // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
 
-            // get the user id 
+            // get the user id
             // withdraw the money from the provider to admin
-            // send the money to the provider 
+            // send the money to the provider
 
             // send the message back to the brovider
 
@@ -173,7 +173,7 @@ class PaymentController extends Controller
     {
 
         try {
-            // find the row of the wallet 
+            // find the row of the wallet
 
             $project = Project::where('id', (int)$project_id)->first();
             if ($project->payment_status == 'paid') {
@@ -183,14 +183,14 @@ class PaymentController extends Controller
                     $userTheOneNeedMoney = User::find($project->seeker_id);
                 }
 
-                // ! in case of the project not done it just admin dession we need to create new project 
+                // ! in case of the project not done it just admin dession we need to create new project
                 if ($project->finshed == 0) {
                     $project->status = 'nonrecevied';
                     $project->save();
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw 
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
 
                 $project->payment_status = 'received';
                 $project->save();
@@ -199,7 +199,7 @@ class PaymentController extends Controller
                 return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
             }
 
-            // ? here when we use the transaction 
+            // ? here when we use the transaction
             // $transaction = Transaction::whereJsonContains('meta', ['provider_id' => (int)$provider_id])
             //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
             //     ->whereJsonContains('meta', ['project_id' => (int)$project_id])
@@ -208,9 +208,9 @@ class PaymentController extends Controller
             //     ->first();
             // $transaction = Transaction::whereRaw("JSON_EXTRACT(`meta`, '\$[provider_id]') = 11")->get();
 
-            // get the user id 
+            // get the user id
             // withdraw the money from the provider to admin
-            // send the money to the provider 
+            // send the money to the provider
 
             // send the message back to the brovider
 

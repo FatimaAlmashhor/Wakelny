@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             SkillsSeeder::class,
             CategoriesSeeder::class,
+            WalletSeeder::class
         ]);
     }
 }

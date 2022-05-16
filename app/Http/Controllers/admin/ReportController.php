@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Posts;
 use App\Models\User;
+use App\Models\Comments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\TryCatch;
@@ -24,7 +25,7 @@ class ReportController extends Controller
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            'reportesr.name as reporter',
+            // 'reportesr.name as reporter',
             // 'reporteds.name as reported',
             // 'posts.title'
         )
@@ -32,11 +33,14 @@ class ReportController extends Controller
             //  ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
             // ->join('posts', 'posts.id', '=', 'reports.post_id')
             ->join('projects', 'projects.id', '=', 'reports.project_id')
+            ->where('project_id' , '!=' , null)
+            
             ->where('reports.is_active', 1)
             ->get();
 
         // return response()->json($reports);
         return view('admin.report.index')->with(['reports' => $reports]);
+        
     }
     ////////////////////add new reports ///////////
 
@@ -117,7 +121,7 @@ class ReportController extends Controller
     function reportDetails($report_id)
     {
         $report = Report::find($report_id);
-
+     
         return view('admin.report.reportDetails')->with(['report' => $report]);
     }
 }
