@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotificationController;
 use App\Models\Comments;
 use App\Models\Posts;
 use App\Models\User;
 use App\Notifications\CommentNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Pusher\Pusher;
 
 class CommentsController extends Controller
 {
@@ -43,7 +45,6 @@ class CommentsController extends Controller
             ]);
             if ($comment->save()) {
 
-                // send to the seeker about the new notification
                 $postOwner = User::select(
                     'posts.id',
                     'posts.title',
@@ -57,11 +58,29 @@ class CommentsController extends Controller
                 $data = [
                     'name' => $postOwner->name,
                     'post_title' => $postOwner->title,
+                    'message' => 'قام ' .  $postOwner->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
                     'url' => url('posts/details/' . $postOwner->id),
-                    'userId' => Auth::id()
+                    'userId' => $postOwner->userid
                 ];
-                $user->notify(new CommentNotification($data));
 
+
+
+                $options = array(
+                    'cluster' => env('PUSHER_APP_CLUSTER'),
+                    'encrypted' => true
+                );
+                $pusher = new Pusher(
+                    env('PUSHER_APP_KEY'),
+                    env('PUSHER_APP_SECRET'),
+                    env('PUSHER_APP_ID'),
+                    $options
+                );
+
+
+                $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
+                $user->notify(new CommentNotification($data));
+                // $notify = new NotificationController();
+                // $notify->addcommentNotificatoin($request->post_id);
 
                 return redirect()->back()
                     ->with(['message' => 'تم اضافة عرضك  بنجاح', 'type' => 'alert-success']);
@@ -73,40 +92,44 @@ class CommentsController extends Controller
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
     }
-     // update comment
+    // update comment
 
     public function update(Request $request, $comment_id)
     {
 
-        $request->validate([
+        try {
+            $request->validate([
 
-            'cost' => ['required', 'numeric'],
-            'duration' => ['required', 'numeric'],
-            'message' => ['required'],
-        ], [
-            'cost.required' => 'رجاء قم بأدخال التكلفه لهذا العرض',
-            'duration.required' => 'حقل المده مطلوب',
-            'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
-            'message.required' => 'اضف تفاصيل للعرض ',
-            // 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
-        ]);
+                'cost' => ['required', 'numeric'],
+                'duration' => ['required', 'numeric'],
+                'message' => ['required'],
+            ], [
+                'cost.required' => 'رجاء قم بأدخال التكلفه لهذا العرض',
+                'duration.required' => 'حقل المده مطلوب',
+                'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
+                'message.required' => 'اضف تفاصيل للعرض ',
+                // 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
+            ]);
 
-        $comment = Comments::find($comment_id);
-        // $comment->user_id = Auth::id();
+            $comment = Comments::find($comment_id);
+            // $comment->user_id = Auth::id();
 
-        //   $comment->user_id = Auth::id();
-        // $comment->post_id = $request->post_id;
-        $comment->cost = $request->cost;
-        $comment->duration = $request->duration;
-        $comment->description = $request->message;
-        $comment->is_active = 1;
-        $comment->cost_after_taxs = $request->cost / 0.5;
+            //   $comment->user_id = Auth::id();
+            // $comment->post_id = $request->post_id;
+            $comment->cost = $request->cost;
+            $comment->duration = $request->duration;
+            $comment->description = $request->message;
+            $comment->is_active = 1;
+            $comment->cost_after_taxs = $request->cost / 0.5;
 
 
-        if ($comment->save()) {
-            return redirect()->back()
-                ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
-        } else
+            if ($comment->save()) {
+                return redirect()->back()
+                    ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
+            } else
+                return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (\Throwable $th) {
             return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        }
     }
 }
