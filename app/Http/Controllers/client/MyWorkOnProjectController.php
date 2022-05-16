@@ -207,6 +207,7 @@ class MyWorkOnProjectController extends Controller
         $rating->value = $request->rating;
         $rating->message = $request->massege;
         $rating->user_id = $provider_id;
+        $rating->evaluater_id = Auth::id();
         $rating->project_id = $project_id;
         $rating->save();
 
