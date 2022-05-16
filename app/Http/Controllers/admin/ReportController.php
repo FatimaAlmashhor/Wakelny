@@ -120,8 +120,15 @@ class ReportController extends Controller
 
     function reportDetails($report_id)
     {
-        $report = Report::find($report_id);
-     
+   
+        $report =  Report::select(
+            'reports.id',
+            // 'users.id',
+            'reports.type_report',
+            'reports.massege',
+         
+        )->get();
+        
         return view('admin.report.reportDetails')->with(['report' => $report]);
     }
 }
