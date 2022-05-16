@@ -112,7 +112,7 @@ class UserController extends Controller
         )->where('user_id', $user_id)->sum('value');
 
         if($rating_count != 0){
-            $rating_avg = intval($rating_sum/$rating_count);
+            $rating_avg = round($rating_sum/$rating_count);
         } else {
             $rating_avg = 0;
         }
@@ -127,8 +127,6 @@ class UserController extends Controller
         ->where('evaluations.user_id', $user_id)
         ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.evaluater_id')
         ->get();
-
-        // return response()->json($evaluations);
 
         return view('client.userProfile.userProfile')->with([
             'data' => $user_info,
