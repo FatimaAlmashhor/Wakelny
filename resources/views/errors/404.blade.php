@@ -20,7 +20,7 @@
                 </lottie-player>
                 <a href='{{ route('profile') }}' class="mo-btn btn-blue-bg  font-semibold px-4 py-3 w-full">
 
-                    دعنا ننتقل الى الصفحة السابقة
+                دعنا ننتقل الى الصفحة السابقة
                 </a>
             </div>
         </div>
