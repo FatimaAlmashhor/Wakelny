@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotificationController;
 use App\Models\Comments;
 use App\Models\Posts;
 use App\Models\User;
@@ -44,24 +45,25 @@ class CommentsController extends Controller
             if ($comment->save()) {
 
                 // send to the seeker about the new notification
-                $postOwner = User::select(
-                    'posts.id',
-                    'posts.title',
-                    'users.id as userid',
-                    'users.name'
-                )->join('posts', 'posts.user_id', '=', 'users.id')
-                    ->where('posts.id', $request->post_id)
-                    ->first();
+                // $postOwner = User::select(
+                //     'posts.id',
+                //     'posts.title',
+                //     'users.id as userid',
+                //     'users.name'
+                // )->join('posts', 'posts.user_id', '=', 'users.id')
+                //     ->where('posts.id', $request->post_id)
+                //     ->first();
 
-                $user = User::find($postOwner->userid);
-                $data = [
-                    'name' => $postOwner->name,
-                    'post_title' => $postOwner->title,
-                    'url' => url('posts/details/' . $postOwner->id),
-                    'userId' => Auth::id()
-                ];
-                $user->notify(new CommentNotification($data));
-
+                // $user = User::find($postOwner->userid);
+                // $data = [
+                //     'name' => $postOwner->name,
+                //     'post_title' => $postOwner->title,
+                //     'url' => url('posts/details/' . $postOwner->id),
+                //     'userId' => Auth::id()
+                // ];
+                // $user->notify(new CommentNotification($data));
+                $notify = new NotificationController();
+                $notify->addcommentNotificatoin($request->post_id);
 
                 return redirect()->back()
                     ->with(['message' => 'تم اضافة عرضك  بنجاح', 'type' => 'alert-success']);
@@ -73,7 +75,7 @@ class CommentsController extends Controller
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
     }
-     // update comment
+    // update comment
 
     public function update(Request $request, $comment_id)
     {
