@@ -256,7 +256,7 @@
                             </div>
                             <div class="brief-content mt-3 me-1">
                                 @foreach ($evaluations as $evaluate)
-                                <div class="row p-3">
+                                <div class="row p-3 border-bottom">
                                     <div> <!-- class="d-flex justify-content-between" -->
                                         <div class="fs-6 fw-normal d-flex justify-content-start">
                                             <div>
@@ -281,7 +281,6 @@
                                         </p>
                                     </div>
                                 </div>
-                                <hr>
                                 @endforeach
                             </div>
                         </div>
