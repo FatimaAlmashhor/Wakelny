@@ -31,6 +31,7 @@ use App\Http\Controllers\client\ChatController;
 use App\Http\Controllers\payment\PaymentController;
 use App\Models\Project;
 use App\Models\User;
+use Pusher\Pusher;
 
 /*
 |--------------------------------------------------------------------------
@@ -223,7 +224,6 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
-   
         });
     });
 
@@ -232,7 +232,7 @@ Route::group([
         Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
         Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
     });
-    
+
 
 
 
@@ -298,7 +298,7 @@ Route::group([
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
 
-        
+
         Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
         Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
 
@@ -378,4 +378,25 @@ Route::get('/testWallet', function () {
     // $user->deposit(10);
 
     return $admin->balance; // 10
+});
+
+Route::get('/test-pusher', function () {
+    $options = array(
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'encrypted' => true
+    );
+    $pusher = new Pusher(
+        env('PUSHER_APP_KEY'),
+        env('PUSHER_APP_SECRET'),
+        env('PUSHER_APP_ID'),
+        $options
+    );
+
+
+    $data['title'] = 'تم اضافه مشروع ';
+    $data['price'] =  888;
+
+    $pusher->trigger('channel-name', 'App\\Events\\StatusLiked', $data);
+
+    return view('testPusher');
 });

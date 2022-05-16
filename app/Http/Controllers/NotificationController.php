@@ -2,34 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentEvents;
+use App\Models\User;
+use App\Notifications\CommentNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Pusher\Pusher;
 
 class NotificationController extends Controller
 {
 
-    public function MarkAsRead_all(Request $request)
+    function addcommentNotificatoin($post_id)
     {
 
-        $userUnreadNotification = auth()->user()->unreadNotifications;
+        print_r('I am iside the notifiaction');
+        $postOwner = User::select(
+            'posts.id',
+            'posts.title',
+            'users.id as userid',
+            'users.name'
+        )->join('posts', 'posts.user_id', '=', 'users.id')
+            ->where('posts.id', $post_id)
+            ->first();
 
-        if ($userUnreadNotification) {
-            $userUnreadNotification->markAsRead();
-            return back();
-        }
-    }
+        $user = User::find($postOwner->userid);
+        $data = [
+            'name' => $postOwner->name,
+            'post_title' => $postOwner->title,
+            'url' => url('posts/details/' . $postOwner->id),
+            'userId' => $postOwner->userid
+        ];
 
-    public function unreadNotifications_count()
+        // $user->notify(new CommentNotification($data));
+        // event(new CommentEvents($data));
 
-    {
-        return auth()->user()->unreadNotifications->count();
-    }
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
 
-    public function unreadNotifications()
 
-    {
-        foreach (auth()->user()->unreadNotifications as $notification) {
-
-            return $notification->data['title'];
-        }
+        $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
     }
 }
