@@ -56,13 +56,12 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon red">
-      <i class="fa-solid fa-flag-checkered"></i>
+                                            <i class="iconly-boldShow"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold"> الاقسام </h6>
                                         <h6 class="font-extrabold mb-0">{{ $cates }}</h6>
-
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +73,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon green">
-                                           <i class="iconly-boldShow"></i>                                        </div>
+                                        <i class="fa-solid fa-flag-checkered"></i>                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">البلاغات</h6>

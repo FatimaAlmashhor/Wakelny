@@ -57,7 +57,7 @@
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
                                 <a href="{{ route('projectlancer') }}">
-                                    طالبي الخدمات
+                                   المشاريع المتاحة
                                 </a>
                             </li>
                             <li class="nav_item font-sm cursor-pointer">

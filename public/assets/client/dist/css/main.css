@@ -401,4 +401,9 @@ ul {
   }
 }
 
+.active_fixed_nav{
+   color: #CD657C;
+   transform: scale(1.3);
+
+}
 /*# sourceMappingURL=main.css.map */

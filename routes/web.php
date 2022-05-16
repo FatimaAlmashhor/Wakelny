@@ -16,18 +16,9 @@ use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
 use App\Http\Controllers\admin\settingUserController;
-
-
-
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
-
 use App\Http\Controllers\admin\ReportController;
-
-
-
-
-
 use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
@@ -40,6 +31,7 @@ use App\Http\Controllers\client\ChatController;
 use App\Http\Controllers\payment\PaymentController;
 use App\Models\Project;
 use App\Models\User;
+use Pusher\Pusher;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +88,10 @@ Route::group([
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
-    Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
+    Route::view('"dependencies": {
+        "laravel-echo": "^1.11.7",
+        "pusher-js": "^7.1.0-beta"
+    }et', 'admin.wallet.wallet')->name('wallet');
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
@@ -229,7 +224,6 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
-   
         });
     });
 
@@ -238,7 +232,7 @@ Route::group([
         Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
         Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
     });
-    
+
 
 
 
@@ -304,7 +298,7 @@ Route::group([
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
 
-        
+
         Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
         Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
 
@@ -384,4 +378,25 @@ Route::get('/testWallet', function () {
     // $user->deposit(10);
 
     return $admin->balance; // 10
+});
+
+Route::get('/test-pusher', function () {
+    $options = array(
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'encrypted' => true
+    );
+    $pusher = new Pusher(
+        env('PUSHER_APP_KEY'),
+        env('PUSHER_APP_SECRET'),
+        env('PUSHER_APP_ID'),
+        $options
+    );
+
+
+    $data['title'] = 'تم اضافه مشروع ';
+    $data['price'] =  888;
+
+    $pusher->trigger('channel-name', 'App\\Events\\StatusLiked', $data);
+
+    return view('testPusher');
 });
