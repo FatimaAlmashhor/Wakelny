@@ -28,23 +28,36 @@
               class="hidden md:flex flex-col md:flex-row mt-10 md:mt-0 w-full h-full md:items-center justify-between">
               <div class="mx-6 flex-1 mb-10 md:mb-0 ">
                   <ul class="flex flex-col md:flex-row gap-x-4 ">
-                      <li class="nav_item font-sm cursor-pointer  {{ request()->is('ar/') ? 'active_link' : '' }}">
-                          <a href="{{ route('home') }}">
-                              الرئسية
-                          </a>
-                      </li>
-                      <li
-                          class="nav_item font-sm cursor-pointer {{ request()->is('ar/posts') ? 'active_link' : '' }}">
-                          <a href="{{ route('projectlancer') }}">
-                              المشاريع المتاحه
-                          </a>
-                      </li>
-                      <li
-                          class="nav_item font-sm cursor-pointer {{ request()->is('ar/freelancers') ? 'active_link' : '' }}">
-                          <a href="{{ route('freelancers') }}">
-                              مقدمي الخدمات
-                          </a>
-                      </li>
+                      <<<<<<< HEAD <li
+                          class="nav_item font-sm cursor-pointer  {{ request()->is('ar/') ? 'active_link' : '' }}">
+                          =======
+                          <li
+                              class="nav_item font-sm cursor-pointer {{ request()->segment(2) == '' ? 'active_link' : '' }}">
+                              >>>>>>> 5fd2b89f46711b9068e5a9d7b674054dc47891d3
+                              <a href="{{ route('home') }}">
+                                  الرئسية
+                              </a>
+                          </li>
+                          <<<<<<< HEAD <li
+                              class="nav_item font-sm cursor-pointer {{ request()->is('ar/posts') ? 'active_link' : '' }}">
+                              =======
+                              <li
+                                  class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'posts' ? 'active_link' : '' }}">
+                                  >>>>>>> 5fd2b89f46711b9068e5a9d7b674054dc47891d3
+                                  <a href="{{ route('projectlancer') }}">
+                                      المشاريع المتاحه
+                                  </a>
+                              </li>
+                              <<<<<<< HEAD <li
+                                  class="nav_item font-sm cursor-pointer {{ request()->is('ar/freelancers') ? 'active_link' : '' }}">
+                                  =======
+                                  <li
+                                      class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'freelancers' ? 'active_link' : '' }}">
+                                      >>>>>>> 5fd2b89f46711b9068e5a9d7b674054dc47891d3
+                                      <a href="{{ route('freelancers') }}">
+                                          مقدمي الخدمات
+                                      </a>
+                                  </li>
                   </ul>
               </div>
               @if (Auth::guest())
