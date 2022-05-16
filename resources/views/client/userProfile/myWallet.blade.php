@@ -1,6 +1,5 @@
 @extends('client.master_layout')
 @section('content')
-
     <main class="container pt-20">
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
@@ -23,13 +22,15 @@
 
             @include('client.components.dash_nav')
             <!-- wallet section -->
-            <section class="col-lg-8 col-md-8 col-12" >
+            <section class="col-lg-8 col-md-8 col-12">
                 <div
                     class=" w-12/12 md:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
                     <span class="font-2xl font-bold text-primary-green px-2">
                         ماتملكه :
                     </span>
-                    ${{ $wallet->balance }}
+                    @if ($wallet != null)
+                        ${{ $wallet->balance }}
+                    @endif
                 </div>
                 <table class="table border">
                     <thead>
