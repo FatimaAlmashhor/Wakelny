@@ -16,18 +16,9 @@ use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
 use App\Http\Controllers\admin\settingUserController;
-
-
-
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
-
 use App\Http\Controllers\admin\ReportController;
-
-
-
-
-
 use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
@@ -96,7 +87,10 @@ Route::group([
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
     Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
-    Route::view('/wallet', 'admin.wallet.wallet')->name('wallet');
+    Route::view('"dependencies": {
+        "laravel-echo": "^1.11.7",
+        "pusher-js": "^7.1.0-beta"
+    }et', 'admin.wallet.wallet')->name('wallet');
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');

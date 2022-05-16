@@ -50,10 +50,18 @@
      <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <title>متاح</title>
     @livewireStyles
+    {{-- //paste this code under the head tag or in a separate js file.
+	// Wait for window load --}}
+    <script type='text/javascript'>
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});
+    </script>
 </head>
 
 <body>
-
+<div class="se-pre-con"></div>
 
     {{-- alerts --}}
     @if (session()->has('message'))
@@ -97,18 +105,18 @@
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
                         <a href="{{ route('profile') }}" class="">
-                            <ion-icon name="person-outline" class="font-md cursor-pointer hover:text-primary-pink">
+                            <ion-icon name="person-outline" class=" font-md cursor-pointer {{ (request()->is('ar/controllPannal')) ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
                         <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
+                            <ion-icon name="document-outline" class=" font-md cursor-pointer {{ (request()->is('ar/post')) ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
                         @if (Auth::check())
                             @role('provider')
                                 <a href="{{ route('userWork') }}">
                                     <ion-icon name="briefcase-outline"
-                                        class="font-md cursor-pointer hover:text-primary-pink">
+                                        class="font-md cursor-pointer {{ (request()->is('ar/userWork')) ? 'active_fixed_nav' : '' }}">
                                     </ion-icon>
                                 </a>
                             @endrole
@@ -243,6 +251,12 @@
         });
     </script>
   @livewireScripts
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+
 </body>
 
 </html>

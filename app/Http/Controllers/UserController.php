@@ -112,9 +112,19 @@ class UserController extends Controller
         //     ->where('user_id', Auth::id())
         //     ->groupBy(['id', 'project_id', 'value', 'user_id', 'message', 'created_at', 'updated_at'])
         //     ->get();
+<<<<<<< HEAD
         // $count = $evalutions->countEvalution;
         // $totalStrts = intval($evalutions->sum / $count);
         // return response()->json($evalutions);
+=======
+        // // $count = $evalutions->countEvalution;
+        // // $totalStrts = intval($evalutions->sum / $count);
+        // // return response()->json($evalutions);
+
+        // $rating_count = Evaluation::select(
+        //     'value',
+        // )->where('user_id', $user_id)->count();
+>>>>>>> 64322d67efb194b2e0574dcbeb9787998cc2ba2e
 
         $rating_count = Evaluation::select(
             'value',
@@ -124,6 +134,7 @@ class UserController extends Controller
             'value',
         )->where('user_id', $user_id)->sum('value');
 
+<<<<<<< HEAD
         if($rating_count != 0){
             $rating_avg = intval($rating_sum/$rating_count);
         } else {
@@ -142,6 +153,31 @@ class UserController extends Controller
         ->get();
 
         // return response()->json($evaluations);
+=======
+        // $rating = Evaluation::select(
+        //     'value as value'
+        // )->count('value as value_count')->distinct()
+        // ->sum('value as value_sum')
+        // ->groupBy('user_id');
+        
+        if($rating_count != 0){
+            $ratings_avg = intval($rating_sum/$rating_count);
+        } else {
+            $ratings_avg = 0;
+        }
+
+        $evaluation = Evaluation::select(
+            'project_id',
+            'user_id',
+            'seeker_id',
+            'message',
+            'profiles.name as provider',
+            'profiles.name as seeker'
+        )->join('profiles as provider_profile', 'provider_profile.user_id', '=', 'evaluations.users_id')
+        ->join('profiles as seeker_profile', 'seeker_profile.user_id', '=', 'evaluations.seeker_id')
+        ->join('projects', 'projects.id', '=', 'evaluations.project_id')
+        ->where('user_id', $user_id);
+>>>>>>> 64322d67efb194b2e0574dcbeb9787998cc2ba2e
 
         return view('client.userProfile.userProfile')->with([
             'data' => $user_info,
@@ -150,9 +186,14 @@ class UserController extends Controller
             'role' => $userRole,
             'works' => $works,
             'post' => $posts,
+<<<<<<< HEAD
             'rating' => $rating_avg,
             'rating_count' => $rating_count,
             'evaluations' => $evaluations
+=======
+            'rating' => $ratings_avg,
+            'evaluation' => $evaluation
+>>>>>>> 64322d67efb194b2e0574dcbeb9787998cc2ba2e
         ]);
     }
     public function insert_content($post_id, $provider_id)

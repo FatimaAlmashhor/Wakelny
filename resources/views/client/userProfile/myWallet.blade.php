@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-   
+
     <main class="container pt-20">
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
