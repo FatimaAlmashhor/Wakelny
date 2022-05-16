@@ -15,6 +15,7 @@ class NotificationController extends Controller
     function addcommentNotificatoin($post_id)
     {
 
+        print_r('I am iside the notifiaction');
         $postOwner = User::select(
             'posts.id',
             'posts.title',

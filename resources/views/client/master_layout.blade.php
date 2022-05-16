@@ -109,11 +109,15 @@
                                 class=" font-md cursor-pointer {{ request()->is('ar/controllPannal') ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
-                        <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline"
-                                class=" font-md cursor-pointer {{ request()->is('ar/post') ? 'active_fixed_nav' : '' }}">
-                            </ion-icon>
-                        </a>
+                        @if (Auth::check())
+                            @role('seeker')
+                                <a href="{{ route('post') }}" class="  ">
+                                    <ion-icon name="document-outline"
+                                        class=" font-md cursor-pointer {{ request()->is('ar/post') ? 'active_fixed_nav' : '' }}">
+                                    </ion-icon>
+                                </a>
+                            @endrole
+                        @endif
                         @if (Auth::check())
                             @role('provider')
                                 <a href="{{ route('userWork') }}">
@@ -227,7 +231,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
         integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script>
+        var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+            encrypted: true
+        });
+        const notify = document.getElementById('notify');
+        const notifyMark = document.getElementById('notify-mark');
+        var channel = pusher.subscribe('channel-name');
+        console.log(channel);
+        channel.bind('App\\Events\\CommentEvents', function(data) {
+            alert(data.userId);
+            if (data.userId.toString() == "{!! Auth::id() !!}") {
+                notifyMark.classList.remove('hidden');
+                const node = document.createElement("a");
+                node.href = data.url;
+                node.className =
+                    "rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
+                const textnode = document.createTextNode(data.message);
+                node.appendChild(textnode);
+                notify.appendChild(node);
+                console.log(notify);
+            }
 
+        });
+    </script>
 
     @stack('scripts')
     <script>
@@ -257,20 +286,7 @@
         });
     </script>
 
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-    <script>
-        var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
-            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-            encrypted: true
-        });
 
-        var channel = pusher.subscribe('channel-name');
-        console.log(channel);
-        channel.bind('App\\Events\\StatusLiked', function(data) {
-            alert(data);
-            console.log(data);
-        });
-    </script>
     @livewireScripts
 
 

@@ -13,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class CommentEvents
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $data;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
