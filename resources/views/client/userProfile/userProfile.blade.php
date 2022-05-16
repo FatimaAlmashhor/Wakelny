@@ -249,82 +249,43 @@
 
                 <!-- Ratings -->
                 <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
-                    <!-- My Brief -->
-                    <div class="row mb-3">
-                        <section class="card shadow-sm col-12 col-sm-12 p-3">
-                            <div class="about-me">
-                                <div class="section-title">
-                                    <h5 class="font-md">آراء العملاء</h5>
-                                </div>
-                                <div class="brief-content mt-3 me-1">
-                                    <div class="row">
-                                        <div> <!-- class="d-flex justify-content-between" -->
-                                            <p class="fs-6 fw-normal ">
-                                                <i class="fa-solid fa-check-double ms-1 "></i>
-                                                {{auth()->user()->name}}
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            </p>
+                    <section class="card shadow-sm col-12 col-sm-12 p-3">
+                        <div class="about-me">
+                            <div class="section-title">
+                                <h5 class="font-md">آراء العملاء</h5>
+                            </div>
+                            <div class="brief-content mt-3 me-1">
+                                @foreach ($evaluations as $evaluate)
+                                <div class="row p-3">
+                                    <div> <!-- class="d-flex justify-content-between" -->
+                                        <div class="fs-6 fw-normal d-flex justify-content-start">
+                                            <div>
+                                                @if ($evaluate->avatar !== null)
+                                                    <img src="{{ $evaluate->avatar }}" class="border rounded-circle"
+                                                        style="max-width: 50px; max-height: 50px; object-fit: cover">
+                                                @else
+                                                    <img src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                                                        class="border rounded-circle" style="max-width: 50px; height: 50px; object-fit: cover">
+                                                @endif
+                                            </div>
+                                            <div class="me-2">
+                                                <p> {{$evaluate->evaluater_name}} </p>
+                                                <p class="p-1 text-xs text-primary-pink">
+                                                    <i class="fa-regular fa-clock"></i>
+                                                    {{$evaluate->created_at}}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <!-- <div class="d-flex justify-content-between">
-                                            <p class="fs-6 fw-normal">
-                                                <i class="fa-solid fa-clock-rotate-left ms-1"></i> الانضباط بالمواعيد
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="fs-6 fw-normal">
-                                                <i class="fa-solid fa-award ms-1"></i> الخبرة
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="fs-6 fw-normal">
-                                                <i class="fa-solid fa-handshake ms-1"></i> التعامل
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="fs-6 fw-normal">
-                                                <i class="fa-solid fa-satellite-dish ms-1"></i> التجاوب والتواصل
-                                            </p>
-                                            <p class="">
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                                <i class="fa-solid fa-star color-orange-lighter"></i>
-                                            </p>
-                                        </div> -->
+                                        <p class="p-1 px-1 me-5">
+                                            {{$evaluate->message}}
+                                        </p>
                                     </div>
                                 </div>
+                                <hr>
+                                @endforeach
                             </div>
-                        </section>
-                    </div>
-
+                        </div>
+                    </section>
                 </div>
                 <!-- /Ratings -->
 

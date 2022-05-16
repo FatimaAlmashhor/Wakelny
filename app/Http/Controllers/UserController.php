@@ -130,7 +130,18 @@ class UserController extends Controller
             $rating_avg = 0;
         }
 
-        $evaluations = Evaluation::where('user_id', $user_id)->get();
+        $evaluations = Evaluation::select(
+            'evaluations.message',
+            'evaluations.created_at',
+            'evaluations.evaluater_id',
+            'evaluaters.name as evaluater_name',
+            'evaluaters.avatar',
+        )
+        ->where('evaluations.user_id', $user_id)
+        ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.evaluater_id')
+        ->get();
+
+        // return response()->json($evaluations);
 
         return view('client.userProfile.userProfile')->with([
             'data' => $user_info,
