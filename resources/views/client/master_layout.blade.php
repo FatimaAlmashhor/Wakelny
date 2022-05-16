@@ -260,7 +260,7 @@
                     "rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
                 const textnode = document.createTextNode(data.message);
                 node.appendChild(textnode);
-                notify.appendChild(node);
+                notify.prepend(node);
                 console.log(notify);
             }
 
