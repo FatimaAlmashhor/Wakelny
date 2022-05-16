@@ -9,7 +9,7 @@
     <div class="page-heading">
         <h3>{{  __('dash.user_Statistics')}} </h3>
     </div>
-    
+
     <div class="page-content">
         <section class="row mx-4">
             <div class="col-12 col-lg-10 mx-auto">
@@ -21,7 +21,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    
+
                                     <div class="col-12">
                                          <h3 class="mb-0" style="color: #373483 ;">$0.00</h5>
                                     </div>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    
+
                                     <div class="col-12">
                                          <h3 class="mb-0" style="color: #CD657C ;">$0.00</h5>
                                     </div>
@@ -45,9 +45,9 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
-         
+
         </section>
 
      <section class="section">
@@ -94,5 +94,5 @@
 
 
 
- 
+
 @endsection

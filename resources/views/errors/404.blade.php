@@ -18,7 +18,7 @@
                 <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_avwze6mc.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
 
                 </lottie-player>
-                <a href='{{ route('profile') }}' class="mo-btn btn-blue-bg  font-semibold px-4 py-3 w-full">
+                <a href='{{ route('profile') }}' class="mo-btn btn-blue-bg  font-semibold px-4 py-3 w-full" style="text-align: center">
 
                 دعنا ننتقل الى الصفحة السابقة
                 </a>
