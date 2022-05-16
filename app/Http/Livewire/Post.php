@@ -11,8 +11,6 @@ class Post extends Component
     public $searchTerm = '';
     public $posts;
 
-
-
     public function render()
     {
         if (empty($this->searchTerm)) {

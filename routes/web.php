@@ -16,18 +16,9 @@ use App\Http\Controllers\client\ProjectController;
 use App\Http\Controllers\admin\projectAdminController;
 use App\Http\Controllers\admin\projects;
 use App\Http\Controllers\admin\settingUserController;
-
-
-
 use App\Http\Controllers\client\CommentsController;
 use App\Http\Controllers\admin\CategoriesController;
-
 use App\Http\Controllers\admin\ReportController;
-
-
-
-
-
 use App\Http\Controllers\admin\settingPaymentController;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\admin\ForgotPasswordController;
