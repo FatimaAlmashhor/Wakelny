@@ -105,18 +105,18 @@
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
                         <a href="{{ route('profile') }}" class="">
-                            <ion-icon name="person-outline" class=" font-md cursor-pointer {{ (request()->is('ar/controllPannal')) ? 'active_fixed_nav' : '' }}">
+                            <ion-icon name="person-outline" class=" font-md cursor-pointer {{ (request()->segment(2) == 'controllPannal') ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
                         <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline" class=" font-md cursor-pointer {{ (request()->is('ar/post')) ? 'active_fixed_nav' : '' }}">
+                            <ion-icon name="document-outline" class=" font-md cursor-pointer {{ (request()->segment(2) == 'post') ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
                         @if (Auth::check())
                             @role('provider')
                                 <a href="{{ route('userWork') }}">
                                     <ion-icon name="briefcase-outline"
-                                        class="font-md cursor-pointer {{ (request()->is('ar/userWork')) ? 'active_fixed_nav' : '' }}">
+                                        class="font-md cursor-pointer {{ (request()->segment(2) == 'userWork') ? 'active_fixed_nav' : '' }}">
                                     </ion-icon>
                                 </a>
                             @endrole
