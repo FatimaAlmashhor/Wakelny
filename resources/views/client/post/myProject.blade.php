@@ -8,24 +8,24 @@
             <div class="row ">
                 <div class="col-sm-6">
                     <a href="{{ route('posts.details', $item->post_id) }}" class="my-5">
-                    <p class="font-md"> {{ $item->title }}</p>
+                        <p class="font-md"> {{ $item->title }}</p>
                     </a>
                 </div>
 
                 <div class="col-sm-6 ">
                     <span class="badge bg-primary-light-pink text-md-center text-black font-md float-start">حالة
                         المشروع:
-                        @if( $item->status == "pending")
-                                        إنتظار العروض
-                                @elseif ($item->status == "at_work")
-                                قيد العمل
-                                 @elseif ($item->status == "done")
-                                 تم التسليم
-                                 @elseif ($item->status == "nonrecevied")
-لم يتم قبول التسليم
-                                 @elseif ($item->status == "recevied")
- تم قبول التسليم
-                                @endif
+                        @if ($item->status == 'pending')
+                            إنتظار العروض
+                        @elseif ($item->status == 'at_work')
+                            قيد العمل
+                        @elseif ($item->status == 'done')
+                            تم التسليم
+                        @elseif ($item->status == 'nonrecevied')
+                            لم يتم قبول التسليم
+                        @elseif ($item->status == 'recevied')
+                            تم قبول التسليم
+                        @endif
                     </span>
                 </div>
             </div>
@@ -57,12 +57,11 @@
             </div>
 
             <div class="flex justify-content-end gap-1 margin-right: -23px;">
-@if ($item->payment_status== "unpaid")
-
-
-                <a href="#" class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
-                    <p class="font-md"> لم يتم الدفع</p>
-                </a>
+                @if ($item->payment_status == 'unpaid')
+                    <a href="#"
+                        class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                        <p class="font-md"> لم يتم الدفع</p>
+                    </a>
                 @endif
                 <div class="card--actions hidden-xs   flex justify-content-end gap-1">
                     <a class=" border-2 hover:bg-primary-green flex justify-center items-center border-primary-green p-1 w-10 rounded-md bg-transparent "
@@ -71,7 +70,8 @@
 
                     </a>
                     <a class="border-2 hover:bg-primary-pink
-                    flex justify-center items-center border-primary-pink p-1 w-10 rounded-md bg-transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    flex justify-center items-center border-primary-pink p-1 w-10 rounded-md bg-transparent"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa fa-xmark text-center "></i>
 
 
@@ -109,7 +109,8 @@
                         هل تريد حذف {{ $item->title }}
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('toggle_post', $item->post_id) }}" class="mo-btn btn-pink-bg pink">تاكيد الحذف</a>
+                        <a href="{{ route('toggle_post', $item->post_id) }}" class="mo-btn btn-pink-bg pink">تاكيد
+                            الحذف</a>
                         <button type="button" class="mo-btn btn-blue-bg" data-bs-dismiss="modal">الغاء</button>
                         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
 

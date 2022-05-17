@@ -15,7 +15,10 @@ class WalletController extends Controller
     {
         $admin = User::find(1);
         $balance  = $admin->balance;
-        $projectsFee = Project::selectRaw('sum(amount - totalAmount) as fee')->first();
+        $projectsFee = Project::selectRaw('sum(amount - totalAmount) as fee')
+            ->where('finshed', 1)
+            ->where('payment_status', 'received')
+            ->first();
         $transactions = Transaction::
             // select('projects.post_id', 'posts.title', 'transactions.amount', 'transactions.created_at')
             where('payable_id', 1)
