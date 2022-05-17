@@ -21,25 +21,49 @@ class ReportController extends Controller
         $reports =  Report::select(
             'reports.id',
             'reports.user_id',
-            'reports.post_id',
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            // 'reports.project_id',
             'reportesr.name as reporter',
-            'reporteds.name as reported',
-            // 'posts.title'
         )
             ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
             ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
-            // ->join('posts', 'posts.id', '=', 'reports.post_id')
-            // ->join('projects', 'projects.id', '=', 'reports.project_id')
-            // ->where('project_id' , '!=' , null)
             ->where('reports.is_active', 1)
             ->get();
 
+            $reports_post =  Report::select(
+                'reports.id',
+                'reports.user_id',
+                'reports.post_id',
+                'reports.type_report',
+                'reports.massege',
+                'reportesr.name as reporter',
+                'posts.title'
+            )
+                ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
+                ->join('posts', 'posts.id', '=', 'reports.post_id')
+                ->where('reports.is_active', 1)
+                ->get();
+         $reports_project =  Report::select(
+                'reports.id',
+                'reports.user_id',
+                'reports.post_id',
+                // 'reports.provider_id',
+                'reports.type_report',
+                'reports.massege',
+                'reports.project_id',
+                'reportesr.name as reporter',
+                // 'reporteds.name as reported',
+            )
+                ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
+                // ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
+                ->join('projects', 'projects.id', '=', 'reports.project_id')
+                ->where('project_id' , '!=' , null)
+                ->where('reports.is_active', 1)
+                ->get();
+
         // return response()->json($reports);
-        return view('admin.report.index')->with(['reports' => $reports]);
+        return view('admin.report.index')->with(['reports' => $reports , 'reports_post' => $reports_post, 'reports_project'=>$reports_project]);
         
     }
     ////////////////////add new reports ///////////
