@@ -110,28 +110,21 @@
                                 class=" font-md cursor-pointer {{ request()->segment(2) == 'controllPannal' ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
-                        <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline"
-                                class=" font-md cursor-pointer {{ request()->segment(2) == 'post' ? 'active_fixed_nav' : '' }}">
-                            </ion-icon>
-                        </a>
                         @if (Auth::check())
                             @role('seeker')
                                 <a href="{{ route('post') }}" class="  ">
                                     <ion-icon name="document-outline"
-                                        class=" font-md cursor-pointer {{ request()->is('ar/post') ? 'active_fixed_nav' : '' }}">
+                                        class=" font-md cursor-pointer {{ request()->segment(2) == 'post' ? 'active_fixed_nav' : '' }}">
                                     </ion-icon>
                                 </a>
                             @endrole
                         @endif
+
                         @if (Auth::check())
                             @role('provider')
                                 <a href="{{ route('userWork') }}">
-                                    <ion-icon name="briefcase-outline" <<<<<<< HEAD
-                                        class="font-md cursor-pointer {{ request()->is('ar/userWork') ? 'active_fixed_nav' : '' }}">
-                                        =======
+                                    <ion-icon name="briefcase-outline"
                                         class="font-md cursor-pointer {{ request()->segment(2) == 'userWork' ? 'active_fixed_nav' : '' }}">
-                                        >>>>>>> 5fd2b89f46711b9068e5a9d7b674054dc47891d3
                                     </ion-icon>
                                 </a>
                             @endrole
@@ -260,7 +253,7 @@
                     "rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
                 const textnode = document.createTextNode(data.message);
                 node.appendChild(textnode);
-                notify.appendChild(node);
+                notify.prepend(node);
                 console.log(notify);
             }
 

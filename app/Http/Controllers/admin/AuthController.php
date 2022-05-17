@@ -68,6 +68,7 @@ class AuthController extends Controller
     ///////////////// add user //////////////////
     public function register(Request $request)
     {
+        // try {
         Validator::validate($request->all(), [
             'name' => ['required', 'min:8', 'max:50', /*'regex:/[a-z]/' , 'regex:/[A-Z]/' */],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -107,6 +108,7 @@ class AuthController extends Controller
 
 
         if ($u->save()) {
+            // try {
             $u->attachRole($role);
             $to_name = $request->name;
             $to_email = $request->email;
@@ -126,23 +128,27 @@ class AuthController extends Controller
                 $profile->name = $name;
                 $profile->user_id = $u->id;
                 $profile->save();
+
+
+                if ($u->hasRole('seeker'))
+                    $u->deposit(10000);
             }
 
-            $wallet =  $u->createWallet([
-                'name' => 'Default Wallet',
-                'slug' => 'default',
-            ]);
 
-            if ($u->hasRole('seeker'))
-                $wallet->deposit(10000);
 
 
             return redirect()->route('login')
                 ->with(['message' => 'تم تسجيل دخولك بنجاح', 'type' => 'alert-success']);
+            // } catch (\Throwable $th) {
+            //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+            // }
         }
 
 
         return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        // } catch (\Exception $th) {
+        //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        // }
     }
     ///////////////// show hogin page after check role//////////////////
 
