@@ -259,6 +259,30 @@
                                 @foreach ($evaluations as $evaluate)
                                 <div class="row p-3 border-bottom">
                                     <div> <!-- class="d-flex justify-content-between" -->
+                                        <div class="flex justify-between mb-2">
+                                            <div class="flex justify-between">
+                                                <p class="bg-primary-green text-white flex-none px-2 py-1 text-xs">
+                                                    مكتمل
+                                                </p>
+                                                <p class="text-primary-blue font-semibold mr-2">
+                                                    {{$evaluate->title}}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <span class="me-1">
+                                                    {{-- {{ $rating->countEvalution }} --}}
+                                                    @for ($i = 0; $i < 5; $i++)
+                                                        @if ($evaluate->value > $i)
+                                                            <i class="fa fa-star clr-amber rating-star"
+                                                                style="color: orange;"></i>
+                                                        @else
+                                                            <i class="fa fa-star clr-amber rating-star"
+                                                                style="color: gainsboro;"></i>
+                                                        @endif
+                                                    @endfor
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="fs-6 fw-normal d-flex justify-content-start">
                                             <div>
                                                 @if ($evaluate->avatar !== null)
