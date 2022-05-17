@@ -244,7 +244,7 @@
         var channel = pusher.subscribe('channel-name');
         console.log(channel);
         channel.bind('App\\Events\\CommentEvents', function(data) {
-            alert(data.userId);
+            // alert(data.userId);
             if (data.userId.toString() == "{!! Auth::id() !!}") {
                 notifyMark.classList.remove('hidden');
                 const node = document.createElement("a");
