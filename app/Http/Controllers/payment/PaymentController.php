@@ -4,6 +4,7 @@ namespace App\Http\Controllers\payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Report;
 use App\Models\User;
 use Bavix\Wallet\Models\Transaction;
 use Illuminate\Http\Request;
@@ -199,7 +200,9 @@ class PaymentController extends Controller
                 $admin = User::find(1);
                 $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
 
-
+                Report::where('project_id', $project_id)->update([
+                    'is_active' => 0,
+                ]);
                 // return view('client.payAnimation.paySucces');
                 return redirect()->route('admin')->with(['message' => 'تمت العمليه بنجاح ', 'type' => 'alert-success']);
             } else {
