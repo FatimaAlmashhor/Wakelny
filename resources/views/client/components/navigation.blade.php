@@ -28,17 +28,22 @@
               class="hidden md:flex flex-col md:flex-row mt-10 md:mt-0 w-full h-full md:items-center justify-between">
               <div class="mx-6 flex-1 mb-10 md:mb-0 ">
                   <ul class="flex flex-col md:flex-row gap-x-4 ">
-                      <li class="nav_item font-sm cursor-pointer  {{ (request()->is('ar/')) ? 'active_link' : '' }}">
+                      <li
+                          class="nav_item font-sm cursor-pointer {{ request()->segment(2) == '' ? 'active_link' : '' }}">
                           <a href="{{ route('home') }}">
                               الرئسية
                           </a>
                       </li>
-                      <li class="nav_item font-sm cursor-pointer {{ (request()->is('ar/posts')) ? 'active_link' : '' }}">
+
+                      <li
+                          class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'posts' ? 'active_link' : '' }}">
                           <a href="{{ route('projectlancer') }}">
                               المشاريع المتاحه
                           </a>
                       </li>
-                      <li class="nav_item font-sm cursor-pointer {{ (request()->is('ar/freelancers')) ? 'active_link' : '' }}">
+
+                      <li
+                          class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'freelancers' ? 'active_link' : '' }}">
                           <a href="{{ route('freelancers') }}">
                               مقدمي الخدمات
                           </a>
@@ -61,7 +66,9 @@
                   <div @click.away="open = false" class="relative" x-data="{ open: false }">
                       <button @click="open = !open"
                           class="flex flex-row items-center w-full px-3 py-1 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:mt-0 md:ml-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                          <span class="text-lg text-primary"><i class="fas fa-bell text-white"></i></span>
+                          <span class="text-lg text-primary relative"><i class="fas fa-bell text-white"></i>
+                              <span id='notify-mark'
+                                  class=" hidden w-3 h-3 bg-primary-pink left-2 rounded-full absolute"></span></span>
                       </button>
                       <div x-show="open" x-transition:enter="transition ease-out duration-100"
                           x-transition:enter-start="transform opacity-0 scale-95"
@@ -70,16 +77,11 @@
                           x-transition:leave-start="transform opacity-100 scale-100"
                           x-transition:leave-end="transform opacity-0 scale-95"
                           class="absolute left-0 w-full mt-2 origin-top-right  rounded-md shadow-lg z-50 md:w-96">
-                          <div class="px-2 py-2 bg-white rounded-md shadow ">
+                          <div class="px-2 py-2 bg-white rounded-md shadow " id='notify'>
                               @foreach (auth()->user()->unreadNotifications as $notification)
                                   <a class="rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
                                       href="{{ $notification->data['url'] }}">
-                                      @if ($notification->data['type'] == 'comment')
-                                          {{ $notification->data['name'] }}
-                                         <span> عرض جديد على مشروعك</span>
-                                      @else
-                                          {{ $notification->data['message'] }}
-                                      @endif
+                                      {{-- $notification->data['message'] --}}
                                   </a>
                               @endforeach
                           </div>
@@ -94,5 +96,3 @@
       </nav>
 
   </header>
- 
-

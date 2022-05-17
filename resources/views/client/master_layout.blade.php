@@ -47,21 +47,21 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <title>متاح</title>
     @livewireStyles
     {{-- //paste this code under the head tag or in a separate js file.
 	// Wait for window load --}}
     <script type='text/javascript'>
-	$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");;
-	});
+        $(window).load(function() {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
     </script>
 </head>
 
 <body>
-<div class="se-pre-con"></div>
+    <div class="se-pre-con"></div>
 
     {{-- alerts --}}
     @if (session()->has('message'))
@@ -94,7 +94,7 @@
     <div class="m-5">
         @include('client.components.navigation')
         <div class="sm:px-16 lg:px-18">
-        @yield('content')
+            @yield('content')
         </div>
         @include('client.components.footer')
 
@@ -105,18 +105,26 @@
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
                         <a href="{{ route('profile') }}" class="">
-                            <ion-icon name="person-outline" class=" font-md cursor-pointer {{ (request()->is('ar/controllPannal')) ? 'active_fixed_nav' : '' }}">
+
+                            <ion-icon name="person-outline"
+                                class=" font-md cursor-pointer {{ request()->segment(2) == 'controllPannal' ? 'active_fixed_nav' : '' }}">
                             </ion-icon>
                         </a>
-                        <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline" class=" font-md cursor-pointer {{ (request()->is('ar/post')) ? 'active_fixed_nav' : '' }}">
-                            </ion-icon>
-                        </a>
+                        @if (Auth::check())
+                            @role('seeker')
+                                <a href="{{ route('post') }}" class="  ">
+                                    <ion-icon name="document-outline"
+                                        class=" font-md cursor-pointer {{ request()->segment(2) == 'post' ? 'active_fixed_nav' : '' }}">
+                                    </ion-icon>
+                                </a>
+                            @endrole
+                        @endif
+
                         @if (Auth::check())
                             @role('provider')
                                 <a href="{{ route('userWork') }}">
                                     <ion-icon name="briefcase-outline"
-                                        class="font-md cursor-pointer {{ (request()->is('ar/userWork')) ? 'active_fixed_nav' : '' }}">
+                                        class="font-md cursor-pointer {{ request()->segment(2) == 'userWork' ? 'active_fixed_nav' : '' }}">
                                     </ion-icon>
                                 </a>
                             @endrole
@@ -225,7 +233,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
         integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script>
+        var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+            encrypted: true
+        });
+        const notify = document.getElementById('notify');
+        const notifyMark = document.getElementById('notify-mark');
+        var channel = pusher.subscribe('channel-name');
+        console.log(channel);
+        channel.bind('App\\Events\\CommentEvents', function(data) {
+            // alert(data.userId);
+            if (data.userId.toString() == "{!! Auth::id() !!}") {
+                notifyMark.classList.remove('hidden');
+                const node = document.createElement("a");
+                node.href = data.url;
+                node.className =
+                    "rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
+                const textnode = document.createTextNode(data.message);
+                node.appendChild(textnode);
+                notify.prepend(node);
+                console.log(notify);
+            }
 
+        });
+    </script>
 
     @stack('scripts')
     <script>
@@ -239,6 +272,10 @@
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
         $(document).ready(function() {
             $(".showForm").click(function() {
@@ -250,11 +287,11 @@
             });
         });
     </script>
-  @livewireScripts
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    @livewireScripts
+
+
 
 
 </body>
