@@ -104,7 +104,7 @@
         {{-- <div class="kalefny-btn-div">
                 <button type="button" class="btn-kalefny color-gray-lighter fw-bold">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span>كلفني</span>
+                    <span>متاح</span>
                 </button>
             </div> --}}
     </div>

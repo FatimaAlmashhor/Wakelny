@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Posts;
 use App\Models\User;
+use App\Models\Project;
 use App\Models\Comments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,24 +18,23 @@ class ReportController extends Controller
     ////////////////////show report in dashboard///////////
     public function showAll()
     {
-        // $reported = User::where('is_active', 1)->get();
-        $reports =  report::select(
-            'reports.id as report_id',
+        $reports =  Report::select(
+            'reports.id',
             'reports.user_id',
             'reports.post_id',
             'reports.provider_id',
             'reports.type_report',
             'reports.massege',
-            // 'reportesr.name as reporter',
-            // 'reporteds.name as reported',
+            // 'reports.project_id',
+            'reportesr.name as reporter',
+            'reporteds.name as reported',
             // 'posts.title'
         )
             ->join('profiles as reportesr', 'reportesr.user_id', '=', 'reports.user_id')
-            //  ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
+            ->join('profiles as reporteds', 'reporteds.user_id', '=', 'reports.provider_id')
             // ->join('posts', 'posts.id', '=', 'reports.post_id')
-            ->join('projects', 'projects.id', '=', 'reports.project_id')
-            ->where('project_id' , '!=' , null)
-            
+            // ->join('projects', 'projects.id', '=', 'reports.project_id')
+            // ->where('project_id' , '!=' , null)
             ->where('reports.is_active', 1)
             ->get();
 
@@ -49,12 +49,8 @@ class ReportController extends Controller
         try {
             $request->validate([
                 'type_report' => ['required'],
-
-
             ], [
                 'type_report.required' => 'يجب ان تقوم بأدخال  نوع البلاغ',
-
-
             ]);
 
 
@@ -118,17 +114,26 @@ class ReportController extends Controller
     }
 
 
-    function reportDetails($report_id)
+    function reportDetails($project_id)
     {
-   
-        $report =  Report::select(
-            'reports.id',
-            // 'users.id',
-            'reports.type_report',
-            'reports.massege',
-         
-        )->get();
+        $report = Report::where('project_id' , $project_id)
+        ->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
+        ->join('role_user', 'role_user.user_id', '=', 'reports.user_id')
+        ->join('posts', 'posts.id', '=', 'reports.post_id')
+        ->get();
+        // return response()->json($report);
         
-        return view('admin.report.reportDetails')->with(['report' => $report]);
+        $project = Project::select(
+            'projects.id',
+            'projects.amount',
+            'projects.duration',
+            'projects.status',
+            'projects.post_id',
+        )
+            ->where('id' , $project_id)
+            // ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->get();
+
+        return view('admin.report.reportDetails')->with(['report' => $report, 'project' => $project]);
     }
 }

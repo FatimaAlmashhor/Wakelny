@@ -36,18 +36,13 @@
                                 <tbody>
                                     @foreach ($reports as $item)
                                         <tr class="hover:bg-primary-light-pink">
-                                            <td class="text-bold-500 w-12 h-full ">
-                                                <a class='w-full h-full bg-primary-blue'
-                                                    href='{{ route('report.details', $item->report_id) }}'>
-                                                    show
-                                                </a>
-                                            </td>
+
 
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                             <td class="text-bold-500">{{ $item->type_report }}</td>
                                             <td class="text-bold-500">{{ $item->reporter }}</td>
                                             <td class="text-bold-500">{{ $item->reported }}</td>
-                                            <td class="text-bold-500">{{ $item->title }}</td>
+                                            <td class="text-bold-500">{{ $item->post_id }}</td>
                                             <td class="" style=" width: 1px;">{{ $item->massege }}</td>
                                             <td>
                                                 @if ($item->is_active == 0)
@@ -62,7 +57,7 @@
 
                                             <td>
 
-                                                <a href="{{ route('toggle_report', $item->report_id) }}"
+                                                <a href="{{ route('toggle_report', $item->id) }}"
                                                     class="btn btn-icon btn-outline-dribbble">
 
                                                     @if ($item->is_active == 1)

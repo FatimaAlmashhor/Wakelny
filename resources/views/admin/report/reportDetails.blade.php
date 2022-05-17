@@ -10,12 +10,18 @@
             </div>
             <!-- top nav end -->
             <div class=" flex flex-col ">
+            @foreach ($project as $items)
                     <div class="shadow-lg border-md w-full   p-2 px-4">
 
                         <div class=" border-b border-primary-light-gray py-3">
                             <div class="flex justify-between">
-                                <p  class="font-sm font-bold "> أسم المشروع</p>
-                                <button class="mo-btn btn-blue-bg">حالة المشروع</button>
+                                <p  class="font-sm font-bold ">
+                                <h3 class="font-sm font-bold">
+                                أسم المشروع :
+                                </h3> 
+                                {{$items->post_id}}
+                                </p>   
+                                <button class="mo-btn btn-blue-bg">{{$items->status}}</button>
                             </div>
                             <p  class="font-sm font-bold mt-4">  معلومات إضافية</p>
                         </div>
@@ -25,7 +31,7 @@
                                     الوقت :
                                 </h3>
                                 <p class="font-sm text-dark-gray">
-                                   5 ايام
+                                {{$items->duration}}      ايام                                   
                                 </p>
                             </div>
                             <div class="flex items-center gap-x-2 my-4">
@@ -33,107 +39,82 @@
                                     التكلفة :
                                 </h3>
                                 <p class="font-sm text-dark-gray">
-                                     900000
+                                {{$items->amount}}
                                 </p>
                             </div>
                         </div>
                     </div>
+            @endforeach   
             </div>
  
             <p  class="font-md font-bold my-8 mr-4">  البلاغات</p>
-            <div class="flex justify-between flex-wrap flex-col md:flex-row items-center justify-start gap-x-4 ">
-                
-                    <div class=" w-full flex-1 p-3 bg-white rounded my-2" >
-                        <form class="w-full">
-                            <div class="flex flex-wrap mx-3 mb-6">
-                                <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                                    <label class="block font-sm mx-4 my-4 tracking-wide text-gray-700 text-xs  mb-2"
-                                        for="grid-first-name">
-                                        <b>     الاسم </b>:
-                                            afnan
-                                    </label>
-                                </div>
-                                <div class="w-full md:w-1/2 ">
-                                    <label class="block font-sm my-4  tracking-wide text-gray-700 text-xs  mb-2"
-                                        for="grid-last-name">
-                                    <b>   النوع:</b>
-                                        طالب خدمة
-                                    </label>
-                                </div>                                  
-                                
-                                            <div class="w-full px-3">
-                                                    <label class="block font-sm mx-4 my-4 tracking-wide text-gray-700 text-xs  mb-2"
-                                                        for="grid-first-name">
-                                                        <b>   البلاغ </b>
-                                                    </label>
-                                                <p class="text-right block font-sm  tracking-wide text-gray-700 text-xs  mb-2 mx-8 my-4"> {{$report->massege}} </p>
-
-                                                   
-                                              
-
-                                            </div>
-                
-                            </div>
-                        
-
-                        
-                          
-                            <a class='mo-btn m-3 float-left'
-                                    href='{{ route('payment.sendMoenyBackTo', ['who' => 'provider', 'project_id' => $report->project_id]) }}'>ارجاع
-                                    الفلوس
-                                    لطالب الخدمه
-                            </a>
-                            <div>
-                                
-                            </div>
-                        </form>
-                    </div>
-                    
-                    
-                    <div class=" w-full p-3 flex-1 bg-white rounded my-2">
-                        <form class="w-full">
+       
+                <div class="flex justify-between flex-wrap flex-col md:flex-row items-center justify-start gap-x-4 ">
+                @foreach ($report as $item)
+                        <div class=" w-full flex-1 p-3 bg-white rounded my-2" >
+                        {{$item->title}}
+                            <form class="w-full">    
                                 <div class="flex flex-wrap mx-3 mb-6">
                                     <div class="w-full md:w-1/2 mb-6 md:mb-0">
                                         <label class="block font-sm mx-4 my-4 tracking-wide text-gray-700 text-xs  mb-2"
                                             for="grid-first-name">
                                             <b>     الاسم </b>:
-                                            afnan
-                                        </label>
+                                            {{$item->name}}
+                                        </label>	
+                                      
                                     </div>
+                                    @if($item->user_id == 4 )
                                     <div class="w-full md:w-1/2 ">
                                         <label class="block font-sm my-4  tracking-wide text-gray-700 text-xs  mb-2"
                                             for="grid-last-name">
                                         <b>   النوع:</b>
-                                            مقدم خدمة
+                                    مقدم خدمة
                                         </label>
                                     </div>                                  
-                                        <!-- <p class="text-right block font-sm  tracking-wide text-gray-700 text-xs  mb-2 mx-8 my-4">So I started to walk into the water...</p> -->
-                                    
+                                    @else
+                                    <div class="w-full md:w-1/2 ">
+                                        <label class="block font-sm my-4  tracking-wide text-gray-700 text-xs  mb-2"
+                                            for="grid-last-name">
+                                        <b>   النوع:</b>
+                                            طالب خدمة
+                                        </label>
+                                    </div> 
+                                    @endif 
                                                 <div class="w-full px-3">
                                                         <label class="block font-sm mx-4 my-4 tracking-wide text-gray-700 text-xs  mb-2"
                                                             for="grid-first-name">
                                                             <b>   البلاغ </b>
                                                         </label>
-                                                        <p class="text-right block font-sm  tracking-wide text-gray-700 text-xs  mb-2 mx-8 my-4"> {{$report->massege}} </p>
+                                                    <p class="text-right block font-sm  tracking-wide text-gray-700 text-xs  mb-2 mx-8 my-4"> {{$item->massege}} </p>
+
+                                                    
+                                                
 
                                                 </div>
                     
                                 </div>
                             
 
-                            
-                            <a class='mo-btn m-3 float-left' 
-                                href='{{ route('payment.sendMoenyBackTo', ['who' => 'seeker', 'project_id' => $report->project_id]) }}'>ارجاع
+                            @if($item->user_id == 4 )
+                                <a class='mo-btn m-3 float-left'
+                                        href='{{ route('payment.sendMoenyBackTo', ['who' => 'provider', 'project_id' => $item->project_id]) }}'>ارجاع
+                                        الفلوس
+                                        لطالب الخدمه
+                                </a>
+                            @else
+                                <a class='mo-btn m-3 float-left' 
+                                href='{{ route('payment.sendMoenyBackTo', ['who' => 'seeker', 'project_id' => $item->project_id]) }}'>ارجاع
                                 الفلوس لمقدم الخدمه
-                            </a>
+                                </a> 
+                            @endif
                                 <div>
                                     
                                 </div>
-                        </form>
-                    </div>
-                
-            </div>
-
+                            </form>
+                        </div>
+                @endforeach   
+                </div>
+           
          
     </main>
 @endsection

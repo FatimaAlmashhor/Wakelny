@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
                 ->subject(Lang::get('تأكيد البريد الاكتروني'))
-                ->greeting(Lang::get('مرحبا بك في كلفني'))
+                ->greeting(Lang::get('مرحبا بك في متاح'))
                 ->line(Lang::get('رجاء قم بالضغط على الزر في الاسفل لتفعيل البريد الاكتروني'))
                 ->action(Lang::get('تأكيد البريد الاكتروني'), $url)
                 ->line(Lang::get('اذا واجهتك مشاكل في الضغط على الزرار يمكنك الضغط على الرابط ادناه'));
