@@ -530,9 +530,9 @@
                                                         <i class="fa fa-check px-1"></i>
                                                         <span class=""> قبول العرض </span>
                                                     </button>
-                                                    <a tabindex="-1" class="mo-btn btn-blue-rounderd" href="#">
+                                                    <a tabindex="-1" class="mo-btn btn-blue-rounderd" href="{{ route('inbox.show', $item->user_id) }}">
                                                         <i class="fa fa-send px-1"></i>
-                                                        <span class="action-text"> تواصل مع المستقل </span>
+                                                        <span class="action-text"> تواصل مع المتاح </span>
                                                     </a>
                                                 </div>
                                             @endif
