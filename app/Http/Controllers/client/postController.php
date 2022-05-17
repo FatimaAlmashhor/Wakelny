@@ -7,6 +7,7 @@ use App\Models\category;
 use App\Models\Comments;
 use App\Models\PostModel;
 use App\Models\Posts;
+use App\Models\Project;
 use App\Models\PostSkills;
 use App\Models\Profile;
 use App\Models\Skill;
@@ -223,26 +224,25 @@ class PostController extends Controller
 
         return view('client.post.editPost')->with(['data' => $post, 'skills' => $skill, 'categories' => $categories]);
     }
-    public function postDesciption()
-    {
 
-        return view('client.post.postdescription');
-    }
 
     public function showProject()
     {
-        $projects =  Posts::select(
-            'posts.id',
+
+        $project = Project::select(
             'posts.title',
-            'posts.offers',
-            'posts.description',
-            'profiles.name'
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.status',
+            'projects.payment_status',
+            'projects.created_at',
+            'projects.duration',
+             'projects.post_id',
+        )->join('posts', 'posts.id', 'projects.post_id')
 
-        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('posts.user_id', Auth::id())->get();
-
-
+            ->get();
         // return response()->json($projects);
-        return view('client.post.myProject')->with('posts', $projects);
+        return view('client.post.myProject')->with('projects', $project);
     }
 
 
