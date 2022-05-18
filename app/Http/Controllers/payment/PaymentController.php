@@ -4,6 +4,7 @@ namespace App\Http\Controllers\payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Report;
 use App\Models\User;
 use Bavix\Wallet\Models\Transaction;
 use Illuminate\Http\Request;
@@ -61,51 +62,51 @@ class PaymentController extends Controller
     public static function successPayment($project_id,  $response)
     {
         // try {
-            $project = Project::select(
-                'posts.title',
-                'projects.amount',
-                'projects.totalAmount',
-                'projects.seeker_id',
-                'projects.provider_id',
-                'projects.invoice',
-                'projects.payment_status',
-            )->join('posts', 'posts.id', 'projects.post_id')
-                ->where('projects.id', $project_id)
-                ->first();
+        $project = Project::select(
+            'posts.title',
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.seeker_id',
+            'projects.provider_id',
+            'projects.invoice',
+            'projects.payment_status',
+        )->join('posts', 'posts.id', 'projects.post_id')
+            ->where('projects.id', $project_id)
+            ->first();
 
-            // add the moeny into the admin wallet
-            // set the information into the meta
-
-
-            if ($project->payment_status == 'unpaid') {
-                $admin = User::find(1);
-                $seeker = User::find(Auth::id());
-                $seeker->transfer($admin, $project->amount, [
-                    // 'provider_id' => $project->provider_id,
-                    // 'seeker_id' => $payment['meta_data']['seeker_id'],
-                    'project_id' => $project_id,
-                    'invoice_referance' => $project->invoice,
-                    // 'back_to_owner' => false,
-                    // 'admin_resevied' => true
-                ]);
+        // add the moeny into the admin wallet
+        // set the information into the meta
 
 
-                Project::where('id', $project_id)->update([
-                    'payment_status' => 'paid'
-                ]);
-                return view('client.payAnimation.paySucces');
-            } else {
+        if ($project->payment_status == 'unpaid') {
+            $admin = User::find(1);
+            $seeker = User::find(Auth::id());
+            $seeker->transfer($admin, $project->amount, [
+                // 'provider_id' => $project->provider_id,
+                // 'seeker_id' => $payment['meta_data']['seeker_id'],
+                'project_id' => $project_id,
+                'invoice_referance' => $project->invoice,
+                // 'back_to_owner' => false,
+                // 'admin_resevied' => true
+            ]);
 
-                // ! here should show the 413 error
-                return view('client.payAnimation.payUnsucces');
-            }
 
-            $filterdRes = base64_decode($response);
-            return response()->json(json_decode($filterdRes, true));
+            Project::where('id', $project_id)->update([
+                'payment_status' => 'paid'
+            ]);
+            return view('client.payAnimation.paySucces');
+        } else {
 
-            // send notification for the seeker that the money is already خصمت
-            // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
-            // open the frontend page
+            // ! here should show the 413 error
+            return view('client.payAnimation.payUnsucces');
+        }
+
+        $filterdRes = base64_decode($response);
+        return response()->json(json_decode($filterdRes, true));
+
+        // send notification for the seeker that the money is already خصمت
+        // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
+        // open the frontend page
         // } catch (\Throwable $th) {
         //     //throw $th;
         //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
@@ -175,7 +176,8 @@ class PaymentController extends Controller
         try {
             // find the row of the wallet
 
-            $project = Project::where('id', (int)$project_id)->first();
+            $project = Project::where('id', (int)$project_id)
+                ->first();
             if ($project->payment_status == 'paid') {
                 if ($request->get('who') == 'provider') {
                     $userTheOneNeedMoney = User::find($project->provider_id);
@@ -185,18 +187,26 @@ class PaymentController extends Controller
 
                 // ! in case of the project not done it just admin dession we need to create new project
                 if ($project->finshed == 0) {
-                    $project->status = 'nonrecevied';
+                    if ($request->get('who') == 'provider') {
+                        $project->status = 'received';
+                    } else if ($request->get('who') == 'seeker') {
+                        $project->status = 'nonrecevied';
+                    }
+                    $project->payment_status = 'received';
+                    $project->finshed = 1;
                     $project->save();
                 }
 
                 $admin = User::find(1);
                 $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
 
-                $project->payment_status = 'received';
-                $project->save();
-                return view('client.payAnimation.paySucces');
+                Report::where('project_id', $project_id)->update([
+                    'is_active' => 0,
+                ]);
+                // return view('client.payAnimation.paySucces');
+                return redirect()->route('admin')->with(['message' => 'تمت العمليه بنجاح ', 'type' => 'alert-success']);
             } else {
-                return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+                return redirect()->route('admin')->with(['message' => 'هذا المشروع لم يتم الدفع بعد ', 'type' => 'alert-warning']);
             }
 
             // ? here when we use the transaction

@@ -77,12 +77,11 @@
                           x-transition:leave-start="transform opacity-100 scale-100"
                           x-transition:leave-end="transform opacity-0 scale-95"
                           class="absolute left-0 w-full mt-2 origin-top-right  rounded-md shadow-lg z-50 md:w-96">
-                          <div class="px-2 py-2 bg-white rounded-md shadow ">
+                          <div class="px-2 py-2 bg-white rounded-md shadow " id='notify'>
                               @foreach (auth()->user()->unreadNotifications as $notification)
-                                  <div id='notify'></div>
                                   <a class="rounded text-black bg-gray-200 my-2 hover:bg-primary-light-pink  border border-primary-light-gray  py-2 px-4 block whitespace-no-wrap hover:text-black"
                                       href="{{ $notification->data['url'] }}">
-                                      {{ $notification->data['message'] }}
+                                      {{-- $notification->data['message'] --}}
                                   </a>
                               @endforeach
                           </div>
