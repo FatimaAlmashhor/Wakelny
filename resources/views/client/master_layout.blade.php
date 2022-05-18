@@ -228,6 +228,7 @@
     <script src="/assets/client/js/helper/jquery-3.6.0.min.js"></script>
     <script src="/assets/client/js/helper/bootstrap.min.js"></script>
     <script src="{{ asset('assets/client/js/profile/profile.js') }}"></script>
+    <script src="{{ asset('assets/client/js/report.js') }}"></script>
     {{-- <script src="{{ asset('assets/client/js/profile/phone.js') }}"></script> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
