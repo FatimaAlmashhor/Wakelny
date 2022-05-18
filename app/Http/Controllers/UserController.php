@@ -122,11 +122,16 @@ class UserController extends Controller
                 'evaluations.message',
                 'evaluations.created_at',
                 'evaluations.evaluater_id',
+                'evaluations.value',
                 'evaluaters.name as evaluater_name',
                 'evaluaters.avatar',
+                'projects.status',
+                'posts.title'
             )
-                ->where('evaluations.user_id', $user_id)
+                ->where('evaluations.user_id', $user_id)->where('projects.status', 'received')
                 ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.evaluater_id')
+                ->join('projects', 'projects.id', '=', 'evaluations.project_id')
+                ->join('posts', 'posts.id', '=', 'projects.post_id')
                 ->get();
 
             return view('client.userProfile.userProfile')->with([
