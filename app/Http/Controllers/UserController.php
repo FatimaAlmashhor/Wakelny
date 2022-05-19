@@ -149,22 +149,10 @@ class UserController extends Controller
             return view('errors.404');
         }
     }
-    public function insert_content($post_id, $provider_id)
+    public function insert_content($post_id)
     {
-        $post = Posts::where('id', $post_id)->where('is_active', 1)->first();
-        $provider = User::where('id', $provider_id)->where('is_active', 1)->first();
 
-        $reports =  Report::select(
-            'reports.id',
-            // 'users.id',
-            'reports.type_report',
-            'reports.massege',
-            'profiles.user_id',
-            'profiles.name as reporter'
-        )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
-
-            ->where('post_id', $post_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id, 'provider' => $provider]);
+        return view('admin.report._form')->with(['post_id' => $post_id]);
     }
     public function insert_user($provider_id)
     {

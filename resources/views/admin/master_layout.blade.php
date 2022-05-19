@@ -23,6 +23,7 @@
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
+    
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -209,11 +210,12 @@
 
         <script src="/assets/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="/assets/admin/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="/assets/admin/vendors/apexcharts/apexcharts.js"></script>
         <script src="/assets/admin/js/pages/dashboard.js"></script>
         <script src="/assets/admin/js/mazer.js"></script>
 
-
+        <script src="{{ asset('assets/client/js/report.js') }}"></script>
 </body>
 
 </html>

@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
       Mail::send('client.user.verify', ['token' => $token], function ($message) use ($request) {
         $message->to($request->email);
         $message->subject('اشعار استعادة  رمز الدخول');
-        $message->from('kalefnyinfo@gmail.com', 'كلفني');
+        $message->from('kalefnyinfo@gmail.com', 'متاح');
       });
       $message =  ['message' =>  ' لقد قمنا بارسال رسالة للايميل الخاص بك يرجى التحقق من الايميل!', 'type' => 'alert-success'];
 
