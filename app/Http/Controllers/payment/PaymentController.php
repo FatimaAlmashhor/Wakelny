@@ -82,12 +82,8 @@ class PaymentController extends Controller
             $admin = User::find(1);
             $seeker = User::find(Auth::id());
             $seeker->transfer($admin, $project->amount, [
-                // 'provider_id' => $project->provider_id,
-                // 'seeker_id' => $payment['meta_data']['seeker_id'],
                 'project_id' => $project_id,
                 'invoice_referance' => $project->invoice,
-                // 'back_to_owner' => false,
-                // 'admin_resevied' => true
             ]);
 
 
@@ -142,7 +138,14 @@ class PaymentController extends Controller
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
+                $admin->transfer(
+                    $userTheOneNeedMoney,
+                    $project->totalAmount,
+                    [
+                        'project_id' => $project_id,
+                        'invoice_referance' => $project->invoice,
+                    ]
+                ); //here with the patform withdraw
 
                 $project->payment_status = 'received';
                 $project->save();
@@ -198,7 +201,10 @@ class PaymentController extends Controller
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount, [
+                    'project_id' => $project_id,
+                    'invoice_referance' => $project->invoice,
+                ]); //here with the patform withdraw
 
                 Report::where('project_id', $project_id)->update([
                     'is_active' => 0,

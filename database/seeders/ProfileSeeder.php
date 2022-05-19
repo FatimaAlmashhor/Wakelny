@@ -17,6 +17,19 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         //
+        $admin = Profile::create([
+            'user_id' => 1,
+            // 'user_id' => User::all()->random()->id,
+            'name' => 'متاح',
+            'gender' => 'female',
+            'mobile' => '773065471',
+            'country' => 'Yemen',
+
+            'account_type' => 'provider',
+            'job_title' => 'backend developer',
+            'specialization' => 'platform',
+            'bio' => '"',
+        ]);
         $Dhoha = Profile::create([
             'user_id' => 2,
             // 'user_id' => User::all()->random()->id,
