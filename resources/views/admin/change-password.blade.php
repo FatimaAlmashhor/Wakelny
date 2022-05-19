@@ -2,12 +2,12 @@
 @section('content')
 
  <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-4 ">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"><h5 class="text-center">تغيير كلمة السر</h5></div>
+                    <div class="card-header "><h1 class="text-center text-primary-blue font-lg">تغيير كلمة السر</h1></div>
 
-                    <form action="{{ route('update-password') }}" method="POST">
+                    <form action="{{ route('update-password') }}"  class="m-4 " method="POST">
                         @csrf
                         <div class="card-body">
                             @if (session('status'))
@@ -45,7 +45,7 @@
                         </div>
 
                         <div  class=" mx-auto pt-3">
-                            <button class="wak_btn w-full">حفظ</button>
+                        <button type="submit" class="mo-btn btn-blue-bg float-left">{{ __('dash.save') }}</button>
                         </div>
 
                     </form>

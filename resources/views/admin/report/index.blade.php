@@ -10,15 +10,15 @@
     <div class="page-heading">
         <h3>{{ __('dash.all_report') }}</h3>
     </div>
-    <div class="my-4 d-flex justify-content-evenly">
-        <button id="users" class="btn  btn-blue-rounderd rounded-pill">
-            المستخدم
+    <div class="my-4 d-flex justify-content-evenly flex-wrap"> 
+        <button  id="users"  class="btn  btn-blue-rounderd rounded-pill my-2">
+             المستخدم
         </button>
-        <button id="posts" class="btn  btn-blue-rounderd rounded-pill">
-            المحتوى
+        <button     id="posts"  class="btn  btn-blue-rounderd rounded-pill my-2">
+             المحتوى 
         </button>
-        <button id="projects" class="btn  btn-blue-rounderd rounded-pill">
-            المشاريع
+        <button  id="projects"   class="btn  btn-blue-rounderd rounded-pill my-2">
+             المشاريع
         </button>
     </div>
     <!-- Table head options start -->
@@ -56,10 +56,10 @@
                                             <td>
                                                 @if ($item->is_active == 0)
                                                     <span
-                                                        style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                                    class="bg-primary-blue "  style="color:white;   padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                                 @else
                                                     <span
-                                                        style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">
+                                                    class="bg-primary-pink " style="color:white; padding: 5px 21px; border-radius: 5px;">
                                                         معطل</span>
                                                 @endif
                                             </td>
@@ -70,11 +70,11 @@
                                                     class="btn btn-icon btn-outline-dribbble">
 
                                                     @if ($item->is_active == 1)
-                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1"
-                                                            style="color:#ff5d5d;"> </i>
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue"
+                                                            > </i>
                                                     @else
                                                         <i class="fas fa-toggle-off bx bx-edit-alt me-1"
-                                                            style="color:#84e984;"> </i>
+                                                            style="color:#CD657C;"> </i>
                                                     @endif
 
                                                 </a>
@@ -95,10 +95,10 @@
                                             <td>
                                                 @if ($item->is_active == 0)
                                                     <span
-                                                        style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                                    class="bg-primary-blue "  style="color:white;padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                                 @else
                                                     <span
-                                                        style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">
+                                                    class="bg-primary-pink" style="color:white;padding: 5px 21px; border-radius: 5px;">
                                                         معطل</span>
                                                 @endif
                                             </td>
@@ -109,11 +109,11 @@
                                                     class="btn btn-icon btn-outline-dribbble">
 
                                                     @if ($item->is_active == 1)
-                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1"
-                                                            style="color:#ff5d5d;"> </i>
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue"
+                                                            > </i>
                                                     @else
                                                         <i class="fas fa-toggle-off bx bx-edit-alt me-1"
-                                                            style="color:#84e984;"> </i>
+                                                            style="color:#CD657C;"> </i>
                                                     @endif
 
                                                 </a>
@@ -131,10 +131,10 @@
                                             <td>
                                                 @if ($item->is_active == 0)
                                                     <span
-                                                        style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                                    class="bg-primary-blue "   style="color:white;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                                 @else
                                                     <span
-                                                        style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;">
+                                                    class="bg-primary-pink " style="color:white; padding: 5px 21px; border-radius: 5px;">
                                                         معطل</span>
                                                 @endif
                                             </td>
@@ -145,11 +145,11 @@
                                                     class="btn btn-icon btn-outline-dribbble">
 
                                                     @if ($item->is_active == 1)
-                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1"
-                                                            style="color:#ff5d5d;"> </i>
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue"
+                                                          > </i>
                                                     @else
                                                         <i class="fas fa-toggle-off bx bx-edit-alt me-1"
-                                                            style="color:#84e984;"> </i>
+                                                            style="color:#CD657C;"> </i>
                                                     @endif
 
                                                 </a>
