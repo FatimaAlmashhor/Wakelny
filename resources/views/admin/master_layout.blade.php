@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
-    
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -127,7 +127,9 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                                     style="">
                                     <li>
-                                        <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
+                                        @if (Auth::check())
+                                            <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
+                                        @endif
                                     </li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
                                             ملفي الشخصي
@@ -196,7 +198,7 @@
 
 
                                 </li>
-                                
+
                             </ul>
 
                         </div>
@@ -210,7 +212,7 @@
 
         <script src="/assets/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="/assets/admin/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="/assets/admin/vendors/apexcharts/apexcharts.js"></script>
         <script src="/assets/admin/js/pages/dashboard.js"></script>
         <script src="/assets/admin/js/mazer.js"></script>

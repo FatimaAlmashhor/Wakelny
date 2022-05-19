@@ -61,18 +61,20 @@
                                     <thead class="thead-dark pr-4">
                                         <tr>
                                             <td class="font-lg">الرقم</td>
-                                            <td class="font-lg">المسلم </td>
                                             <td class="font-lg">المستلم</td>
                                             <td class="font-lg">المبلغ </td>
+                                            <td class="font-lg">المشروع </td>
                                             <td class="font-lg">التاريخ</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($transaction as $item)
                                             <tr>
+                                                <td class="font-md">{{ $loop->iteration }}</td>
                                                 <td class="font-md">{{ $item->uuid }}</td>
+                                                <td class="font-md">{{ $item->name }}</td>
                                                 <td class="font-md">{{ $item->amount }}</td>
-                                                <td class="font-md">{{ $item->type }}</td>
+                                                <td class="font-md">{{ $item->title }}</td>
                                                 <td class="font-md">{{ $item->created_at }}</td>
                                             </tr>
                                         @endforeach
@@ -86,5 +88,4 @@
         </section>
 
     </div>
-
 @endsection
