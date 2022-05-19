@@ -50,30 +50,30 @@
 
         </section>
 
-        <section class="section">
-            <div class="row" id="table-head">
-                <div class="col-12">
-                    <div class="card">
-
-                        <div class="card-content">
-                            <div class="table" style="overflow: none ; padding: 10px 20px;">
-                                <table class="table mb-0 mt-3 " style="overflow: none">
-                                    <thead class="thead-dark pr-4">
+  <section class="section">
+        <div class="row" id="table-head">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <!-- table head dark -->
+                        <div class="table-responsive py-2">
+                            <table class="table mb-0 ">
+                                <thead class="thead-dark ">
                                         <tr>
-                                            <td class="font-lg">الرقم</td>
-                                            <td class="font-lg">المسلم </td>
-                                            <td class="font-lg">المستلم</td>
-                                            <td class="font-lg">المبلغ </td>
-                                            <td class="font-lg">التاريخ</td>
+                                            <td >الرقم</td>
+                                            <td >المسلم </td>
+                                            <td >المستلم</td>
+                                            <td >المبلغ </td>
+                                            <td >التاريخ</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($transaction as $item)
                                             <tr>
-                                                <td class="font-md">{{ $item->uuid }}</td>
-                                                <td class="font-md">{{ $item->amount }}</td>
-                                                <td class="font-md">{{ $item->type }}</td>
-                                                <td class="font-md">{{ $item->created_at }}</td>
+                                                <td class="text-bold-500">{{ $item->uuid }}</td>
+                                                <td class="text-bold-500">{{ $item->amount }}</td>
+                                                <td class="text-bold-500">{{ $item->type }}</td>
+                                                <td class="text-bold-500">{{ $item->created_at }}</td>
                                             </tr>
                                         @endforeach
 
