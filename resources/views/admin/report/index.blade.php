@@ -31,20 +31,20 @@
                         <div class="table-responsive py-2">
                             <table class="table mb-0 ">
                                 <thead class="thead-dark ">
-                                    <tr >
+                                    <tr>
                                         <th>#</th>
                                         <th id="pro_m">{{ __('dash.type_report') }}</th>
                                         <th>{{ __('dash.user_id') }}</th>
                                         <th id="post_m">{{ __('dash.provider_ids') }}</th>
-                                        <th  id="user_m">{{ __('dash.post_id') }}</th>
-                                        <th  id="date_m">التاريخ</th>
+                                        <th id="user_m">{{ __('dash.post_id') }}</th>
+                                        <th id="date_m">التاريخ</th>
                                         <th id="mes_m">{{ __('dash.massege') }}</th>
                                         <th>{{ __('dash.State') }}</th>
                                         <th>{{ __('dash.ACTION') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($reports as $item)
+                                    @foreach ($reports as $item)
                                         <tr id="user">
 
 
@@ -82,8 +82,8 @@
                                             </td>
 
                                         </tr>
-                                @endforeach 
-                                @foreach ($reports_post as $item)
+                                    @endforeach
+                                    @foreach ($reports_post as $item)
                                         <tr id="post">
 
 
@@ -121,14 +121,13 @@
                                             </td>
 
                                         </tr>
-
-                                @endforeach
-                                @foreach ($reports_project as $item)
+                                    @endforeach
+                                    @foreach ($reports_project as $item)
                                         <tr class="hover:bg-primary-light-pink" id="project">
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                             <td class="text-bold-500">{{ $item->reporter }}</td>
                                             <td class="text-bold-500">{{ $item->title }}</td>
-                                            <td class="" >{{ $item->created_at }}</td>
+                                            <td class="">{{ $item->created_at }}</td>
                                             <td>
                                                 @if ($item->is_active == 0)
                                                     <span
@@ -155,16 +154,16 @@
 
                                                 </a>
                                                 <a class=' primary-blue'
-                                                    href='{{ route('report.details', $item->report_id) }}'>
+                                                    href='{{ route('report.details', $item->project_id) }}'>
                                                     <i class="fas fa-eye"></i>
                                                 </a>
 
                                             </td>
 
                                         </tr>
-                                @endforeach
+                                    @endforeach
 
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -172,9 +171,7 @@
                 </div>
             </div>
         </div>
-     
+
     </section>
     <!-- Table head options end -->
-   
-  
 @endsection
