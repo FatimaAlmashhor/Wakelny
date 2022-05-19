@@ -22,8 +22,8 @@ jobs:
           name: "Create Environment file"
           command: |
             mv .env.testing .env
-            
-    # Download and cache dependencies
+
+      # Download and cache dependencies
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
@@ -44,7 +44,38 @@ jobs:
           name: "Generate App key"
           command: php artisan key:generate
 
-          # run tests with phpunit
+      # run tests with phpunit
       - run:
           name: "Run Unit Tests"
           command: ./vendor/bin/phpunit tests/Unit
+
+      - run:
+          name: "Create database and run migration"
+          command: |
+            touch database/database.sqlite
+            php artisan migrate --env=testing
+
+      - run:
+          name: "Run Http Tests"
+          command: ./vendor/bin/phpunit tests/Feature
+
+      - run:
+          name: "Install Dusk and Update Chrome Drivers"
+          command: |
+            composer require --dev laravel/dusk:"^4.0"
+            composer require --dev staudenmeir/dusk-updater
+            php artisan dusk:update --detect
+
+      - run:
+          name: Start Chrome Driver
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
+
+      - run:
+          name: Run Laravel Server
+          command: php artisan serve
+          background: true
+
+      - run:
+          name: Run Browser Tests Tests
+          command: php artisan dusk
