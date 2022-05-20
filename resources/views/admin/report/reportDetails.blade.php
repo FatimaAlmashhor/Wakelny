@@ -8,7 +8,7 @@
             </nav>
         </div>
         <!-- top nav end -->
-        <div class=" flex flex-col ">
+        <div class=" flex flex-col flex-wrap">
             @foreach ($project as $items)
                 <div class="shadow-lg border-md w-full   p-2 px-4">
 
@@ -62,7 +62,7 @@
                                 </label>
 
                             </div>
-                            @if ($item->user_id == 4)
+                            @if ($item->role_id == 4)
                                 <div class="w-full md:w-1/2 ">
                                     <label class="block font-sm my-4  tracking-wide text-gray-700 text-xs  mb-2"
                                         for="grid-last-name">
@@ -95,7 +95,7 @@
                         </div>
 
 
-                        @if ($item->user_id == 4)
+                        @if ($item->role_id == 4)
                             <a class='mo-btn m-3 float-left'
                                 href='{{ route('payment.sendMoenyBackTo', ['who' => 'provider', 'project_id' => $item->project_id]) }}'>ارجاع
                                 الفلوس

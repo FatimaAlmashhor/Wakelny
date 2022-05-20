@@ -280,7 +280,7 @@ class MyWorkOnProjectController extends Controller
             return redirect()->route('profile')->with(['message' => 'لقد قمت برفض التسليم مشروعك', 'type' => 'alert-danger']);
             $project->status = 'reject_receive';
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
-            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+            return redirect()->route('myProject')->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }

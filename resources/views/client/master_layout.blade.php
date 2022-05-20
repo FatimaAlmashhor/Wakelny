@@ -253,6 +253,8 @@
         channel.bind('App\\Events\\CommentEvents', function(data) {
             // alert(data.userId);
             if (data.userId.toString() == "{!! Auth::id() !!}") {
+                // const audio = new Audio(url);
+                // audio.play();
                 notifyMark.classList.remove('hidden');
                 const node = document.createElement("a");
                 node.href = data.url;
@@ -277,6 +279,10 @@
             //has internet connection
             console.log('connected');
         }
+        // $('.mo-btn').on('click', function() {
+        //     $('.mo-btn').attr("disabled", true);
+        //     $('.mo-btn').addClass("bg-gray");
+        // })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
