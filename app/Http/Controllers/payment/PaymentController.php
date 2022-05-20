@@ -54,7 +54,7 @@ class PaymentController extends Controller
                 'order_reference' =>  $project_id,
                 'products' =>  [$dataPayment],
                 // 'total_amount' => $project->totalAmount,
-                'total_amount' => $project->totalAmount,
+                'total_amount' => $project->amount,
                 'currency' => 'YER',
                 'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
                 'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
