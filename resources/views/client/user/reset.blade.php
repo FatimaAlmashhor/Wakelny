@@ -16,7 +16,7 @@
                             <div class="form-group row">
                                                     <label for="email" class="form-label" >الايميل</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
+                                                    <input id="email" type="email" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
                                                         <br>
                                                     @error('email')
                                                         <span class="invalid-feedback w-100" role="alert">
@@ -29,7 +29,7 @@
                                  <div class="form-group row">
                                 <label class="form-label" for="password">{{ __('login.password') }}</label>
                                 <div class="input-group input-group-merge">
-                                    <input  type="password" class="form-control w-100 @error('password') is-invalid @enderror" id="password"   name="password" autocomplete="new-password"
+                                    <input  type="password" class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink @error('password') is-invalid @enderror" id="password"   name="password" autocomplete="new-password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                         
@@ -46,7 +46,7 @@
                                 <label class="form-label" for="">{{ __('login.cpassword') }}</label>
                                 <div class="input-group input-group-merge">
                                     <input  type="password" 
-                                    id="password_confirmation"  class="form-control  @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete=""
+                                    id="password_confirmation"  class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete=""
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password_confirmation" />
                                        
@@ -61,7 +61,7 @@
 
                         <br>
 
-                            <button  type="submit" class="wak_btn my-4 d-grid w-100">{{ __('login.resetPass') }}
+                            <button  type="submit" class="mo-btn btn-blue-bg font-bold py-2 px-4  rounded hover:bg-gray-600 my-4 border-primary-light-blue">{{ __('login.resetPass') }}
                             </button>
                             {{ csrf_field() }}
 

@@ -555,6 +555,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0.5rem;
 }
 
+.top-40 {
+  top: 10rem;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -972,6 +976,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 33.333333%;
 }
 
+<<<<<<< HEAD
+=======
+.w-screen {
+  width: 100vw;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
+}
+
+>>>>>>> f175f595a3d624fa0c3e9ff9298bd80298d7fa5f
 .min-w-fit {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
@@ -1180,6 +1195,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.75rem;
 }
 
+<<<<<<< HEAD
+=======
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 2rem;
+}
+
+>>>>>>> f175f595a3d624fa0c3e9ff9298bd80298d7fa5f
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -1315,6 +1341,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-light-gray {
   background-color: ;
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-0 {

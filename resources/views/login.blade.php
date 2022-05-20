@@ -59,7 +59,7 @@
                 <div class="mt-4">
                     <div class="flex justify-between">
                         <label class="block text-gray-700 text-sm font-bold mb-2">كلمه المرور</label>
-                        <a href="#" class="text-xs text-gray-500">نسيت كلمه المرور؟ </a>
+                        <a href="{{route('forget-password')}}" class="text-xs text-gray-500">نسيت كلمه المرور؟ </a>
                     </div>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"

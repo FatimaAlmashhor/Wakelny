@@ -23,15 +23,16 @@
                            <div class="form-group row">
                                 <label class="form-label" for="password">عنوان الايميل </label>
                                 <div class="input-group input-group-merge">
-                                    <input type="email" class="form-control  w-100" id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
-<br>
+                                    <input type="email"  class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    id="email" type="email"  name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
+                                    <br>
                                   
                                 </div>
                             </div>
                             @error('email')
                                     <strong> <span class="text-danger ">{{ $message }}</span></strong>
                                     @enderror
-                            <button class="wak_btn my-4 d-grid w-100"> ارسال رابط التحقق للايميل
+                            <button class="mo-btn btn-blue-bg font-bold py-2 px-4  rounded hover:bg-gray-600 my-4 border-primary-light-blue"> ارسال رابط التحقق للايميل
                             </button>
                             {{ csrf_field() }}
 
