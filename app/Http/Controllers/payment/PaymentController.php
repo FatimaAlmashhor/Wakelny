@@ -18,95 +18,112 @@ class PaymentController extends Controller
 
     function doPayment($project_id, $seeker_id)
     {
-        $project = Project::select(
-            'posts.title',
-            'projects.amount',
-            'projects.totalAmount',
-            'projects.seeker_id',
-            'projects.provider_id',
-        )->join('posts', 'posts.id', 'projects.post_id')
-            ->where('projects.seeker_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->first();
+        try {
+            $project = Project::select(
+                'posts.title',
+                'projects.amount',
+                'projects.totalAmount',
+                'projects.seeker_id',
+                'projects.post_id',
+                'projects.provider_id',
+                'projects.status',
+                'projects.payment_status',
+            )->join('posts', 'posts.id', 'projects.post_id')
+                ->where('projects.seeker_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->where('projects.payment_status', 'unpaid')
+                ->where('projects.status', 'at_work')
+                ->first();
+            $dataPayment = [
+                "id" => $project_id,
+                "product_name" => $project->title,
+                "quantity" => 1,
+                "unit_amount" => $project->amount
+            ];
 
+            $dataMeta = [
+                "provider_id" => $project->provider_id,
+                "seeker_id" => $seeker_id
+            ];
 
-        $dataPayment = [
-            "id" => $project_id,
-            "product_name" => $project->title,
-            "quantity" => 1,
-            "unit_amount" => $project->amount
-        ];
+            $response = Http::withHeaders([
+                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
+                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+                'Content-Type' => 'application/x-www-form-url'
+            ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
+                'order_reference' =>  $project_id,
+                'products' =>  [$dataPayment],
+                // 'total_amount' => $project->totalAmount,
+                'total_amount' => $project->amount,
+                'currency' => 'YER',
+                'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
+                'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
+                'metadata' => (object)$dataMeta
+            ]);
 
-        $dataMeta = [
-            "provider_id" => $project->provider_id,
-            "seeker_id" => $seeker_id
-        ];
+            Project::where('id', $project_id)->update([
+                'stated_at' => date("Y/m/d"),
+                'invoice' => $response['invoice']['invoice_referance']
+            ]);
 
-        $response = Http::withHeaders([
-            'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-            'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-            'Content-Type' => 'application/x-www-form-url'
-        ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
-            'order_reference' =>  $project_id,
-            'products' =>  [$dataPayment],
-            // 'total_amount' => $project->totalAmount,
-            'total_amount' => 199,
-            'currency' => 'YER',
-            'success_url' => 'http://localhost:8000/success-payment',
-            'cancel_url' => 'http://localhost:8000//cancel-payment',
-            'metadata' => (object)$dataMeta
-        ]);
-
-        return $response->json($key = null);
+            // return $response->json($key = null);
+            return redirect(url($response['invoice']['next_url']));
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
     public static function successPayment($project_id,  $response)
     {
-        // try {
-        $project = Project::select(
-            'posts.title',
-            'projects.amount',
-            'projects.totalAmount',
-            'projects.seeker_id',
-            'projects.provider_id',
-            'projects.invoice',
-            'projects.payment_status',
-        )->join('posts', 'posts.id', 'projects.post_id')
-            ->where('projects.id', $project_id)
-            ->first();
+        try {
+            $project = Project::select(
+                'posts.title',
+                'projects.amount',
+                'projects.totalAmount',
+                'projects.seeker_id',
+                'projects.provider_id',
+                'projects.invoice',
+                'projects.payment_status',
+            )->join('posts', 'posts.id', 'projects.post_id')
+                ->where('projects.id', $project_id)
+                ->first();
 
-        // add the moeny into the admin wallet
-        // set the information into the meta
-
-
-        if ($project->payment_status == 'unpaid') {
-            $admin = User::find(1);
-            $seeker = User::find(Auth::id());
-            $seeker->transfer($admin, $project->amount, [
-                'project_id' => $project_id,
-                'invoice_referance' => $project->invoice,
-            ]);
+            // add the moeny into the admin wallet
+            // set the information into the meta
 
 
-            Project::where('id', $project_id)->update([
-                'payment_status' => 'paid'
-            ]);
-            return view('client.payAnimation.paySucces');
-        } else {
+            if ($project->payment_status == 'unpaid') {
+                $admin = User::find(1);
+                $seeker = User::find(Auth::id());
+                $seeker->transfer($admin, $project->amount, [
+                    'project_id' => $project_id,
+                    'invoice_referance' => $project->invoice,
+                ]);
 
-            // ! here should show the 413 error
-            return view('client.payAnimation.payUnsucces');
+
+                Project::where('id', $project_id)->update([
+                    'payment_status' => 'paid'
+                ]);
+                return view('client.payAnimation.paySucces');
+            } else {
+
+                // ! here should show the 413 error
+                return view('client.payAnimation.payUnsucces');
+            }
+
+            $filterdRes = base64_decode($response);
+            return response()->json(json_decode($filterdRes, true));
+
+            // send notification for the seeker that the money is already خصمت
+            // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
+            // open the frontend page
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
-
-        $filterdRes = base64_decode($response);
-        return response()->json(json_decode($filterdRes, true));
-
-        // send notification for the seeker that the money is already خصمت
-        // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
-        // open the frontend page
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        // }
     }
 
     // if the payment is cancled
@@ -169,6 +186,8 @@ class PaymentController extends Controller
 
             // send the message back to the brovider
 
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
@@ -230,6 +249,8 @@ class PaymentController extends Controller
 
             // send the message back to the brovider
 
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return redirect()->route('admin')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }

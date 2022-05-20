@@ -172,42 +172,13 @@ class ProjectController extends Controller
                 ->first();
 
 
-            $dataPayment = [
-                "id" => $project_id,
-                "product_name" => $project->title,
-                "quantity" => 1,
-                "unit_amount" => $project->amount
-            ];
-
-            $dataMeta = [
-                "provider_id" => $project->provider_id,
-                "seeker_id" => $seeker_id
-            ];
-
-            $response = Http::withHeaders([
-                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-                'Content-Type' => 'application/x-www-form-url'
-            ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
-                'order_reference' =>  $project_id,
-                'products' =>  [$dataPayment],
-                // 'total_amount' => $project->totalAmount,
-                'total_amount' => $project->totalAmount,
-                'currency' => 'YER',
-                'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
-                'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
-                'metadata' => (object)$dataMeta
-            ]);
-
 
 
             $notify = new NotificationController();
-            $notify->acceptTheProjectNotifiction($project, $response);
+            $notify->acceptTheProjectNotifiction($project);
 
             Project::where('id', $project_id)->update([
                 'status' => 'at_work',
-                'stated_at' => date("Y/m/d"),
-                'invoice' => $response['invoice']['invoice_referance']
             ]);
 
             Profile::where('user_id', Auth::id())
