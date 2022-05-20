@@ -195,7 +195,7 @@
                                 </li>
 
                             </ul>
-
+                        
                         </div>
                     </div>
                 </nav>
@@ -210,7 +210,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="/assets/admin/vendors/apexcharts/apexcharts.js"></script>
         <script src="/assets/admin/js/pages/dashboard.js"></script>
-            
+
         <script src="/assets/admin/vendors/rater-js/rater-js.js"></script>
         <script src="/assets/admin/js/extensions/rater-js.js"></script>
         <script src="/assets/admin/js/mazer.js"></script>
@@ -218,7 +218,7 @@
         <script src="{{ asset('assets/client/js/report.js') }}"></script>
 
 
-    
+
 </body>
 
 </html>
