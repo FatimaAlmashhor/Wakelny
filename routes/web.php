@@ -195,12 +195,12 @@ Route::group([
             Route::post('/update_comment/{comment_id}', [CommentsController::class, 'update'])->name('update_comment');
 
 
-            Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
+            
             // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
             Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
+            Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
             Route::post('/update_post/{post_id}', [PostController::class, 'update'])->name('update_post');
             Route::get('/toggle_post/{post_id}', [PostController::class, 'toggle'])->name('toggle_post');
-
 
 
             // Accept Offer

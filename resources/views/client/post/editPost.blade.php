@@ -29,15 +29,16 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card shadow-sm ">
                     <div class="card-body">
-                        <form id="contactForm" class="row g-3" action="{{ route('update_post', $data->id) }}" method="post"
+                    <form id="contactForm" class="row g-3" action="{{ route('update_post', $data->id) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <!-- Name input -->
-                            <div>
+                            <div class="col-12 pt-3">
                                 <label class="form-label font-md" for="name">عنوان المشروع</label>
-                                <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                    value="{{ $data->title ?? old('title') }}" type="text" data-sb-validations="required"
-                                    required />
+                                <input
+                                    class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    name='title' id="name" value="{{ $data->title ?? old('title') }}" type="text"
+                                    data-sb-validations="required" required />
                                 <p class="text-muted font-xs">أدرج عنوانا موجزا يصف مشروعك بشكل دقيق.</p>
                                 @error('title')
                                     <div id='alert ' class="   px-4 alert position-fixed  alert-warning" role="alert"
