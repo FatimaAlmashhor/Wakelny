@@ -9,6 +9,7 @@ use App\Models\PostModel;
 use App\Models\Posts;
 use App\Models\PostSkills;
 use App\Models\Profile;
+use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
 use App\Notifications\PostNotification;
@@ -90,6 +91,12 @@ class PostController extends Controller
                     'comments.duration',
                 ])
                 ->get();
+            $checkProject = Project::select(
+                'status'
+            )
+                ->where('post_id', (int)$post_id)
+                ->where('status', '!=', 'rejected')
+                ->first();
 
             // print_r($comments);
             $hasComment = Comments::where('post_id', (int)$post_id)->where('user_id', Auth::id())->count();
@@ -100,7 +107,8 @@ class PostController extends Controller
                 'comments' => $comments,
                 'post_id' => $post_id,
                 'skills' => $skills,
-                'hasComment' => $hasComment > 0 ? true : false
+                'hasComment' => $hasComment > 0 ? true : false,
+                'checkHasProject' => $checkProject ? true : false
             ]);
         } catch (\Throwable $th) {
             return back()->with(['message' => ' هنالك مشكله ما رجاء قم بعاده المحوله', 'type' => 'alert-danger']);
