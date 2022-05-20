@@ -1192,6 +1192,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.75rem;
 }
 
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 2rem;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
