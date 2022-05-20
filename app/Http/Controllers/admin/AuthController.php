@@ -138,7 +138,7 @@ class AuthController extends Controller
 
 
             return redirect()->route('login')
-                ->with(['message' => 'تم تسجيل دخولك بنجاح', 'type' => 'alert-success']);
+                ->with(['message' => 'تم انشاء حسابك بنجاح', 'type' => 'alert-success']);
             // } catch (\Throwable $th) {
             //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
             // }

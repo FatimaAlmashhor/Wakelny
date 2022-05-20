@@ -7,6 +7,7 @@ use App\Models\category;
 use App\Models\Comments;
 use App\Models\PostModel;
 use App\Models\Posts;
+use App\Models\Project;
 use App\Models\PostSkills;
 use App\Models\Profile;
 use App\Models\Skill;
@@ -122,7 +123,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric'],
+                'duration' => ['required', 'numeric','gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
@@ -132,7 +133,8 @@ class PostController extends Controller
                 'message.required' => 'اضف وصف للمشروع',
                 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
                 'duration.required' => 'حقل المده مطلوب',
-                'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
+                'duration.numeric' => 'يجب ان يكون حقل المده من نوع رقمي',
+                'duration.gt' => 'يجب ان يكون حقل المده اكبر من صفر',
 
             ]);
 
@@ -223,28 +225,31 @@ class PostController extends Controller
 
         return view('client.post.editPost')->with(['data' => $post, 'skills' => $skill, 'categories' => $categories]);
     }
-    public function postDesciption()
-    {
 
-        return view('client.post.postdescription');
-    }
 
     public function showProject()
     {
-        $projects =  Posts::select(
-            'posts.id',
+
+          try {
+        $project = Project::select(
             'posts.title',
-            'posts.offers',
-            'posts.description',
-            'profiles.name'
+            'projects.amount',
+            'projects.totalAmount',
+            'projects.status',
+            'projects.payment_status',
+            'projects.created_at',
+            'projects.duration',
+             'projects.post_id',
+        )->join('posts', 'posts.id', 'projects.post_id')
 
-        )->join('profiles', 'profiles.user_id', '=', 'posts.user_id')->where('is_active', 1)->where('posts.user_id', Auth::id())->get();
-
-
+            ->get();
         // return response()->json($projects);
-        return view('client.post.myProject')->with('posts', $projects);
+        return view('client.post.myProject')->with('projects', $project);
+    } catch (Expectation   $th) {
+            // throw $th;
+            return back()->with(['message' => 'حدث خطأ   ', 'type' => 'alert-danger']);
+        }
     }
-
 
     public function update(Request $request, $post_id)
     {
@@ -254,7 +259,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric'],
+                'duration' => ['required', 'numeric','gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
@@ -265,7 +270,7 @@ class PostController extends Controller
                 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
                 'duration.required' => 'حقل المده مطلوب',
                 'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
-
+                'duration.gt' => 'يجب ان يكون حقل المده اكبر من صفر',
             ]);
 
 
@@ -280,7 +285,6 @@ class PostController extends Controller
 
             if ($request->hasFile('files'))
                 $post->file = $this->uploadFile($request->file('files'));
-
             if ($post->save()) {
 
 
