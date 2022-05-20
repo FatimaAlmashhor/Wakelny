@@ -980,9 +980,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 33.333333%;
 }
 
+<<<<<<< HEAD
 .w-1\/2 {
   width: 50%;
+=======
+
+.w-screen {
+  width: 100vw;
 }
+
+.w-2\/12 {
+  width: 16.666667%;
+>>>>>>> 2ba789a679b86502ce0b84a853478a3aad632ffb
+}
+
 
 .min-w-fit {
   min-width: -webkit-fit-content;
@@ -1114,6 +1125,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.75rem;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-8 {
   gap: 2rem;
 }
@@ -1192,6 +1207,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.75rem;
 }
 
+<<<<<<< HEAD
+=======
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 2rem;
+}
+
+
+>>>>>>> 2ba789a679b86502ce0b84a853478a3aad632ffb
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -1280,6 +1308,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(180 180 180 / var(--tw-border-opacity));
 }
 
+.border-primary-green {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 200 155 / var(--tw-border-opacity));
+}
+
 .border-r-primary-light-gray {
   --tw-border-opacity: 1;
   border-right-color: rgb(223 223 223 / var(--tw-border-opacity));
@@ -1325,10 +1358,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(180 180 180 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
 .bg-transparent {
   background-color: transparent;
 }
 
+=======
+>>>>>>> 2ba789a679b86502ce0b84a853478a3aad632ffb
 .bg-light-gray {
   background-color: ;
 }
@@ -1785,6 +1821,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(223 223 223 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-primary-green:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 200 155 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary-pink:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(205 101 124 / var(--tw-bg-opacity));
+}
+
 .hover\:text-primary-blue:hover {
   --tw-text-opacity: 1;
   color: rgb(55 52 131 / var(--tw-text-opacity));
@@ -2021,6 +2067,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:max-w-4xl {
     max-width: 56rem;
+  }
+
+  .lg\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .lg\:px-16 {
