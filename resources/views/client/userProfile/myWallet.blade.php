@@ -37,17 +37,19 @@
                         <tr>
                             <th class="font-md">الرقم</th>
                             <th class="font-md">المسلم </th>
-                            <th class="font-md">المستلم</th>
+                            {{-- <th class="font-md">المستلم</th> --}}
                             <th class="font-md">المبلغ </th>
+                            <th class="font-md">المشروع </th>
                             <th class="font-md">التاريخ</th>
                         </tr>
                     </thead>
                     <tbody class="table-light">
                         @foreach ($transactions as $tran)
                             <tr>
-                                <td class="font-md">{{ $tran->uuid }}</td>
-                                <td class="font-md">{{ $tran->type }}</td>
+                                <td class="font-md">{{ $loop->iteration }}</td>
+                                <td class="font-md">{{ $tran->name }}</td>
                                 <td class="font-md">{{ $tran->amount }}</td>
+                                <td class="font-md">{{ $tran->title }}</td>
                                 <td class="font-md">{{ $tran->created_at }}</td>
                                 {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
                                 {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
