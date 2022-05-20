@@ -10,15 +10,15 @@
     <div class="page-heading">
         <h3>{{ __('dash.all_report') }}</h3>
     </div>
-    <div class="my-4 d-flex justify-content-evenly">
-        <button id="users" class="btn  btn-blue-rounderd rounded-pill">
-            المستخدم
+    <div class="my-4 d-flex justify-content-evenly flex-wrap"> 
+        <button  id="users"  class="btn  btn-blue-rounderd rounded-pill my-2">
+             المستخدم
         </button>
-        <button id="posts" class="btn  btn-blue-rounderd rounded-pill">
-            المحتوى
+        <button     id="posts"  class="btn  btn-blue-rounderd rounded-pill my-2">
+             المحتوى 
         </button>
-        <button id="projects" class="btn  btn-blue-rounderd rounded-pill">
-            المشاريع
+        <button  id="projects"   class="btn  btn-blue-rounderd rounded-pill my-2">
+             المشاريع
         </button>
     </div>
     <!-- Table head options start -->
