@@ -1,10 +1,10 @@
 @extends('client.master_layout')
 @section('content')
-<h3 class="m-5 font-xl font-bold pt-20"> المشاريع الخاصة بي</h3>
-{{-- updating --}}
+    <h3 class="m-5 font-xl font-bold pt-20"> المشاريع الخاصة بي</h3>
+    {{-- updating --}}
     @foreach ($projects as $item)
         {{-- one card --}}
-        <div class="container card mt-5 sm:px-16 lg:px-10 ">
+        <div class="container card mt-5 sm:px-16 lg:px-10 " id='{{ $item->project_id }}'>
 
             <div class="row ">
                 <div class="col-sm-6">
@@ -58,8 +58,8 @@
             </div>
 
             <div class="flex justify-content-end gap-1 margin-right: -23px;">
-                @if ($item->payment_status == 'unpaid')
-                    <a href="#"
+                @if ($item->payment_status == 'unpaid' && $item->invoice != null)
+                    <a href="{{ route('payment.do', [$item->project_id, $item->seeker_id]) }}"
                         class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                         <p class="font-md"> لم يتم الدفع</p>
                     </a>
@@ -89,7 +89,7 @@
             </div>
 
         </div>
-{{-- end  --}}
+        {{-- end --}}
 
 
 

@@ -7,7 +7,6 @@ use App\Models\category;
 use App\Models\Comments;
 use App\Models\PostModel;
 use App\Models\Posts;
-use App\Models\Project;
 use App\Models\PostSkills;
 use App\Models\Profile;
 use App\Models\Project;
@@ -131,7 +130,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric','gt:0'],
+                'duration' => ['required', 'numeric', 'gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
@@ -238,22 +237,25 @@ class PostController extends Controller
     public function showProject()
     {
 
-          try {
-        $project = Project::select(
-            'posts.title',
-            'projects.amount',
-            'projects.totalAmount',
-            'projects.status',
-            'projects.payment_status',
-            'projects.created_at',
-            'projects.duration',
-             'projects.post_id',
-        )->join('posts', 'posts.id', 'projects.post_id')
+        try {
+            $project = Project::select(
+                'posts.title',
+                'projects.amount',
+                'projects.id as project_id',
+                'projects.seeker_id as seeker_id',
+                'projects.totalAmount',
+                'projects.status',
+                'projects.payment_status',
+                'projects.invoice',
+                'projects.created_at',
+                'projects.duration',
+                'projects.post_id',
+            )->join('posts', 'posts.id', 'projects.post_id')
 
-            ->get();
-        // return response()->json($projects);
-        return view('client.post.myProject')->with('projects', $project);
-    } catch (Expectation   $th) {
+                ->get();
+            // return response()->json($projects);
+            return view('client.post.myProject')->with('projects', $project);
+        } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'حدث خطأ   ', 'type' => 'alert-danger']);
         }
@@ -267,7 +269,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric','gt:0'],
+                'duration' => ['required', 'numeric', 'gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
