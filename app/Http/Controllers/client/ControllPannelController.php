@@ -70,6 +70,7 @@ class ControllPannelController extends Controller
             $userRole = false;
         }
 
+
         if ($userRole) {
             Profile::where('user_id', $current_user_id)->update(
                 [
