@@ -1,10 +1,10 @@
 @extends('client.master_layout')
 @section('content')
-    <h3 class="m-5 font-xl font-bold pt-20"> المشاريع الخاصة بي</h3>
+    <h3 class="m-5 font-xl font-bold pt-20 flex flex-col justify-start items-start"> المشاريع الخاصة بي</h3>
     {{-- updating --}}
     @foreach ($projects as $item)
         {{-- one card --}}
-        <div class="container card mt-5 sm:px-16 lg:px-10 " id='{{ $item->project_id }}'>
+        <div class="  w-12/12 lg:w-9/12 card mt-5 sm:px-16 lg:px-10 " id='{{ $item->project_id }}'>
 
             <div class="row ">
                 <div class="col-sm-6">
@@ -18,6 +18,8 @@
                         المشروع:
                         @if ($item->status == 'pending')
                             إنتظار العروض
+                        @elseif ($item->status == 'at_work' && $item->payment_status == 'unpaid')
+                            في انتظار الدفع
                         @elseif ($item->status == 'at_work')
                             قيد العمل
                         @elseif ($item->status == 'done')
@@ -56,37 +58,38 @@
                 </div>
 
             </div>
-
-            <div class="flex justify-content-end gap-1 margin-right: -23px;">
-                @if ($item->payment_status == 'unpaid' && $item->invoice != null)
-                    <a href="{{ route('payment.do', [$item->project_id, $item->seeker_id]) }}"
-                        class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
-                        <p class="font-md"> لم يتم الدفع</p>
-                    </a>
-                @endif
-                <div class="card--actions hidden-xs   flex justify-content-end gap-1">
-                    <a class=" border-2 hover:bg-primary-green flex justify-center items-center border-primary-green p-1 w-10 rounded-md bg-transparent "
-                        href="{{ route('editPosts', $item->post_id) }}">
-                        <i class="fa-solid fa-pen   text-black text-center"></i>
-
-                    </a>
-                    <a class="border-2 hover:bg-primary-pink
-                    flex justify-center items-center border-primary-pink p-1 w-10 rounded-md bg-transparent"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa fa-xmark text-center "></i>
-
-
-
-                    </a>
-
-
-
-
-
-
+            <div class="flex justify-between">
+                <div> التكلفه
+                    : <span class="text-primary-pink font-bold mx-1"> ${{ $item->amount }}</span>
 
                 </div>
+                <div class="flex justify-content-end gap-1 margin-right: -23px;">
+
+                    @if ($item->payment_status == 'unpaid')
+                        <a href="{{ route('payment.do', [$item->project_id, $item->seeker_id]) }}"
+                            class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                            <p class="font-md"> لم يتم الدفع</p>
+                        </a>
+                    @endif
+                    <div class="card--actions hidden-xs   flex justify-content-end gap-1">
+                        <a class=" border-2 hover:bg-primary-green flex justify-center items-center border-primary-green p-1 w-10 rounded-md bg-transparent "
+                            href="{{ route('editPosts', $item->post_id) }}">
+                            <i class="fa-solid fa-pen   text-black text-center"></i>
+
+                        </a>
+                        <a class="border-2 hover:bg-primary-pink
+            flex justify-center items-center border-primary-pink p-1 w-10 rounded-md bg-transparent"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa fa-xmark text-center "></i>
+
+
+
+                        </a>
+
+                    </div>
+                </div>
             </div>
+
 
         </div>
         {{-- end --}}
