@@ -87,8 +87,8 @@ Route::group([
     // Static pages section
     // ------------------------------------------------------------------------
     Route::view('/', 'client.static.home')->name('home');
-    Route::view('/aboutUs', 'client.static.about_us')->name('aboutus');
-    Route::view('/contactUs', 'client.static.contactUs')->name('contactus');
+    Route::view('/aboutUs', 'client.static.about_us')->name('aboutUs');
+    Route::view('/contactUs', 'client.static.contactUs')->name('contactUs');
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 
     // this is the page of the freelancers
