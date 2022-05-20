@@ -112,7 +112,7 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="cost"
+                                                    <input name="cost" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         type="number" value="{{ old('cost') }}" aria-label="Username"
                                                         aria-describedby="basic-addon1">
@@ -164,7 +164,7 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="duration"
+                                                    <input name="duration" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         id="phone" type="number" value="{{ old('duration') }}"
                                                         aria-label="Username" aria-describedby="basic-addon1">
@@ -393,7 +393,7 @@
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="cost"
+                                                                                <input name="cost" min="1"
                                                                                     class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60 '
                                                                                     type="number"
                                                                                     value="{{ $item->cost ?? old('cost') }}"
@@ -455,7 +455,7 @@
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="duration"
+                                                                                <input name="duration" min="1"
                                                                                     class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                                                     id="phone" type="number"
                                                                                     value="{{ $item->duration ?? old('duration') }}"
@@ -583,9 +583,9 @@
                                                                         <label class="font-md">المبلغ المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="amount"
+                                                                            <input name="amount" min="1"
                                                                                 class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="amount" type="text"
+                                                                                id="amount" type="number"
                                                                                 value="{{ old('cost') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
@@ -603,9 +603,9 @@
                                                                         <label class="font-md">المده المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="duration"
+                                                                            <input name="duration" min="1"
                                                                                 class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="duration" type="text"
+                                                                                id="duration" type="number"
                                                                                 value="{{ old('duration') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
