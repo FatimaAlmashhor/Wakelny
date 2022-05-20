@@ -10,7 +10,7 @@ use App\Models\Posts;
 use App\Models\Project;
 use App\Models\PostSkills;
 use App\Models\Profile;
-use App\Models\Project;
+
 use App\Models\Skill;
 use App\Models\User;
 use App\Notifications\PostNotification;
