@@ -15,7 +15,8 @@ class ChatController extends Controller
 
     public function index() {
         // Show just the users and not the admins as well
-        $users = User::where('is_active', true)->get();
+        $users = User::where('is_active', true)
+        ->get();
 
         if (auth()->user()->is_active == true) {
             $messages = Messages::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
@@ -40,6 +41,8 @@ class ChatController extends Controller
             ->orderBy('id', 'ASC')
             ->get();
 
+
+
         if (auth()->user()->is_active == true) {
             $messages = Messages::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
         } else {
@@ -51,35 +54,5 @@ class ChatController extends Controller
             'messages' => $messages,
             'sender' => $sender,
         ]);
-    }
-
-    /**
-     * Fetch all messages
-     *
-     * @return Message
-     */
-    public function fetchMessages()
-    {
-        return Message::with('user')->get();
-    }
-
-    /**
-
-     *
-     * @param  Request $request
-     * @return Response
-     */
-    public function sendMessage(Request $request)
-    {
-        $user = Auth::user();
-
-        $message = $user->messages()->create([
-            // 'message' => $request->input('message')
-            'message' => 'test'
-        ]);
-
-        broadcast(new MessageSent($user, $message))->toOthers();
-
-        return ['status' => 'Message Sent!'];
     }
 }

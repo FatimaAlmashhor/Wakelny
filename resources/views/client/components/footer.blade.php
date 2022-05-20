@@ -53,13 +53,13 @@
         </div>
         <ul class="flex flex-wrap items-center mx-12 mt-5  text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
-                <a href="#" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
+                <a href="{{ route('aboutUs') }}" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
             </li>
             <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6">سياسه الخصوصيه</a>
             </li>
             <li>
-                <a href="#" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
+                <a href="{{ route('contactUs') }}" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
             </li>
 
         </ul>
