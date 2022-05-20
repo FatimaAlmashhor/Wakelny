@@ -506,21 +506,33 @@
             </svg>
           </div>
         </div>
-        <form class="" action="">
+        <form method="POST" action="{{ route('contact.us.store') }}" id="contactUSForm">
+                            {{ csrf_field() }}
           <div>
             <span class="uppercase text-md text-gray-600 font-bold">اسمك الكامل</span>
             <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-              type="text" placeholder="">
+            type="text" name="name"  value="{{ old('name') }}" placeholder="">
+            @error('name')
+                <span class="text-danger w-100">{{ $message }}</span>              
+          @enderror
           </div>
+      
           <div class="mt-8">
             <span class="uppercase text-md text-gray-600 font-bold">البريد الإكتروني</span>
             <input class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-              type="email">
+               type="email" name="email" value="{{ old('email') }}">
+              @error('email')
+                <span class="text-danger w-100">{{ $message }}</span>              
+              @enderror
           </div>
           <div class="mt-8">
             <span class="uppercase text-md text-gray-600 font-bold">رسالتك</span>
             <textarea
-              class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"></textarea>
+              class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+              name="message" rows="3" >{{ old('message') }}</textarea>
+              @error('message')
+                <span class="text-danger w-100">{{ $message }}</span>              
+          @enderror
           </div>
           <div class="mt-8">
           <button class="mo-btn btn-blue-bg float-left font-md" type="submit"> إرسال

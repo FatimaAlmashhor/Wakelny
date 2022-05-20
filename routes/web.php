@@ -29,6 +29,7 @@ use App\Http\Controllers\client\MyWorkOnProjectController;
 use Illuminate\Support\Facades\Http;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\client\ChatController;
+use App\Http\Controllers\client\ContactController;
 use App\Http\Controllers\payment\PaymentController;
 use App\Models\Project;
 use App\Models\User;
@@ -88,7 +89,10 @@ Route::group([
     // ------------------------------------------------------------------------
     Route::view('/', 'client.static.home')->name('home');
     Route::view('/aboutUs', 'client.static.about_us')->name('aboutUs');
-    Route::view('/contactUs', 'client.static.contactUs')->name('contactUs');
+    // Route::view('/contactUs', 'client.static.contactUs')->name('contactUs');
+    Route::get('/contactUs', [ContactController::class, 'index'])->name('contactUs');
+    Route::post('/contactUs', [ContactController::class, 'store'])->name('contact.us.store');
+    
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 
     // this is the page of the freelancers
@@ -295,10 +299,6 @@ Route::group([
         Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
-
-
-        Route::get('/messages',  [ChatController::class, 'fetchMessages'])->name('chat.fetch');
-        Route::get('/messages', [ChatController::class, 'sendMessage'])->name('chat.send');
 
         // payment
     });
