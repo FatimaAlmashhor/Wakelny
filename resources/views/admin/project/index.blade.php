@@ -1,4 +1,4 @@
-@extends('admin.master_layout')
+@extends('admin.master_layouts')
 @section('content')
 @livewireStyles
     {{-- titile ---}}
