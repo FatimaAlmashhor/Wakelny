@@ -1,6 +1,7 @@
 
     <div class="flex-1 flex flex-row-reverse h-full overflow-auto">
-        @if(auth()->user()->is_active == true)
+
+        @if(auth()->user()->is_active == true )
         <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6 overflow-auto ">
                                 <div class="search flex-2 pb-6 px-2 " >
                                     <input type="text" class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200" placeholder="Search">
@@ -8,9 +9,9 @@
 
                                 <div class="flex-1 h-full my-8   overflow-auto px-2  scrollbar" id="style-7">
                                     @foreach($users as $user)
-                                    @php
-                                        $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
-                                    @endphp
+                                        @php
+                                            $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
+                                        @endphp
                                     <a href="{{ route('inbox.show', $user->id) }}" > 
                                         <div class="entry  cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md"  wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
                                                 <div class="flex-2">
@@ -23,7 +24,7 @@
                                                 <div class="flex-1 px-2">
                                                 @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif 
                                                     <div class="truncate w-32"><span class="text-gray-800">{{ $user->name }}</span></div>
-                                                    <div><small class="text-gray-600">{{ $user->last_activity }}</small></div>
+                                                    <div><small class="text-gray">{{ $user->last_activity }}</small></div>
                                                     @if(filled($not_seen))
                                                         <div class="badge badge-success rounded">{{ $not_seen->count() }}</div>
                                                     @endif

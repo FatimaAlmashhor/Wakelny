@@ -15,7 +15,8 @@ class ChatController extends Controller
 
     public function index() {
         // Show just the users and not the admins as well
-        $users = User::where('is_active', true)->get();
+        $users = User::where('is_active', true)
+        ->get();
 
         if (auth()->user()->is_active == true) {
             $messages = Messages::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
