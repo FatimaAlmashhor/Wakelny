@@ -149,11 +149,13 @@
           </div>
         </div> --}}
 
-
-        <div class="page-heading  pt-2  m-2 font-xl font-bold">
+        <div class="page-heading">
+            <h3> الاحصائيات   </h3>
+        </div>
+        {{-- <div class="page-heading  pt-2  m-2 font-xl font-bold">
             <h3>{{ __('dash.all_project') }}</h3>
 
-        </div>
+        </div> --}}
 
         <div class="col-md-2 pt-2  m-2  ">
 
