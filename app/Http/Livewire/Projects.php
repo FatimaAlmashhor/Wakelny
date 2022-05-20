@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Posts;
 use App\Models\User;
+use App\Models\User;
 
 class Projects extends Component
 {
