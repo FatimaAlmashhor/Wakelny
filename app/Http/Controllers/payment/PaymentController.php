@@ -62,7 +62,6 @@ class PaymentController extends Controller
             ]);
 
             Project::where('id', $project_id)->update([
-                'status' => 'at_work',
                 'stated_at' => date("Y/m/d"),
                 'invoice' => $response['invoice']['invoice_referance']
             ]);
