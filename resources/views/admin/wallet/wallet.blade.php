@@ -50,6 +50,7 @@
 
         </section>
 
+
         <section class="section">
             <div class="row" id="table-head">
                 <div class="col-12">
@@ -70,8 +71,8 @@
                                     <tbody>
                                         @foreach ($transaction as $item)
                                             <tr>
+
                                                 <td class="font-md">{{ $loop->iteration }}</td>
-                                                <td class="font-md">{{ $item->uuid }}</td>
                                                 <td class="font-md">{{ $item->name }}</td>
                                                 <td class="font-md">{{ $item->amount }}</td>
                                                 <td class="font-md">{{ $item->title }}</td>

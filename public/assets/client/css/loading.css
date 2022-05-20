@@ -1,0 +1,51 @@
+.ripple {
+    width: 1rem;
+    /* control the size */
+    background: rgb(0, 255, 115);
+    /* control the color here */
+}
+
+.ripple,
+.ripple::before,
+.ripple::after {
+    content: "";
+    display: grid;
+    grid-area: 1/1;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(6, 10, 117, 0.2);
+    /* and here, 3 is the transparency */
+    animation: r 3s linear infinite var(--s, 0s);
+}
+
+.ripple::before {
+    --s: 1s;
+}
+
+.ripple::after {
+    --s: 2s;
+}
+
+.circle-enter-active {
+    animation: 1s circle reverse;
+}
+
+.circle-leave-active {
+    animation: 1s circle;
+}
+
+@keyframes circle {
+    0% {
+        clip-path: circle(75%);
+    }
+
+    100% {
+        clip-path: circle(0%);
+    }
+}
+
+@keyframes r {
+    to {
+        box-shadow: 0 0 0 6rem #0000;
+    }
+}
