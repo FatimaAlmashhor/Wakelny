@@ -75,7 +75,7 @@ class ControllPannelController extends Controller
                 [
                     // !what this for?
                     'job_title' => $request->input('job_title'),
-                    'specialization'  =>  $request->input('specialization'),
+                    'specialization'  =>  $request->input('category_id'),
                     'bio'  =>  $request->input('bio'),
                     'video'  =>  $request->input('video'),
                     'category_id' => $request->input('category_id'),
