@@ -980,6 +980,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 33.333333%;
 }
 
+
+.w-screen {
+  width: 100vw;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
+}
+
+
 .min-w-fit {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
@@ -1191,6 +1201,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-xl {
   border-radius: 0.75rem;
 }
+
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 2rem;
+}
+
 
 .rounded-lg {
   border-radius: 0.5rem;
