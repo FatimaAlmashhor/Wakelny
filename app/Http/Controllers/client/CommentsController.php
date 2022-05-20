@@ -92,7 +92,7 @@ class CommentsController extends Controller
 
             if ($comment->save()) {
                 return redirect()->back()
-                    ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
+                    ->with(['message' => 'تم تعديل العرض بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         } catch (\Throwable $th) {
