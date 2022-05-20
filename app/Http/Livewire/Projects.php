@@ -53,6 +53,7 @@ class Projects extends Component
             ->where('title', 'like', '%' . $this->term . '%')
             ->orWhere('reportesr.name', 'like', '%' . $this->term . '%')
             ->orWhere('projects.status', 'like', '%' . $this->term . '%')
+            ->orWhere('projects.status', 'like', '%' . $this->term . '%')
             ->where('posts.is_active', 1)->get();
 
         }
