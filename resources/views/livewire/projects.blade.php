@@ -25,11 +25,8 @@
                             <li>
                                 <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
                             </li>
-                            <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
-                                    ملفي الشخصي
-                                </a></li>
-                            <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                                    الاعدادات</a></li>
+
+                           
                             <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
                                     المحفظة</a></li>
 
