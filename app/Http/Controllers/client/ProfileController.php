@@ -99,13 +99,13 @@ class ProfileController extends Controller
             'deposit.meta->project_id',
             'withdraw.amount',
             'transfers.created_at',
-            // 'posts.title',
+            'posts.title',
         )
             ->join('users', 'users.id', '=', 'from_id')
             ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
             ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
-            // ->join('projects', 'projects.id', '=', 'deposit.meta->project_id')
-            // ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->join('projects', 'projects.id', '=', 'deposit.meta->project_id')
+            ->join('posts', 'posts.id', '=', 'projects.post_id')
             ->where('to_id', $wallet->id)
             ->get();
         // return response()->json($transactions);
