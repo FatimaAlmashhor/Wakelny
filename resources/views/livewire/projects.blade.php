@@ -118,7 +118,19 @@
 
                   {{-- </div> --}}
 
+                  <div class=" " style="width: 90%; padding-top:5px ">
+                    {{-- <div class="form-outline"> --}}
+                        <div class="form-group has-search ">
 
+                            <input type="text" class="form-control" placeholder="بحث" style=" border-radius: 24px;
+                            direction: rtl;
+                            margin-bottom: 5px;" wire:model="term">
+
+                  </div>
+
+
+                {{-- </div> --}}
+            </div>
 
 
         </nav>
