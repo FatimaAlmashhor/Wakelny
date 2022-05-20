@@ -26,7 +26,7 @@
                                 <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
                             </li>
 
-                           
+
                             <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
                                     المحفظة</a></li>
 
@@ -52,7 +52,7 @@
                                 @if (auth()->user()->unreadNotifications->count() > 0)
                                     <span
                                         style=" position: absolute; width:12px; height:12px ; border-radius : 50% ;background:red ; bottom: 10px ; left: 20px;">
-                                        {{-- {{ auth()->user()->unreadNotifications->count() }} --}}
+                                {{-- {{ auth()->user()->unreadNotifications->count() }} --}}
                                     </span>
                                 @endif
 
