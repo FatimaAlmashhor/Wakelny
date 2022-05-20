@@ -50,30 +50,34 @@
 
         </section>
 
-  <section class="section">
-        <div class="row" id="table-head">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-content">
-                        <!-- table head dark -->
-                        <div class="table-responsive py-2">
-                            <table class="table mb-0 ">
-                                <thead class="thead-dark ">
+
+        <section class="section">
+            <div class="row" id="table-head">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <!-- table head dark -->
+                            <div class="table-responsive py-2">
+                                <table class="table mb-0 ">
+                                    <thead class="thead-dark ">
                                         <tr>
-                                            <td >الرقم</td>
-                                            <td >المسلم </td>
-                                            <td >المستلم</td>
-                                            <td >المبلغ </td>
-                                            <td >التاريخ</td>
+                                            <td class="font-lg">الرقم</td>
+                                            <td class="font-lg">المستلم</td>
+                                            <td class="font-lg">المبلغ </td>
+                                            <td class="font-lg">المشروع </td>
+                                            <td class="font-lg">التاريخ</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($transaction as $item)
                                             <tr>
-                                                <td class="text-bold-500">{{ $item->uuid }}</td>
-                                                <td class="text-bold-500">{{ $item->amount }}</td>
-                                                <td class="text-bold-500">{{ $item->type }}</td>
-                                                <td class="text-bold-500">{{ $item->created_at }}</td>
+
+                                                <td class="font-md">{{ $loop->iteration }}</td>
+                                                <td class="font-md">{{ $item->name }}</td>
+                                                <td class="font-md">{{ $item->amount }}</td>
+                                                <td class="font-md">{{ $item->title }}</td>
+                                                <td class="font-md">{{ $item->created_at }}</td>
+
                                             </tr>
                                         @endforeach
 
@@ -86,5 +90,4 @@
         </section>
 
     </div>
-
 @endsection

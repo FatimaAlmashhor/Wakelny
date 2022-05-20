@@ -53,15 +53,21 @@
     {{-- //paste this code under the head tag or in a separate js file.
 	// Wait for window load --}}
     <script type='text/javascript'>
-        $(window).load(function() {
+        $(window).load(async function() {
             // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
+            await setTimeout(() => {
+                $("#loading").addClass("circle-leave-active");
+                $("#loading").fadeOut("slow");
+            }, 2300);
         });
     </script>
 </head>
 
 <body>
-    <div class="se-pre-con"></div>
+    <div id='loading' class=" fixed flex justify-center items-center bg-primary-light-gray w-screen h-screen z-50"
+        style="z-index: 2000">
+        <div class="ripple"></div>
+    </div>
 
     {{-- alerts --}}
     @if (session()->has('message'))

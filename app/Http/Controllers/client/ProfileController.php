@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Skill;
 use App\Models\UserSkills;
 use Bavix\Wallet\Models\Transaction;
+use Bavix\Wallet\Models\Transfer;
 use Bavix\Wallet\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,7 +91,24 @@ class ProfileController extends Controller
     {
         $profile = Profile::where('user_id', Auth::id())->first();
         $wallet = Wallet::where('holder_id', Auth::id())->first();
-        $transactions = Transaction::select('*', DB::raw('JSON_EXTRACT(`meta`, "$.project_id")'))->where('payable_id', Auth::id())->get();
+        // $transactions = Transaction::select('*', DB::raw('JSON_EXTRACT(`meta`, "$.project_id")'))->where('payable_id', Auth::id())->get();
+
+        $transactions = Transfer::select(
+            'users.name',
+            'deposit.amount',
+            'deposit.meta->project_id',
+            'withdraw.amount',
+            'transfers.created_at',
+            // 'posts.title',
+        )
+            ->join('users', 'users.id', '=', 'from_id')
+            ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
+            ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
+            // ->join('projects', 'projects.id', '=', 'deposit.meta->project_id')
+            // ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->where('to_id', $wallet->id)
+            ->get();
+        // return response()->json($transactions);
         return view('client.userProfile.myWallet')->with([
             'item' => $profile,
             'wallet' => $wallet,

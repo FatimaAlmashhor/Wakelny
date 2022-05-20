@@ -26,4 +26,5 @@ class ExampleTest extends TestCase
 
         $this->assertEquals('Test User', $user->name);
     }
+   
 }
