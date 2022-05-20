@@ -3,7 +3,7 @@
     <h3 class="m-5 font-xl font-bold pt-20"> المشاريع الخاصة بي</h3>
     @foreach ($projects as $item)
         {{-- one card --}}
-        <div class="container card  sm:px-16 lg:px-10 ">
+        <div class="container card mt-5 sm:px-16 lg:px-10 ">
 
             <div class="row ">
                 <div class="col-sm-6">
@@ -23,7 +23,7 @@
                             تم التسليم
                         @elseif ($item->status == 'nonrecevied')
                             لم يتم قبول التسليم
-                        @elseif ($item->status == 'recevied')
+                        @elseif ($item->status == 'received')
                             تم قبول التسليم
                         @endif
                     </span>
@@ -88,12 +88,10 @@
             </div>
 
         </div>
-        </div>
 
 
-        </div>
 
-        </div>
+
         <!-- Button trigger modal -->
 
 

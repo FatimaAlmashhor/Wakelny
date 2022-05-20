@@ -280,7 +280,6 @@ class PostController extends Controller
 
             if ($request->hasFile('files'))
                 $post->file = $this->uploadFile($request->file('files'));
-
             if ($post->save()) {
 
 
