@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -15,4 +16,15 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+    public function testUserCreation()
+    {
+        $user = new User([
+            'name' => "Test User",
+            'email' => "test@mail.com",
+            'password' => hash("sha256", "testpassword", true)
+        ]);
+
+        $this->assertEquals('Test User', $user->name);
+    }
+   
 }

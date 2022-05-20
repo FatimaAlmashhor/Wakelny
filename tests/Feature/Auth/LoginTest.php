@@ -1,22 +1,21 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Auth;
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class BasicTest extends TestCase
+class LoginTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    use HasFactory;
+    public function test_user_can_view_a_login_form()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
+
 }

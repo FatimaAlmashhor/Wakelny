@@ -17,12 +17,11 @@
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-content">
                         <!-- table head dark -->
-                        <div class="table" style="overflow: none ; padding: 10px 20px;">
-                            <table class="table mb-0 mt-3 " style="overflow: none">
-                                <thead class="thead-dark pr-4">
+                        <div class="table-responsive py-2">
+                            <table class="table mb-0 ">
+                                <thead class="thead-dark ">
                                     <tr>
                                         <th>#</th>
                                         <th>{{ __('dash.start_project') }}</th>

@@ -17,18 +17,17 @@
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-content">
-                        <!-- table head dark --->
-                        <div class="card-body" style="overflow: none;padding: 10px 20px;">
-                            <table class="table mb-0 mt-3 " id="table1" style="overflow: none">
-                                <thead class="thead-dark">
+                        <!-- table head dark -->
+                        <div class="table-responsive py-2">
+                            <table class="table mb-0 ">
+                                <thead class="thead-dark ">
                                     <tr>
                                         <th>#</th>
 
                                         <th>{{ __('dash.usre_name') }}</th>
                                         <th>{{ __('dash.user_email') }}</th>
-                                        <th>{{ __('dash.user_isBan_unBan') }}</th>
+                                        <th>{{ __('dash.State') }}</th>
                                         <th>{{ __('dash.user_is_active') }}</th>
 
                                     </tr>
@@ -43,14 +42,13 @@
 
                                             <td class="text-bold-500">{{ $item->name }}</td>
                                             <td class="text-bold-500">{{ $item->email }}</td>
-                                            <td >
-                                            @if( $item->is_active==1)
-                                            <label class="py-2 px- badge btn-primary">مفعل </label>
-                                            @elseif($item->is_active==0)
-                                            <label class="py-2 px- badge btn-danger">حظر </label>
-                                            @endif
-
-                                            </td>
+                                            <td>
+                                              @if($item->is_active == 1)
+                                              <span  class="bg-primary-blue " style="color:white;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                              @else
+                                              <span   class="bg-primary-pink " style="color:white;  padding: 5px 21px; border-radius: 5px;">معطل</span>
+                                              @endif
+                                              </td>
                                             <td>
                                                 {{-- <a  href="{{ route('edit_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
                                                      <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
@@ -59,12 +57,13 @@
                                                 <a href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
 
                                                         @if($item->is_active == 0)
-                                                        <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue" > </i>
                                                         @else
-                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
+                                                        <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#CD657C;" > </i>
                                                         @endif
 
                                                 </a>
+
                                             </td>
 
                                             {{-- <td>

@@ -23,11 +23,12 @@
     <link rel="shortcut icon" href="/assets/admin/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>متاح</title>
-
+    <link rel="stylesheet" href="/assets/admin/vendors/rater-js/style.css">
     <style>
         #sidebar.active .sidebar-wrapper {
 
@@ -79,12 +80,6 @@
             color: white;
         }
 
-        .dropdown-menu-end.show {
-            right: auto;
-            text-align: right;
-            direction: rtl;
-            padding: 0px 15px;
-        }
 
     </style>
 </head>
@@ -124,21 +119,24 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
-                                    style="">
+                                   style="   text-align: right;
+            direction: rtl;
+            padding: 0px 15px;" >
                                     <li>
-                                        <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
+                                        @if (Auth::check())
+                                            <h6 class="dropdown-header">اهلا, {{ auth()->user()->name }}</h6>
+                                        @endif
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
+                                    <!-- <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
                                             ملفي الشخصي
                                         </a></li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                                            الاعدادات</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
+                                            الاعدادات</a></li> -->
+                                    <li><a class="dropdown-item" href="{{ route('wallet') }}"><i class="icon-mid bi bi-wallet me-2"></i>
                                             المحفظة</a></li>
 
                                     <li>
-                                    <li><a class="dropdown-item" href="{{ route('change-password') }}"><i
-                                                class="icon-mid bi bi-wallet me-2"></i>
+                                    <li><a class="dropdown-item" href="{{ route('change-password') }}"><i class="fas fa-unlock-alt me-2"></i>
                                             تغيير كلمة السر</a></li>
 
                                     <li>
@@ -195,7 +193,7 @@
 
 
                                 </li>
-                                
+
                             </ul>
 
                         </div>
@@ -209,11 +207,18 @@
 
         <script src="/assets/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="/assets/admin/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="/assets/admin/vendors/apexcharts/apexcharts.js"></script>
         <script src="/assets/admin/js/pages/dashboard.js"></script>
+            
+        <script src="/assets/admin/vendors/rater-js/rater-js.js"></script>
+        <script src="/assets/admin/js/extensions/rater-js.js"></script>
         <script src="/assets/admin/js/mazer.js"></script>
 
+        <script src="{{ asset('assets/client/js/report.js') }}"></script>
 
+
+    
 </body>
 
 </html>
