@@ -51,6 +51,7 @@ class ReportController extends Controller
             ->where('project_id', '!=', null)
 
             ->where('reports.is_active', 1)
+            ->groupBy('posts.id')
             ->get();
 
         $reports_post =  Report::select(

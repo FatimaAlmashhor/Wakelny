@@ -16,7 +16,7 @@
                                 <span class="mr-1 font-md">اغلاق المشروع</span>
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path style="color:white ; stroke: white;
-                                             fill: white;"
+                                                                     fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
@@ -328,7 +328,7 @@
                                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                                     viewBox="0 0 20 20">
                                                                                     <path style="color:white ; stroke: white;
-                                                                                fill: white;"
+                                                                                                        fill: white;"
                                                                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                                                 </svg>
                                                                             </button>
@@ -536,16 +536,18 @@
                                             </div>
                                             @if (Auth::check() && $post->user_id == Auth::id())
                                                 <div class=" m-2 flex justify-start items-start">
-                                                    <button tabindex="-1" class="mo-btn  mx-1  " type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="fa fa-check px-1"></i>
-                                                        <span class=""> قبول العرض </span>
-                                                    </button>
-                                                    <a tabindex="-1" class="mo-btn btn-blue-rounderd"
-                                                        href="{{ route('inbox.show', $item->user_id) }}">
-                                                        <i class="fa fa-send px-1"></i>
-                                                        <span class="action-text"> تواصل مع متاح </span>
-                                                    </a>
+                                                    @if (!$checkHasProject)
+                                                        <button tabindex="-1" class="mo-btn  mx-1  " type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            <i class="fa fa-check px-1"></i>
+                                                            <span class=""> قبول العرض </span>
+                                                        </button>
+                                                        <a tabindex="-1" class="mo-btn btn-blue-rounderd"
+                                                            href="{{ route('inbox.show', $item->user_id) }}">
+                                                            <i class="fa fa-send px-1"></i>
+                                                            <span class="action-text"> تواصل مع متاح </span>
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             @endif
 
@@ -677,12 +679,12 @@
                     </div>
                 </div>
                 <!-- <hr>
-                                    <div>
-                                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+                                                            <div>
+                                                                <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
 
-                                    </div> -->
+                                                            </div> -->
                 <hr>
                 <div>
                     <p class="font-md my-4">صاحب المشروع</p>

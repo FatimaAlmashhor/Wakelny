@@ -52,6 +52,8 @@ class MyWorkOnProjectController extends Controller
                 return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
             } else
                 return view('client.projects.myProjects')->with('data', $data);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Exception $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
@@ -84,6 +86,8 @@ class MyWorkOnProjectController extends Controller
                 return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
             } else
                 return view('client.projects.myProjects')->with('data', $data);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Exception $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
@@ -120,6 +124,8 @@ class MyWorkOnProjectController extends Controller
 
             // return response()->json($project);
             return back()->with(['message' => 'تم تسليم المشروع رجاء انتظر الطرف الاخر', 'type' => 'alert-success']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
@@ -166,6 +172,8 @@ class MyWorkOnProjectController extends Controller
             } else
                 // return response()->json($project);
                 return view('client.projects.receiveProject')->with('project', $project);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             //throw $th;
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
@@ -228,6 +236,8 @@ class MyWorkOnProjectController extends Controller
 
             // return response()->json($profile);
             return redirect()->route('profile')->with(['message' => 'تم تسليم المشروعك بنجاح', 'type' => 'alert-success']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             //     //throw $th;
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
@@ -269,6 +279,8 @@ class MyWorkOnProjectController extends Controller
 
             return redirect()->route('profile')->with(['message' => 'لقد قمت برفض التسليم مشروعك', 'type' => 'alert-danger']);
             $project->status = 'reject_receive';
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->route('myProject')->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
@@ -296,6 +308,8 @@ class MyWorkOnProjectController extends Controller
 
             $currentProject->save();
             return back()->with(['message' => '   تم استأناف العمل على المشروع ', 'type' => 'alert-success']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
         }
