@@ -1,49 +1,51 @@
 
 <div class="flex-1 flex flex-row-reverse h-full" wire:poll="mountComponent()">
+@if(!$messages)
+       لا تملك مستخدمين للتحدث معهم
+@else
+        @if(auth()->user()->is_active == true )
+            <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6"  wire:init>
+                                    <div class="search flex-2 pb-6 px-2" >
+                                        <input type="text" class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200" placeholder="Search">
+                                    </div>
 
-         @if(auth()->user()->is_active == true )
-        <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6"  wire:init>
-                                <div class="search flex-2 pb-6 px-2" >
-                                    <input type="text" class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200" placeholder="Search">
-                                </div>
-
-                                <div class="flex-1 h-full my-8 overflow-auto px-2 scrollbar" id="style-7" wire:poll="render">
-                                    @foreach($users as $user)
-                                    @php
-                                        $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
-                                    @endphp
-                                    <a href="{{ route('inbox.show', $user->id) }}" > 
-                                        <div class="entry  cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md"  wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
-                                                <div class="flex-2">
-                                                    <div class="w-12 h-12 relative">
-                                                        <img class="w-12 h-12 rounded-full mx-auto" src="/images/1651959757_edait.png" alt="chat-user" />
-                                                        <span class="absolute w-4 h-4 bg-green-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
+                                    <div class="flex-1 h-full my-8 overflow-auto px-2 scrollbar" id="style-7" wire:poll="render">
+                                        @foreach($users as $user)
+                                        @php
+                                            $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
+                                        @endphp
+                                        <a href="{{ route('inbox.show', $user->id) }}" > 
+                                            <div class="entry  cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md"  wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
+                                                    <div class="flex-2">
+                                                        <div class="w-12 h-12 relative">
+                                                            <img class="w-12 h-12 rounded-full mx-auto" src="/images/1651959757_edait.png" alt="chat-user" />
+                                                            <span class="absolute w-4 h-4 bg-green-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="flex-1 px-2">
-                                                @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif 
-                                                    <div class="truncate w-32"><span class="text-gray-800">{{ $user->name }}</span></div>
-                                                    <div><small class="text-gray-600">{{ $user->last_activity }}</small></div>
-                                                        @if(filled($not_seen))
-                                                            <div class="badge badge-success rounded">{{ $not_seen->count() }}</div>
-                                                        @endif
-                                                </div>
-                                                <!-- <div class="flex-2 text-right">
-                                                    <div><small class="text-gray-500">15 April</small></div>
-                                                    <div>
-                                                        <small class="text-xs bg-red-500 text-white rounded-full h-6 w-6 leading-6 text-center inline-block">
-                                                            23
-                                                        </small>
+                                                    <div class="flex-1 px-2">
+                                                    @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif 
+                                                        <div class="truncate w-32"><span class="text-gray-800">{{ $user->name }}</span></div>
+                                                        <div><small class="text-gray-600">{{ $user->last_activity }}</small></div>
+                                                            @if(filled($not_seen))
+                                                                <div class="badge badge-success rounded">{{ $not_seen->count() }}</div>
+                                                            @endif
                                                     </div>
-                                                </div> -->
-                                        </div>
-                                    </a>
-                                    @endforeach
-                                </div>
-        </div>
+                                                    <!-- <div class="flex-2 text-right">
+                                                        <div><small class="text-gray-500">15 April</small></div>
+                                                        <div>
+                                                            <small class="text-xs bg-red-500 text-white rounded-full h-6 w-6 leading-6 text-center inline-block">
+                                                                23
+                                                            </small>
+                                                        </div>
+                                                    </div> -->
+                                            </div>
+                                        </a>
+                                        @endforeach
+                                    </div>
+            </div>
         @endif
-
+@endif
              <div class="chat-area flex-1 flex flex-col my-8">
             <div class="card">
                 <div class="flex-3 text-center">
