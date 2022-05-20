@@ -123,7 +123,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric'],
+                'duration' => ['required', 'numeric','gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
@@ -133,7 +133,8 @@ class PostController extends Controller
                 'message.required' => 'اضف وصف للمشروع',
                 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
                 'duration.required' => 'حقل المده مطلوب',
-                'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
+                'duration.numeric' => 'يجب ان يكون حقل المده من نوع رقمي',
+                'duration.gt' => 'يجب ان يكون حقل المده اكبر من صفر',
 
             ]);
 
@@ -229,6 +230,7 @@ class PostController extends Controller
     public function showProject()
     {
 
+          try {
         $project = Project::select(
             'posts.title',
             'projects.amount',
@@ -243,8 +245,11 @@ class PostController extends Controller
             ->get();
         // return response()->json($projects);
         return view('client.post.myProject')->with('projects', $project);
+    } catch (Expectation   $th) {
+            // throw $th;
+            return back()->with(['message' => 'حدث خطأ   ', 'type' => 'alert-danger']);
+        }
     }
-
 
     public function update(Request $request, $post_id)
     {
@@ -254,7 +259,7 @@ class PostController extends Controller
                 'category' => ['required'],
                 'cost' => ['required'],
                 'message' => ['required', 'min:100'],
-                'duration' => ['required', 'numeric'],
+                'duration' => ['required', 'numeric','gt:0'],
             ], [
                 'title.required' => 'يجب ان تقوم بأدخال عنوان للمشروع',
                 'title.min' => 'يجب ان يحتوي العنوان على 15 حرف على الاقل',
@@ -265,7 +270,7 @@ class PostController extends Controller
                 'message.min' => 'حقل الوصف يجب ان يحتوي على 255 حرف على الاقل',
                 'duration.required' => 'حقل المده مطلوب',
                 'duration.numeric' => 'يجب ان يكون حق المده من نوع رقمي',
-
+                'duration.gt' => 'يجب ان يكون حقل المده اكبر من صفر',
             ]);
 
 

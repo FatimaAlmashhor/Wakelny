@@ -664,7 +664,9 @@
                         </div>
                         <div>
                             <div class="my-3 font-sm"> <span class="px-1"
-                                    style="background-color: green ; color:white;">@if($post->status=="open") مفتوح @endif</span></div>
+                                    style="background-color: green ; color:white;">@if($post->status=="open") مفتوح
+@elseif ($post->status=="closed") مغلق
+                                    @endif</span></div>
                             <div class="my-3 font-sm"> {{ $post->created_at }}</div>
                             <div class="my-3 font-sm"> ${{ $post->cost }}</div>
 
