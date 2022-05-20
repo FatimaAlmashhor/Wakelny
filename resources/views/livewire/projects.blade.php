@@ -151,7 +151,7 @@
 
         </div>
 
-        <div class="col-md-2 pt-2  m-2  ">
+        {{-- <div class="col-md-2 pt-2  m-2  ">
 
             <label for="">الحالة</label>
             <select  wire:model="byContent" class="from-control">
@@ -163,7 +163,7 @@
             <option value="rejected"> رفض التسليم</option>
 
         </select>
-          </div>
+          </div> --}}
 
 
         <!-- Table head options starts- -->
