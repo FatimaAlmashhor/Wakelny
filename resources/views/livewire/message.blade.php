@@ -1,8 +1,6 @@
 
 <div class="flex-1 flex flex-row-reverse h-full" wire:poll="mountComponent()">
-@if(!$messages)
-       لا تملك مستخدمين للتحدث معهم
-@else
+
         @if(auth()->user()->is_active == true )
             <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6"  wire:init>
                                     <div class="search flex-2 pb-6 px-2" >
@@ -45,7 +43,7 @@
                                     </div>
             </div>
         @endif
-@endif
+
              <div class="chat-area flex-1 flex flex-col my-8">
             <div class="card">
                 <div class="flex-3 text-center">
