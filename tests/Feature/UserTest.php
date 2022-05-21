@@ -13,5 +13,4 @@ class UserTest extends TestCase
      *
      * @return void
      */
-
 }
