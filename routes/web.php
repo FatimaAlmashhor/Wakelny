@@ -92,7 +92,7 @@ Route::group([
     // Route::view('/contactUs', 'client.static.contactUs')->name('contactUs');
     Route::get('/contactUs', [ContactController::class, 'index'])->name('contactUs');
     Route::post('/contactUs', [ContactController::class, 'store'])->name('contact.us.store');
-    
+
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 
     // this is the page of the freelancers
@@ -195,7 +195,7 @@ Route::group([
             Route::post('/update_comment/{comment_id}', [CommentsController::class, 'update'])->name('update_comment');
 
 
-            
+
             // Route::get('/postDescribtion', [PostController::class, 'postDesciption'])->name('postDesciption');
             Route::get('/myProject', [PostController::class, 'showProject'])->name('myProject');
             Route::get('/editpost/{post_id}', [PostController::class, 'editPosts'])->name('editPosts');
@@ -302,7 +302,7 @@ Route::group([
 
         // payment
     });
-    Route::get('/do-payment', [PaymentController::class, 'doPayment'])->name('payment.do');
+    Route::get('/do-payment/{project_id}/{seeker_id}', [PaymentController::class, 'doPayment'])->name('payment.do');
     Route::get('/success-payment/{project_id}/{response}', [PaymentController::class, 'successPayment'])->name('payment.success');
     Route::get('/cancel-payment/{project_id}/{response}', [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
     Route::get('/get-money-back/{project_id}', [PaymentController::class, 'sendTheMoneyBack'])->name('payment.sendMoenyBack');
