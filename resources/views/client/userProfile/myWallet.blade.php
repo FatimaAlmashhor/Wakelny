@@ -48,7 +48,8 @@
                             <tr>
                                 <td class="font-md">{{ $loop->iteration }}</td>
                                 <td class="font-md">{{ $tran->name }}</td>
-                                <td class="font-md">{{ $tran->amount }}</td>
+                                <td class="font-md">{{ $tran->dep_amount }}</td>
+                                {{-- <td class="font-md">{{ $tran->with_amount }}</td> --}}
                                 <td class="font-md">{{ $tran->title }}</td>
                                 <td class="font-md">{{ $tran->created_at }}</td>
                                 {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}

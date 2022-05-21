@@ -98,23 +98,26 @@ class ProfileController extends Controller
             $iAmSeeker = true;
         $transactions = Transfer::select(
             'profiles.name',
-            'deposit.amount',
+            'deposit.amount as dep_amount',
             'deposit.meta->project_id',
             'withdraw.meta->project_id',
-            'withdraw.amount',
+            'withdraw.amount as with_amount',
             'transfers.created_at',
             'dep_post.title',
             'with_post.title',
         )
-            ->join('wallets', 'wallets.id', '=', $iAmSeeker ? 'to_id' : 'from_id')
-            ->join('profiles', 'profiles.user_id', '=', 'wallets.holder_id')
+            ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+            ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+            ->join('profiles', 'profiles.user_id', '=', 'wa1.holder_id')
             ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
             ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
             ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
             ->join('projects as with', 'with.id', '=', 'withdraw.meta->project_id')
             ->join('posts as dep_post', 'dep_post.id', '=', 'dep.post_id')
             ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
-            ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
+            // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
+            ->where('to_id', $wallet->id)
+            ->orWhere('from_id', $wallet->id)
             ->get();
         // return response()->json($transactions);
         return view('client.userProfile.myWallet')->with([
