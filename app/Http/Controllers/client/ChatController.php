@@ -15,11 +15,12 @@ class ChatController extends Controller
 
     public function index() {
         // Show just the users and not the admins as well
-        $users = User::where('is_active', true)
+        $users = User::where('is_active', true)->where('last_activity', '!=','')
         ->get();
 
         if (auth()->user()->is_active == true) {
-            $messages = Messages::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
+            $messages = Messages::where('user_id', auth()->id())
+            ->orWhere('receiver', auth()->id())->get();
         }
 
         return view('client.chat.home', [
