@@ -9,7 +9,7 @@ use App\Models\PostModel;
 use App\Models\Posts;
 use App\Models\PostSkills;
 use App\Models\Profile;
-
+use App\Models\Project;
 use App\Models\Skill;
 use App\Models\User;
 use App\Notifications\PostNotification;
@@ -111,7 +111,7 @@ class PostController extends Controller
                 'checkHasProject' => $checkProject ? true : false
             ]);
         } catch (\Throwable $th) {
-            return back()->with(['message' => ' هنالك مشكله ما رجاء قم بعاده المحوله', 'type' => 'alert-danger']);
+            return back()->with(['message' => ' هنالك مشكله ما رجاء قم باعاده المحاوله', 'type' => 'alert-danger']);
         }
     }
     // page for show the form of create new post
