@@ -243,6 +243,7 @@ class PostController extends Controller
                 'projects.amount',
                 'projects.id as project_id',
                 'projects.seeker_id as seeker_id',
+                'projects.provider_id as provider_id',
                 'projects.totalAmount',
                 'projects.status',
                 'projects.payment_status',
@@ -255,6 +256,8 @@ class PostController extends Controller
                 ->get();
             // return response()->json($projects);
             return view('client.post.myProject')->with('projects', $project);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'حدث خطأ   ', 'type' => 'alert-danger']);
@@ -302,6 +305,8 @@ class PostController extends Controller
                     ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
