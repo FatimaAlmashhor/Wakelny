@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\client;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Posts;
+use App\Models\Skill;
+use Dotenv\Validator;
+use App\Models\Profile;
+use App\Models\Project;
 use App\Models\category;
 use App\Models\Comments;
-use App\Models\PostModel;
-use App\Models\Posts;
-use App\Models\PostSkills;
-use App\Models\Profile;
-use App\Models\Skill;
-use App\Models\User;
-use App\Notifications\PostNotification;
-use Dotenv\Validator;
-use Illuminate\Console\Command;
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Mockery\Expectation;
+use App\Models\PostModel;
+use App\Models\PostSkills;
+use Illuminate\Http\Request;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\PostNotification;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 
 class PostController extends Controller
 {

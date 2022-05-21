@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+// use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use App\Http\Controllers\UserController;
 
 class UserTest extends TestCase
 {
@@ -11,8 +13,10 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_if_user_not_logged_in()
     {
-        $this->assertTrue(true);
+        // $returnedValue = (new UserController)->showUserProfile(2);
+        // $this->assertEmpty($returnedValue);
+        // $this->assertTrue(true);
     }
 }
