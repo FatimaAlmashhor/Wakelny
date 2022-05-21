@@ -13,10 +13,10 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_interacting_with_headers()
-    {
-        $this->visit('do_login')
-                ->click('أذهب')
-                ->seePageIs('/login');
-    }
+    // public function test_interacting_with_headers()
+    // {
+    //     $this->visit('do_login')
+    //             ->click('أذهب')
+    //             ->seePageIs('/login');
+    // }
 }
