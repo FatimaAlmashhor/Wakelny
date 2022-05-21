@@ -66,13 +66,19 @@
                 </div>
                 <div class="flex justify-content-end gap-1 margin-right: -23px;">
 
-                    @if ($item->payment_status == 'unpaid')
+                    @if ($item->payment_status == 'unpaid' && $item->status == 'at_work')
                         <a href="{{ route('payment.do', [$item->project_id, $item->seeker_id]) }}"
                             class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                             <p class="font-md"> لم يتم الدفع</p>
                         </a>
                     @endif
-                    <div class="card--actions hidden-xs   flex justify-content-end gap-1">
+                    @if ($item->status == 'done')
+                        <a href="{{ route('userProfile', $item->project_id) }}"
+                            class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                            <p class="font-md">تم تسليم مشروعك</p>
+                        </a>
+                    @endif
+                    {{-- <div class="card--actions hidden-xs   flex justify-content-end gap-1">
                         <a class=" border-2 hover:bg-primary-green flex justify-center items-center border-primary-green p-1 w-10 rounded-md bg-transparent "
                             href="{{ route('editPosts', $item->post_id) }}">
                             <i class="fa-solid fa-pen   text-black text-center"></i>
@@ -87,7 +93,7 @@
 
                         </a> --}}
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

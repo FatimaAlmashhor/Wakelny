@@ -135,6 +135,14 @@
                                 </a>
                             @endrole
                         @endif
+                        @if (Auth::check())
+                            <a href="{{ route('mywallet') }}">
+                                <ion-icon name="wallet-outline"
+                                    class="font-md cursor-pointer {{ request()->segment(2) == 'mywallet' ? 'active_fixed_nav' : '' }}">
+                                </ion-icon>
+
+                            </a>
+                        @endif
                         <!-- start drop up -->
                         <div class="flex items-center">
                             <div @click.away="open = false" class="relative" x-data="{ open: false }">

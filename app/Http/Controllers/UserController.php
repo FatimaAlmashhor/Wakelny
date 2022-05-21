@@ -117,6 +117,9 @@ class UserController extends Controller
             } else {
                 $rating_avg = 0;
             }
+            $profile = Profile::where('user_id', $user_id)->update([
+                'rating' => $rating_avg
+            ]);
 
             $evaluations = Evaluation::select(
                 'evaluations.message',
