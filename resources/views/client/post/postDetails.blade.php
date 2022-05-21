@@ -16,7 +16,7 @@
                                 <span class="mr-1 font-md">اغلاق المشروع</span>
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path style="color:white ; stroke: white;
-                                             fill: white;"
+                                                                     fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
@@ -112,7 +112,7 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="cost"
+                                                    <input name="cost" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         type="number" value="{{ old('cost') }}" aria-label="Username"
                                                         aria-describedby="basic-addon1">
@@ -164,7 +164,7 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="duration"
+                                                    <input name="duration" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         id="phone" type="number" value="{{ old('duration') }}"
                                                         aria-label="Username" aria-describedby="basic-addon1">
@@ -328,7 +328,7 @@
                                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                                     viewBox="0 0 20 20">
                                                                                     <path style="color:white ; stroke: white;
-                                                                                fill: white;"
+                                                                                                        fill: white;"
                                                                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                                                 </svg>
                                                                             </button>
@@ -393,7 +393,7 @@
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="cost"
+                                                                                <input name="cost" min="1"
                                                                                     class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60 '
                                                                                     type="number"
                                                                                     value="{{ $item->cost ?? old('cost') }}"
@@ -455,7 +455,7 @@
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="duration"
+                                                                                <input name="duration" min="1"
                                                                                     class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                                                     id="phone" type="number"
                                                                                     value="{{ $item->duration ?? old('duration') }}"
@@ -536,16 +536,18 @@
                                             </div>
                                             @if (Auth::check() && $post->user_id == Auth::id())
                                                 <div class=" m-2 flex justify-start items-start">
-                                                    <button tabindex="-1" class="mo-btn  mx-1  " type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="fa fa-check px-1"></i>
-                                                        <span class=""> قبول العرض </span>
-                                                    </button>
-                                                    <a tabindex="-1" class="mo-btn btn-blue-rounderd"
-                                                        href="{{ route('inbox.show', $item->user_id) }}">
-                                                        <i class="fa fa-send px-1"></i>
-                                                        <span class="action-text"> تواصل مع متاح </span>
-                                                    </a>
+                                                    @if (!$checkHasProject)
+                                                        <button tabindex="-1" class="mo-btn  mx-1  " type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            <i class="fa fa-check px-1"></i>
+                                                            <span class=""> قبول العرض </span>
+                                                        </button>
+                                                        <a tabindex="-1" class="mo-btn btn-blue-rounderd"
+                                                            href="{{ route('inbox.show', $item->user_id) }}">
+                                                            <i class="fa fa-send px-1"></i>
+                                                            <span class="action-text"> تواصل مع متاح </span>
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             @endif
 
@@ -583,9 +585,9 @@
                                                                         <label class="font-md">المبلغ المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="amount"
+                                                                            <input name="amount" min="1"
                                                                                 class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="amount" type="text"
+                                                                                id="amount" type="number"
                                                                                 value="{{ old('cost') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
@@ -603,9 +605,9 @@
                                                                         <label class="font-md">المده المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="duration"
+                                                                            <input name="duration" min="1"
                                                                                 class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="duration" type="text"
+                                                                                id="duration" type="number"
                                                                                 value="{{ old('duration') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
@@ -664,7 +666,9 @@
                         </div>
                         <div>
                             <div class="my-3 font-sm"> <span class="px-1"
-                                    style="background-color: green ; color:white;">{{ $post->status }}</span></div>
+                                    style="background-color: green ; color:white;">@if($post->status=="open") مفتوح
+@elseif ($post->status=="closed") مغلق
+                                    @endif</span></div>
                             <div class="my-3 font-sm"> {{ $post->created_at }}</div>
                             <div class="my-3 font-sm"> ${{ $post->cost }}</div>
 
@@ -675,12 +679,12 @@
                     </div>
                 </div>
                 <!-- <hr>
-                                    <div>
-                                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+                                                            <div>
+                                                                <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
 
-                                    </div> -->
+                                                            </div> -->
                 <hr>
                 <div>
                     <p class="font-md my-4">صاحب المشروع</p>

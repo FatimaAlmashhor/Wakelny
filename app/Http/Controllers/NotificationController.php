@@ -92,14 +92,14 @@ class NotificationController extends Controller
     }
 
 
-    function acceptTheProjectNotifiction($project, $response)
+    function acceptTheProjectNotifiction($project)
     {
         $seekerNotify = User::find($project->seeker_id);
         $data = [
             'project_id' => $project->project_id,
             'name' => $seekerNotify->name,
             'project_title' => $project->title,
-            'url' => url($response['invoice']['next_url']),
+            'url' => url('/myProject#' . $project->project_id),
             'message' => 'لقد قام' . Auth::user()->name . 'بقبول مشروعك ' . $project->title,
             'userId' => $project->seeker_id
         ];

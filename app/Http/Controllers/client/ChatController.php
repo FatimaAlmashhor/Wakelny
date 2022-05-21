@@ -42,6 +42,8 @@ class ChatController extends Controller
             ->orderBy('id', 'ASC')
             ->get();
 
+
+
         if (auth()->user()->is_active == true) {
             $messages = Messages::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
         } else {

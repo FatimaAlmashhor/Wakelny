@@ -53,19 +53,25 @@
     {{-- //paste this code under the head tag or in a separate js file.
 	// Wait for window load --}}
     <script type='text/javascript'>
-        $(window).load(function() {
+        $(window).load(async function() {
             // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
+            await setTimeout(() => {
+                $("#loading").addClass("circle-leave-active");
+                $("#loading").fadeOut("slow");
+            }, 2300);
         });
     </script>
 </head>
 
 <body>
-    <div class="se-pre-con"></div>
+    <div id='loading' class=" fixed flex justify-center items-center bg-primary-light-gray w-screen h-screen z-50"
+        style="z-index: 2000">
+        <div class="ripple"></div>
+    </div>
 
     {{-- alerts --}}
     @if (session()->has('message'))
-        <div id='alert' x-data="{ isShow: true }" class="z-50  " style="z-index: 9999999 !importent">
+        <div id='alert' x-data="{ isShow: true }" class="z-50  " style="z-index: 99999">
             <div x-show="isShow" class="fixed top-32 right-0 m-3 w-2/3 md:w-1/3"
                 x-transition:enter="transition transform ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
@@ -128,6 +134,14 @@
                                     </ion-icon>
                                 </a>
                             @endrole
+                        @endif
+                        @if (Auth::check())
+                            <a href="{{ route('mywallet') }}">
+                                <ion-icon name="wallet-outline"
+                                    class="font-md cursor-pointer {{ request()->segment(2) == 'mywallet' ? 'active_fixed_nav' : '' }}">
+                                </ion-icon>
+
+                            </a>
                         @endif
                         <!-- start drop up -->
                         <div class="flex items-center">
@@ -247,6 +261,8 @@
         channel.bind('App\\Events\\CommentEvents', function(data) {
             // alert(data.userId);
             if (data.userId.toString() == "{!! Auth::id() !!}") {
+                // const audio = new Audio(url);
+                // audio.play();
                 notifyMark.classList.remove('hidden');
                 const node = document.createElement("a");
                 node.href = data.url;
@@ -271,28 +287,14 @@
             //has internet connection
             console.log('connected');
         }
+        // $('.mo-btn').on('click', function() {
+        //     $('.mo-btn').attr("disabled", true);
+        //     $('.mo-btn').addClass("bg-gray");
+        // })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".showForm").click(function() {
-
-                $(".editForm").toggleClass("show");
-
-
-
-            });
-        });
-    </script>
-
-
     @livewireScripts
-
-
 
 
 </body>
