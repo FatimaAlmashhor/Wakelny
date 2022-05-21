@@ -3,7 +3,6 @@
     <h3 class="m-5 font-xl font-bold pt-20 flex flex-col justify-start items-start"> المشاريع الخاصة بي</h3>
     {{-- updating --}}
     @foreach ($projects as $item)
-
         {{-- one card --}}
         <div class="  w-12/12 lg:w-9/12 card mt-5 sm:px-16 lg:px-10 " id='{{ $item->project_id }}'>
 
@@ -93,7 +92,7 @@
 
                         </a> --}}
 
-                    </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
 

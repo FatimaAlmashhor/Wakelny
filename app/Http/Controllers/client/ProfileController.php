@@ -97,7 +97,7 @@ class ProfileController extends Controller
         if (Auth::user()->hasRole('seeker'))
             $iAmSeeker = true;
         $transactions = Transfer::select(
-            'profiles.name',
+            'from.name',
             'deposit.amount as dep_amount',
             'deposit.meta->project_id',
             'withdraw.meta->project_id',
@@ -107,8 +107,9 @@ class ProfileController extends Controller
             'with_post.title',
         )
             ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
-            ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
-            ->join('profiles', 'profiles.user_id', '=', 'wa1.holder_id')
+            // ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+            ->join('profiles as from', 'from.user_id', '=', 'wa1.holder_id')
+            // ->join('profiles as to', 'to.user_id', '=', 'wa2.holder_id')
             ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
             ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
             ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
