@@ -111,7 +111,7 @@ class PostController extends Controller
                 'checkHasProject' => $checkProject ? true : false
             ]);
         } catch (\Throwable $th) {
-            return back()->with(['message' => ' هنالك مشكله ما رجاء قم بعاده المحوله', 'type' => 'alert-danger']);
+            return back()->with(['message' => ' هنالك مشكله ما رجاء قم باعاده المحاوله', 'type' => 'alert-danger']);
         }
     }
     // page for show the form of create new post
