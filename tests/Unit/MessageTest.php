@@ -17,7 +17,7 @@ class MessageTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testCommentCreation()
+    public function testMessageCreation()
     {
         $message = new Messages([
             'message' => 'Test Message',
