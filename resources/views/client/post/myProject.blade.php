@@ -73,7 +73,7 @@
                         </a>
                     @endif
                     @if ($item->status == 'done')
-                        <a href="{{ route('userProfile', $item->project_id) }}"
+                        <a href="{{ route('markAsRecive', [$item->project_id, $item->provider_id]) }}"
                             class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                             <p class="font-md">تم تسليم مشروعك</p>
                         </a>
