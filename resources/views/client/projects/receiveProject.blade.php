@@ -57,8 +57,8 @@
     </style>
     {{-- @foreach ($projects as $project) --}}
     <div class="container">
-        <div class="d-flex justify-content-between flex-wrap">
-            <h3 class="my-5">{{ $project->title }}</h3>
+        <div class="d-flex justify-content-between flex-wrap mt-20">
+            <h3 class="my-5 font-xl font-bold">{{ $project->title }}</h3>
         </div>
     </div>
 
@@ -181,8 +181,8 @@
                 <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="deleteModel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
+                            <div class="modal-header ">
+                                <h5 class="modal-title " id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
                                 {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                             </div>
 

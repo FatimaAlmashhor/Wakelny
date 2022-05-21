@@ -93,20 +93,31 @@ class ProfileController extends Controller
         $wallet = Wallet::where('holder_id', Auth::id())->first();
         // $transactions = Transaction::select('*', DB::raw('JSON_EXTRACT(`meta`, "$.project_id")'))->where('payable_id', Auth::id())->get();
 
+        $iAmSeeker = false;
+        if (Auth::user()->hasRole('seeker'))
+            $iAmSeeker = true;
         $transactions = Transfer::select(
-            'users.name',
-            'deposit.amount',
+            'profiles.name',
+            'deposit.amount as dep_amount',
             'deposit.meta->project_id',
-            'withdraw.amount',
+            'withdraw.meta->project_id',
+            'withdraw.amount as with_amount',
             'transfers.created_at',
-            'posts.title',
+            'dep_post.title',
+            'with_post.title',
         )
-            ->join('users', 'users.id', '=', 'from_id')
+            ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+            ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+            ->join('profiles', 'profiles.user_id', '=', 'wa1.holder_id')
             ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
             ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
-            ->join('projects', 'projects.id', '=', 'deposit.meta->project_id')
-            ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
+            ->join('projects as with', 'with.id', '=', 'withdraw.meta->project_id')
+            ->join('posts as dep_post', 'dep_post.id', '=', 'dep.post_id')
+            ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
+            // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
             ->where('to_id', $wallet->id)
+            ->orWhere('from_id', $wallet->id)
             ->get();
         // return response()->json($transactions);
         return view('client.userProfile.myWallet')->with([

@@ -10,6 +10,24 @@ use App\Models\Profile;
 use App\Models\Project;
 use App\Models\category;
 use App\Models\Comments;
+<<<<<<< HEAD
+=======
+use App\Models\PostModel;
+use App\Models\Posts;
+use App\Models\PostSkills;
+use App\Models\Profile;
+use App\Models\Project;
+use App\Models\Skill;
+use App\Models\User;
+use App\Notifications\PostNotification;
+use Dotenv\Validator;
+use Illuminate\Console\Command;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
+>>>>>>> 8d99fe7c6ab273ae22c1d8f7ef8d268b11d15387
 use Mockery\Expectation;
 use App\Models\PostModel;
 use App\Models\PostSkills;
@@ -111,7 +129,7 @@ class PostController extends Controller
                 'checkHasProject' => $checkProject ? true : false
             ]);
         } catch (\Throwable $th) {
-            return back()->with(['message' => ' هنالك مشكله ما رجاء قم بعاده المحوله', 'type' => 'alert-danger']);
+            return back()->with(['message' => ' هنالك مشكله ما رجاء قم باعاده المحاوله', 'type' => 'alert-danger']);
         }
     }
     // page for show the form of create new post
@@ -243,6 +261,7 @@ class PostController extends Controller
                 'projects.amount',
                 'projects.id as project_id',
                 'projects.seeker_id as seeker_id',
+                'projects.provider_id as provider_id',
                 'projects.totalAmount',
                 'projects.status',
                 'projects.payment_status',
@@ -255,6 +274,8 @@ class PostController extends Controller
                 ->get();
             // return response()->json($projects);
             return view('client.post.myProject')->with('projects', $project);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'حدث خطأ   ', 'type' => 'alert-danger']);
@@ -302,6 +323,8 @@ class PostController extends Controller
                     ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
