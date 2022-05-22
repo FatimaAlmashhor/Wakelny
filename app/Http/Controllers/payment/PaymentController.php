@@ -47,8 +47,8 @@ class PaymentController extends Controller
             ];
 
             $response = Http::withHeaders([
-                'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-                'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
+                'private-key' => env('PRIVATE_KEY'),
+                'public-key' => env('PUBLIC_KEY'),
                 'Content-Type' => 'application/x-www-form-url'
             ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
                 'order_reference' =>  $project_id,
