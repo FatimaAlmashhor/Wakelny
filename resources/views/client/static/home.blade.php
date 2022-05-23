@@ -93,7 +93,7 @@
                     <div class="flex flex-col  items-center  sm:items-start h-full px-5 md:px-24">
                         <h1 class="logo-font font-4xl" data-aos="fade-up" data-aos-duration="1000">متاح</h1>
                         <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصة إبداعية تجمع بين
-                            أصحاب المشاريع والعامل الحر
+                            صاحب المشروع والعامل الحر
                             <br />
                             لتسهيل
                             العمل وضمان الحقوق بسهولة وجودة عالية 
@@ -458,10 +458,11 @@
                 <div class="w-12/12 md:w-6/12">
                     <div class="flex flex-col justify-center h-full px-5 md:px-20">
                         <h1 class="logo-font font-4xl">متاح</h1>
-                        <p class="mt-4">منصه ابداعيه تجمع بين اصحاب الاعمال والمطور الحر
+                        <p class="mt-4">منصة إبداعية تجمع بين
+                            صاحب المشروع والعامل الحر
                             <br />
                             لتسهيل
-                            العمل وضمان الحقوق بجوده عاليه وسهوله
+                            العمل وضمان الحقوق بسهولة وجودة عالية 
                         </p>
                         <!-- social media -->
                         <div class="flex mt-4 space-x-6  ">
@@ -507,7 +508,7 @@
                         <a href="{{ route('aboutUs') }}" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6">سياسه الخصوصيه</a>
+                        <a href="#" class="mr-4 hover:underline md:mr-6">سياسة الخصوصية</a>
                     </li>
                     <li>
                         <a href="{{ route('contactUs') }}" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
