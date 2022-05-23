@@ -60,8 +60,9 @@
                                     <i class="fa fa-fw fa-send"></i>
                                     <span class="mr-1"> أضف مشروع </span>
                                     <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path style="color:white ; stroke: white;
-                                                                fill: white;"
+                                        <path
+                                            style="color:white ; stroke: white;
+                                                                                                                                fill: white;"
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
                         @endif
@@ -119,7 +120,7 @@
             <div class="row col-12" id="">
 
                 <!-- About -->
-                <div class=" about-section px-3  is-show subPage flex-sm-column flex-lg-row" id="tab-A">
+                <div class=" about-section px-3  is-show subPage flex-col lg:flex-row " id="tab-A">
                     <div class="row col-sm-12 col-lg-7">
                         <!-- My Brief -->
                         <div class="row ">
@@ -219,7 +220,7 @@
                                                 </span>
                                             </span>
                                             <span>
-                                                [ {{$rating_count}} ]
+                                                [ {{ $rating_count }} ]
                                             </span>
                                         </p>
                                     </div>
@@ -249,7 +250,8 @@
                 <!-- /About -->
 
                 <!-- Ratings -->
-                <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
+                <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage flex-col lg:flex-row "
+                    id="tab-B">
                     <section class="card shadow-sm col-12 col-sm-12 p-3">
                         <div class="about-me">
                             <div class="section-title">
@@ -257,55 +259,57 @@
                             </div>
                             <div class="brief-content mt-3 me-1">
                                 @foreach ($evaluations as $evaluate)
-                                <div class="row p-3 border-bottom">
-                                    <div> <!-- class="d-flex justify-content-between" -->
-                                        <div class="flex justify-between mb-2">
-                                            <div class="flex justify-between">
-                                                <p class="bg-primary-green text-white flex-none px-2 py-1 text-xs">
-                                                    مكتمل
-                                                </p>
-                                                <p class="text-primary-blue font-semibold mr-2">
-                                                    {{$evaluate->title}}
-                                                </p>
+                                    <div class="row p-3 border-bottom">
+                                        <div>
+                                            <!-- class="d-flex justify-content-between" -->
+                                            <div class="flex justify-between mb-2">
+                                                <div class="flex justify-between">
+                                                    <p class="bg-primary-green text-white flex-none px-2 py-1 text-xs">
+                                                        مكتمل
+                                                    </p>
+                                                    <p class="text-primary-blue font-semibold mr-2">
+                                                        {{ $evaluate->title }}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <span class="me-1">
+                                                        {{-- {{ $rating->countEvalution }} --}}
+                                                        @for ($i = 0; $i < 5; $i++)
+                                                            @if ($evaluate->value > $i)
+                                                                <i class="fa fa-star clr-amber rating-star"
+                                                                    style="color: orange;"></i>
+                                                            @else
+                                                                <i class="fa fa-star clr-amber rating-star"
+                                                                    style="color: gainsboro;"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span class="me-1">
-                                                    {{-- {{ $rating->countEvalution }} --}}
-                                                    @for ($i = 0; $i < 5; $i++)
-                                                        @if ($evaluate->value > $i)
-                                                            <i class="fa fa-star clr-amber rating-star"
-                                                                style="color: orange;"></i>
-                                                        @else
-                                                            <i class="fa fa-star clr-amber rating-star"
-                                                                style="color: gainsboro;"></i>
-                                                        @endif
-                                                    @endfor
-                                                </span>
+                                            <div class="fs-6 fw-normal d-flex justify-content-start">
+                                                <div>
+                                                    @if ($evaluate->avatar !== null)
+                                                        <img src="{{ $evaluate->avatar }}" class="border rounded-circle"
+                                                            style="max-width: 50px; max-height: 50px; object-fit: cover">
+                                                    @else
+                                                        <img src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                                                            class="border rounded-circle"
+                                                            style="max-width: 50px; height: 50px; object-fit: cover">
+                                                    @endif
+                                                </div>
+                                                <div class="me-2">
+                                                    <p> {{ $evaluate->evaluater_name }} </p>
+                                                    <p class="p-1 text-xs text-primary-pink">
+                                                        <i class="fa-regular fa-clock"></i>
+                                                        {{ $evaluate->created_at }}
+                                                    </p>
+                                                </div>
                                             </div>
+                                            <p class="p-1 px-1 me-5">
+                                                {{ $evaluate->message }}
+                                            </p>
                                         </div>
-                                        <div class="fs-6 fw-normal d-flex justify-content-start">
-                                            <div>
-                                                @if ($evaluate->avatar !== null)
-                                                    <img src="{{ $evaluate->avatar }}" class="border rounded-circle"
-                                                        style="max-width: 50px; max-height: 50px; object-fit: cover">
-                                                @else
-                                                    <img src="{{ asset('assets/client/images/user-profile-2.png') }}"
-                                                        class="border rounded-circle" style="max-width: 50px; height: 50px; object-fit: cover">
-                                                @endif
-                                            </div>
-                                            <div class="me-2">
-                                                <p> {{$evaluate->evaluater_name}} </p>
-                                                <p class="p-1 text-xs text-primary-pink">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    {{$evaluate->created_at}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p class="p-1 px-1 me-5">
-                                            {{$evaluate->message}}
-                                        </p>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -316,7 +320,8 @@
                 @if ($role == 'provider' || $role == 'both')
                     <!-- works -->
 
-                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage mb-3" id="tab-C">
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage mb-3 flex-col lg:flex-row  "
+                        id="tab-C">
                         <div class="row row col-12">
                             <section class="card shadow-sm col-12 col-sm-12">
                                 <div class="my-ratings">
@@ -353,7 +358,8 @@
                 @endif
                 @if ($role == 'seeker' || $role == 'both')
                     <!-- projects -->
-                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
+                    <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage flex-col lg:flex-row "
+                        id="tab-D">
                         <div class="row  col-12">
                             <section class=" col-12 col-sm-12">
                                 <div class="my-ratings">
