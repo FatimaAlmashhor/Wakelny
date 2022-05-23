@@ -97,7 +97,7 @@ class ProfileController extends Controller
             $iAmSeeker = false;
             if (Auth::check() && Auth::user()->hasRole('seeker'))
                 $iAmSeeker = true;
-            $transactions = Transfer::select(
+            $transactions_to_owner = Transfer::select(
                 'from.name',
                 'deposit.amount as dep_amount',
                 'deposit.meta->project_id',
@@ -107,9 +107,9 @@ class ProfileController extends Controller
                 'dep_post.title',
                 'with_post.title',
             )
-                ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
-                // ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
-                ->join('profiles as from', 'from.user_id', '=', 'wa1.holder_id')
+                // ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+                ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+                ->join('profiles as from', 'from.user_id', '=', 'wa2.holder_id')
                 // ->join('profiles as to', 'to.user_id', '=', 'wa2.holder_id')
                 ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
                 ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
@@ -119,13 +119,36 @@ class ProfileController extends Controller
                 ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
                 // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
                 ->where('to_id', $wallet->id)
-                ->orWhere('from_id', $wallet->id)
+                // ->orWhere('from_id', $wallet->id)
+                ->get();
+            $transactions_from_owner = Transfer::select(
+                'to.name',
+                'withdraw.meta->project_id',
+                'withdraw.amount as with_amount',
+                'transfers.created_at',
+                'with_post.title',
+            )
+                ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+                // ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+                // ->join('profiles as from', 'from.user_id', '=', 'wa2.holder_id')
+                ->join('profiles as to', 'to.user_id', '=', 'wa1.holder_id')
+                ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
+                ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
+                ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
+                ->join('projects as with', 'with.id', '=', 'withdraw.meta->project_id')
+                ->join('posts as dep_post', 'dep_post.id', '=', 'dep.post_id')
+                ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
+                // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
+                // ->where('to_id', $wallet->id)
+                ->where('from_id', $wallet->id)
                 ->get();
             // return response()->json($transactions);
             return view('client.userProfile.myWallet')->with([
                 'item' => $profile,
                 'wallet' => $wallet,
-                'transactions' => $transactions,
+                'deposit' => $transactions_to_owner,
+                'withdraw' => $transactions_from_owner
+
             ]);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);

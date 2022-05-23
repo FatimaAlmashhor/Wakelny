@@ -1575,6 +1575,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.25rem;
 }
 
+.pt-16 {
+  padding-top: 4rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2072,6 +2076,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:w-8\/12 {
     width: 66.666667%;
+  }
+
+  .lg\:w-5\/12 {
+    width: 41.666667%;
   }
 
   .lg\:max-w-4xl {

@@ -1,6 +1,6 @@
 @extends('client.master_layout')
 @section('content')
-    <main class="container pt-20">
+    <main class="container pt-20" x-data='{deposit: true , withdraw : false }'>
         <!-- top nav start -->
         <div class="row mx-1  my-3 col-12 d-flex justify-content-lg-between ">
             <nav aria-label="breadcrumb" class="main-breadcrumb col-6 p-3">
@@ -24,13 +24,22 @@
             <!-- wallet section -->
             <section class="col-lg-8 col-md-8 col-12">
                 <div
-                    class=" w-12/12 md:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
+                    class=" w-12/12 lg:w-5/12 mb-10  h-24 flex justify-center items-center font-3xl border rounded-lg shadow-sm bg-white p-3">
                     <span class="font-2xl font-bold text-primary-green px-2">
                         ماتملكه :
                     </span>
                     @if ($wallet != null)
                         ${{ $wallet->balance }}
                     @endif
+                </div>
+                <div class="w-full flex justify-end ">
+                    <button :class="{ ' text-primary-pink font-bold': deposit == true }
+                    'font-sm mx-2'"
+                        @click="deposit = true ; withdraw = false"> أضافه للمحفظه</button>
+                    <span class="font-bold mx-3">|</span>
+                    <button :class="{ ' text-primary-pink font-bold': withdraw == true }
+                    'font-sm mx-2'"
+                        @click="deposit = false ; withdraw = true">سحب من المحفظه</button>
                 </div>
                 <table class="table border">
                     <thead>
@@ -44,8 +53,8 @@
                         </tr>
                     </thead>
                     <tbody class="table-light">
-                        @foreach ($transactions as $tran)
-                            <tr>
+                        @foreach ($deposit as $tran)
+                            <tr x-show='deposit'>
                                 <td class="font-md">{{ $loop->iteration }}</td>
                                 <td class="font-md">{{ $tran->name }}</td>
                                 <td class="font-md">{{ $tran->dep_amount }}</td>
@@ -57,7 +66,18 @@
                             </tr>
                         @endforeach
 
-
+                        @foreach ($withdraw as $tran)
+                            <tr x-show='withdraw'>
+                                <td class="font-md">{{ $loop->iteration }}</td>
+                                <td class="font-md">{{ $tran->name }}</td>
+                                <td class="font-md">{{ $tran->with_amount }}</td>
+                                {{-- <td class="font-md">{{ $tran->with_amount }}</td> --}}
+                                <td class="font-md">{{ $tran->title }}</td>
+                                <td class="font-md">{{ $tran->created_at }}</td>
+                                {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
+                                {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </section>
