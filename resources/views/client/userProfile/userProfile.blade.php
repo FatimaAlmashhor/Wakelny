@@ -1,9 +1,9 @@
 @extends('client.master_layout')
 @section('content')
     <div class="px-4 lg:px-20">
-        <div class="container-fluid border-bottom px-5 pt-20">
+        <div class="container-fluid border-bottom px-5 pt-16">
             <!-- User Identety Brief-->
-            <div class="  flex justify-center md:justify-between  flex-col md:flex-row items-center ">
+            <div class="  flex justify-center md:justify-between  flex-col md:flex-row items-center my-8 ">
                 <div class="flex my-8 flex-col md:flex-row items-center justify-center">
                     <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
                         style="width: 200px ; height: 200px;">
@@ -67,7 +67,7 @@
                                             viewBox="0 0 20 20">
                                             <path
                                                 style="color:white ; stroke: white;
-                                                                                                                                                                                                                                                                                                                        fill: white;"
+                                                                                                                                                                                                                                                                                                                                                        fill: white;"
                                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                         </svg>
                                     </a>
@@ -99,7 +99,10 @@
         <div class="user-profile-tabs row d-flex justify-content-between align-items-center">
             <nav class="nav fw-bold col-auto">
                 <p class="nav-link color-black tab tab-A is-active" id="about" data-current="tab-A">حول</p>
-                <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
+                @if ($role == 'provider')
+                    <p class="nav-link color-black tab tab-B" id="rates" data-current="tab-B">التقييمات</p>
+                @endif
+
                 @if ($role == 'provider' || $role == 'both')
                     <p class="nav-link color-black tab tab-C" id="works" data-current="tab-C">الأعمال</p>
                 @endif
