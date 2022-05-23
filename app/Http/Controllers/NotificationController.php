@@ -32,7 +32,7 @@ class NotificationController extends Controller
                 ->where('posts.id', $post_id)
                 ->first();
 
-            $user = User::find($postOwner->userid);
+            $user = User::select('profiles')->where(Auth::id())->join('profiles', 'profiles.user_id', 'users.id');
             $data = [
                 'name' => $postOwner->name,
                 'post_title' => $postOwner->title,
@@ -72,7 +72,7 @@ class NotificationController extends Controller
             'name' => $projects->name,
             'project_title' => $projects->title,
             'url' => url('confirm-project/' . $projects->project_id . '/' . Auth::id()),
-            'message' => 'لقد قام' . Auth::user()->name . 'بقبول عرضك لمشروع  ' . $projects->title,
+            'message' => ' لقد قام' . Auth::user()->name . ' بقبول عرضك لمشروع  ' . $projects->title,
             'userId' => $projects->provider_id
         ];
         $options = array(

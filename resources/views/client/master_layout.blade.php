@@ -99,7 +99,7 @@
     @endif
     <div class="m-5">
         @include('client.components.navigation')
-        <div class="sm:px-16 lg:px-18">
+        <div class="sm:px-4 lg:px-18">
             @yield('content')
         </div>
         @include('client.components.footer')
@@ -110,36 +110,72 @@
                 <nav
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
-                        <a href="{{ route('profile') }}" class="">
+                        <a href="{{ route('profile') }}" class="relative" id='person'>
 
-                            <ion-icon name="person-outline"
-                                class=" font-md cursor-pointer {{ request()->segment(2) == 'controllPannal' ? 'active_fixed_nav' : '' }}">
-                            </ion-icon>
+                            <div style='left:-1.75rem' data-hover='person'
+                                class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                ملفك الشخصي
+                            </div>
+                            @if (request()->segment(2) == 'controllPannal')
+                                <ion-icon name="person" class=" font-md cursor-pointer text-primary-green"></ion-icon>
+                            @else
+                                <ion-icon name="person-outline" class=" font-md cursor-pointer ">
+                                </ion-icon>
+                            @endif
+
+
                         </a>
                         @if (Auth::check())
                             @role('seeker')
-                                <a href="{{ route('post') }}" class="  ">
-                                    <ion-icon name="document-outline"
-                                        class=" font-md cursor-pointer {{ request()->segment(2) == 'post' ? 'active_fixed_nav' : '' }}">
-                                    </ion-icon>
+                                <a href="{{ route('post') }}" id='document' class="relative">
+                                    <div data-hover='document' style='left:-1.65rem'
+                                        class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                        اضف مشروع
+                                    </div>
+                                    @if (request()->segment(2) == 'post')
+                                        <ion-icon name="document" class=" font-md cursor-pointer text-primary-green">
+                                        </ion-icon>
+                                    @else
+                                        <ion-icon name="document-outline" class=" font-md cursor-pointer ">
+                                        </ion-icon>
+                                    @endif
+
                                 </a>
                             @endrole
                         @endif
 
                         @if (Auth::check())
                             @role('provider')
-                                <a href="{{ route('userWork') }}">
-                                    <ion-icon name="briefcase-outline"
-                                        class="font-md cursor-pointer {{ request()->segment(2) == 'userWork' ? 'active_fixed_nav' : '' }}">
-                                    </ion-icon>
+                                <a href="{{ route('userWork') }}" class='relative' id='work'>
+                                    <div data-hover='work' style='left:-1.65rem'
+                                        class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                        اضف عمل
+                                    </div>
+                                    @if (request()->segment(2) == 'userWork')
+                                        <ion-icon name="briefcase" class=" font-md cursor-pointer text-primary-green">
+                                        </ion-icon>
+                                    @else
+                                        <ion-icon name="briefcase-outline" class=" font-md cursor-pointer ">
+                                        </ion-icon>
+                                    @endif
+
                                 </a>
                             @endrole
                         @endif
                         @if (Auth::check())
-                            <a href="{{ route('mywallet') }}">
-                                <ion-icon name="wallet-outline"
-                                    class="font-md cursor-pointer {{ request()->segment(2) == 'mywallet' ? 'active_fixed_nav' : '' }}">
-                                </ion-icon>
+                            <a href="{{ route('mywallet') }}" class="relative" id='wallet'>
+                                <div data-hover='wallet' style='left:-1.65rem'
+                                    class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                    محفظتي
+                                </div>
+                                @if (request()->segment(2) == 'mywallet')
+                                    <ion-icon name="wallet" class=" font-md cursor-pointer text-primary-green">
+                                    </ion-icon>
+                                @else
+                                    <ion-icon name="wallet-outline" class=" font-md cursor-pointer ">
+                                    </ion-icon>
+                                @endif
+
 
                             </a>
                         @endif
@@ -291,6 +327,30 @@
         //     $('.mo-btn').attr("disabled", true);
         //     $('.mo-btn').addClass("bg-gray");
         // })
+        $('#person').on('mouseover', function() {
+            $('[data-hover=person]').removeClass('hidden')
+        })
+        $('#person').on('mouseleave', function() {
+            $('[data-hover=person]').addClass('hidden')
+        })
+        $('#document').on('mouseover', function() {
+            $('[data-hover=document]').removeClass('hidden')
+        })
+        $('#document').on('mouseleave', function() {
+            $('[data-hover=document]').addClass('hidden')
+        })
+        $('#wallet').on('mouseover', function() {
+            $('[data-hover=wallet]').removeClass('hidden')
+        })
+        $('#wallet').on('mouseleave', function() {
+            $('[data-hover=wallet]').addClass('hidden')
+        })
+        $('#work').on('mouseover', function() {
+            $('[data-hover=work]').removeClass('hidden')
+        })
+        $('#work').on('mouseleave', function() {
+            $('[data-hover=work]').addClass('hidden')
+        })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

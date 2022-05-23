@@ -81,7 +81,7 @@ Route::group([
 ], function () {
     //  mywallet view
 
-    Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
+
 
     //
     // ------------------------------------------------------------------------
@@ -93,7 +93,7 @@ Route::group([
     Route::get('/contactUs', [ContactController::class, 'index'])->name('contactUs');
     Route::post('/contactUs', [ContactController::class, 'store'])->name('contact.us.store');
 
-    Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
+   
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
@@ -226,6 +226,8 @@ Route::group([
 
             // continue the project after rejection
             Route::get('/continueProject/{project_id}', [MyWorkOnProjectController::class, 'markAsContinue'])->name('continueProject');
+
+            Route::get('/mywallet', [ProfileController::class, 'showMyWallet'])->name('mywallet');
         });
     });
 
@@ -299,7 +301,7 @@ Route::group([
         Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('update-password');
         // end change password
-
+        Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
         // payment
     });
     Route::get('/do-payment/{project_id}/{seeker_id}', [PaymentController::class, 'doPayment'])->name('payment.do');
