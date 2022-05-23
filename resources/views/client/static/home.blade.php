@@ -329,7 +329,7 @@
             {{-- Our services --}}
             <section class="my-32">
                 <div x-data="{ swep: false }" @mouseleave="swep = false" class=" flex flex-col items-center ">
-                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">ماهي خدماتنا!!</h2>
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">ماهي خدماتنا؟!</h2>
                     <div class="flex my-16 flex-wrap justify-center ">
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2000"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -340,8 +340,8 @@
                                 <ion-icon name="game-controller" class="font-4xl font-bold "></ion-icon>
                             </p>
 
-                            بيئه
-                            عمل متكامله
+                            بيئة
+                            عمل متكاملة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2100"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -351,8 +351,8 @@
                             <p x-show="swep">
                                 <ion-icon name="wallet" class="font-4xl font-bold "></ion-icon>
                             </p>
-                            محفظه
-                            متكامله
+                            محفظة
+                            آمنة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2200"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -363,7 +363,7 @@
                                 <ion-icon name="logo-paypal" class="font-4xl font-bold "></ion-icon>
                             </p>
                             طرق
-                            دفع سريعه
+                            دفع سريعة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2300"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -373,8 +373,8 @@
                             <p x-show="swep">
                                 <ion-icon name="chatbox" class="font-4xl font-bold "></ion-icon>
                             </p>
-                            خدمه
-                            تواصل سهله
+                            خدمة
+                            تواصل سهلة
                         </div>
                     </div>
                 </div>
