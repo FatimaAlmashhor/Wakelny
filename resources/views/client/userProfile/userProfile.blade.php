@@ -3,54 +3,57 @@
     <div class="px-4 lg:px-20">
         <div class="container-fluid border-bottom px-5 pt-20">
             <!-- User Identety Brief-->
-            <div class="profile-identity row align-items-center">
-                <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
-                    style="width: 200px ; height: 200px;">
-                    @if ($data->avatar !== 'http://localhost:8000/images/')
-                        <img src="{{ $data->avatar }}" class="profile-avatar position-absoulte"
-                            style="width: 100%; height:100%; object-fit: cover">
-                    @else
-                        <img src="/assets/client/images/user-profile-2.png" class="profile-avatar position-absoulte"
-                            style="width: 100%; height:100%; object-fit: cover">
-                    @endif
+            <div class="  flex justify-center md:justify-between  flex-col md:flex-row items-center ">
+                <div class="flex my-8 flex-col md:flex-row items-center justify-center">
+                    <div class="profile-card--avatar shadow-sm border rounded-circle position-relative"
+                        style="width: 200px ; height: 200px;">
+                        @if ($data->avatar !== 'http://localhost:8000/images/')
+                            <img src="{{ $data->avatar }}" class="profile-avatar position-absoulte"
+                                style="width: 100%; height:100%; object-fit: cover">
+                        @else
+                            <img src="/assets/client/images/user-profile-2.png" class="profile-avatar position-absoulte"
+                                style="width: 100%; height:100%; object-fit: cover">
+                        @endif
 
-                    <div class="inactive-dot rounded-circle"></div>
-                </div>
-
-                <div class="user-info color-black mt-5 py-0 col-md-5">
-                    <div class="username color-black">
-
-                        <h5 class="font-xl">{{ $data->name }}</h5>
-
+                        <div class="inactive-dot rounded-circle"></div>
                     </div>
 
-                    <div class="user-brief text-muted">
-                        @if ($data->specialization)
-                            <p class="d-inline-block ms-3">
-                                <i class="fas fa-briefcase"></i> <span
-                                    class="me-1">{{ $data->specialization }}</span>
-                            </p>
-                        @endif
-                        @if ($data->country)
-                            <p class="d-inline-block">
-                                <i class="fa-solid fa-location-dot color-orange"></i> <span
-                                    class="me-1">{{ $data->country }}</span>
-                            </p>
-                        @endif
+                    <div class="user-info color-black ">
+                        <div class="username color-black">
 
-                        @if ($data->hire_me)
-                            <p class="d-inline-block">
-                                <i class="fas fa-user-tie color-green mx-2 "></i> <span class="me-1"> انا متاح
-                                    للتوظيف</span>
-                            </p>
-                        @endif
+                            <h5 class="font-xl">{{ $data->name }}</h5>
+
+                        </div>
+
+                        <div class="user-brief text-muted">
+                            @if ($data->specialization)
+                                <p class="d-inline-block ms-3">
+                                    <i class="fas fa-briefcase"></i> <span
+                                        class="me-1">{{ $data->specialization }}</span>
+                                </p>
+                            @endif
+                            @if ($data->country)
+                                <p class="d-inline-block">
+                                    <i class="fa-solid fa-location-dot color-orange"></i> <span
+                                        class="me-1">{{ $data->country }}</span>
+                                </p>
+                            @endif
+
+                            @if ($data->hire_me)
+                                <p class="d-inline-block">
+                                    <i class="fas fa-user-tie color-green mx-2 "></i> <span class="me-1"> انا متاح
+                                        للتوظيف</span>
+                                </p>
+                            @endif
+
+                        </div>
 
                     </div>
 
                 </div>
 
                 {{-- user report --}}
-                <div class="card--actions hidden-xs float-start col-4">
+                <div class="flex">
                     <div class="dropdown btn-group">
                         @if (Auth::check() && $data->user_id == Auth::id())
                             @role('seeker')
@@ -62,13 +65,15 @@
                                         <span class="mr-1"> أضف مشروع </span>
                                         <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20">
-                                            <path style="color:white ; stroke: white;
-                                                                                fill: white;"
+                                            <path
+                                                style="color:white ; stroke: white;
+                                                                                                                                                                                                                                                                                                                        fill: white;"
                                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                         </svg>
-                            @endif
-                            </a>
-                        @endrole
+                                    </a>
+                                </div>
+                            @endrole
+                        @endif
                         <ul
                             class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
                             <li class="border-b border-primary-light-pink">
@@ -119,9 +124,8 @@
             {{-- here the main --}}
             <div class="d-flex justify-content-between ">
                 <div class="row col-12" id="">
-
                     <!-- About -->
-                    <div class=" about-section px-3  is-show subPage flex-sm-column flex-lg-row" id="tab-A">
+                    <div class=" about-section px-3  is-show subPage flex-col lg:flex-row" id="tab-A">
                         <div class="row col-sm-12 col-lg-7">
                             <!-- My Brief -->
                             <div class="row ">
@@ -163,11 +167,11 @@
                                         <div class="section-title">
                                             <h5 class="font-md">مهاراتي</h5>
                                         </div>
-                                        <div class="skills mt-3">
+                                        <div class="skills flex flex-wrap mt-3">
                                             @foreach ($skills as $item)
-                                                <a class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center"
+                                                <a class="badge bg-primary-light-pink text-md-center text-black font-md float-start m-1"
                                                     href="#" role="button">
-                                                    <i class="fa-solid fa-tags"></i>
+                                                    <i class="fa-solid fa-tags font-sm text-primary-green"></i>
                                                     <span class="me-1">{{ $item->name }}</span>
                                                 </a>
                                             @endforeach
@@ -251,7 +255,8 @@
                     <!-- /About -->
 
                     <!-- Ratings -->
-                    <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage" id="tab-B">
+                    <div class="col-sm-12 col-lg-8  rating-section px-3  is-show  tab-B subPage flex-col lg:flex-row"
+                        id="tab-B">
                         <section class="card shadow-sm col-12 col-sm-12 p-3">
                             <div class="about-me">
                                 <div class="section-title">
@@ -321,7 +326,8 @@
                     @if ($role == 'provider' || $role == 'both')
                         <!-- works -->
 
-                        <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage mb-3" id="tab-C">
+                        <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage mb-3 flex-col lg:flex-row"
+                            id="tab-C">
                             <div class="row row col-12">
                                 <section class="card shadow-sm col-12 col-sm-12">
                                     <div class="my-ratings">
@@ -359,7 +365,8 @@
                     @endif
                     @if ($role == 'seeker' || $role == 'both')
                         <!-- projects -->
-                        <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage" id="tab-D">
+                        <div class="col-sm-12 col-lg-12 color-black px-3 rating-section  tab-B subPage flex-col lg:flex-row"
+                            id="tab-D">
                             <div class="row  col-12">
                                 <section class=" col-12 col-sm-12">
                                     <div class="my-ratings">
@@ -390,10 +397,6 @@
                     @endif
 
                 </div>
-
-
-
-
             </div>
         </main>
     </div>
