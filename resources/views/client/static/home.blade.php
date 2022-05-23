@@ -92,11 +92,11 @@
                 <div class="w-12/12 md:w-6/12  sm:mt-8 mx-auto">
                     <div class="flex flex-col  items-center  sm:items-start h-full px-5 md:px-24">
                         <h1 class="logo-font font-4xl" data-aos="fade-up" data-aos-duration="1000">متاح</h1>
-                        <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصه ابداعيه تجمع بين
-                            اصحاب الاعمال والمطور الحر
+                        <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصة إبداعية تجمع بين
+                            أصحاب المشاريع والعامل الحر
                             <br />
                             لتسهيل
-                            العمل وضمان الحقوق بجوده عاليه وسهوله
+                            العمل وضمان الحقوق بسهولة وجودة عالية 
                         </p>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
             <!-- search section -->
             <section class="my-32">
                 <div class="flex flex-col justify-between items-center">
-                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="2500">ابحث عن مشروع تفكر به ؟!!
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="2500">ابحث عن مشروع ؟!!
                     </h2>
                     <!-- search component -->
                     <div class="rounded-full  shadow-lg h-14 w-full md:w-6/12 my-8 flex justify-between items-center">
@@ -261,10 +261,10 @@
                             class="rounded-full w-11 h-11 bg-primary-green mx-2 p-2 text-white flex justify-center items-center">ابحث</button>
                     </div>
                     <p class="text-gray text-center" data-aos="fade-down" data-aos-duration="3000">
-                        تستطيع ان تبحث عن مشروع الان وتبدأ بطلب عرض .<br />
-                        او حتى تستطيع ان تبحث عن اشخصاص متاحين للعمل لديك ؟
+                        تستطيع أن تبحث عن مشروع الآن وتقدم عليه عرضاً<br />
+                         أو تستطيع أن تبحث عن أشخاص متاحين للعمل لديك.
                         <br />
-                        ماذا تنتظر لتبدأ الان !
+                        ماذا تنتظر ... لتبدأ الآن !
                     </p>
                 </div>
             </section>
