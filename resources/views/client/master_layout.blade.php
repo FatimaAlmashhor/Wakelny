@@ -116,7 +116,7 @@
                                 class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
                                 ملفك الشخصي
                             </div>
-                            @if (request()->segment(2) == 'controllPannal')
+                            @if (request()->segment(2) == 'controllPannal' || (request()->segment(2) == 'skills' || request()->segment(2) == 'myWorks'))
                                 <ion-icon name="person" class=" font-md cursor-pointer text-primary-green"></ion-icon>
                             @else
                                 <ion-icon name="person-outline" class=" font-md cursor-pointer ">
@@ -197,9 +197,6 @@
                                                     <a href="{{ route('workonProject') }}"
                                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                                         اعمل على</a>
-                                                    <a href="{{ route('myWorks') }}"
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
-                                                        اعمالي</a>
                                                 @endrole
                                             @endif
 
