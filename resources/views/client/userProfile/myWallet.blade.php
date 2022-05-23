@@ -35,11 +35,11 @@
                 <div class="w-full flex justify-end ">
                     <button :class="{ ' text-primary-pink font-bold': deposit == true }
                     'font-sm mx-2'"
-                        @click="deposit = true ; withdraw = false"> تم ارجاعه</button>
+                        @click="deposit = true ; withdraw = false"> أضافه للمحفظه</button>
                     <span class="font-bold mx-3">|</span>
                     <button :class="{ ' text-primary-pink font-bold': withdraw == true }
                     'font-sm mx-2'"
-                        @click="deposit = false ; withdraw = true">تم سحبه</button>
+                        @click="deposit = false ; withdraw = true">سحب من المحفظه</button>
                 </div>
                 <table class="table border">
                     <thead>
