@@ -56,7 +56,7 @@
               </div>
                                  
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="wak_btn">{{ __('dash.save') }} </button>
+                                    <button type="submit" class="mo-btn btn-blue-bg">{{ __('dash.save') }}</button>
                                     </div>
                                 </div>
                             </div>

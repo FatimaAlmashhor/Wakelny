@@ -60,6 +60,7 @@ class CommentNotification extends Notification
             'post_title' => $this->data['post_title'],
             'url' => $this->data['url'],
             'type' => 'comment',
+            'message' => $this->data['message'],
             'userId' => $this->data['userId']
         ];
     }
@@ -73,6 +74,7 @@ class CommentNotification extends Notification
                 'post_title' => $this->data['post_title'],
                 'url' => $this->data['url'],
                 'type' => 'comment',
+                'message' => $this->data['message'],
                 'userId' => $this->data['userId']
             ],
         ];

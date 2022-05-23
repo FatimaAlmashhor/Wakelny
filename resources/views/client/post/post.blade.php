@@ -148,7 +148,7 @@
                                     {{-- <div class="w-8 flex items-center justify-center bg-blue-lighter border-t border-l border-b border-blue-lighter rounded-l text-blue-dark">$</div>
                                     </div> --}}
                                     <div class="flex">
-                                        <input type="text" name="duration"
+                                        <input type="number"  min="1" name="duration"
                                             class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink'
                                             id="phone" type="number" value="{{ old('duration') }}"
                                             aria-label="Username" />
@@ -195,8 +195,8 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
-                {{-- <h6>أنشر مشروعك على كلفني</h6>
-                <p>تساعدك منصة كلفني على الوصول إلى أفضل
+                {{-- <h6>أنشر مشروعك على متاح</h6>
+                <p>تساعدك منصة متاح على الوصول إلى أفضل
                     المستقلين المحترفين لإنجاز أعمالك عن بعد
                     . بعد إضافة مشروعك على نفذلي ومراجعته ،
                     سيتقدم إليك عدد من العروض من المستقلين

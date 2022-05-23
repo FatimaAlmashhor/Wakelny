@@ -4,6 +4,7 @@ namespace App\Http\Controllers\payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Report;
 use App\Models\User;
 use Bavix\Wallet\Models\Transaction;
 use Illuminate\Http\Request;
@@ -17,50 +18,65 @@ class PaymentController extends Controller
 
     function doPayment($project_id, $seeker_id)
     {
-        $project = Project::select(
-            'posts.title',
-            'projects.amount',
-            'projects.totalAmount',
-            'projects.seeker_id',
-            'projects.provider_id',
-        )->join('posts', 'posts.id', 'projects.post_id')
-            ->where('projects.seeker_id', $seeker_id)
-            ->where('projects.id', $project_id)
-            ->first();
+        try {
+            $project = Project::select(
+                'posts.title',
+                'projects.amount',
+                'projects.totalAmount',
+                'projects.seeker_id',
+                'projects.post_id',
+                'projects.provider_id',
+                'projects.status',
+                'projects.payment_status',
+            )->join('posts', 'posts.id', 'projects.post_id')
+                ->where('projects.seeker_id', $seeker_id)
+                ->where('projects.id', $project_id)
+                ->where('projects.payment_status', 'unpaid')
+                ->where('projects.status', 'at_work')
+                ->first();
+            $dataPayment = [
+                "id" => $project_id,
+                "product_name" => $project->title,
+                "quantity" => 1,
+                "unit_amount" => $project->amount
+            ];
 
+            $dataMeta = [
+                "provider_id" => $project->provider_id,
+                "seeker_id" => $seeker_id
+            ];
 
-        $dataPayment = [
-            "id" => $project_id,
-            "product_name" => $project->title,
-            "quantity" => 1,
-            "unit_amount" => $project->amount
-        ];
+            $response = Http::withHeaders([
+                'private-key' => env('PRIVATE_KEY'),
+                'public-key' => env('PUBLIC_KEY'),
+                'Content-Type' => 'application/x-www-form-url'
+            ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
+                'order_reference' =>  $project_id,
+                'products' =>  [$dataPayment],
+                // 'total_amount' => $project->totalAmount,
+                'total_amount' => $project->amount,
+                'currency' => 'YER',
+                'success_url' => 'http://localhost:8000/ar/success-payment/' . $project_id,
+                'cancel_url' => 'http://localhost:8000/ar/cancel-payment/' .  $project_id,
+                'metadata' => (object)$dataMeta
+            ]);
 
-        $dataMeta = [
-            "provider_id" => $project->provider_id,
-            "seeker_id" => $seeker_id
-        ];
+            Project::where('id', $project_id)->update([
+                'stated_at' => date("Y/m/d"),
+                'invoice' => $response['invoice']['invoice_referance']
+            ]);
 
-        $response = Http::withHeaders([
-            'private-key' => 'rRQ26GcsZzoEhbrP2HZvLYDbn9C9et',
-            'public-key' => 'HGvTMLDssJghr9tlN9gr4DVYt0qyBy',
-            'Content-Type' => 'application/x-www-form-url'
-        ])->post('https://waslpayment.com/api/test/merchant/payment_order', [
-            'order_reference' =>  $project_id,
-            'products' =>  [$dataPayment],
-            // 'total_amount' => $project->totalAmount,
-            'total_amount' => 199,
-            'currency' => 'YER',
-            'success_url' => 'http://localhost:8000/success-payment',
-            'cancel_url' => 'http://localhost:8000//cancel-payment',
-            'metadata' => (object)$dataMeta
-        ]);
-
-        return $response->json($key = null);
+            // return $response->json($key = null);
+            return redirect(url($response['invoice']['next_url']));
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
     public static function successPayment($project_id,  $response)
     {
-        // try {
+        try {
             $project = Project::select(
                 'posts.title',
                 'projects.amount',
@@ -81,12 +97,8 @@ class PaymentController extends Controller
                 $admin = User::find(1);
                 $seeker = User::find(Auth::id());
                 $seeker->transfer($admin, $project->amount, [
-                    // 'provider_id' => $project->provider_id,
-                    // 'seeker_id' => $payment['meta_data']['seeker_id'],
                     'project_id' => $project_id,
                     'invoice_referance' => $project->invoice,
-                    // 'back_to_owner' => false,
-                    // 'admin_resevied' => true
                 ]);
 
 
@@ -106,10 +118,12 @@ class PaymentController extends Controller
             // send notification for the seeker that the money is already خصمت
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
             // open the frontend page
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        // }
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        }
     }
 
     // if the payment is cancled
@@ -141,7 +155,14 @@ class PaymentController extends Controller
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
+                $admin->transfer(
+                    $userTheOneNeedMoney,
+                    $project->totalAmount,
+                    [
+                        'project_id' => $project_id,
+                        'invoice_referance' => $project->invoice,
+                    ]
+                ); //here with the patform withdraw
 
                 $project->payment_status = 'received';
                 $project->save();
@@ -165,6 +186,8 @@ class PaymentController extends Controller
 
             // send the message back to the brovider
 
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
@@ -175,7 +198,8 @@ class PaymentController extends Controller
         try {
             // find the row of the wallet
 
-            $project = Project::where('id', (int)$project_id)->first();
+            $project = Project::where('id', (int)$project_id)
+                ->first();
             if ($project->payment_status == 'paid') {
                 if ($request->get('who') == 'provider') {
                     $userTheOneNeedMoney = User::find($project->provider_id);
@@ -185,18 +209,29 @@ class PaymentController extends Controller
 
                 // ! in case of the project not done it just admin dession we need to create new project
                 if ($project->finshed == 0) {
-                    $project->status = 'nonrecevied';
+                    if ($request->get('who') == 'provider') {
+                        $project->status = 'received';
+                    } else if ($request->get('who') == 'seeker') {
+                        $project->status = 'nonrecevied';
+                    }
+                    $project->payment_status = 'received';
+                    $project->finshed = 1;
                     $project->save();
                 }
 
                 $admin = User::find(1);
-                $admin->transfer($userTheOneNeedMoney, $project->totalAmount); //here with the patform withdraw
+                $admin->transfer($userTheOneNeedMoney, $project->totalAmount, [
+                    'project_id' => $project_id,
+                    'invoice_referance' => $project->invoice,
+                ]); //here with the patform withdraw
 
-                $project->payment_status = 'received';
-                $project->save();
-                return view('client.payAnimation.paySucces');
+                Report::where('project_id', $project_id)->update([
+                    'is_active' => 0,
+                ]);
+                // return view('client.payAnimation.paySucces');
+                return redirect()->route('admin')->with(['message' => 'تمت العمليه بنجاح ', 'type' => 'alert-success']);
             } else {
-                return redirect()->route('admin')->with(['message' => 'حدث خطأ ما ', 'type' => 'alert-warning']);
+                return redirect()->route('admin')->with(['message' => 'هذا المشروع لم يتم الدفع بعد ', 'type' => 'alert-warning']);
             }
 
             // ? here when we use the transaction
@@ -214,6 +249,8 @@ class PaymentController extends Controller
 
             // send the message back to the brovider
 
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return redirect()->route('admin')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }

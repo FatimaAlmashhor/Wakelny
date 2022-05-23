@@ -81,81 +81,81 @@ class UserController extends Controller
 
     function showUserProfile($user_id)
     {
-        //get the user profile info
-        $user_info = Profile::where('user_id', $user_id)->first();
+        try {
+            //get the user profile info
+            $user_info = Profile::where('user_id', $user_id)->first();
 
-        // give the category of the user
-        $cateId = $user_info['category_id'];
-        $cates = category::where('id', $cateId)->first();
+            // give the category of the user
+            $cateId = $user_info['category_id'];
+            $cates = category::where('id', $cateId)->first();
 
-        // give the skills of the user
-        $myskills = UserSkills::join('skills', 'skills.id', '=', 'user_skills.skill_id')->where('user_id', $user_id)->get(['skills.name', 'user_skills.skill_id']);
+            // give the skills of the user
+            $myskills = UserSkills::join('skills', 'skills.id', '=', 'user_skills.skill_id')->where('user_id', $user_id)->get(['skills.name', 'user_skills.skill_id']);
 
-        // give the roles of the user
-        $user = User::find($user_id);
-        $userRole = 'seeker';
-        if ($user->hasRole('provider') && $user->hasRole('seeker')) {
-            $userRole = 'both';
-        } else if ($user->hasRole('provider')) {
-            $userRole = 'provider';
+            // give the roles of the user
+            $user = User::find($user_id);
+            $userRole = 'seeker';
+            if ($user->hasRole('provider') && $user->hasRole('seeker')) {
+                $userRole = 'both';
+            } else if ($user->hasRole('provider')) {
+                $userRole = 'provider';
+            }
+
+            $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
+            $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
+
+            $rating_count = Evaluation::select(
+                'value',
+            )->where('user_id', $user_id)->count('value');
+
+            $rating_sum = Evaluation::select(
+                'value',
+            )->where('user_id', $user_id)->sum('value');
+
+            if ($rating_count != 0) {
+                $rating_avg = round($rating_sum / $rating_count);
+            } else {
+                $rating_avg = 0;
+            }
+            $profile = Profile::where('user_id', $user_id)->update([
+                'rating' => $rating_avg
+            ]);
+
+            $evaluations = Evaluation::select(
+                'evaluations.message',
+                'evaluations.created_at',
+                'evaluations.evaluater_id',
+                'evaluations.value',
+                'evaluaters.name as evaluater_name',
+                'evaluaters.avatar',
+                'projects.status',
+                'posts.title'
+            )
+                ->where('evaluations.user_id', $user_id)->where('projects.status', 'received')
+                ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.evaluater_id')
+                ->join('projects', 'projects.id', '=', 'evaluations.project_id')
+                ->join('posts', 'posts.id', '=', 'projects.post_id')
+                ->get();
+
+            return view('client.userProfile.userProfile')->with([
+                'data' => $user_info,
+                'cate' => $cates,
+                'skills' => $myskills,
+                'role' => $userRole,
+                'works' => $works,
+                'post' => $posts,
+                'rating' => $rating_avg,
+                'rating_count' => $rating_count,
+                'evaluations' => $evaluations
+            ]);
+        } catch (\Throwable $th) {
+            return view('errors.404');
         }
-
-        $works = work::where('is_active', 1)->where('user_id', $user_id)->get();
-        $posts = Posts::where('is_active', 1)->where('user_id', $user_id)->get();
-
-        $rating_count = Evaluation::select(
-            'value',
-        )->where('user_id', $user_id)->count('value');
-
-        $rating_sum = Evaluation::select(
-            'value',
-        )->where('user_id', $user_id)->sum('value');
-
-        if($rating_count != 0){
-            $rating_avg = round($rating_sum/$rating_count);
-        } else {
-            $rating_avg = 0;
-        }
-
-        $evaluations = Evaluation::select(
-            'evaluations.message',
-            'evaluations.created_at',
-            'evaluations.evaluater_id',
-            'evaluaters.name as evaluater_name',
-            'evaluaters.avatar',
-        )
-        ->where('evaluations.user_id', $user_id)
-        ->join('profiles as evaluaters', 'evaluaters.user_id', '=', 'evaluations.evaluater_id')
-        ->get();
-
-        return view('client.userProfile.userProfile')->with([
-            'data' => $user_info,
-            'cate' => $cates,
-            'skills' => $myskills,
-            'role' => $userRole,
-            'works' => $works,
-            'post' => $posts,
-            'rating' => $rating_avg,
-            'rating_count' => $rating_count,
-            'evaluations' => $evaluations
-        ]);
     }
-    public function insert_content($post_id, $provider_id)
+    public function insert_content($post_id)
     {
-        $post = Posts::where('id', $post_id)->where('is_active', 1)->first();
-        $provider = User::where('id', $provider_id)->where('is_active', 1)->first();
 
-        $reports =  Report::select(
-            'reports.id',
-            // 'users.id',
-            'reports.type_report',
-            'reports.massege',
-            'profiles.user_id',
-            'profiles.name as reporter'
-        )->join('profiles', 'profiles.user_id', '=', 'reports.user_id')
-
-            ->where('post_id', $post_id)->get();
-        return view('admin.report._form')->with(['reports' => $reports, 'post' => $post, 'post_id' => $post_id, 'provider' => $provider]);
+        return view('admin.report._form')->with(['post_id' => $post_id]);
     }
     public function insert_user($provider_id)
     {

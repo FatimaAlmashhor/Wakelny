@@ -113,10 +113,6 @@
   bottom: 24px;
 }
 
-.team-list:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
 
 .team,
 .team-list {
@@ -157,20 +153,8 @@
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
 }
 
-.team:hover {
-  -webkit-transform: translateY(-7px);
-  transform: translateY(-7px);
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-}
 
-.team:hover .overlay {
-  opacity: 0.6;
-}
 
-.team:hover .team-social {
-  opacity: 1;
-}
 
 @media (max-width: 768px) {
 

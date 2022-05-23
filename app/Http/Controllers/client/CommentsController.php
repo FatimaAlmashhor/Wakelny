@@ -45,48 +45,17 @@ class CommentsController extends Controller
             ]);
             if ($comment->save()) {
 
-                $postOwner = User::select(
-                    'posts.id',
-                    'posts.title',
-                    'users.id as userid',
-                    'users.name'
-                )->join('posts', 'posts.user_id', '=', 'users.id')
-                    ->where('posts.id', $request->post_id)
-                    ->first();
 
-                $user = User::find($postOwner->userid);
-                $data = [
-                    'name' => $postOwner->name,
-                    'post_title' => $postOwner->title,
-                    'message' => 'قام ' .  $postOwner->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
-                    'url' => url('posts/details/' . $postOwner->id),
-                    'userId' => $postOwner->userid
-                ];
-
-
-
-                $options = array(
-                    'cluster' => env('PUSHER_APP_CLUSTER'),
-                    'encrypted' => true
-                );
-                $pusher = new Pusher(
-                    env('PUSHER_APP_KEY'),
-                    env('PUSHER_APP_SECRET'),
-                    env('PUSHER_APP_ID'),
-                    $options
-                );
-
-
-                $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
-                $user->notify(new CommentNotification($data));
-                // $notify = new NotificationController();
-                // $notify->addcommentNotificatoin($request->post_id);
+                $notify = new NotificationController();
+                $notify->addcommentNotificatoin($request->post_id);
 
                 return redirect()->back()
                     ->with(['message' => 'تم اضافة عرضك  بنجاح', 'type' => 'alert-success']);
             } else {
                 return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
             }
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             throw $th;
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
@@ -125,9 +94,11 @@ class CommentsController extends Controller
 
             if ($comment->save()) {
                 return redirect()->back()
-                    ->with(['message' => 'تم تعديل المشروع بنجاح', 'type' => 'alert-success']);
+                    ->with(['message' => 'تم تعديل العرض بنجاح', 'type' => 'alert-success']);
             } else
                 return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             return back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }

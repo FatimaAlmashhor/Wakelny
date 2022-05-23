@@ -8,13 +8,16 @@
 
     <link rel="stylesheet" href="/assets/client/dist/css/tailwind.css">
     <link rel="stylesheet" href="/assets/client/dist/css/main.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Motahh</title>
 </head>
 
-<body>
+<body style="background-color:#f2f2f2;">
     <!-- page warrper -->
     <div class="m-5">
         <!-- start of page -->
@@ -57,7 +60,7 @@
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
                                 <a href="{{ route('projectlancer') }}">
-                                   المشاريع المتاحة
+                                    المشاريع المتاحة
                                 </a>
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
@@ -88,8 +91,9 @@
                 <!-- title -->
                 <div class="w-12/12 md:w-6/12  sm:mt-8 mx-auto">
                     <div class="flex flex-col  items-center  sm:items-start h-full px-5 md:px-24">
-                        <h1 class="logo-font font-4xl">متاح</h1>
-                        <p class="mt-4">منصه ابداعيه تجمع بين اصحاب الاعمال والمطور الحر
+                        <h1 class="logo-font font-4xl" data-aos="fade-up" data-aos-duration="1000">متاح</h1>
+                        <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصه ابداعيه تجمع بين
+                            اصحاب الاعمال والمطور الحر
                             <br />
                             لتسهيل
                             العمل وضمان الحقوق بجوده عاليه وسهوله
@@ -247,7 +251,8 @@
             <!-- search section -->
             <section class="my-32">
                 <div class="flex flex-col justify-between items-center">
-                    <h2 class="font-4xl">ابحث عن مشروع تفكر به ؟!!</h2>
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="2500">ابحث عن مشروع تفكر به ؟!!
+                    </h2>
                     <!-- search component -->
                     <div class="rounded-full  shadow-lg h-14 w-full md:w-6/12 my-8 flex justify-between items-center">
                         <input type="text" placeholder="ابحث الان"
@@ -255,7 +260,7 @@
                         <button
                             class="rounded-full w-11 h-11 bg-primary-green mx-2 p-2 text-white flex justify-center items-center">ابحث</button>
                     </div>
-                    <p class="text-gray text-center">
+                    <p class="text-gray text-center" data-aos="fade-down" data-aos-duration="3000">
                         تستطيع ان تبحث عن مشروع الان وتبدأ بطلب عرض .<br />
                         او حتى تستطيع ان تبحث عن اشخصاص متاحين للعمل لديك ؟
                         <br />
@@ -269,12 +274,12 @@
             <section class=" my-32 relative bg-primary-green h-fit w-full flex flex-col md:flex-row ">
                 <div
                     class=" h-96 flex flex-col items-center pt-5 bg-primary-pink  text-primary-blue w-12/12 md:w-6/12 ">
-                    <h3 class="font-4xl">أنا طالب خدمة !</h3>
+                    <h3 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">أنا طالب خدمة !</h3>
 
                     <ul>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>اقدم
+                            <p data-aos="fade-down" data-aos-duration="2000">اقدم
                                 مشروع
                                 جديد
                             </p>
@@ -282,37 +287,37 @@
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>
+                            <p data-aos="fade-down" data-aos-duration="2000">
                                 اقيم مشروع منجز
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>
+                            <p data-aos="fade-down" data-aos-duration="2000">
                                 ابحث عن متاحين للعمل
                             </p>
                         </li>
                     </ul>
                 </div>
                 <div class=" h-96 flex flex-col items-center pt-5  bg-primary-blue text-primary-pink w-12/12 md:w-6/12">
-                    <h3 class="font-4xl">أنا مقدم خدمة !</h3>
+                    <h3 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">أنا مقدم خدمة !</h3>
                     <ul>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>
+                            <p data-aos="fade-down" data-aos-duration="2000">
                                 ابحث عن مشاريع
                             </p>
                         </li>
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>
+                            <p data-aos="fade-down" data-aos-duration="2000">
                                 اقدم عروض عمل
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p>
+                            <p data-aos="fade-down" data-aos-duration="2000">
                                 اعمل واتقاضى اجري
                             </p>
                         </li>
@@ -321,8 +326,61 @@
             </section>
 
 
+            {{-- Our services --}}
+            <section class="my-32">
+                <div x-data="{ swep: false }" @mouseleave="swep = false" class=" flex flex-col items-center ">
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">ماهي خدماتنا!!</h2>
+                    <div class="flex my-16 flex-wrap justify-center ">
+                        <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2000"
+                            class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
+                            <p x-show="!swep">
+                                <ion-icon name="game-controller-outline" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            <p x-show="swep">
+                                <ion-icon name="game-controller" class="font-4xl font-bold "></ion-icon>
+                            </p>
+
+                            بيئه
+                            عمل متكامله
+                        </div>
+                        <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2100"
+                            class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
+                            <p x-show="!swep">
+                                <ion-icon name="wallet-outline" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            <p x-show="swep">
+                                <ion-icon name="wallet" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            محفظه
+                            متكامله
+                        </div>
+                        <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2200"
+                            class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
+                            <p x-show="!swep">
+                                <ion-icon name="logo-paypal" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            <p x-show="swep">
+                                <ion-icon name="logo-paypal" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            طرق
+                            دفع سريعه
+                        </div>
+                        <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2300"
+                            class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
+                            <p x-show="!swep">
+                                <ion-icon name="chatbox-outline" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            <p x-show="swep">
+                                <ion-icon name="chatbox" class="font-4xl font-bold "></ion-icon>
+                            </p>
+                            خدمه
+                            تواصل سهله
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!-- section the guid  -->
-            <section class="my-44 p-12  flex flex-col items-center justify-center">
+            {{-- <section class="my-44 p-12  flex flex-col items-center justify-center">
 
                 <!-- section header -->
                 <div class="flex flex-col justify-between items-center">
@@ -386,13 +444,13 @@
 
                 </div>
 
-            </section>
+            </section> --}}
         </main>
 
 
 
         <!-- footer -->
-        <footer class=" w-full bg-primary-blue h-64 shadow-lg border-md text-white overflow-hidden">
+        <footer class=" w-full  bg-primary-blue  h-64 shadow-lg border-md text-white overflow-hidden mt-20">
             <!-- header content -->
             <div class="flex flex-col md:flex-row md:justify-between h-full w-full">
 
@@ -446,13 +504,13 @@
                 </div>
                 <ul class="flex flex-wrap items-center mx-12 mt-5  text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
+                        <a href="{{ route('aboutUs') }}" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
                     </li>
                     <li>
                         <a href="#" class="mr-4 hover:underline md:mr-6">سياسه الخصوصيه</a>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
+                        <a href="{{ route('contactUs') }}" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
                     </li>
 
                 </ul>
@@ -464,16 +522,17 @@
         <span class="block text-sm text-gray-500 sm:text-center dark:text-dark-gray">© 2022 <a
                 href="https://flowbite.com" class="hover:underline">Motaah</a>. All Rights Reserved.
         </span>
-        <!-- end of the page -->
-    </div>
 
-    <script>
-        const nav = document.querySelector('#nav');
-        window.addEventListener('scroll', () => {
+        <script>
+            const nav = document.querySelector('#nav');
+            window.addEventListener('scroll', () => {
 
-            window.scrollY === 0 ? nav.classList.remove('nav_colored') : nav.classList.add('nav_colored')
-        })
-    </script>
+                window.scrollY === 0 ? nav.classList.remove('nav_colored') : nav.classList.add('nav_colored')
+            })
+        </script>
+        <script>
+            AOS.init();
+        </script>
 </body>
 
 </html>

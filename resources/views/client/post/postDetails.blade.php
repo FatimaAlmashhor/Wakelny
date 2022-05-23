@@ -15,9 +15,8 @@
                                 class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                                 <span class="mr-1 font-md">اغلاق المشروع</span>
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path
-                                        style="color:white ; stroke: white;
-                                         fill: white;"
+                                    <path style="color:white ; stroke: white;
+                                                                     fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
@@ -113,11 +112,13 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="cost"
+                                                    <input name="cost" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         type="number" value="{{ old('cost') }}" aria-label="Username"
                                                         aria-describedby="basic-addon1">
-                                           <div class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">$</div>
+                                                    <div
+                                                        class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">
+                                                        $</div>
                                                 </div>
 
                                                 <p class="text-muted font-xs ">اختر ميزانية مناسبة</p>
@@ -163,12 +164,13 @@
                                                 </label>
                                                 <div class="input-group">
 
-                                                    <input name="duration"
+                                                    <input name="duration" min="1"
                                                         class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                         id="phone" type="number" value="{{ old('duration') }}"
                                                         aria-label="Username" aria-describedby="basic-addon1">
-                                                    <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink" style="height: 46px;"
-                                                        id="basic-addon1">ايام</span>
+                                                    <span
+                                                        class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                        style="height: 46px;" id="basic-addon1">ايام</span>
                                                 </div>
 
                                                 <span class="text-muted font-xs ">متى تحتاج لتنفيذ مشروعك</span>
@@ -312,38 +314,40 @@
                                                                     </button>
                                                                 @endif
                                                             </div>
-                                                             @if (Auth::check() && $item->user_id != auth()->user()->id)
-                                                            <div class="card--actions hidden-xs col-6 ">
-                                                                <div class="dropdown btn-group">
+                                                            @if (Auth::check() && $item->user_id != auth()->user()->id)
+                                                                <div class="card--actions hidden-xs col-6 ">
+                                                                    <div class="dropdown btn-group">
 
-                                                                    {{-- option dropdown --}}
-                                                                    <div class="dropdown inline-block relative min-w-fit">
-                                                                        <button
-                                                                            class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
-                                                                            <span class="mr-1">خيارات</span>
-                                                                            <svg class="fill-current h-4 w-8"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                viewBox="0 0 20 20">
-                                                                                <path style="color:white ; stroke: white;
-                                                                            fill: white;"
-                                                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                                            </svg>
-                                                                        </button>
-                                                                        <ul
-                                                                            class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
-                                                                            <li class="border-b border-primary-light-pink">
-                                                                                <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2  block whitespace-no-wrap"
-                                                                                    href="{{ route('report_provider', $item->user_id) }}">
-                                                                                    التبليغ عن مستخدم</a>
-                                                                            </li>
+                                                                        {{-- option dropdown --}}
+                                                                        <div
+                                                                            class="dropdown inline-block relative min-w-fit">
+                                                                            <button
+                                                                                class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
+                                                                                <span class="mr-1">خيارات</span>
+                                                                                <svg class="fill-current h-4 w-8"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    viewBox="0 0 20 20">
+                                                                                    <path style="color:white ; stroke: white;
+                                                                                                        fill: white;"
+                                                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                                                </svg>
+                                                                            </button>
+                                                                            <ul
+                                                                                class="dropdown-menu w-fit absolute  hidden text-dark-gray bg-light-gray rounded-sm shadow-md pt-2 ">
+                                                                                <li
+                                                                                    class="border-b border-primary-light-pink">
+                                                                                    <a class="rounded-t bg-gray-200 hover:bg-gray-400 hover:bg-primary-light-gray hover:text-dark-gray p-2  block whitespace-no-wrap"
+                                                                                        href="{{ route('report_provider', $item->user_id) }}">
+                                                                                        التبليغ عن مستخدم</a>
+                                                                                </li>
 
 
-                                                                        </ul>
+                                                                            </ul>
+                                                                        </div>
+                                                                        {{-- end dropdown --}}
                                                                     </div>
-                                                                    {{-- end dropdown --}}
-                                                                </div>
 
-                                                            </div>
+                                                                </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -382,18 +386,22 @@
                                                                         {{-- <input type="hidden" value="{{ $post_id }}" name="post_id" /> --}}
 
                                                                         {{-- estamte cost --}}
-                                                                        <div class="col-sm-4 col-md-10  col-xs-12 col-lg-6 pt-3">
+                                                                        <div
+                                                                            class="col-sm-4 col-md-10  col-xs-12 col-lg-6 pt-3">
                                                                             <label>قيمة العرض
                                                                                 <em class="text--danger">*</em>
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="cost" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60 '
+                                                                                <input name="cost" min="1"
+                                                                                    class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60 '
                                                                                     type="number"
                                                                                     value="{{ $item->cost ?? old('cost') }}"
                                                                                     aria-label="Username"
                                                                                     aria-describedby="basic-addon1">
-                                                                                 <div class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">$</div>
+                                                                                <div
+                                                                                    class=" flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink">
+                                                                                    $</div>
                                                                             </div>
 
                                                                             <p class="text-muted font-xs">اختر ميزانية
@@ -440,18 +448,21 @@
 
                                                                         </div> --}}
                                                                         {{-- duration --}}
-                                                                        <div class="col-sm-4 col-md-10 col-xs-12  col-lg-6 pt-3">
+                                                                        <div
+                                                                            class="col-sm-4 col-md-10 col-xs-12  col-lg-6 pt-3">
                                                                             <label class="font-md">المدة المتوقعة
                                                                                 للتسليم <em class="text--danger">*</em>
                                                                             </label>
                                                                             <div class="input-group mb-3 flex">
 
-                                                                                <input name="duration" class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
+                                                                                <input name="duration" min="1"
+                                                                                    class='appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-60'
                                                                                     id="phone" type="number"
                                                                                     value="{{ $item->duration ?? old('duration') }}"
                                                                                     aria-label="Username"
                                                                                     aria-describedby="basic-addon1">
-                                                                                <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                                <span
+                                                                                    class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
                                                                                     id="basic-addon1">ايام</span>
                                                                             </div>
 
@@ -525,15 +536,18 @@
                                             </div>
                                             @if (Auth::check() && $post->user_id == Auth::id())
                                                 <div class=" m-2 flex justify-start items-start">
-                                                    <button tabindex="-1" class="mo-btn  mx-1  " type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="fa fa-check px-1"></i>
-                                                        <span class=""> قبول العرض </span>
-                                                    </button>
-                                                    <a tabindex="-1" class="mo-btn btn-blue-rounderd" href="#">
-                                                        <i class="fa fa-send px-1"></i>
-                                                        <span class="action-text"> تواصل مع المستقل </span>
-                                                    </a>
+                                                    @if (!$checkHasProject)
+                                                        <button tabindex="-1" class="mo-btn  mx-1  " type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            <i class="fa fa-check px-1"></i>
+                                                            <span class=""> قبول العرض </span>
+                                                        </button>
+                                                        <a tabindex="-1" class="mo-btn btn-blue-rounderd"
+                                                            href="{{ route('inbox.show', $item->user_id) }}">
+                                                            <i class="fa fa-send px-1"></i>
+                                                            <span class="action-text"> تواصل مع متاح </span>
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             @endif
 
@@ -571,12 +585,14 @@
                                                                         <label class="font-md">المبلغ المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="amount" class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="amount" type="text"
+                                                                            <input name="amount" min="1"
+                                                                                class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                                                                id="amount" type="number"
                                                                                 value="{{ old('cost') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
-                                                                            <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                            <span
+                                                                                class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
                                                                                 id="basic-addon1">$</span>
                                                                         </div>
                                                                         @error('amount')
@@ -589,12 +605,14 @@
                                                                         <label class="font-md">المده المتفق عليه
                                                                         </label>
                                                                         <div class="input-group mt-1">
-                                                                            <input name="duration" class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="duration" type="text"
+                                                                            <input name="duration" min="1"
+                                                                                class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                                                                id="duration" type="number"
                                                                                 value="{{ old('duration') }}"
                                                                                 aria-label="Username"
                                                                                 aria-describedby="basic-addon1">
-                                                                            <span class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                            <span
+                                                                                class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
                                                                                 id="basic-addon1">ايام</span>
                                                                         </div>
                                                                         @error('duration')
@@ -648,7 +666,9 @@
                         </div>
                         <div>
                             <div class="my-3 font-sm"> <span class="px-1"
-                                    style="background-color: green ; color:white;">{{ $post->status }}</span></div>
+                                    style="background-color: green ; color:white;">@if($post->status=="open") مفتوح
+@elseif ($post->status=="closed") مغلق
+                                    @endif</span></div>
                             <div class="my-3 font-sm"> {{ $post->created_at }}</div>
                             <div class="my-3 font-sm"> ${{ $post->cost }}</div>
 
@@ -659,12 +679,12 @@
                     </div>
                 </div>
                 <!-- <hr>
-                                <div>
-                                    <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+                                                            <div>
+                                                                <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
 
-                                </div> -->
+                                                            </div> -->
                 <hr>
                 <div>
                     <p class="font-md my-4">صاحب المشروع</p>

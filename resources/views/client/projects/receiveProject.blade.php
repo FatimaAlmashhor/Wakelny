@@ -57,8 +57,8 @@
     </style>
     {{-- @foreach ($projects as $project) --}}
     <div class="container">
-        <div class="d-flex justify-content-between flex-wrap">
-            <h3 class="my-5">{{ $project->title }}</h3>
+        <div class="d-flex justify-content-between flex-wrap mt-20">
+            <h3 class="my-5 font-xl font-bold">{{ $project->title }}</h3>
         </div>
     </div>
 
@@ -181,8 +181,8 @@
                 <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="deleteModel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
+                            <div class="modal-header ">
+                                <h5 class="modal-title " id="deleteModel">لماذا تريد رفض قبول المشروع</h5>
                                 {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                             </div>
 
@@ -241,19 +241,19 @@
                                         <div class="container">
                                             <div class="feedback">
                                                 <div class="rating d-flex justify-content-center ">
-                                                    <input type="radio" name="rating" id="rating-5" value="1">
+                                                    <input type="radio" name="rating" id="rating-5" value="5">
                                                     <label for="rating-5"></label>
 
-                                                    <input type="radio" name="rating" id="rating-4" value="2">
+                                                    <input type="radio" name="rating" id="rating-4" value="4">
                                                     <label for="rating-4"></label>
 
                                                     <input type="radio" name="rating" id="rating-3" value="3">
                                                     <label for="rating-3"></label>
 
-                                                    <input type="radio" name="rating" id="rating-2" value="4">
+                                                    <input type="radio" name="rating" id="rating-2" value="2">
                                                     <label for="rating-2"></label>
 
-                                                    <input type="radio" name="rating" id="rating-1" value="5">
+                                                    <input type="radio" name="rating" id="rating-1" value="1">
                                                     <label for="rating-1"></label>
                                                 </div>
                                             </div>

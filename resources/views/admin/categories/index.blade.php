@@ -16,12 +16,11 @@
         <div class="row" id="table-head">
             <div class="col-12">
                 <div class="card">
- 
                     <div class="card-content">
                         <!-- table head dark -->
-                        <div class="table" style="overflow: none ; padding: 10px 20px;">
-                            <table class="table mb-0 mt-3 " style="overflow: none">
-                                <thead class="thead-dark pr-4">
+                        <div class="table-responsive py-2">
+                            <table class="table mb-0 ">
+                                <thead class="thead-dark ">
                                     <tr>
                                         <th>#</th>
                                         <th>{{ __('dash.category_name') }}</th>
@@ -39,9 +38,9 @@
                                             
                                             <td>
                                               @if($item->is_active == 1) 
-                                              <span style="color:white; background-color:#84e984;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                              <span class="bg-primary-blue" style="color:white;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
                                               @else
-                                              <span  style="color:white; background-color:#ff5d5d; padding: 5px 10px; border-radius: 5px;"> معطل</span>
+                                              <span  class="bg-primary-pink " style="color:white; padding: 5px 21px; border-radius: 5px;"> معطل</span>
                                               @endif
                                               </td>
                                              
@@ -53,9 +52,9 @@
                                                 <a  href="{{ route('toggle_category', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
                                                     
                                                         @if($item->is_active == 1) 
-                                                            <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>   
+                                                            <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue " > </i>   
                                                             @else
-                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>   
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#CD657C;" > </i>   
                                                         @endif
                                              
                                                 </a>

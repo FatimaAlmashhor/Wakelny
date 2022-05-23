@@ -27,7 +27,7 @@
         </div>
         <!-- name -->
         <div class="text-center">
-            <a class="text-prof fs-5 font-lg fw-bold " href="">{{ auth()->user()->name }}</a>
+            <a class="text-prof fs-5 font-lg fw-bold " href="">{{ $item->name }}</a>
             <p class="my-2 border-top  mb-3"></p>
             <a class=" font-md w-full " href='{{ route('account') }}'>تعديل معلومات الحساب</a>
         </div>

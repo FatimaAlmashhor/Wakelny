@@ -24,9 +24,9 @@ return [
     "chang_password" => "تغيير كلمة السر",
 
     "all_report"=>" البلاغات",
-    "type_report"=>"نوع البلاغ",
+    "type_report"=>" الشكوى",
     "massege"=>"الرسالة",
-    "provider_id"=>"  المبلغ عنه",
+    "provider_ids"=>"  المبلغ عنه",
     "user_id"=>" المبلغ ",
     "post_id"=>"المحتوى المبلغ عنه",
 
