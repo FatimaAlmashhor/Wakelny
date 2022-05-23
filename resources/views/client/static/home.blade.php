@@ -55,7 +55,7 @@
                         <ul class="flex flex-col md:flex-row gap-x-4 ">
                             <li class="nav_item font-sm cursor-pointer active_link">
                                 <a href="{{ route('home') }}">
-                                    الرئسية
+                                    الرئيسية
                                 </a>
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
@@ -65,7 +65,7 @@
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
                                 <a href="{{ route('freelancers') }}">
-                                    مقدمي الخدمات
+                                    مقدمو الخدمات
                                 </a>
                             </li>
                         </ul>
