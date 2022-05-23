@@ -279,22 +279,22 @@
                     <ul>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p data-aos="fade-down" data-aos-duration="2000">اقدم
-                                مشروع
-                                جديد
+                            <p data-aos="fade-down" data-aos-duration="2000">أقدم
+                                مشروعاً
+                                جديداً
                             </p>
                         </li>
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اقيم مشروع منجز
+                                أقيم مشروعاً منجزاً
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                ابحث عن متاحين للعمل
+                                أبحث عن متاحين للعمل
                             </p>
                         </li>
                     </ul>
@@ -305,20 +305,20 @@
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                ابحث عن مشاريع
+                                أبحث عن مشاريع
                             </p>
                         </li>
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اقدم عروض عمل
+                                أقدم عرض عمل
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اعمل واتقاضى اجري
+                                أعمل وأتقاضى أجري
                             </p>
                         </li>
                     </ul>
