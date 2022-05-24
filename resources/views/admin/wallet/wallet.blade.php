@@ -58,26 +58,52 @@
                         <div class="card-content">
                             <!-- table head dark -->
                             <div class="table-responsive py-2">
-                                <table class="table mb-0 ">
-                                    <thead class="thead-dark ">
+                                <div class="w-full flex justify-end ">
+                                    <button
+                                        :class="{ ' text-primary-pink font-bold': deposit == true }
+                                        'font-sm mx-2'"
+                                        @click="deposit = true ; withdraw = false"> أضافه للمحفظه</button>
+                                    <span class="font-bold mx-3">|</span>
+                                    <button
+                                        :class="{ ' text-primary-pink font-bold': withdraw == true }
+                                        'font-sm mx-2'"
+                                        @click="deposit = false ; withdraw = true">سحب من المحفظه</button>
+                                </div>
+                                <table class="table border">
+                                    <thead>
                                         <tr>
-                                            <td class="font-lg">الرقم</td>
-                                            <td class="font-lg">المستلم</td>
-                                            <td class="font-lg">المبلغ </td>
-                                            <td class="font-lg">المشروع </td>
-                                            <td class="font-lg">التاريخ</td>
+                                            <th class="font-md">الرقم</th>
+                                            <th class="font-md">المسلم </th>
+                                            {{-- <th class="font-md">المستلم</th> --}}
+                                            <th class="font-md">المبلغ </th>
+                                            <th class="font-md">المشروع </th>
+                                            <th class="font-md">التاريخ</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($transaction as $item)
-                                            <tr>
-
+                                    <tbody class="table-light">
+                                        @foreach ($deposit as $tran)
+                                            <tr x-show='deposit'>
                                                 <td class="font-md">{{ $loop->iteration }}</td>
-                                                <td class="font-md">{{ $item->name }}</td>
-                                                <td class="font-md">{{ $item->amount }}</td>
-                                                <td class="font-md">{{ $item->title }}</td>
-                                                <td class="font-md">{{ $item->created_at }}</td>
+                                                <td class="font-md">{{ $tran->name }}</td>
+                                                <td class="font-md">{{ $tran->dep_amount }}</td>
+                                                {{-- <td class="font-md">{{ $tran->with_amount }}</td> --}}
+                                                <td class="font-md">{{ $tran->title }}</td>
+                                                <td class="font-md">{{ $tran->created_at }}</td>
+                                                {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
+                                                {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
+                                            </tr>
+                                        @endforeach
 
+                                        @foreach ($withdraw as $tran)
+                                            <tr x-show='withdraw'>
+                                                <td class="font-md">{{ $loop->iteration }}</td>
+                                                <td class="font-md">{{ $tran->name }}</td>
+                                                <td class="font-md">{{ $tran->with_amount }}</td>
+                                                {{-- <td class="font-md">{{ $tran->with_amount }}</td> --}}
+                                                <td class="font-md">{{ $tran->title }}</td>
+                                                <td class="font-md">{{ $tran->created_at }}</td>
+                                                {{-- <td class="font-md">{{ $item->meta['seeker_id'] }}</td> --}}
+                                                {{-- <td class="font-md">{{ $item->meta['project_id'] }}</td> --}}
                                             </tr>
                                         @endforeach
 
