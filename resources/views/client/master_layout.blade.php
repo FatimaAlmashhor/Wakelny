@@ -368,7 +368,7 @@
             console.log('connected');
         }
         $('.mo-btn').on('click', function() {
-            if ($('.mo-btn').attr('href') !== undefined) {
+            if ($('.mo-btn').attr('href') !== undefined && $('.mo-btn').attr('href') == '') {
                 $("#loading").fadeIn("slow");
                 $("#loading").addClass("circle-inter-active");
             }
