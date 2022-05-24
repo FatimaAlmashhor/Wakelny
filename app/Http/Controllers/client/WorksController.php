@@ -11,7 +11,8 @@ use App\Models\WorkSkill;
 use App\Models\work;
 
 use App\Models\Posts;
-
+use App\Models\Profile;
+use App\Models\Project;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -25,19 +26,23 @@ class WorksController extends Controller
 
     function index(Request $request)
     {
-        $works =  work::select(
-            'works.id',
-            'works.title',
-            'works.comple_date',
-            'works.main_image',
-            'works.link',
-            'works.details',
-            'profiles.name'
-        )->join('profiles', 'profiles.user_id', '=', 'works.user_id')->where('is_active', 1)->where('works.user_id', Auth::id())->get();
+        try {
+            $works =  work::select(
+                'works.id',
+                'works.title',
+                'works.comple_date',
+                'works.main_image',
+                'works.link',
+                'works.details',
+                'profiles.name'
+            )->join('profiles', 'profiles.user_id', '=', 'works.user_id')->where('is_active', 1)->where('works.user_id', Auth::id())->get();
+            $item = Profile::where('user_id', Auth::id())->first();
 
-
-        $skill = Skill::where('is_active', 1)->get();
-        return view('client.userProfile.myWorks')->with(['works'=>$works, 'skills'=> $skill ]);
+            $skill = Skill::where('is_active', 1)->get();
+            return view('client.userProfile.myWorks')->with(['works' => $works, 'skills' => $skill, 'item' =>  $item]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
     public function create()
     {
@@ -65,7 +70,7 @@ class WorksController extends Controller
             'profiles.job_title',
             'profiles.user_id'
         )->join('profiles', 'profiles.user_id', '=', 'works.user_id')
-        ->where('id', $work_id)->get();
+            ->where('id', $work_id)->get();
 
         return view('client.userProfile.detailsWork')->with(['works' => $works, 'work_id' => $work_id]);
     }
@@ -98,7 +103,7 @@ class WorksController extends Controller
 
             $work->title = $request->title;
             $work->comple_date = $request->comple_date;
-            $work->main_image = $request->hasFile('main_image')?$this->uploadFile($request->file('main_image')):"default.png";
+            $work->main_image = $request->hasFile('main_image') ? $this->uploadFile($request->file('main_image')) : "default.png";
             $work->link = $request->link;
             $work->details = $request->details;
 
@@ -134,70 +139,68 @@ class WorksController extends Controller
                     }
                 return redirect()->route('myWorks')
                     ->with(['message' => 'تم اضافة عمل جديدة بنجاح', 'type' => 'alert-success']);
-                } else
+            } else
                 return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         } catch (Expectation   $th) {
             // throw $th;
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
         }
-
-
     }
 
 
 
 
-    public function edit($work_id){
+    public function edit($work_id)
+    {
         $skill = Skill::where('is_active', 1)->get();
-        $work=work::find($work_id);
+        $work = work::find($work_id);
 
         return view('client.userProfile.userWork')->with(['data' => $work, 'skills' => $skill]);
     }
 
-    public function update(Request $request,$work_id){
+    public function update(Request $request, $work_id)
+    {
 
-    $work=work::find($work_id);
-            $work->user_id = Auth::id();
-            $work->title = $request->title;
-            $work->comple_date = $request->comple_date;
-            $work->link = $request->link;
-            $work->details = $request->details;
-            if($request->hasFile('main_image'))
-            $work->main_image=$this->uploadFile($request->file('main_image'));
+        $work = work::find($work_id);
+        $work->user_id = Auth::id();
+        $work->title = $request->title;
+        $work->comple_date = $request->comple_date;
+        $work->link = $request->link;
+        $work->details = $request->details;
+        if ($request->hasFile('main_image'))
+            $work->main_image = $this->uploadFile($request->file('main_image'));
 
-    if($work->save())
-    return redirect()->route('myWorks')->with(['message' => 'تم التعديل بنجاح', 'type' => 'alert-success']);
-    return redirect()->back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-
+        if ($work->save())
+            return redirect()->route('myWorks')->with(['message' => 'تم التعديل بنجاح', 'type' => 'alert-success']);
+        return redirect()->back()->with(['message' => 'فشلت عمليه التعديل الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
     }
 
-    public function toggle($work_id){
+    public function toggle($work_id)
+    {
         try {
-        $work=work::find($work_id);
-        $work->is_active*=-1;
-        if($work->save())
-            // if($work->is_active==-1)
+            $work = work::find($work_id);
+            $work->is_active *= -1;
+            if ($work->save())
+                // if($work->is_active==-1)
 
-            //         return back()->with(['message' => 'تم تعطيل العمل بنجاح', 'type' => 'alert-success']);
-            //     else
-                    return redirect()->route('myWorks')->with(['message' => 'تم حذف العمل بنجاح', 'type' => 'alert-success']);
-else
-        return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
- } catch (Expectation   $th) {
-      return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+                //         return back()->with(['message' => 'تم تعطيل العمل بنجاح', 'type' => 'alert-success']);
+                //     else
+                return redirect()->route('myWorks')->with(['message' => 'تم حذف العمل بنجاح', 'type' => 'alert-success']);
+            else
+                return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (Expectation   $th) {
+            return back()->with(['message' => 'فشلت عمليه الحذف الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        }
     }
-    }
 
 
-    public function uploadFile($file){
-        $dest=public_path()."/images/";
+    public function uploadFile($file)
+    {
+        $dest = public_path() . "/images/";
 
         //$file = $request->file('image');
-        $filename= time()."_".$file->getClientOriginalName();
-        $file->move($dest,$filename);
+        $filename = time() . "_" . $file->getClientOriginalName();
+        $file->move($dest, $filename);
         return $filename;
-
-
-        }
-
+    }
 }

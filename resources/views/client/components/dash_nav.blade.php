@@ -46,6 +46,16 @@
                 <i class="fa fa-object-group pe-2"></i>
                 <span class="fs-6 font-md fw-bold mx-4">{{ __('profile.skills') }}</span>
             </a>
+            @if (Auth::check())
+                @role('provider')
+                    <a id="mywork" href='{{ route('myWorks') }}'
+                        class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
+                        <ion-icon name="code-working"></ion-icon>
+                        <span class="fs-6 font-md fw-bold mx-4">أعمالي </span>
+                    </a>
+                @endrole
+            @endif
+
 
             <a style="cursor: pointer" id="note" href='{{ route('mywallet') }}'
                 class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
