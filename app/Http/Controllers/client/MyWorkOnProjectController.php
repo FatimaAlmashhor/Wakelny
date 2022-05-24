@@ -97,38 +97,42 @@ class MyWorkOnProjectController extends Controller
     // this table send the project to the owner
     function markAsDone(Request $request)
     {
-        try {
-            $project_id = $request->project_id;
-            $seeker_id = $request->seeker_id;
-            // send notification 
-            $project = Project::find($project_id);
+        // try {
+        $project_id = $request->project_id;
+        $seeker_id = $request->seeker_id;
+        // send notification 
+        $project = Project::find($project_id);
 
 
-            if ($request->other_option == 'on') {
-                $project->other_way_send_files = 1;
-            } else {
-                if (!empty($request->upload) || !empty($request->url)) {
-                    // !importemt to back here
-                    // $project->files =  $this->uploadFile($request->file('upload'));
-                    $project->url = $request->url;
-                } else
-                    return redirect()->back()->with(['message' => 'رجاء قم بارسال الملفات المطلوبه او اضغط على طريقه اخرى', 'type' => 'alert-danger']);
+        if ($request->other_option == 'on') {
+            $project->other_way_send_files = 1;
+        } else {
+            if (!empty($request->upload)) {
+                // !importemt to back here
+                // return response()->json($request->file);
+                $project->files =  $this->uploadFile($request->upload);
             }
-
-            // return response()->json(empty($request->upload));
-            $project->status = 'done';
-            $project->save();
-
-            $notify = new NotificationController();
-            $notify->sendTheProjectNotifiction($project);
-
-            // return response()->json($project);
-            return back()->with(['message' => 'تم تسليم المشروع رجاء انتظر الطرف الاخر', 'type' => 'alert-success']);
-        } catch (\Illuminate\Http\Client\ConnectionException $e) {
-            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+            if (!empty($request->url)) {
+                $project->url = $request->url;
+            }
+            if (!empty($request->upload) && !empty($request->url))
+                return redirect()->back()->with(['message' => 'رجاء قم بارسال الملفات المطلوبه او اضغط على طريقه اخرى', 'type' => 'alert-danger']);
         }
+
+        // return response()->json(empty($request->upload));
+        $project->status = 'done';
+        $project->save();
+
+        $notify = new NotificationController();
+        $notify->sendTheProjectNotifiction($project);
+
+        // return response()->json($project);
+        return back()->with(['message' => 'تم تسليم المشروع رجاء انتظر الطرف الاخر', 'type' => 'alert-success']);
+        // } catch (\Illuminate\Http\Client\ConnectionException $e) {
+        //     return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     return back()->with(['message' => 'حدث خطأ ما او ان الصفحه اللتي تحاول الوصول لها غير موجوده', 'type' => 'alert-danger']);
+        // }
     }
 
     // this function for the seeker to see the received files
@@ -318,8 +322,7 @@ class MyWorkOnProjectController extends Controller
     // upload files
     public function uploadFile($file)
     {
-        $dest = public_path() . "/images/";
-
+        $dest = public_path() . "/upload/";
         //$file = $request->file('image');
         $filename = time() . "_" . $file->getClientOriginalName();
         $file->move($dest, $filename);
