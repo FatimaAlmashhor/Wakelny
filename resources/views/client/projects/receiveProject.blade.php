@@ -133,7 +133,7 @@
             <div class=" col-md-4 col-sm-12">
                 <div class="card shadow-sm ">
                     <h4>التسليم</h4>
-                    <a href="{{ $project->file }}">
+                    <a href="/public/upload/{{ $project->files }}" download>
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         ملفات المشروع قيم بتحميلها
                     </a>
@@ -142,9 +142,7 @@
                         <label> الرباط التشغبي <em class="text--danger">*</em>
                         </label>
                         <div class="input-group mb-3">
-
-                            <input name="duration" class='form-control' id="phone" type="number"
-                                value=" {{ $project->url }}" aria-label="Username" aria-describedby="basic-addon1"
+                            <input name="duration" class='form-control' id="url" type="url" value=" {{ $project->url }}"
                                 readonly>
                             <span class="input-group-text" id="basic-addon1">Url</span>
                         </div>
@@ -155,7 +153,7 @@
                         <div class=" mb-3">
 
                             <input name="duration" class=' checkbox' id="checkbox" type="checkbox"
-                                checked={{ $project->other_way_send_files }} aria-label="Username"
+                                @if ($project->other_way_send_files) checked={true} @endif aria-label="Username"
                                 aria-describedby="basic-addon1" readonly onclick="return false;">
                             <span class="" id="basic-addon1">تم ارسالها بطريقه أخرى</span>
                         </div>
