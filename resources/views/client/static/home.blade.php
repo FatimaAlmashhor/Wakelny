@@ -55,7 +55,7 @@
                         <ul class="flex flex-col md:flex-row gap-x-4 ">
                             <li class="nav_item font-sm cursor-pointer active_link">
                                 <a href="{{ route('home') }}">
-                                    الرئسية
+                                    الرئيسية
                                 </a>
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
@@ -65,7 +65,7 @@
                             </li>
                             <li class="nav_item font-sm cursor-pointer">
                                 <a href="{{ route('freelancers') }}">
-                                    مقدمي الخدمات
+                                    مقدمو الخدمات
                                 </a>
                             </li>
                         </ul>
@@ -92,11 +92,11 @@
                 <div class="w-12/12 md:w-6/12  sm:mt-8 mx-auto">
                     <div class="flex flex-col  items-center  sm:items-start h-full px-5 md:px-24">
                         <h1 class="logo-font font-4xl" data-aos="fade-up" data-aos-duration="1000">متاح</h1>
-                        <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصه ابداعيه تجمع بين
-                            اصحاب الاعمال والمطور الحر
+                        <p class="mt-4" data-aos="fade-up" data-aos-duration="2000">منصة إبداعية تجمع بين
+                            صاحب المشروع والعامل الحر
                             <br />
                             لتسهيل
-                            العمل وضمان الحقوق بجوده عاليه وسهوله
+                            العمل وضمان الحقوق بسهولة وجودة عالية 
                         </p>
                     </div>
                 </div>
@@ -276,7 +276,7 @@
             <!-- search section -->
             <section class="my-32">
                 <div class="flex flex-col justify-between items-center">
-                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="2500">ابحث عن مشروع تفكر به ؟!!
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="2500">ابحث عن مشروع ؟!!
                     </h2>
                     <!-- search component -->
                     <div class="rounded-full  shadow-lg h-14 w-full md:w-6/12 my-8 flex justify-between items-center">
@@ -286,10 +286,10 @@
                             class="rounded-full w-11 h-11 bg-primary-green mx-2 p-2 text-white flex justify-center items-center">ابحث</button>
                     </div>
                     <p class="text-gray text-center" data-aos="fade-down" data-aos-duration="3000">
-                        تستطيع ان تبحث عن مشروع الان وتبدأ بطلب عرض .<br />
-                        او حتى تستطيع ان تبحث عن اشخصاص متاحين للعمل لديك ؟
+                        تستطيع أن تبحث عن مشروع الآن وتقدم عليه عرضاً<br />
+                         أو تستطيع أن تبحث عن أشخاص متاحين للعمل لديك.
                         <br />
-                        ماذا تنتظر لتبدأ الان !
+                        ماذا تنتظر ... لتبدأ الآن !
                     </p>
                 </div>
             </section>
@@ -304,22 +304,22 @@
                     <ul>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
-                            <p data-aos="fade-down" data-aos-duration="2000">اقدم
-                                مشروع
-                                جديد
+                            <p data-aos="fade-down" data-aos-duration="2000">أقدم
+                                مشروعاً
+                                جديداً
                             </p>
                         </li>
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اقيم مشروع منجز
+                                أقيم مشروعاً منجزاً
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                ابحث عن متاحين للعمل
+                                أبحث عن متاحين للعمل
                             </p>
                         </li>
                     </ul>
@@ -330,20 +330,20 @@
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                ابحث عن مشاريع
+                                أبحث عن مشاريع
                             </p>
                         </li>
 
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اقدم عروض عمل
+                                أقدم عرض عمل
                             </p>
                         </li>
                         <li class="font-lg mt-4 text-white flex items-center">
                             <span class="w-6 h-6 p-2 mx-4 rounded-full bg-primary-green"></span>
                             <p data-aos="fade-down" data-aos-duration="2000">
-                                اعمل واتقاضى اجري
+                                أعمل وأتقاضى أجري
                             </p>
                         </li>
                     </ul>
@@ -354,7 +354,7 @@
             {{-- Our services --}}
             <section class="my-32">
                 <div x-data="{ swep: false }" @mouseleave="swep = false" class=" flex flex-col items-center ">
-                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">ماهي خدماتنا!!</h2>
+                    <h2 class="font-4xl" data-aos="fade-down" data-aos-duration="1000">ماهي خدماتنا؟!</h2>
                     <div class="flex my-16 flex-wrap justify-center ">
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2000"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -365,8 +365,8 @@
                                 <ion-icon name="game-controller" class="font-4xl font-bold "></ion-icon>
                             </p>
 
-                            بيئه
-                            عمل متكامله
+                            بيئة
+                            عمل متكاملة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2100"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -376,8 +376,8 @@
                             <p x-show="swep">
                                 <ion-icon name="wallet" class="font-4xl font-bold "></ion-icon>
                             </p>
-                            محفظه
-                            متكامله
+                            محفظة
+                            آمنة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2200"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -388,7 +388,7 @@
                                 <ion-icon name="logo-paypal" class="font-4xl font-bold "></ion-icon>
                             </p>
                             طرق
-                            دفع سريعه
+                            دفع سريعة
                         </div>
                         <div @mouseover.away="swep = true" data-aos="fade-down" data-aos-duration="2300"
                             class='font-lg text-center w-72 h-72 p-10 flex flex-col justify-center items-center m-4 bg-white shadow-sm rounded-xl'>
@@ -398,8 +398,8 @@
                             <p x-show="swep">
                                 <ion-icon name="chatbox" class="font-4xl font-bold "></ion-icon>
                             </p>
-                            خدمه
-                            تواصل سهله
+                            خدمة
+                            تواصل سهلة
                         </div>
                     </div>
                 </div>
@@ -483,10 +483,11 @@
                 <div class="w-12/12 md:w-6/12">
                     <div class="flex flex-col justify-center h-full px-5 md:px-20">
                         <h1 class="logo-font font-4xl">متاح</h1>
-                        <p class="mt-4">منصه ابداعيه تجمع بين اصحاب الاعمال والمطور الحر
+                        <p class="mt-4">منصة إبداعية تجمع بين
+                            صاحب المشروع والعامل الحر
                             <br />
                             لتسهيل
-                            العمل وضمان الحقوق بجوده عاليه وسهوله
+                            العمل وضمان الحقوق بسهولة وجودة عالية 
                         </p>
                         <!-- social media -->
                         <div class="flex mt-4 space-x-6  ">
@@ -532,7 +533,7 @@
                         <a href="{{ route('aboutUs') }}" class="mr-4 hover:underline md:mr-6 ">بشأننا</a>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6">سياسه الخصوصيه</a>
+                        <a href="#" class="mr-4 hover:underline md:mr-6">سياسة الخصوصية</a>
                     </li>
                     <li>
                         <a href="{{ route('contactUs') }}" class="mr-4 hover:underline md:mr-6 ">تواصل معانا</a>
