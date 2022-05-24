@@ -25,22 +25,55 @@ class WalletController extends Controller
             ->first();
         $wallet_id = ModelsWallet::where('holder_id', 1)->first();
 
-        $transactions = Transfer::select(
-            'profiles.name',
-            'deposit.amount',
+        $transactions_to_owner = Transfer::select(
+            'from.name',
+            'deposit.amount as dep_amount',
             'deposit.meta->project_id',
-            'withdraw.amount',
+            'withdraw.meta->project_id',
+            'withdraw.amount as with_amount',
             'transfers.created_at',
-            'posts.title',
+            'dep_post.title',
+            'with_post.title',
         )
-            ->join('profiles', 'profiles.user_id', '=', 'from_id')
+            // ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+            ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+            ->join('profiles as from', 'from.user_id', '=', 'wa2.holder_id')
+            // ->join('profiles as to', 'to.user_id', '=', 'wa2.holder_id')
             ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
             ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
-            ->join('projects', 'projects.id', '=', 'deposit.meta->project_id')
-            ->join('posts', 'posts.id', '=', 'projects.post_id')
+            ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
+            ->join('projects as with', 'with.id', '=', 'withdraw.meta->project_id')
+            ->join('posts as dep_post', 'dep_post.id', '=', 'dep.post_id')
+            ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
+            // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
             ->where('to_id', $wallet_id->id)
+            // ->orWhere('from_id', $wallet->id)
+            ->get();
+        $transactions_from_owner = Transfer::select(
+            'to.name',
+            'withdraw.meta->project_id',
+            'withdraw.amount as with_amount',
+            'transfers.created_at',
+            'with_post.title',
+        )
+            ->join('wallets as  wa1', 'wa1.id', '=', 'to_id')
+            // ->join('wallets as wa2', 'wa2.id', '=', 'from_id')
+            // ->join('profiles as from', 'from.user_id', '=', 'wa2.holder_id')
+            ->join('profiles as to', 'to.user_id', '=', 'wa1.holder_id')
+            ->join('transactions as deposit', 'deposit.id', '=', 'transfers.deposit_id')
+            ->join('transactions as withdraw', 'withdraw.id', '=', 'transfers.withdraw_id')
+            ->join('projects as dep', 'dep.id', '=', 'deposit.meta->project_id')
+            ->join('projects as with', 'with.id', '=', 'withdraw.meta->project_id')
+            ->join('posts as dep_post', 'dep_post.id', '=', 'dep.post_id')
+            ->join('posts as with_post', 'with_post.id', '=', 'with.post_id')
+            // ->where($iAmSeeker ? 'from_id' : 'to_id', $wallet->id)
+            // ->where('to_id', $wallet->id)
+            ->where('from_id', $wallet_id->id)
             ->get();
         // return response()->json($transactions);
-        return view('admin.wallet.wallet', ['balance' => $balance, 'fee' => $projectsFee->fee, 'transaction' => $transactions]);
+        return view('admin.wallet.wallet', [
+            'balance' => $balance, 'fee' => $projectsFee->fee,    'deposit' => $transactions_to_owner,
+            'withdraw' => $transactions_from_owner
+        ]);
     }
 }
