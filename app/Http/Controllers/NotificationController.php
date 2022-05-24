@@ -32,15 +32,14 @@ class NotificationController extends Controller
                 ->where('posts.id', $post_id)
                 ->first();
 
-            $user = User::find($postOwner->userid);
+            $user = User::select('profiles.name')->join('profiles', 'profiles.user_id', 'users.id')->where('id',  Auth::id())->first();
             $data = [
-                'name' => $postOwner->name,
+                'name' =>  $user->name,
                 'post_title' => $postOwner->title,
-                'message' => 'قام ' .  $postOwner->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
+                'message' => 'قام ' .   $user->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
                 'url' => url('posts/details/' . $postOwner->id),
                 'userId' => $postOwner->userid
             ];
-
 
 
             $options = array(
@@ -57,6 +56,8 @@ class NotificationController extends Controller
 
             $user->notify(new CommentNotification($data));
             $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
@@ -72,7 +73,7 @@ class NotificationController extends Controller
             'name' => $projects->name,
             'project_title' => $projects->title,
             'url' => url('confirm-project/' . $projects->project_id . '/' . Auth::id()),
-            'message' => 'لقد قام' . Auth::user()->name . 'بقبول عرضك لمشروع  ' . $projects->title,
+            'message' => ' لقد قام' . Auth::user()->name . ' بقبول عرضك لمشروع  ' . $projects->title,
             'userId' => $projects->provider_id
         ];
         $options = array(

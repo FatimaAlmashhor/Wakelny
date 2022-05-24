@@ -122,22 +122,74 @@
                 <nav
                     class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
                     <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
-                        <a href="{{ route('profile') }}" class="">
-                            <ion-icon name="person-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
-                        </a>
-                        <a href="{{ route('post') }}" class="  ">
-                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
+                        <a href="{{ route('profile') }}" class="relative" id='person'>
+
+                            <div style='left:-1.75rem' data-hover='person'
+                                class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                ملفك الشخصي
+                            </div>
+                            @if (request()->segment(2) == 'controllPannal' || (request()->segment(2) == 'skills' || request()->segment(2) == 'myWorks'))
+                                <ion-icon name="person" class=" font-md cursor-pointer text-primary-green"></ion-icon>
+                            @else
+                                <ion-icon name="person-outline" class=" font-md cursor-pointer ">
+                                </ion-icon>
+                            @endif
+
+
                         </a>
                         @if (Auth::check())
-                            @role('provider')
-                                <a href="{{ route('userWork') }}">
-                                    <ion-icon name="briefcase-outline"
-                                        class="font-md cursor-pointer hover:text-primary-pink">
-                                    </ion-icon>
+                            @role('seeker')
+                                <a href="{{ route('post') }}" id='document' class="relative">
+                                    <div data-hover='document' style='left:-1.65rem'
+                                        class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                        اضف مشروع
+                                    </div>
+                                    @if (request()->segment(2) == 'post')
+                                        <ion-icon name="document" class=" font-md cursor-pointer text-primary-green">
+                                        </ion-icon>
+                                    @else
+                                        <ion-icon name="document-outline" class=" font-md cursor-pointer ">
+                                        </ion-icon>
+                                    @endif
+
                                 </a>
                             @endrole
+                        @endif
+
+                        @if (Auth::check())
+                            @role('provider')
+                                <a href="{{ route('userWork') }}" class='relative' id='work'>
+                                    <div data-hover='work' style='left:-1.65rem'
+                                        class="hidden bg-black border-2 -top-20  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                        اضف عمل
+                                    </div>
+                                    @if (request()->segment(2) == 'userWork')
+                                        <ion-icon name="briefcase" class=" font-md cursor-pointer text-primary-green">
+                                        </ion-icon>
+                                    @else
+                                        <ion-icon name="briefcase-outline" class=" font-md cursor-pointer ">
+                                        </ion-icon>
+                                    @endif
+
+                                </a>
+                            @endrole
+                        @endif
+                        @if (Auth::check())
+                            <a href="{{ route('mywallet') }}" class="relative" id='wallet'>
+                                <div data-hover='wallet' style='left:-1.65rem'
+                                    class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                    محفظتي
+                                </div>
+                                @if (request()->segment(2) == 'mywallet')
+                                    <ion-icon name="wallet" class=" font-md cursor-pointer text-primary-green">
+                                    </ion-icon>
+                                @else
+                                    <ion-icon name="wallet-outline" class=" font-md cursor-pointer ">
+                                    </ion-icon>
+                                @endif
+
+
+                            </a>
                         @endif
                         <!-- start drop up -->
                         <div class="flex items-center">
@@ -157,9 +209,6 @@
                                                     <a href="{{ route('workonProject') }}"
                                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                                         اعمل على</a>
-                                                    <a href="{{ route('myWorks') }}"
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
-                                                        اعمالي</a>
                                                 @endrole
                                             @endif
 
@@ -191,9 +240,9 @@
                         <!-- end drop up -->
 
                         <!-- <div
-                 class="rounded-full mr-1 w-fit h-12 bg-primary-green  border-2 border-white text-white font-sm flex justify-center items-center p-3 ">
-                 اضف عمل
-               </div> -->
+                  class="rounded-full mr-1 w-fit h-12 bg-primary-green  border-2 border-white text-white font-sm flex justify-center items-center p-3 ">
+                  اضف عمل
+                </div> -->
 
                     </div>
                 </nav>
@@ -222,30 +271,6 @@
                 </nav>
             </div>
         @endif
-        <!-- fixed nav -->
-        @if (Auth::check() && Auth::user()->hasRole('admin'))
-            <div class="flex justify-center items-center w-full h-fit bg-primary-blue">
-                <nav
-                    class=" fixed bottom-9 py-5 w-fit h-14 border-2 border-white shadow-lg rounded-full bg-primary-light-pink z-50">
-                    <div class="w-full h-full p-2  flex justify-center items-center gap-x-5 pr-5">
-                        <div class="">
-                            <ion-icon name="person-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
-                        </div>
-                        <div class=" mx-3 ">
-                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
-                        </div>
-                        <a href='{{ route('logout') }}' class=" mx-3 ">
-                            <ion-icon name="document-outline" class="font-md cursor-pointer hover:text-primary-pink">
-                            </ion-icon>
-                        </a>
-
-                    </div>
-                </nav>
-            </div>
-        @endif
-
         <main class="relative">
 
             <!-- search section -->

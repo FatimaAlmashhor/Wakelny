@@ -5,7 +5,8 @@ const aside_subsection = document.querySelector('#aside_subsection');
 document.addEventListener('DOMContentLoaded', function () {
 
     hideAll();
-    subPage[0].style.display = 'flex';
+    subPage[0].classList.add('flex');
+    subPage[0].classList.remove('hidden');
 
 
     tabs.forEach(element => {
@@ -14,13 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
             e.target.classList.add('is-active')
             let current = e.target.dataset.current;
             if (current == 'tab-A' || current == 'tab-B') {
-                aside_subsection.style.display = 'flex'
+                aside_subsection.classList.add('flex')
+                aside_subsection.classList.remove('hidden')
             }
             else {
-                aside_subsection.style.display = 'none'
+                aside_subsection.classList.remove('flex')
+                aside_subsection.classList.add('hidden')
             }
             hideAll();
-            document.getElementById(current).style.display = 'flex';
+            document.getElementById(current).classList.add('flex');
+            document.getElementById(current).classList.remove('hidden');
         })
     })
     // for (let i = 0; i < tabs.length; i++) {
@@ -44,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function hideAll() {
     subPage.forEach(element => {
-        element.style.display = 'none';
+        element.classList.remove('flex');
+        element.classList.add('hidden');
     })
 }
 
