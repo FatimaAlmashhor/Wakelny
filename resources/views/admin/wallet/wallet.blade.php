@@ -57,7 +57,7 @@
                     <div class="card">
                         <div class="card-content">
                             <!-- table head dark -->
-                            <div class="table-responsive py-2">
+                            <div class="table-responsive py-2" x-data='{deposit: true , withdraw : false }'>
                                 <div class="w-full flex justify-end ">
                                     <button
                                         :class="{ ' text-primary-pink font-bold': deposit == true }
@@ -82,7 +82,7 @@
                                     </thead>
                                     <tbody class="table-light">
                                         @foreach ($deposit as $tran)
-                                            <tr x-show='deposit'>
+                                            <tr x-show=' deposit'>
                                                 <td class="font-md">{{ $loop->iteration }}</td>
                                                 <td class="font-md">{{ $tran->name }}</td>
                                                 <td class="font-md">{{ $tran->dep_amount }}</td>
