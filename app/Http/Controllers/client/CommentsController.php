@@ -45,9 +45,38 @@ class CommentsController extends Controller
             ]);
             if ($comment->save()) {
 
+                $postOwner = User::select(
+                    'posts.id',
+                    'posts.title',
+                    'users.id as userid',
+                    'users.name'
+                )->join('posts', 'posts.user_id', '=', 'users.id')
+                    ->where('posts.id', $request->post_id)
+                    ->first();
 
-                $notify = new NotificationController();
-                $notify->addcommentNotificatoin($request->post_id);
+                $user = User::join('profiles', 'profiles.user_id', 'users.id')->where('id',  Auth::id())->first();
+                $data = [
+                    'name' =>  $user->name,
+                    'post_title' => $postOwner->title,
+                    'message' => 'قام ' .   $user->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
+                    'url' => url('posts/details/' . $postOwner->id),
+                    'userId' => $postOwner->userid
+                ];
+                $options = array(
+                    'cluster' => env('PUSHER_APP_CLUSTER'),
+                    'encrypted' => true
+                );
+                $pusher = new Pusher(
+                    env('PUSHER_APP_KEY'),
+                    env('PUSHER_APP_SECRET'),
+                    env('PUSHER_APP_ID'),
+                    $options
+                );
+
+                $user->notify(new CommentNotification($data));
+                $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
+                // $notify = new NotificationController();
+                // $notify->addcommentNotificatoin($request->post_id);
 
                 return redirect()->back()
                     ->with(['message' => 'تم اضافة عرضك  بنجاح', 'type' => 'alert-success']);
