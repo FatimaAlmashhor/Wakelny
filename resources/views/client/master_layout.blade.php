@@ -367,10 +367,13 @@
             //has internet connection
             console.log('connected');
         }
-        // $('.mo-btn').on('click', function() {
-        //     $('.mo-btn').attr("disabled", true);
-        //     $('.mo-btn').addClass("bg-gray");
-        // })
+        $('.mo-btn').on('click', function() {
+            if ($('.mo-btn').attr('href') !== undefined) {
+                $("#loading").fadeIn("slow");
+                $("#loading").addClass("circle-inter-active");
+            }
+
+        })
         $('#person').on('mouseover', function() {
             $('[data-hover=person]').removeClass('hidden')
         })
