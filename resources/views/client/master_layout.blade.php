@@ -180,16 +180,11 @@
                             </a>
                         @endif
                         <!-- start drop up -->
-                        <div class="flex items-center">
-                            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <div class="flex items-center" x-data="{ open: false }">
+                            <div @click.away="open = false" class="relative flex">
                                 <div
                                     class="relative flex justify-center items-center border-r  border-r-primary-light-gray overflow-hidden ">
-                                    <div x-show="open" x-transition:enter="transition ease-out duration-200 w-0 "
-                                        x-transition:enter-start="w-0 " x-transition:enter-end="transform w-fit"
-                                        x-transition:leave="transition ease-in duration-75 w-fit"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
-                                        class="flex justify-center items-center">
+                                    <div x-show="open" class="flex justify-center items-center">
                                         {{-- <div class="py-1 rounded-md bg-white shadow-xs relative">
 
                                             @if (Auth::check())
@@ -217,7 +212,7 @@
                                                 <a href="{{ route('workonProject') }}" class="relative mx-2  mr-4"
                                                     id='workonProject'>
                                                     <div data-hover='workonProject' style='left:-1.65rem'
-                                                        class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                                        class="absolute hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs  p-2">
                                                         أعمل على
                                                     </div>
                                                     @if (request()->segment(2) == 'workonProject')
@@ -228,7 +223,8 @@
                                                         <ion-icon name="receipt-outline" class=" font-md cursor-pointer ">
                                                         </ion-icon>
                                                     @endif
-                                                @endrole
+                                                </a>
+                                            @endrole
                                         @endif
                                         @if (Auth::check())
                                             @role('seeker')
@@ -247,26 +243,24 @@
                                                         </ion-icon>
                                                     @endif
                                                 </a>
-                                                <a href="{{ route('logout') }}" class="relative mx-2" id='logout'>
-                                                    <div data-hover='logout' style='left:-1.65rem'
-                                                        class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
-                                                        تسجيل الخروج
-                                                    </div>
-                                                    @if (request()->segment(2) == 'logout')
-                                                        <ion-icon name="log-out-outline"></ion-icon>
-                                                        <ion-icon name="log-out"
-                                                            class=" font-md cursor-pointer text-primary-green">
-                                                        </ion-icon>
-                                                    @else
-                                                        <ion-icon name="log-out-outline" class=" font-md cursor-pointer ">
-                                                        </ion-icon>
-                                                    @endif
-                                                </a>
                                             @endrole
+                                            <a href="{{ route('logout') }}" class="relative mx-2" id='logout'>
+                                                <div data-hover='logout' style='left:-1.65rem'
+                                                    class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                                    تسجيل الخروج
+                                                </div>
+                                                @if (request()->segment(2) == 'logout')
+                                                    <ion-icon name="log-out"
+                                                        class=" font-md cursor-pointer text-primary-green">
+                                                    </ion-icon>
+                                                @else
+                                                    <ion-icon name="log-out-outline" class=" font-md cursor-pointer ">
+                                                    </ion-icon>
+                                                @endif
+                                            </a>
                                         @endif
                                     </div>
                                     <div>
-
                                         <div @click="open = !open" class=" ">
                                             <div
                                                 class="w-15 h-15 flex justify-center  text-white items-center py-3 px-3 rounded-xl m-2  bg-primary-blue cursor-pointer hover:bg-primary-light-pink  hover:text-primary-blue">
@@ -373,10 +367,13 @@
             //has internet connection
             console.log('connected');
         }
-        // $('.mo-btn').on('click', function() {
-        //     $('.mo-btn').attr("disabled", true);
-        //     $('.mo-btn').addClass("bg-gray");
-        // })
+        $('.mo-btn').on('click', function() {
+            if ($('.mo-btn').attr('href') !== undefined) {
+                $("#loading").fadeIn("slow");
+                $("#loading").addClass("circle-inter-active");
+            }
+
+        })
         $('#person').on('mouseover', function() {
             $('[data-hover=person]').removeClass('hidden')
         })
