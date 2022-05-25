@@ -1,5 +1,7 @@
+
 @foreach ($posts as $item)
     {{-- one card --}}
+    <div id="pager" class="">
     {{ $item->id }}
     <div class="card px-3 container my-4" style="direction: rtl;">
         <div class="box d-flex justify-content-between">
@@ -83,4 +85,11 @@
         </p>
 
     </div>
+    </div>
 @endforeach
+
+
+
+<div id="pageNavPosition" class="pager-nav"></div>
+
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CESDK2J7&placement=getbutterflycom" id="_carbonads_js"></script>

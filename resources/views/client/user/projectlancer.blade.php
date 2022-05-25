@@ -1,5 +1,30 @@
 @extends('client.master_layout')
 @section('content')
+<style>
+
+
+
+
+.pager-nav {
+    margin: 16px 0;
+}
+.pager-nav span {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 1px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.pager-nav span:hover,
+.pager-nav .pg-selected {
+    background-color: #f9f9f9;
+    border: 1px solid #CCCCCC;
+}
+</style>
     @livewireStyles
     <div class="d-flex justify-content-between align-item-center pt-20">
         <h3 class="mt-5 mb-2 font-xl font-bold px-4"> المشاريع المتاحه </h3>
@@ -39,3 +64,4 @@
         $('.combobox').combobox()
     });
 </script>
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CESDK2J7&placement=getbutterflycom" id="_carbonads_js"></script>
