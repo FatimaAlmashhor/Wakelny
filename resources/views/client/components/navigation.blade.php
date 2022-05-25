@@ -31,21 +31,21 @@
                       <li
                           class="nav_item font-sm cursor-pointer {{ request()->segment(2) == '' ? 'active_link' : '' }}">
                           <a href="{{ route('home') }}">
-                              الرئسية
+                              الرئيسية
                           </a>
                       </li>
 
                       <li
                           class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'posts' ? 'active_link' : '' }}">
                           <a href="{{ route('projectlancer') }}">
-                              المشاريع المتاحه
+                              المشاريع المتاحة
                           </a>
                       </li>
 
                       <li
                           class="nav_item font-sm cursor-pointer {{ request()->segment(2) == 'freelancers' ? 'active_link' : '' }}">
                           <a href="{{ route('freelancers') }}">
-                              مقدمي الخدمات
+                              مقدمو الخدمات
                           </a>
                       </li>
                   </ul>

@@ -18,23 +18,23 @@ class WalletSeeder extends Seeder
     public function run()
     {
         //
-        $unixTimestamp = '1461067200';
-        $faker = Faker::create();
-        foreach(range(1, 10) as $i){
-            DB::table('wallets')->insert([
-                'holder_type' => 'App\Model\User',
-                'holder_id' => $i,
-                'name' => 'Default Wallet',
-                'slug' => 'default',
-                'uuid' => Uuid::uuid4()->toString(),
-                'description' => $faker->sentence(20),
-                'meta' => '[]',
-                'balance' => 10000,
-                'decimal_places' => 2,
-                'created_at' => $faker->date('Y-m-d', $unixTimestamp),
-                'updated_at' => $faker->date('Y-m-d', $unixTimestamp),
-            ]);
-        }
+    //     $unixTimestamp = '1461067200';
+    //     $faker = Faker::create();
+    //     foreach(range(1, 10) as $i){
+    //         DB::table('wallets')->insert([
+    //             'holder_type' => 'App\Model\User',
+    //             'holder_id' => $i,
+    //             'name' => 'Default Wallet',
+    //             'slug' => 'default',
+    //             'uuid' => Uuid::uuid4()->toString(),
+    //             'description' => $faker->sentence(20),
+    //             'meta' => '[]',
+    //             'balance' => 10000,
+    //             'decimal_places' => 2,
+    //             'created_at' => $faker->date('Y-m-d', $unixTimestamp),
+    //             'updated_at' => $faker->date('Y-m-d', $unixTimestamp),
+    //         ]);
+    //     }
 
     }
 }

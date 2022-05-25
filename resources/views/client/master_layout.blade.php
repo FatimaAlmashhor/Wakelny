@@ -180,17 +180,12 @@
                             </a>
                         @endif
                         <!-- start drop up -->
-                        <div class="flex items-center">
-                            <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                                <div class="relative">
-                                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
-                                        class="bottom-0 origin-top-right absolute left-0 mt-2 -mr-1 w-48 rounded-md shadow-lg">
-                                        <div class="py-1 rounded-md bg-white shadow-xs relative">
+                        <div class="flex items-center" x-data="{ open: false }">
+                            <div @click.away="open = false" class="relative flex">
+                                <div
+                                    class="relative flex justify-center items-center border-r  border-r-primary-light-gray overflow-hidden ">
+                                    <div x-show="open" class="flex justify-center items-center">
+                                        {{-- <div class="py-1 rounded-md bg-white shadow-xs relative">
 
                                             @if (Auth::check())
                                                 @role('provider')
@@ -211,18 +206,70 @@
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                                 تسجيل الخروج
                                             </a>
+                                        </div> --}}
+                                        @if (Auth::check())
+                                            @role('provider')
+                                                <a href="{{ route('workonProject') }}" class="relative mx-2  mr-4"
+                                                    id='workonProject'>
+                                                    <div data-hover='workonProject' style='left:-1.65rem'
+                                                        class="absolute hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs  p-2">
+                                                        أعمل على
+                                                    </div>
+                                                    @if (request()->segment(2) == 'workonProject')
+                                                        <ion-icon name="receipt"
+                                                            class=" font-md cursor-pointer text-primary-green">
+                                                        </ion-icon>
+                                                    @else
+                                                        <ion-icon name="receipt-outline" class=" font-md cursor-pointer ">
+                                                        </ion-icon>
+                                                    @endif
+                                                </a>
+                                            @endrole
+                                        @endif
+                                        @if (Auth::check())
+                                            @role('seeker')
+                                                <a href="{{ route('myProject') }}" class="relative mx-2  mr-4"
+                                                    id='myProject'>
+                                                    <div data-hover='myProject' style='left:-1.65rem'
+                                                        class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                                        مشاريعي
+                                                    </div>
+                                                    @if (request()->segment(2) == 'myProject')
+                                                        <ion-icon name="receipt"
+                                                            class=" font-md cursor-pointer text-primary-green">
+                                                        </ion-icon>
+                                                    @else
+                                                        <ion-icon name="receipt-outline" class=" font-md cursor-pointer ">
+                                                        </ion-icon>
+                                                    @endif
+                                                </a>
+                                            @endrole
+                                            <a href="{{ route('logout') }}" class="relative mx-2" id='logout'>
+                                                <div data-hover='logout' style='left:-1.65rem'
+                                                    class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                                    تسجيل الخروج
+                                                </div>
+                                                @if (request()->segment(2) == 'logout')
+                                                    <ion-icon name="log-out"
+                                                        class=" font-md cursor-pointer text-primary-green">
+                                                    </ion-icon>
+                                                @else
+                                                    <ion-icon name="log-out-outline" class=" font-md cursor-pointer ">
+                                                    </ion-icon>
+                                                @endif
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <div @click="open = !open" class=" ">
+                                            <div
+                                                class="w-15 h-15 flex justify-center  text-white items-center py-3 px-3 rounded-xl m-2  bg-primary-blue cursor-pointer hover:bg-primary-light-pink  hover:text-primary-blue">
+                                                <ion-icon name="chevron-back-outline" class=" "></ion-icon>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
 
-                                    <div @click="open = !open" class="border-r my-2 border-r-primary-light-gray ">
-                                        <div
-                                            class="w-15 h-15 flex justify-center  text-white items-center py-3 px-3 rounded-xl m-2  bg-primary-blue cursor-pointer hover:bg-primary-light-pink  hover:text-primary-blue">
-                                            <ion-icon name="chevron-back-outline" class=" "></ion-icon>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- end drop up -->
@@ -321,10 +368,13 @@
             //has internet connection
             console.log('connected');
         }
-        // $('.mo-btn').on('click', function() {
-        //     $('.mo-btn').attr("disabled", true);
-        //     $('.mo-btn').addClass("bg-gray");
-        // })
+        $('.mo-btn').on('click', function() {
+            if ($('.mo-btn').attr('href') !== undefined && $('.mo-btn').attr('href') == '') {
+                $("#loading").fadeIn("slow");
+                $("#loading").addClass("circle-inter-active");
+            }
+
+        })
         $('#person').on('mouseover', function() {
             $('[data-hover=person]').removeClass('hidden')
         })
@@ -348,6 +398,18 @@
         })
         $('#work').on('mouseleave', function() {
             $('[data-hover=work]').addClass('hidden')
+        })
+        $('#myProject').on('mouseover', function() {
+            $('[data-hover=myProject]').removeClass('hidden')
+        })
+        $('#myProject').on('mouseleave', function() {
+            $('[data-hover=myProject]').addClass('hidden')
+        })
+        $('#workonProject').on('mouseover', function() {
+            $('[data-hover=workonProject]').removeClass('hidden')
+        })
+        $('#workonProject').on('mouseleave', function() {
+            $('[data-hover=workonProject]').addClass('hidden')
         })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

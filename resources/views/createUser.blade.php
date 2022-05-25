@@ -43,12 +43,12 @@
                 </a>
                 <div class="mt-4 flex items-center justify-between">
                     <span class="border-b w-1/5 lg:w-1/4"></span>
-                    <a href="#" class="text-xs text-center text-gray-500 uppercase">او سجل عن طريق الاميل </a>
+                    <a href="#" class="text-xs text-center text-gray-500 uppercase">أو سجل عن طريق الإيميل </a>
                     <span class="border-b w-1/5 lg:w-1/4"></span>
                 </div>
                 <div class="mt-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">
-                        الاسم كاملا
+                        الاسم كاملاً
                     </label>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
@@ -61,7 +61,7 @@
 
                 <div class="mt-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">
-                        البريد الاكتروني
+                        البريد الإلكتروني
                     </label>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
@@ -74,7 +74,7 @@
                 {{-- password --}}
                 <div class="mt-4">
                     <div class="flex justify-between">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">كلمه المرور</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">كلمة المرور</label>
                     </div>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
@@ -87,7 +87,7 @@
                 {{-- confirm password --}}
                 <div class="mt-4">
                     <div class="flex justify-between">
-                        <label class="block text-gray-700 text-sm font-bold mb-2"> تأكيد كلمه المرور</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2"> تأكيد كلمة المرور</label>
                     </div>
                     <input
                         class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
@@ -98,7 +98,7 @@
                 @enderror
                 <div class="mt-6 w-full flex justify-end items-start">
                     <button type='submit'
-                        class="mo-btn btn-blue-bg font-bold py-2 px-4  rounded hover:bg-gray-600">أذهب</button>
+                        class="mo-btn btn-blue-bg font-bold py-2 px-4  rounded hover:bg-gray-600">اذهب</button>
                 </div>
 
                 <div class="mt-4 flex items-center justify-between">
