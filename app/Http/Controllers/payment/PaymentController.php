@@ -18,7 +18,7 @@ class PaymentController extends Controller
 
     function doPayment($project_id, $seeker_id)
     {
-        try {
+        // try {
             $project = Project::select(
                 'posts.title',
                 'projects.amount',
@@ -68,15 +68,15 @@ class PaymentController extends Controller
 
             // return $response->json($key = null);
             return redirect(url($response['invoice']['next_url']));
-        } catch (\Illuminate\Http\Client\ConnectionException $e) {
-            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        }
+        // } catch (\Illuminate\Http\Client\ConnectionException $e) {
+        //     return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        // }
     }
     public static function successPayment($project_id,  $response)
     {
-        try {
+        // try {
             $project = Project::select(
                 'posts.title',
                 'projects.amount',
@@ -118,12 +118,12 @@ class PaymentController extends Controller
             // send notification for the seeker that the money is already خصمت
             // return redirect()->route('profile')->with(['message' => 'لقد تم سداد المبلغ بنجاح', 'type' => 'alert-success']);
             // open the frontend page
-        } catch (\Illuminate\Http\Client\ConnectionException $e) {
-            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
-        }
+        // } catch (\Illuminate\Http\Client\ConnectionException $e) {
+        //     return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return redirect()->route('profile')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
+        // }
     }
 
     // if the payment is cancled

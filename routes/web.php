@@ -93,7 +93,7 @@ Route::group([
     Route::get('/contactUs', [ContactController::class, 'index'])->name('contactUs');
     Route::post('/contactUs', [ContactController::class, 'store'])->name('contact.us.store');
 
-   
+
 
     // this is the page of the freelancers
     Route::get('/freelancers', [UserController::class, 'index'])->name('freelancers');
@@ -400,3 +400,8 @@ Route::get('/test-pusher', function () {
 
     return view('testPusher');
 });
+
+
+// last seen router
+Route::get('status', [UserController::class, 'userOnlineStatus']);
+//
