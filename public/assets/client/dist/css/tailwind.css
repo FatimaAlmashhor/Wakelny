@@ -720,6 +720,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 11rem;
 }
 
+.my-7 {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -918,6 +923,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 13rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .w-6\/12 {
   width: 50%;
 }
@@ -1018,6 +1027,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-64 {
   width: 16rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-5\/12 {
+  width: 41.666667%;
 }
 
 .min-w-fit {
@@ -1271,6 +1288,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-bottom-left-radius: 0.25rem;
 }
 
+.rounded-r-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1443,6 +1465,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-0 {
   padding: 0px;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .py-2 {
@@ -1843,6 +1869,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ease-linear {
   transition-timing-function: linear;
+}
+
+.checked\:bg-primary-pink:checked {
+  --tw-bg-opacity: 1;
+  background-color: rgb(205 101 124 / var(--tw-bg-opacity));
 }
 
 .hover\:scale-105:hover {

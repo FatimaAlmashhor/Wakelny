@@ -37,13 +37,13 @@ class ControllPannelController extends Controller
         } else if ($user->hasRole('provider')) {
             $userRole = 'provider';
         }
-       
+
         // return response()->json($transactions);
         return view('client.userProfile.controllPannal')->with([
             'data' => $profile,
             'categories' =>  $categories,
             'role' => $userRole,
-           
+
         ]);
         // return view('client.userProfile.controllPannal')->with();
     }
@@ -51,27 +51,28 @@ class ControllPannelController extends Controller
     // here the function for the saving the user information
     public function profile_save(Request $request)
     {
-        $current_user_id = Auth::user()->id;
+        try {
+            $current_user_id = Auth::user()->id;
 
-        $userRole = false;
-        // Auth::user()->roles()->detach();
-
-
-        if ($request->provider && $request->seeker) {
-            Auth::user()->roles()->sync([3, 4]);
-            $userRole = true;
-        } else if ($request->provider) {
-            Auth::user()->roles()->sync([4]);
-            $userRole = true;
-        } else if ($request->seeker) {
-            Auth::user()->roles()->sync([3]);
-            $userRole = true;
-        } else {
             $userRole = false;
-        }
+            // Auth::user()->roles()->detach();
 
 
-        if ($userRole) {
+            // if ($request->provider && $request->seeker) {
+            //     Auth::user()->roles()->sync([3, 4]);
+            //     $userRole = true;
+            // } else if ($request->provider) {
+            //     Auth::user()->roles()->sync([4]);
+            //     $userRole = true;
+            // } else if ($request->seeker) {
+            //     Auth::user()->roles()->sync([3]);
+            //     $userRole = true;
+            // } else {
+            //     $userRole = false;
+            // }
+
+
+            // if ($userRole) {
             Profile::where('user_id', $current_user_id)->update(
                 [
                     // !what this for?
@@ -86,9 +87,12 @@ class ControllPannelController extends Controller
             );
             return redirect()->route('profile')
                 ->with(['message' => '   تم تعديل معلومات الشخصيه بنجاح', 'type' => 'alert-success']);
-        } else {
-            return redirect()->back()
-                ->with(['message' => 'يرجى تحديد نوع الحساب رجاء', 'type' => 'alert-danger']);
+            // } else {
+            //     return redirect()->back()
+            //         ->with(['message' => 'يرجى تحديد نوع الحساب رجاء', 'type' => 'alert-danger']);
+            // }
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 
