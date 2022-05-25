@@ -212,7 +212,7 @@
                                                 <a href="{{ route('workonProject') }}" class="relative mx-2  mr-4"
                                                     id='workonProject'>
                                                     <div data-hover='workonProject' style='left:-1.65rem'
-                                                        class="absolute hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs  p-2">
+                                                        class=" hidden absolute bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs  p-2">
                                                         أعمل على
                                                     </div>
                                                     @if (request()->segment(2) == 'workonProject')
@@ -231,7 +231,7 @@
                                                 <a href="{{ route('myProject') }}" class="relative mx-2  mr-4"
                                                     id='myProject'>
                                                     <div data-hover='myProject' style='left:-1.65rem'
-                                                        class="hidden bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs absolute p-2">
+                                                        class="hidden absolute bg-black border-2 -top-16  border-primary-light-pink rounded-sm text-white font-xs  p-2">
                                                         مشاريعي
                                                     </div>
                                                     @if (request()->segment(2) == 'myProject')
@@ -357,7 +357,6 @@
         });
     </script>
 
-    @stack('scripts')
     <script>
         // $('#alert').slideIn(300).delay(5000).fadeOut(400);
         $('#alert').animate({
@@ -411,10 +410,10 @@
             $('[data-hover=workonProject]').addClass('hidden')
         })
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     @livewireScripts
 
+    @stack('scripts')
 
 </body>
 

@@ -68,87 +68,93 @@ class AuthController extends Controller
     ///////////////// add user //////////////////
     public function register(Request $request)
     {
-        // try {
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:8', 'max:50', /*'regex:/[a-z]/' , 'regex:/[A-Z]/' */],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
-            'confirm_pass' => ['same:user_pass']
+        try {
 
-        ], [
-            'name.required' => 'ادخل الاسم',
-            // 'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
-            'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
-            'email.unique' => 'الايميل موجود مسبقا',
-            'email.required' => 'ادخل الايميل',
-            'email.email' => 'ادخل الايميل بشكل صحيح',
-            'user_pass.required' => 'ادخل كلمة السر',
-            'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 8 خانات',
-            'user_pass.max' => 'يجب ام تكون كلمة السر اقل من 20 خانات',
-            'user_pass.regex' => 'كلمه المرور يجيب ان تحتوي على حروف كبيره وصغيره وارقام اورموز ',
-            'confirm_pass.same' => 'كلمة السر غير متطابقة ',
+            // return response()->json($request->role);
+            Validator::validate($request->all(), [
+                'name' => ['required', 'min:8', 'max:50', /*'regex:/[a-z]/' , 'regex:/[A-Z]/' */],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'user_pass' =>  ['required', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
+                'confirm_pass' => ['same:user_pass']
 
-
-        ]);
-
-        $role = 'seeker';
-        // check if the user still empty
-        $checkUsers = User::first();
-        if (is_null($checkUsers)) {
-            $role = 'admin';
-        }
-
-        $name = $request->name;
-        $u = new User();
-        $u->name = $name;
-        $u->password = Hash::make($request->user_pass);
-        $u->email = $request->email;
-        $token = Str::uuid();
-        $u->remember_token = $token;
+            ], [
+                'name.required' => 'ادخل الاسم',
+                // 'name.regex' => 'يجب ان يحتوي على حروف كبيرة "A-Z"وصغيرة"a-z" ',
+                'name.min' => 'يجب ان يكون الاسم اكثر من 8 حروف',
+                'email.unique' => 'الايميل موجود مسبقا',
+                'email.required' => 'ادخل الايميل',
+                'email.email' => 'ادخل الايميل بشكل صحيح',
+                'user_pass.required' => 'ادخل كلمة السر',
+                'user_pass.min' => 'يجب ام تكون كلمة السر اكثر من 8 خانات',
+                'user_pass.max' => 'يجب ام تكون كلمة السر اقل من 20 خانات',
+                'user_pass.regex' => 'كلمه المرور يجيب ان تحتوي على حروف كبيره وصغيره وارقام اورموز ',
+                'confirm_pass.same' => 'كلمة السر غير متطابقة ',
 
 
-        if ($u->save()) {
-            // try {
-            $u->attachRole($role);
-            $to_name = $request->name;
-            $to_email = $request->email;
-            $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
+            ]);
+            $role = 'seeker';
+            if ($request->role == 'provider')
+                $role = 'provider';
+            // check if the user still empty
+            $checkUsers = User::first();
+            if (is_null($checkUsers)) {
+                $role = 'admin';
+            }
 
-            // Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
-            //     $message->to($to_email, $to_name)
-            //         ->subject('تسجيل عضوية جديدة');
-            //     $message->from('kalefnyinfo@gmail.com', 'كلفني');
-            // });
-            $u->sendEmailVerificationNotification();
-            // $u->notify(new VerifyEmail);
-            // if the user not admin
-            if ($role !== 'admin') {
-                // setup the profile
-                $profile = new Profile();
-                $profile->name = $name;
-                $profile->user_id = $u->id;
-                $profile->save();
+            $name = $request->name;
+            $u = new User();
+            $u->name = $name;
+            $u->password = Hash::make($request->user_pass);
+            $u->email = $request->email;
+            $token = Str::uuid();
+            $u->remember_token = $token;
 
 
-                if ($u->hasRole('seeker'))
-                    $u->deposit(10000);
+            if ($u->save()) {
+                // try {
+
+                $u->attachRole($role);
+                $to_name = $request->name;
+                $to_email = $request->email;
+                $data = array('name' => $request->name, 'activation_url' => URL::to('/') . "/verify_email/" . $token);
+
+                // Mail::send('emails.welcome', $data, function ($message) use ($to_name, $to_email) {
+                //     $message->to($to_email, $to_name)
+                //         ->subject('تسجيل عضوية جديدة');
+                //     $message->from('kalefnyinfo@gmail.com', 'كلفني');
+                // });
+                $u->sendEmailVerificationNotification();
+                // $u->notify(new VerifyEmail);
+                // if the user not admin
+                if ($role !== 'admin') {
+                    // setup the profile
+                    $profile = new Profile();
+                    $profile->name = $name;
+                    $profile->user_id = $u->id;
+                    $profile->save();
+
+
+                    if ($role == 'seeker')
+                        $u->deposit(10000);
+                }
+
+
+
+
+                return redirect()->route('login')
+                    ->with(['message' => 'تم انشاء حسابك بنجاح', 'type' => 'alert-success']);
+                // } catch (\Throwable $th) {
+                //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+                // }
             }
 
 
-
-
-            return redirect()->route('login')
-                ->with(['message' => 'تم انشاء حسابك بنجاح', 'type' => 'alert-success']);
-            // } catch (\Throwable $th) {
-            //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-            // }
+            return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (\Throwable $th) {
+            return redirect()->route('admin')->with(['message' => 'انت لمن تعد مصرح له بالدخول لهذه الصفحه ', 'type' => 'alert-danger']);
         }
-
-
-        return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-        // } catch (\Exception $th) {
-        //     return back()->with(['message' => 'فشلت عمليه تسجيل دخولك رجاء اعاده المحاوله   ', 'type' => 'alert-danger']);
-        // }
     }
     ///////////////// show hogin page after check role//////////////////
 
