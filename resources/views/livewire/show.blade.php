@@ -17,12 +17,13 @@
                                                 <div class="flex-2">
                                                     <div class="w-12 h-12 relative">
                                                         <img class="w-12 h-12 rounded-full mx-auto" src="/images/1651959757_edait.png" alt="chat-user" />
-                                                        <span class="absolute w-4 h-4 bg-green-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
+                                                        @if($user->is_online)  
+                                                         <span class="absolute w-4 h-4 bg-primary-green rounded-full right-0 bottom-0 border-2 border-white"></span>
+                                                        @endif 
                                                     </div>
                                                 </div>
 
                                                 <div class="flex-1 px-2">
-                                                @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif 
                                                     <div class="truncate w-32"><span class="text-gray-800">{{ $user->name }}</span></div>
                                                     <div><small class="text-gray">{{ $user->last_activity }}</small></div>
                                                     @if(filled($not_seen))
