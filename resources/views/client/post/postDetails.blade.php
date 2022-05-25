@@ -295,7 +295,7 @@
                                                                     class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
 
                                                                 <span
-                                                                    class="color-gray-dark px-2 font-sm">{{ $item->specialization }}</span>
+                                                                    class="color-gray-dark px-2 font-sm">{{ $item->job_title }}</span>
                                                             </div>
 
                                                         </div>

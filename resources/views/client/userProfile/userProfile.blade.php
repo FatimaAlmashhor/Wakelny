@@ -26,10 +26,10 @@
                         </div>
 
                         <div class="user-brief text-muted">
-                            @if ($data->specialization)
+                            @if ($data->job_title)
                                 <p class="d-inline-block ms-3">
                                     <i class="fas fa-briefcase"></i> <span
-                                        class="me-1">{{ $data->specialization }}</span>
+                                        class="me-1">{{ $data->job_title }}</span>
                                 </p>
                             @endif
                             @if ($data->country)
@@ -67,7 +67,7 @@
                                             viewBox="0 0 20 20">
                                             <path
                                                 style="color:white ; stroke: white;
-                                                                                                                                                                                                                                                                                                                                                        fill: white;"
+                                                                                                                                                                                                                                                                                                                                                                                        fill: white;"
                                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                         </svg>
                                     </a>
@@ -191,9 +191,9 @@
                             <div class="row">
                                 <section class="card shadow-sm p-3">
                                     <div class="statistics">
-                                        <div class="section-title">
-                                            <h5 class="font-md">إحصائيات</h5>
-                                        </div>
+                                        {{-- <div class="section-title">
+                                            {{-- <h5 class="font-md">إحصائيات</h5> --}}
+                                        {{-- </div>  --}}
                                         <div class="statistic-content mt-3">
                                             <p class="p-1">
                                                 <i class="fas fa-briefcase ms-1"></i>
@@ -237,9 +237,9 @@
                                     <hr>
 
                                     <div class="histories">
-                                        <div class="section-title">
+                                        {{-- <div class="section-title">
                                             <h5 class="font-md">تواريخ</h5>
-                                        </div>
+                                        </div> --}}
                                         <div class="histories-content mt-3">
                                             <p class="p-1">
                                                 <i class="fa-solid fa-calendar-days ms-1"></i>
@@ -247,6 +247,27 @@
                                                 <span class="me-1">{{ $data->created_at }}</span>
                                             </p>
                                         </div>
+                                        {{-- last seen --}}
+                                        @php $users = DB::table('users')->get(); @endphp
+
+                                        <div class="histories-content mt-3">
+                                            <p class="p-1">
+                                                <i class="fa-solid fa-clock"></i>
+                                                <span class="fs-6 fw-bold d-inll">اخر تواجد</span>
+                                                <span class="fs-6 fw-bold d-inll">
+                                                    @foreach ($users as $user)
+                                                        {{-- @if (Cache::has('user-is-online-' . $user->id))
+                                                            <span class="text-success">Online</span>
+                                                        @else
+                                                            <span class="text-secondary">Offline</span>
+                                                        @endif --}}
+                                                    @endforeach
+                                                </span>
+                                                <span
+                                                    class="me-1">{{ \Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
+                                            </p>
+                                        </div>
+
                                     </div>
 
                                 </section>
