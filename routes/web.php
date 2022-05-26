@@ -403,5 +403,5 @@ Route::get('/test-pusher', function () {
 
 
 // last seen router
-Route::get('status', [UserController::class, 'userOnlineStatus']);
+Route::get('/status', [UserController::class, 'userOnlineStatus']);
 //

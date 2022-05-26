@@ -15,8 +15,9 @@
                                 class="mo-btn btn-pink-bg text-white text-gray-700  py-2 px-4 rounded inline-flex items-center">
                                 <span class="mr-1 font-md">اغلاق المشروع</span>
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path style="color:white ; stroke: white;
-                                                                     fill: white;"
+                                    <path
+                                        style="color:white ; stroke: white;
+                                                                                                                                             fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
@@ -266,10 +267,17 @@
                                                                         style="width:60px ; height:60px ; object-fit: cover" src="{{ $item->avatar }}"
                                                                         alt="">
                                                                 @else --}}
-                                                            <img class="rounded-circle mr-4 border"
-                                                                style="width:60px ; height:60px ; object-fit: cover"
-                                                                src="{{ asset('assets/client/images/user-profile-2.png') }}"
-                                                                alt="">
+                                                            @if ($item->avatar !== null)
+                                                                <img class="rounded-circle mr-4 border"
+                                                                    style="width:60px ; height:60px ; object-fit: cover"
+                                                                    src="/images/{{ $item->avatar }}" alt="">
+                                                            @else
+                                                                <img class="rounded-circle mr-4 border"
+                                                                    style="width:60px ; height:60px ; object-fit: cover"
+                                                                    src="{{ asset('assets/client/images/user-profile-2.png') }}"
+                                                                    alt="">
+                                                            @endif
+
                                                             {{-- @endif --}}
 
                                                         </a>
@@ -304,7 +312,7 @@
                                                     {{-- تعديل الكومنتات --}}
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="row ">
-                                                            <div class="col-md-6 col-sm-6  ">
+                                                            <div class="col-md-8 col-sm-6  ">
                                                                 @if (Auth::check() && $item->user_id == auth()->user()->id)
                                                                     <button class="mo-btn w-full" data-bs-toggle="collapse"
                                                                         data-bs-target="#demo"
@@ -327,8 +335,9 @@
                                                                                 <svg class="fill-current h-4 w-8"
                                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                                     viewBox="0 0 20 20">
-                                                                                    <path style="color:white ; stroke: white;
-                                                                                                        fill: white;"
+                                                                                    <path
+                                                                                        style="color:white ; stroke: white;
+                                                                                                                                                                                fill: white;"
                                                                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                                                 </svg>
                                                                             </button>
@@ -354,14 +363,17 @@
                                                     {{-- more info --}}
                                                     <div>
                                                         <div class="d-flex justify-content-around m-3 bg-lighter-gray p-3">
-                                                            <div>
-                                                                <div>المبلغ</div>
-                                                                <div>${{ $item->cost }}</div>
-                                                            </div>
-                                                            <div>
-                                                                <div>مدة التنفيذ</div>
-                                                                <div>{{ $item->duration }} أيام</div>
-                                                            </div>
+                                                            @if (Auth::id() == $item->user_id || Auth::id() == $post->post_user_id)
+                                                                <div>
+                                                                    <div>المبلغ</div>
+                                                                    <div>${{ $item->cost }}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>مدة التنفيذ</div>
+                                                                    <div>{{ $item->duration }} أيام</div>
+                                                                </div>
+                                                            @endif
+
                                                             {{-- <div>
                                                                         <div>معرض الأعمال</div>
                                                                         <div>{{ $post->workcount }} أعمال</div>
@@ -538,7 +550,8 @@
                                                 <div class=" m-2 flex justify-start items-start">
                                                     @if (!$checkHasProject)
                                                         <button tabindex="-1" class="mo-btn  mx-1  " type="button"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal_{{ $item->user_id }}">
                                                             <i class="fa fa-check px-1"></i>
                                                             <span class=""> قبول العرض </span>
                                                         </button>
@@ -555,12 +568,12 @@
 
 
                                         <!-- Acceptance Modal -->
-                                        <div class="modal" id="exampleModal" tabindex="-1"
+                                        <div class="modal" id="exampleModal_{{ $item->user_id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title order-2 font-lg" id="exampleModalLabel">قبول
+                                                        <h5 class="modal-title order-2 font-lg">قبول
                                                             العرض</h5>
                                                         <button type="button" class="btn-close order-2"
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
@@ -578,53 +591,50 @@
                                                         <input type="hidden" value="{{ $post_id }}" name="post_id">
                                                         <div class="modal-body ">
                                                             <!-- credit card -->
-                                                            <div class=" row color-black px-3 modal-panel is-show supSection"
-                                                                id="tab-A">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <label class="font-md">المبلغ المتفق عليه
-                                                                        </label>
-                                                                        <div class="input-group mt-1">
-                                                                            <input name="amount" min="1"
-                                                                                class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="amount" type="number"
-                                                                                value="{{ old('cost') }}"
-                                                                                aria-label="Username"
-                                                                                aria-describedby="basic-addon1">
-                                                                            <span
-                                                                                class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
-                                                                                id="basic-addon1">$</span>
-                                                                        </div>
-                                                                        @error('amount')
-                                                                            <p class="text-danger" role="alert">
-                                                                                {{ $message }}
-                                                                            </p>
-                                                                        @enderror
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label class="font-md">المبلغ المتفق عليه
+                                                                    </label>
+                                                                    <div class="input-group mt-1">
+                                                                        <input name="amount" min="1"
+                                                                            class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                                                            id="amount" type="number"
+                                                                            value="{{ old('cost') }}"
+                                                                            aria-label="Username"
+                                                                            aria-describedby="basic-addon1">
+                                                                        <span
+                                                                            class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                            id="basic-addon1">$</span>
                                                                     </div>
-                                                                    <div class="col-6">
-                                                                        <label class="font-md">المده المتفق عليه
-                                                                        </label>
-                                                                        <div class="input-group mt-1">
-                                                                            <input name="duration" min="1"
-                                                                                class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                                                id="duration" type="number"
-                                                                                value="{{ old('duration') }}"
-                                                                                aria-label="Username"
-                                                                                aria-describedby="basic-addon1">
-                                                                            <span
-                                                                                class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
-                                                                                id="basic-addon1">ايام</span>
-                                                                        </div>
-                                                                        @error('duration')
-                                                                            <p class="text-danger" role="alert">
-                                                                                {{ $message }}
-                                                                            </p>
-                                                                        @enderror
-                                                                    </div>
+                                                                    @error('amount')
+                                                                        <p class="text-danger" role="alert">
+                                                                            {{ $message }}
+                                                                        </p>
+                                                                    @enderror
                                                                 </div>
-
-
+                                                                <div class="col-6">
+                                                                    <label class="font-md">المده المتفق عليه
+                                                                    </label>
+                                                                    <div class="input-group mt-1">
+                                                                        <input name="duration" min="1"
+                                                                            class="appearance-none block w-75 bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                                                            id="duration" type="number"
+                                                                            value="{{ old('duration') }}"
+                                                                            aria-label="Username"
+                                                                            aria-describedby="basic-addon1">
+                                                                        <span
+                                                                            class="flex items-center justify-center appearance-none  border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3  mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink w-8 bg-primary-light-pink"
+                                                                            id="basic-addon1">ايام</span>
+                                                                    </div>
+                                                                    @error('duration')
+                                                                        <p class="text-danger" role="alert">
+                                                                            {{ $message }}
+                                                                        </p>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
+
+
                                                             <div class=" modal-footer flex ">
                                                                 <input type="submit" class=" mo-btn font-md"
                                                                     value="قبول العرض">
@@ -666,9 +676,13 @@
                         </div>
                         <div>
                             <div class="my-3 font-sm"> <span class="px-1"
-                                    style="background-color: green ; color:white;">@if($post->status=="open") مفتوح
-@elseif ($post->status=="closed") مغلق
-                                    @endif</span></div>
+                                    style="background-color: green ; color:white;">
+                                    @if ($post->status == 'open')
+                                        مفتوح
+                                    @elseif ($post->status == 'closed')
+                                        مغلق
+                                    @endif
+                                </span></div>
                             <div class="my-3 font-sm"> {{ $post->created_at }}</div>
                             <div class="my-3 font-sm"> ${{ $post->cost }}</div>
 
@@ -679,21 +693,26 @@
                     </div>
                 </div>
                 <!-- <hr>
-                                                            <div>
-                                                                <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                                                                <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+                                                                                                                                    <div>
+                                                                                                                                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                                                                                                                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                                                                                                                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
 
-                                                            </div> -->
+                                                                                                                                    </div> -->
                 <hr>
                 <div>
                     <p class="font-md my-4">صاحب المشروع</p>
                     <div class="image d-flex">
 
 
+                        @if ($post->avatar !== null)
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="/images/{{ $post->avatar }}" alt="">
+                        @else
+                            <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
+                                src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
+                        @endif
 
-                        <img class="rounded-circle mr-4 border" style="width:60px ; height:60px ; object-fit: cover"
-                            src="{{ asset('assets/client/images/user-profile-2.png') }}" alt="">
 
 
 
@@ -706,7 +725,7 @@
                             <div class="rate">
                                 <span class="px-1 font-sm color-gray-dark "></span>
                                 <i class="fa fa-fw fa-briefcase font-xs color-gray-dark"></i>
-                                <span class="color-gray-dark px-1 font-sm">{{ $post->post_user_specialization }}</span>
+                                <span class="color-gray-dark px-1 font-sm">{{ $post->job_title }}</span>
                             </div>
 
                         </div>

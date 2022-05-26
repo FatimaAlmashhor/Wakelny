@@ -67,7 +67,7 @@
                                             viewBox="0 0 20 20">
                                             <path
                                                 style="color:white ; stroke: white;
-                                                                                                                                                                                                                                                                                                                                                                                        fill: white;"
+                                                                                                                                                                                                                                                                                                                                                                                                                fill: white;"
                                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                         </svg>
                                     </a>
@@ -190,50 +190,53 @@
                         <div class="col-sm-12 col-lg-5  px-3 statistics-card   " id='aside_subsection'>
                             <div class="row">
                                 <section class="card shadow-sm p-3">
-                                    <div class="statistics">
-                                        {{-- <div class="section-title">
+                                    @role('provider')
+                                        <div class="statistics">
+                                            {{-- <div class="section-title">
                                             {{-- <h5 class="font-md">إحصائيات</h5> --}}
-                                        {{-- </div>  --}}
-                                        <div class="statistic-content mt-3">
-                                            <p class="p-1">
-                                                <i class="fas fa-briefcase ms-1"></i>
-                                                <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
-                                                <span class="me-1">66%</span>
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-clipboard-check ms-1"></i>
-                                                <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
-                                                <span class="me-1">{{ $data->reseved }}</span>
-                                            </p>
-                                            <p class="p-1">
-                                                <i class="fa-solid fa-spinner ms-1"></i>
-                                                <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
-                                                <span class="me-1">{{ 4 - $data->limit }}</span>
-                                            </p>
-                                            <p class="p-1 d-flex justify-between">
-                                                <span>
-                                                    <i class="fa-solid fa-star ms-1"></i>
-                                                    <span class="fs-6 fw-bold d-inll">التقييمات:</span>
-                                                    <span class="me-1">
-                                                        {{-- {{ $rating->countEvalution }} --}}
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($rating >= $i)
-                                                                <i class="fa fa-star clr-amber rating-star"
-                                                                    style="color: orange;"></i>
-                                                            @else
-                                                                <i class="fa fa-star clr-amber rating-star"
-                                                                    style="color: gainsboro;"></i>
-                                                            @endif
-                                                        @endfor
+                                            {{-- </div> --}}
+                                            <div class="statistic-content mt-3">
+                                                <p class="p-1">
+                                                    <i class="fas fa-briefcase ms-1"></i>
+                                                    <span class="fs-6 fw-bold d-inll">معدل الطلب:</span>
+                                                    <span class="me-1">66%</span>
+                                                </p>
+                                                <p class="p-1">
+                                                    <i class="fa-solid fa-clipboard-check ms-1"></i>
+                                                    <span class="fs-6 fw-bold d-inll">المشاريع المسلمة:</span>
+                                                    <span class="me-1">{{ $data->reseved }}</span>
+                                                </p>
+                                                <p class="p-1">
+                                                    <i class="fa-solid fa-spinner ms-1"></i>
+                                                    <span class="fs-6 fw-bold d-inll">المشاريع قيد العمل:</span>
+                                                    <span class="me-1">{{ 4 - $data->limit }}</span>
+                                                </p>
+                                                <p class="p-1 d-flex justify-between">
+                                                    <span>
+                                                        <i class="fa-solid fa-star ms-1"></i>
+                                                        <span class="fs-6 fw-bold d-inll">التقييمات:</span>
+                                                        <span class="me-1">
+                                                            {{-- {{ $rating->countEvalution }} --}}
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($rating >= $i)
+                                                                    <i class="fa fa-star clr-amber rating-star"
+                                                                        style="color: orange;"></i>
+                                                                @else
+                                                                    <i class="fa fa-star clr-amber rating-star"
+                                                                        style="color: gainsboro;"></i>
+                                                                @endif
+                                                            @endfor
+                                                        </span>
                                                     </span>
-                                                </span>
-                                                <span>
-                                                    [ {{ $rating_count }} ]
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
 
+
+                                                    <span>
+                                                        [ {{ $rating_count }} ]
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endrole
                                     <hr>
 
                                     <div class="histories">
@@ -318,7 +321,7 @@
                                                 <div class="fs-6 fw-normal d-flex justify-content-start">
                                                     <div>
                                                         @if ($evaluate->avatar !== null)
-                                                            <img src="{{ $evaluate->avatar }}"
+                                                            <img src="/images/{{ $evaluate->avatar }}"
                                                                 class="border rounded-circle"
                                                                 style="max-width: 50px; max-height: 50px; object-fit: cover">
                                                         @else

@@ -563,12 +563,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.left-20 {
-  left: 5rem;
-}
-
 .top-0 {
   top: 0px;
+}
+
+.left-20 {
+  left: 5rem;
 }
 
 .z-50 {
@@ -894,12 +894,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 0.75rem;
 }
 
-.h-32 {
-  height: 8rem;
-}
-
 .h-96 {
   height: 24rem;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .h-11 {
@@ -910,12 +910,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 18rem;
 }
 
-.h-24 {
-  height: 6rem;
-}
-
-.h-52 {
-  height: 13rem;
+.h-32 {
+  height: 8rem;
 }
 
 .w-6\/12 {
@@ -996,8 +992,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 15rem;
 }
 
-.w-52 {
-  width: 13rem;
+.w-24 {
+  width: 6rem;
 }
 
 .w-48 {
@@ -1158,12 +1154,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.25rem;
 }
 
-.gap-7 {
-  gap: 1.75rem;
-}
-
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-7 {
+  gap: 1.75rem;
 }
 
 .gap-x-5 {
@@ -1510,11 +1506,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.25rem;
 }
 
-.px-44 {
-  padding-left: 11rem;
-  padding-right: 11rem;
-}
-
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1528,6 +1519,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.px-44 {
+  padding-left: 11rem;
+  padding-right: 11rem;
 }
 
 .pt-3 {
@@ -2064,14 +2060,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 5rem;
   }
 
-  .md\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
   .md\:px-24 {
     padding-left: 6rem;
     padding-right: 6rem;
+  }
+
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
@@ -2132,14 +2128,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 2.5rem;
   }
 
-  .lg\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
   .lg\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .lg\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .lg\:text-4xl {
