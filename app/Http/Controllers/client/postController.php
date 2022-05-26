@@ -51,9 +51,10 @@ class PostController extends Controller
         try {
             $post = Posts::select(
                 'posts.*',
+                'profiles.avatar',
                 'profiles.name as post_user_name',
                 'profiles.user_id as post_user_id',
-                'profiles.specialization as post_user_specialization',
+                'profiles.job_title',
             )->join('profiles', 'profiles.user_id', 'posts.user_id')->where('id', (int)$post_id)->where('is_active', 1)->first();
 
 
@@ -69,6 +70,7 @@ class PostController extends Controller
                 'profiles.specialization',
                 'profiles.rating',
                 'profiles.user_id',
+                'profiles.avatar',
                 'comments.duration',
                 'comments.cost',
                 'comments.description',
