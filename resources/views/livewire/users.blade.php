@@ -133,91 +133,91 @@
         </nav>
     </div>
 
-    {{-- <div class="row mb-3 p-2">
+    <div class="page-heading">
+        <h3>{{ __('dash.all_users') }}</h3>
+    </div>
 
-        <div class="form-control form-control-lg">
-            <div class="form-outline">
-              <input id="search-focus" type="search" id="form1" class="form-control" />
-              <label class="form-label" for="form1">Search</label>
-            </div>
-            <button type="button" class="btn btn-primary">
-              <i class="fas fa-search" style="color: blue"></i>
-            </button>
-          </div>
-        </div> --}}
+    <!-- Table head options start-->
+    <section class="section">
+        <div class="row" id="table-head">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <!-- table head dark -->
+                        <div class="table-responsive py-2">
+                            <table class="table mb-0 ">
+                                <thead class="thead-dark ">
+                                    <tr>
+                                        <th>#</th>
 
-        <div class="page-heading  pt-2  m-2  ">
-            <h3>{{ __('dash.all_project') }}</h3>
+                                        <th>{{ __('dash.usre_name') }}</th>
+                                        <th>{{ __('dash.user_email') }}</th>
+                                        <th>{{ __('dash.State') }}</th>
+                                        <th>{{ __('dash.user_is_active') }}</th>
 
-        </div>
+                                    </tr>
 
-        {{-- <div class="col-md-2 pt-2  m-2  ">
+                                </thead>
 
-            <label for="">الحالة</label>
-            <select  wire:model="byContent" class="from-control">
-            <option value="all">جميعا</option>
-            <option value="pending"> قيد الانتظار</option>
-            <option value="done"> تم</option>
-            <option value="at_work"> قيد العمل</option>
-            <option value="received"> استلم</option>
-            <option value="rejected"> رفض التسليم</option>
-
-            </select>
-          </div> --}}
-
-
-        <!-- Table head options starts- -->
-        <section class="section">
-            <div class="row" id="table-head">
-                <div class="col-12">
-                    <div class="card">
-
-                        <div class="card-content">
-                            <!-- table head dark -->
-                            <div class="table" style="overflow: none ; padding: 10px 20px;">
-                                <table class="table mb-0 mt-3 " style="overflow: none">
-                                    <thead class="thead-dark pr-4">
+                                <tbody>
+                                    @foreach ($users as $item)
                                         <tr>
-                                            <th>#</th>
-                                            <th>{{ __('dash.start_project') }}</th>
-                                            <th>{{ __('dash.end_project') }}</th>
-                                            <th>{{ __('dash.title') }}</th>
-                                            <th>{{ __('dash.seeker_id') }}</th>
-                                            <th>{{ __('dash.provider_id') }}</th>
-                                            <th>{{ __('dash.duration') }}</th>
-                                            <th>{{ __('dash.status') }}</th>
-                                            <th >{{ __('dash.amount') }}</th>
+
+                                            <td class="text-bold-500">{{ $loop->iteration }}</td>
+
+                                            <td class="text-bold-500">{{ $item->name }}</td>
+                                            <td class="text-bold-500">{{ $item->email }}</td>
+                                            <td>
+                                              @if($item->is_active == 1)
+                                              <span  class="bg-primary-blue " style="color:white;  padding: 5px 21px; border-radius: 5px;">مفعل</span>
+                                              @else
+                                              <span   class="bg-primary-pink " style="color:white;  padding: 5px 21px; border-radius: 5px;">معطل</span>
+                                              @endif
+                                              </td>
+                                            <td>
+                                                {{-- <a  href="{{ route('edit_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a> --}}
+
+                                                <a href="{{ route('ban_user', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+
+                                                        @if($item->is_active == 0)
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1 blue" > </i>
+                                                        @else
+                                                        <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#CD657C;" > </i>
+                                                        @endif
+
+                                                </a>
+
+                                            </td>
+
+                                            {{-- <td>
+                                                <a  href="{{ route('edit_skill') }}" class="btn btn-icon btn-outline-dribbble">
+                                                     <i class="fas fa-edit bx bx-edit-alt me-1"> </i>
+                                                </a>
+
+                                                <a   href="{{ route('toggle_skill', $item->id) }}" class="btn btn-icon btn-outline-dribbble">
+
+                                                        @if($item->is_active == 1)
+                                                        <i class="fas fa-toggle-on bx bx-edit-alt me-1" style="color:#ff5d5d;" > </i>
+                                                            @else
+                                                            <i class="fas fa-toggle-off bx bx-edit-alt me-1" style="color:#84e984;" > </i>
+                                                        @endif
+                                                </a>
+                                            </td> --}}
 
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($project as $item)
-                                            <tr>
 
-                                                <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                                <td class="text-bold-500">{{ $item->stated_at }}</td>
+                                    @endforeach
 
-                                                <td class="text-bold-500">{{ $item->finshed }}</td>
-                                                <td class="text-bold-500">{{ $item->title }}</td>
-
-                                                <td class="text-bold-500">{{ $item->reporter }}</td>
-                                                <td class="text-bold-500">{{ $item->reported }}</td>
-
-                                                <td class="text-bold-500">{{ $item->duration }}أيام</td>
-                                                <td class="text-bold-500">{{ $item->status }}</td>
-                                                <td class="" style=" width: 1px;">${{ $item->amount }}</td>
-
-                                            </tr>
-
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Table head options end -->
-    </div>
+        </div>
+    </section>
+</div>
+    <!-- Table head options end -->
