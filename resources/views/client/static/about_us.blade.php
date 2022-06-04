@@ -80,8 +80,10 @@
 
                             {{-- team 2 --}}
                             <div class=" relative bubble bubble-2">
-                                <div class="absolute p-1 px-4 bg-primary-green text-black left-20 w-fit">
-                                    <h3>أفنان القدسي</h3>
+
+                                <div class="absolute p-1 px-4 bg-primary-green text-black left-20">
+                                    <h3> أفنان  </h3>
+
                                 </div>
                                 <img class='w-32 h-32' src='/assets/client/images/Avatar (1).png' alt='afnan' />
                                 <div class="border-t border-t-gray  mt-5">
