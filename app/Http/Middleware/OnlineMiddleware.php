@@ -19,8 +19,8 @@ class OnlineMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $users_to_offline = User::where('last_activity', '<',  (string)now());
-        $users_to_online = User::where('last_activity', '>=',  (string)now());
+        $users_to_offline = User::where('last_activity', '<',  date("Y-m-d H:i:s"));
+        $users_to_online = User::where('last_activity', '>=', date("Y-m-d H:i:s"));
         if (isset($users_to_offline)) {
             $users_to_offline->update(['is_online' => 0]);
         }
