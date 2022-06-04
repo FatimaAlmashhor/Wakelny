@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\Project;
 use App\Models\Report;
 use App\Models\User;
@@ -225,6 +226,15 @@ class PaymentController extends Controller
                     'invoice_referance' => $project->invoice,
                 ]); //here with the patform withdraw
 
+                $profile = Profile::where('user_id', $project->provider_id)->first();
+                $limitValue = $profile->limit;
+                if ($limitValue <= 4 && $limitValue > 0) {
+                    $profile->limit =  $limitValue + 1;
+                } else {
+                    $profile->limit = 4;
+                }
+                $profile->reseved =  $profile->reseved + 1;
+                $profile->save();
                 Report::where('project_id', $project_id)->update([
                     'is_active' => 0,
                 ]);

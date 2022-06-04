@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\NotificationController;
 use App\Models\Comments;
 use App\Models\Posts;
+use App\Models\Profile;
 use App\Models\User;
 use App\Notifications\CommentNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Pusher\ApiErrorException;
 use Pusher\Pusher;
+use Symfony\Component\ErrorHandler\Error\FatalError;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class CommentsController extends Controller
 {
@@ -48,20 +52,25 @@ class CommentsController extends Controller
                 $postOwner = User::select(
                     'posts.id',
                     'posts.title',
-                    'users.id as userid',
-                    'users.name'
+                    'posts.user_id as userid',
+                    'profiles.name as user_name'
                 )->join('posts', 'posts.user_id', '=', 'users.id')
+                    ->join('profiles', 'profiles.user_id', '=', 'users.id')
                     ->where('posts.id', $request->post_id)
                     ->first();
 
-                $user = User::join('profiles', 'profiles.user_id', 'users.id')->where('id',  Auth::id())->first();
+                $user = User::join('profiles', 'profiles.user_id', 'users.id')->where('id', $postOwner->userid)->first();
+                $provider = Profile::select('name')->where('user_id', Auth::id())->first();
+                // return response()->json($user);
                 $data = [
-                    'name' =>  $user->name,
+                    'name' =>  $postOwner->user_name,
                     'post_title' => $postOwner->title,
-                    'message' => 'قام ' .   $user->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
+                    'message' => 'قام ' .   $provider->name . ' باضافه تعليق على  مشروعك ' . $postOwner->title,
                     'url' => url('posts/details/' . $postOwner->id),
                     'userId' => $postOwner->userid
                 ];
+
+
                 $options = array(
                     'cluster' => env('PUSHER_APP_CLUSTER'),
                     'encrypted' => true
@@ -73,10 +82,9 @@ class CommentsController extends Controller
                     $options
                 );
 
+
                 $user->notify(new CommentNotification($data));
                 $pusher->trigger('channel-name', 'App\\Events\\CommentEvents', $data);
-                // $notify = new NotificationController();
-                // $notify->addcommentNotificatoin($request->post_id);
 
                 return redirect()->back()
                     ->with(['message' => 'تم اضافة عرضك  بنجاح', 'type' => 'alert-success']);
@@ -85,6 +93,12 @@ class CommentsController extends Controller
             }
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (FatalError $e) {
+            return redirect()->back()->with(['message' => 'لقد استغرت العمليه اطول من الوقت المحدد لها ', 'type' => 'alert-success']);
+        } catch (ApiErrorException $e) {
+            return redirect()->back()->with(['message' => 'تأكد من الاتصال بالانترنت ', 'type' => 'alert-success']);
+        } catch (TransportException $e) {
+            return redirect()->back()->with(['message' => 'تأكد من الاتصال بالانترنت ', 'type' => 'alert-success']);
         } catch (\Throwable $th) {
             throw $th;
             return back()->with(['message' => 'فشلت عمليه الاضافة الرجاء اعاده المحاوله   ', 'type' => 'alert-danger']);

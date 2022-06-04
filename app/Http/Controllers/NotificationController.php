@@ -32,7 +32,8 @@ class NotificationController extends Controller
                 ->where('posts.id', $post_id)
                 ->first();
 
-            $user = User::select('profiles.name')->join('profiles', 'profiles.user_id', 'users.id')->where('id',  Auth::id())->first();
+            $user = User::join('profiles', 'profiles.user_id', 'users.id')->where('id', $postOwner->userid)->first();
+            return response()->json($user);
             $data = [
                 'name' =>  $user->name,
                 'post_title' => $postOwner->title,

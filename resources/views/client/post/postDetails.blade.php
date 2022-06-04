@@ -1,7 +1,7 @@
 @extends('client.master_layout')
 @section('content')
     {{--  --}}
-    <div class="container">
+    <div class="container relative">
         <div class="d-flex justify-content-between flex-wrap mt-20">
             <h3 class="my-5  font-xl font-bold "> {{ $post->title }}</h3>
             <div class="card--actions hidden-xs my-5">
@@ -17,7 +17,7 @@
                                 <svg class="fill-current h-4 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path
                                         style="color:white ; stroke: white;
-                                                                                                                                             fill: white;"
+                                                                                                                                                                                                                         fill: white;"
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
@@ -93,7 +93,15 @@
 
 
                 {{-- add comments --}}
-                @if (Auth::check() && Auth::id() != $post->user_id && Auth::user()->hasRole('provider'))
+                <?php $provider = \App\Models\Profile::where('user_id', Auth::id())->first(); ?>
+                {{-- @role('provider')
+                    @if ($provider->limit <= 0)
+                        <div class=" top-0 p-3 my-3 right-0 bg-primary-pink text-white ">
+                            لا يمكنك أضافه عروض لقد استهلكت العدد المحدد للمشاريع المتاحه
+                        </div>
+                    @endif
+                @endrole --}}
+                @if (Auth::check() && Auth::id() != $post->user_id && Auth::user()->hasRole('provider') /*&& $provider->limit > 0*/)
                     <div class="row my-2">
                         <div class="">
                             {{-- comment post condition --}}
@@ -337,7 +345,7 @@
                                                                                     viewBox="0 0 20 20">
                                                                                     <path
                                                                                         style="color:white ; stroke: white;
-                                                                                                                                                                                fill: white;"
+                                                                                                                                                                                                                                                            fill: white;"
                                                                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                                                 </svg>
                                                                             </button>
@@ -693,12 +701,12 @@
                     </div>
                 </div>
                 <!-- <hr>
-                                                                                                                                    <div>
-                                                                                                                                        <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
-                                                                                                                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
-                                                                                                                                        <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
+                                                                                                                                                                                                                <div>
+                                                                                                                                                                                                                    <p><i class="fa fa-circle-chevron-left px-2 "></i>مرحلة تلقي العروض</p>
+                                                                                                                                                                                                                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التنفيذ</p>
+                                                                                                                                                                                                                    <p> <i class="fa fa-circle-dot px-2 color-gray-light"></i>مرحلة التسليم </p>
 
-                                                                                                                                    </div> -->
+                                                                                                                                                                                                                </div> -->
                 <hr>
                 <div>
                     <p class="font-md my-4">صاحب المشروع</p>
