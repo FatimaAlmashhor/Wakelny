@@ -71,6 +71,7 @@ class PostController extends Controller
                 'profiles.rating',
                 'profiles.user_id',
                 'profiles.avatar',
+                'profiles.limit',
                 'comments.duration',
                 'comments.cost',
                 'comments.description',

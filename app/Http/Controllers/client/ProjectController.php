@@ -177,14 +177,23 @@ class ProjectController extends Controller
             $notify = new NotificationController();
             $notify->acceptTheProjectNotifiction($project);
 
+            $provider = Profile::where('user_id', $project->provider_id)->first();
+            $limitValue = $provider->limit;
+            if ($limitValue <= 4 && $limitValue > 0) {
+                $provider->limit =  $limitValue - 1;
+            } else {
+                $provider->limit = 0;
+            }
+
+            $provider->save();
             Project::where('id', $project_id)->update([
                 'status' => 'at_work',
             ]);
 
-            Profile::where('user_id', Auth::id())
-                ->where('limit', '<=', 4)
-                ->where('limit', '>=', 0)
-                ->decrement('limit');
+            // Profile::where('user_id', Auth::id())
+            //     ->where('limit', '<=', 4)
+            //     ->where('limit', '>=', 0)
+            //     ->decrement('limit');
 
 
 
