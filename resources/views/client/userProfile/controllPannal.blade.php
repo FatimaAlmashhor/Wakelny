@@ -17,7 +17,7 @@
 
             <!-- side sec -->
             <div class="row">
-               
+
 
                 <!-- Dashboard Nav Section -->
 
@@ -47,96 +47,106 @@
                                     <div class="col-sm-9 text-secondary">
                                         <div class="mx-2 my-2 px-2">
 
-                                            <input class="form-check-input mx-2" type="checkbox"
+                                            {{-- <input class="form-check-input mx-2" type="checkbox"
                                                 {{ $role == 'seeker' || $role == 'both' ? 'checked' : '' }} name="seeker"
                                                 id="">
 
                                             <strong> {{ __('profile.person1') }}</strong>
-                                            (أبحث عن مستقلين لتنفيذ مشاريعي)
-                                        </div>
-                                        <div class="mx-2 my-2 px-2">
-
-                                            <input class="form-check-input mx-2" type="checkbox"
-                                                {{ $role == 'provider' || $role == 'both' ? 'checked' : '' }}
-                                                name="provider" id="">
-
-                                            <strong> {{ __('profile.person2') }}</strong>
-                                            (أبحث عن مشاريع لتنفيذها)
-                                            <div class="mx-2 my-2 px-2">
+                                            (أبحث عن مستقلين لتنفيذ مشاريعي) --}}
+                                            @role('seeker')
+                                                <strong> {{ __('profile.person1') }}</strong>
+                                                (أبحث عن متاحين لتنفيذ مشاريعي)
+                                            @endrole
+                                            @role('provider')
+                                                <strong> {{ __('profile.person2') }}</strong>
+                                                (أبحث عن مشاريع لتنفيذها)
 
                                                 <input class="form-check-input mx-2" type="checkbox" name="hire_me"
                                                     {{ $item->hire_me ? 'checked' : '' }}>
 
                                                 <strong> {{ __('profile.person21') }}</strong>
                                                 (إزالة هذه الإشارة سيخفي حسابك بشكل مؤقت من نتائج البحث)
-                                            </div>
+                                            @endrole
+                                        </div>
+                                        <div class="mx-2 my-2 px-2">
+
+                                            {{-- <input class="form-check-input mx-2" type="checkbox"
+                                                {{ $role == 'provider' || $role == 'both' ? 'checked' : '' }}
+                                                name="provider" id="">
+
+                                            <strong> {{ __('profile.person2') }}</strong>
+                                            (أبحث عن مشاريع لتنفيذها)
+                                            <div class="mx-2 my-2 px-2"> --}}
+
+
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <label for="" class="col-md-6 col-form-label font-md">
-                                            {{ __('profile.person3') }}</label>
-                                        <select
-                                            class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                            name="category_id" data-actions-box="true">
-                                            @foreach ($categories as $cate)
-                                                <option value="{{ $cate->id }}">{{ $cate->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="" class="col-md-6 col-form-label font-md">
-                                            {{ __('profile.person4') }}</label>
-                                        <div class="col-sm-10">
-                                            <input type="text"
-                                                class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                                id="" name="job_title" value="{{ $item->job_title }}">
-                                        </div>
-                                        @error('job_title')
-                                            <span class="text-danger w-100">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <label for="" class="col-md-6 col-form-label font-md">
-                                        {{ __('profile.person5') }}</label>
-                                    <textarea class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink font-md"
-                                        placeholder=" {{ __('profile.person5') }}" id=""
-                                        name="bio">{{ $item->bio }}</textarea>
-                                    @error('bio')
-                                        <span class="text-danger w-100">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="block border-top mt-5 w-full"></div>
-
-                                <div class="row mt-4">
-
-                                    <label for="" class="col-md-12 col-form-label font-md">
-                                        {{ __('profile.person6') }}</label>
-                                    <input type="url"
-                                        class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
-                                        id="" name="video" value="{{ $item->video }}">
-                                    @error('video')
-                                        <span class="text-danger w-100">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div>
-                                    <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ
-                                    </button>
-                                </div>
-
-                                {{ csrf_field() }}
-                            </form>
                         </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <label for="" class="col-md-6 col-form-label font-md">
+                                    {{ __('profile.person3') }}</label>
+                                <select
+                                    class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                    name="category_id" data-actions-box="true">
+                                    @foreach ($categories as $cate)
+                                        <option value="{{ $cate->id }}">{{ $cate->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="col-md-6 col-form-label font-md">
+                                    {{ __('profile.person4') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text"
+                                        class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                        id="" name="job_title" value="{{ $item->job_title }}">
+                                </div>
+                                @error('job_title')
+                                    <span class="text-danger w-100">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <label for="" class="col-md-6 col-form-label font-md">
+                                {{ __('profile.person5') }}</label>
+                            <textarea class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink font-md"
+                                placeholder=" {{ __('profile.person5') }}" id=""
+                                name="bio">{{ $item->bio }}</textarea>
+                            @error('bio')
+                                <span class="text-danger w-100">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="block border-top mt-5 w-full"></div>
+
+                        <div class="row mt-4">
+
+                            <label for="" class="col-md-12 col-form-label font-md">
+                                {{ __('profile.person6') }}</label>
+                            <input type="url"
+                                class="appearance-none block w-full bg-sacondary-light-white-pinky border-primary-light-pink border-sm text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary-pink"
+                                id="" name="video" value="{{ $item->video }}">
+                            @error('video')
+                                <span class="text-danger w-100">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <button class="mo-btn btn-blue-bg float-left font-md" type="submit">حفظ
+                            </button>
+                        </div>
+
+                        {{ csrf_field() }}
+                        </form>
                     </div>
-                </section>
+            </div>
+            </section>
             </div>
         </main>
     @endforeach

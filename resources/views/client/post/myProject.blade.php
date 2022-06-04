@@ -24,7 +24,7 @@
                             قيد العمل
                         @elseif ($item->status == 'done')
                             تم التسليم
-                        @elseif ($item->status == 'nonrecevied')
+                        @elseif ($item->status == 'rejected')
                             لم يتم قبول التسليم
                         @elseif ($item->status == 'received')
                             تم قبول التسليم

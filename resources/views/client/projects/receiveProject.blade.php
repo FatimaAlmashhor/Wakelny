@@ -139,7 +139,7 @@
                     </a>
 
                     <div class=" col-12 col-xs-12 pt-3">
-                        <label> الرباط التشغبي <em class="text--danger">*</em>
+                        <label> الرابط التشعبي <em class="text--danger">*</em>
                         </label>
                         <div class="input-group mb-3">
                             <input name="duration" class='form-control' id="url" type="url" value=" {{ $project->url }}"
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class=" col-12 col-xs-12 pt-3">
-                        <label> الرباط التشغبي <em class="text--danger">*</em>
+                        <label> الرابط التشعبي <em class="text--danger">*</em>
                         </label>
                         <div class=" mb-3">
 

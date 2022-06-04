@@ -19,8 +19,8 @@
             <div
                 class=" hidden-text w-full h-full bg-primary-green absolute flex justify-center items-center top-0 left-0  border-4 border-primary-green p-4 z-20">
                 <p class="text-white font-xl text-center">
-                    هنا ستتمكن من اضافه مشاريعك التي ترغب في بنائها كما يمكنك العمل كمتاج </br>
-                    وتتمكن من البحث عم مشروع لتبدأ العمل عليه بكل سهوله
+                    هنا ستتمكن من اضافه مشاريعك التي ترغب في بنائها كما يمكنك العمل كمتاح </br>
+                    وتتمكن من البحث عن مشروع لتبدأ العمل عليه بكل سهوله
                 </p>
             </div>
             <div class="flex flex-col  items-center my-8">
@@ -80,8 +80,10 @@
 
                             {{-- team 2 --}}
                             <div class=" relative bubble bubble-2">
+
                                 <div class="absolute p-1 px-4 bg-primary-green text-black left-20">
                                     <h3> أفنان  </h3>
+
                                 </div>
                                 <img class='w-32 h-32' src='/assets/client/images/Avatar (1).png' alt='afnan' />
                                 <div class="border-t border-t-gray  mt-5">
@@ -99,8 +101,8 @@
 
                             {{-- team 3 --}}
                             <div class="relative bubble bubble-3">
-                                <div class="absolute p-1 px-4 bg-primary-pink text-black left-20">
-                                    <h3>ضحى </h3>
+                                <div class="absolute p-1 px-4 bg-primary-pink text-black left-20 w-fit">
+                                    <h3>ضحى خراساني</h3>
                                 </div>
                                 <img class='w-32 h-32' src='/assets/client/images/Avatar (3).png' alt='doha' />
                                 <div class="border-t border-t-gray  mt-5">
@@ -121,12 +123,12 @@
 
                             {{-- team 4 --}}
                             <div class=" relative bubble bubble-1">
-                                <div class="absolute p-1 px-4 bg-primary-green text-black left-20 z-20">
-                                    <h3>رقيه </h3>
+                                <div class="absolute p-1 px-4 bg-primary-green text-black left-20 z-20 w-fit">
+                                    <h3> رقية سيف</h3>
                                 </div>
                                 <div class="rounded-full relative border-2 border-primary-light-pink  ">
 
-                                    <img class='w-32 h-32' src='/assets/client/images/Avatar (2).png' alt='afnan' />
+                                    <img class='w-32 h-32' src='/assets/client/images/Avatar (3).png' alt='roqia' />
                                     {{-- <a href="javascript:void(0)" class="absolute"
                                             style="top: 10px ; left:-10px"><i
                                                 class="fab fa-github   p-1 hover:text-black text-gray" title="github">
