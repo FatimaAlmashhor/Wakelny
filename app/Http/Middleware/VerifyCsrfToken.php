@@ -20,8 +20,7 @@ class VerifyCsrfToken
     {
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax()) {
-                // return response('Unauthorized.', 401);
-                return redirect()->route('home');
+                return response('Unauthorized.', 401);
             } else {
                 return redirect()->route('login');
             }
