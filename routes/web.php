@@ -77,7 +77,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'
 Route::apiResource('enquiries', 'Api\WebsiteEnquiryController');
 
 Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
+    'prefix' => 'ar',
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
     //  mywallet view
