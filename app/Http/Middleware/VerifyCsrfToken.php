@@ -18,13 +18,14 @@ class VerifyCsrfToken
     ];
     public function handle($request, Closure $next, $guard = null)
     {
-        // if (Auth::guard($guard)->guest()) {
-        //     if ($request->ajax()) {
-        //         return response('Unauthorized.', 401);
-        //     } else {
-        //         return redirect()->guest('login');
-        //     }
-        // }
+        if (Auth::guard($guard)->guest()) {
+            if ($request->ajax()) {
+                // return response('Unauthorized.', 401);
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('login');
+            }
+        }
 
         return $next($request);
     }
