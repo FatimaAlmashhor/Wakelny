@@ -74,6 +74,7 @@ Route::get('/forget-password',  [ForgotPasswordController::class, 'getEmail'])->
 Route::post('/forget-password', [ForgotPasswordController::class, 'postEmail'])->name('forget-pass');
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('reset-password');
 Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('update-password');
+Route::apiResource('enquiries', 'Api\WebsiteEnquiryController');
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
