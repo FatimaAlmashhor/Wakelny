@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->integer('value')->default(0);
-            $table->text('message')->default(0);
+            $table->integer('value');
+            $table->text('message');
             $table->timestamps();
         });
     }
