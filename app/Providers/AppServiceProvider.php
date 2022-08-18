@@ -30,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        $this->app->bind('path.public', function() {
+            // return your own correct path.
+            return realpath(base_path('../'));
+       });
     }
 }
